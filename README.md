@@ -12,13 +12,13 @@ Windows
 Cholatey it: `@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"` into admin CMD then `choco install node.js`
 ###     OR
 https://nodejs.org/en/download/
-
+---
 Mac
 
 Homebrew it: `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"` then `brew install node.js`
 ###     OR
 https://nodejs.org/en/download/ 
-
+---
 Linux
 
 `sudo apt-get install node.js`
