@@ -74,7 +74,8 @@ now remove the comma from the very last line.
 ```
 https://discordapp.com/oauth2/authorize?client_id=CLIENT_ID_GOES_HERE&scope=bot&permissions=2097176631 
 ```
-a. a box should pop up asking you to invite the bot to your discord server. choose which server you want and hit ok
+a box should pop up asking you to invite the bot to your discord server. choose which server you want and hit ok
+![Bot Creation Gif](https://epicdjl.github.io/Discord%20Bot%20Creation.gif)
 15. run `node quote.js` to start the bot, it should output one of the random quotes as sign it is online.
 16. Check your bot by typing the prefix and command you chose into discord.
 # ----------Enjoy-----------
