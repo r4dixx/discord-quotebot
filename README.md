@@ -19,7 +19,7 @@ A discord bot that outputs a random quote upon command
 ```
 (This makes the command !quote)
 8. create a bot on https://discordapp.com/developers/applications/me then create a bot account:
- @[youtube](https://www.youtube.com/watch?v=vsw5s5gKsR0) 
+ @[youtube](https://youtu.be/7zfJn2PD5Ks) 
  
 9. copy the "token" and paste it into the config file
 ```json
