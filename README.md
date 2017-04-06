@@ -5,42 +5,41 @@ A discord bot that outputs a random quote upon command
 
 # Setup
 
-1. Install Dependencies
-a. install node.js if you don't already have it
-b. `npm install discord.js`
-c. `npm install discord.js`
-d. `npm install infinite-loop`
-2. Clone the project (`git clone https://github.com/EpicDJL/QuoteBot.git`) or download and extract the zip file.
-3. Edit the config file
-a. put the prefix and command of your choice
+1. install node.js if you don't already have it
+2. `npm install discord.js`
+3. `npm install discord.js`
+4. `npm install infinite-loop`
+5. Clone the project (`git clone https://github.com/EpicDJL/QuoteBot.git`) or download and extract the zip file.
+6. Edit the config file
+7. put the prefix and command of your choice
 ```json
 {
     "prefix": "!",
     "command": "quote",
 ```
 (This makes the command !quote)
-b. create a bot account on https://discordapp.com/developers/applications/me
+8. create a bot account on https://discordapp.com/developers/applications/me
 VIDEO
-c. copy the "token" and paste it into the config file
+9. copy the "token" and paste it into the config file
 ```json
 {
     "token": "right here :)"
 ```
-d. format the quotes so that they each are a seperate line
+10. format the quotes so that they each are a seperate line
 ```
 quote 1
 quote 2
 quote 3
 (no quotations)
 ```
-e. got to http://textmechanic.com/text-tools/basic-text-tools/add-prefixsuffix-into-line/ and paste your quotes into the text box
-f. put `"` in the prefix box and `",` into the suffix box, this shoud format your quotes like this
+11. got to http://textmechanic.com/text-tools/basic-text-tools/add-prefixsuffix-into-line/ and paste your quotes into the text box
+12. put `"` in the prefix box and `",` into the suffix box, this shoud format your quotes like this
 ```
 "quote 1",
 "quote 2",
 "quote 3",
 ```
-g. paste it into the quote section in the config file. your config shoould now look like this:
+13. paste it into the quote section in the config file. your config shoould now look like this:
 ```json
 {
     "prefix": "prefix",
@@ -52,8 +51,8 @@ g. paste it into the quote section in the config file. your config shoould now l
 }
 ```
 now remove the comma from the very last line.
-4. create a discord invite by pasting your bot `Client Id` into where it says CLIENT_ID_GOES_HERE in this link: https://discordapp.com/oauth2/authorize?client_id=CLIENT_ID_GOES_HERE&scope=bot&permissions=2097176631 
+14. create a discord invite by pasting your bot `Client Id` into where it says CLIENT_ID_GOES_HERE in this link: https://discordapp.com/oauth2/authorize?client_id=CLIENT_ID_GOES_HERE&scope=bot&permissions=2097176631 
 a. a box should pop up asking you to invite the bot to your discord server. choose which server you want and hit ok
-5. run `node quote.js` to start the bot, it should output one of the random quotes as sign it is online.
-6. Check your bot by typing the prefix and command you chose into discord.
+15. run `node quote.js` to start the bot, it should output one of the random quotes as sign it is online.
+16. Check your bot by typing the prefix and command you chose into discord.
 # ----------Enjoy-----------
