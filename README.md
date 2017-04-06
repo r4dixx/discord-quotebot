@@ -10,7 +10,7 @@ a. install node.js if you don't already have it
 b. `npm install discord.js`
 c. `npm install discord.js`
 d. `npm install infinite-loop`
-2. Clone the project (`git clone https://github.com/EpicDJL/QuoteBot.git`)
+2. Clone the project (`git clone https://github.com/EpicDJL/QuoteBot.git`) or download and extract the zip file.
 3. Edit the config file
 a. put the prefix and command of your choice
 ```json
