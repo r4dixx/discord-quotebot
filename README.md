@@ -7,19 +7,19 @@ A discord bot that outputs a random quote upon command
 
 1. install node.js if you don't already have it
 
-Windows
+## Windows
 
 Cholatey it: `@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"` into admin CMD then `choco install node.js`
 ###     OR
 https://nodejs.org/en/download/
 ---
-Mac
+## Mac
 
 Homebrew it: `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"` then `brew install node.js`
 ###     OR
 https://nodejs.org/en/download/ 
 ---
-Linux
+## Linux
 
 `sudo apt-get install node.js`
 (or other package manager)
