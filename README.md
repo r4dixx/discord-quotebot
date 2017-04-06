@@ -19,3 +19,23 @@ a. put the prefix and command of your choice
 ```
 (This makes the command !quote)
 b. create a bot account on https://discordapp.com/developers/applications/me
+VIDEO
+c. copy the "token" and paste it into the config file
+```json
+{
+    "token": "right here :)"
+```
+d. format the quotes so that they each are a seperate line
+```
+quote 1
+quote 2
+quote 3
+(no quotations)
+```
+e. got to http://textmechanic.com/text-tools/basic-text-tools/add-prefixsuffix-into-line/ and paste your quotes into the text box
+f. put `"` in the prefix box and `",` into the suffix box, this shoud format your quotes like this
+```
+"quote 1",
+"quote 2",
+"quote 3",
+```
