@@ -1,4 +1,5 @@
-# QuoteBot [![Travis](https://img.shields.io/travis/rust-lang/rust.svg)]()[![Github All Releases](https://img.shields.io/github/downloads/atom/atom/total.svg)]() [![node](https://img.shields.io/node/v/gh-badges.svg)]()![ForTheBadge](http://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg)
+# QuoteBot [![Travis](https://img.shields.io/travis/rust-lang/rust.svg)]()[![Github All Releases](https://img.shields.io/github/downloads/atom/atom/total.svg)]() [![node](https://img.shields.io/node/v/gh-badges.svg)]()
+![ForTheBadge](http://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg)
 
 A discord bot that outputs a random quote upon command
 
@@ -39,3 +40,20 @@ f. put `"` in the prefix box and `",` into the suffix box, this shoud format you
 "quote 2",
 "quote 3",
 ```
+g. paste it into the quote section in the config file. your config shoould now look like this:
+```json
+{
+    "prefix": "prefix",
+    "command": "command",
+    "token": "token",
+    "quotes":["quote 1",
+    "quote 2",
+    "quote 3",]
+}
+```
+now remove the comma from the very last line.
+4. create a discord invite by pasting your bot `Client Id` into where it says CLIENT_ID_GOES_HERE in this link: https://discordapp.com/oauth2/authorize?client_id=CLIENT_ID_GOES_HERE&scope=bot&permissions=2097176631 
+a. a box should pop up asking you to invite the bot to your discord server. choose which server you want and hit ok
+5. run `node quote.js` to start the bot, it should output one of the random quotes as sign it is online.
+6. Check your bot by typing the prefix and command you chose into discord.
+# ----------Enjoy-----------
