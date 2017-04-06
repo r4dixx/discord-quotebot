@@ -19,6 +19,7 @@ A discord bot that outputs a random quote upon command
 ```
 (This makes the command !quote)
 8. create a bot on https://discordapp.com/developers/applications/me then create a bot account:
+ 
  ![Bot Creation Gif](https://epicdjl.github.io/Discord%20Bot%20Creation.gif) 
  
 9. copy the "token" and paste it into the config file
