@@ -2,5 +2,5 @@
     "prefix": "put prefix here",
     "command": "put command here",
     "token": "put bot token here"
-    "quotes": [put formatted array of quotes here]
+    "quotes":["put", "formatted", "array", "of", "quotes", "here",]
 }
