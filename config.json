@@ -1,6 +1,6 @@
 {
-    "prefix": "!",
-    "command": "quote",
+    "prefix": "put prefix here",
+    "command": "put command here",
     "token": "put bot token here"
-    "quote": []
+    "quotes": [put formatted array of quotes here]
 }
