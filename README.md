@@ -20,10 +20,10 @@ Homebrew it: `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/H
 https://nodejs.org/en/download/ 
 ---
 ## Linux
----
 `sudo apt-get install node.js`
+`sudo apt-get install npm`
 (or other package manager)
-
+---
 3. `npm install discord.js`
 
 4. `npm install infinite-loop`
