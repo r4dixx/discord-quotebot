@@ -20,7 +20,7 @@ Homebrew it: `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/H
 https://nodejs.org/en/download/ 
 ---
 ## Linux
-
+---
 `sudo apt-get install node.js`
 (or other package manager)
 
