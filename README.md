@@ -5,8 +5,8 @@ A discord bot that outputs a random quote upon command
 
 # Setup
 
-1. install node.js if you don't already have it
-
+1. Get a sweet text editor
+2. Install node.js
 ## Windows
 
 Cholatey it: `@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"` into admin CMD then `choco install node.js`
@@ -23,12 +23,17 @@ https://nodejs.org/en/download/
 
 `sudo apt-get install node.js`
 (or other package manager)
-2. `npm install discord.js`
+
 3. `npm install discord.js`
+
 4. `npm install infinite-loop`
+
 5. Clone the project (`git clone https://github.com/EpicDJL/QuoteBot.git`) or download and extract the zip file.
+
 6. Edit the config file
+
 7. put the prefix and command of your choice
+
 ```json
 {
     "prefix": "!",
