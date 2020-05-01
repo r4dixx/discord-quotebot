@@ -1,3 +1,4 @@
+var CONFIG = require('./config.json');
 var quotes = CONFIG.quotes;
 var prefix = CONFIG.prefix;
 var command = CONFIG.command;
