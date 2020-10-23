@@ -1,7 +1,7 @@
 const config = require('./config.json');
 var quotes = config.quotes;
 var prefix = config.prefix;
-var command = config.command;
+var command_quote = config.command_quote;
 
 const sqlite3 = require('sqlite3').verbose();
 let db = new sqlite3.Database('./quotes.db')
@@ -9,7 +9,7 @@ db.run('CREATE TABLE IF NOT EXISTS quotes(quote text)');
 
 var Discord = require("discord.js");
 var bot = new Discord.Client();
-var trigger = prefix + command
+var trigger = prefix + command_quote
 
 bot.on("message", (message) => {
   if (message.content == trigger) {
@@ -38,7 +38,7 @@ bot.on("message", (message) => {
     });
 
     message.channel.send("**Citation enregistrée → **" + quoteClean);
-  } else if (message.content.startsWith(prefix + "help")) {
+  } else if (message.content.startsWith(prefix + config.command_help)) {
     message.channel.send(
       "Enregistrer une citation → " + "`/quote` `utilisateur` `citation`" +
       "\n" +
