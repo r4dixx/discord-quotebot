@@ -3,25 +3,31 @@ var quotes = config.quotes;
 var prefix = config.prefix;
 var command = config.command;
 
-var InfiniteLoop = require('infinite-loop');
-var il = new InfiniteLoop;
+const sqlite3 = require('sqlite3').verbose();
+let db = new sqlite3.Database('./quote.db')
+db.run('CREATE TABLE IF NOT EXISTS quotes(quote text)');
 
 function randomQuote() {
-  return quotes[Math.floor(Math.random() * quotes.length)];
-};
-il.add(randomQuote, []);
 
-il.run();
+  let sql = `SELECT * FROM quotes WHERE quote IN (SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1)`;
+
+  db.all(sql, [], (err, rows) => {
+    if (err) {
+      throw err;
+    }
+    rows.forEach((row) => {
+      console.log(row.quote);
+      return row.quote
+    });
+  })
+
+};
 
 console.log(randomQuote());
 
 var Discord = require("discord.js");
 var bot = new Discord.Client();
 var trigger = prefix + command
-
-const sqlite3 = require('sqlite3').verbose();
-let db = new sqlite3.Database('./quote.db')
-db.run('CREATE TABLE IF NOT EXISTS quotes(quote text)');
 
 bot.on("message", (message) => {
   if (message.content == trigger) {
