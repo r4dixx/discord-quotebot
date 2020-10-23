@@ -23,6 +23,6 @@
   "dependencies": {
     "discord.js": "^12.4.0",
     "infinite-loop": "^0.2.2",
-    "sqlite": "^4.0.15"
+    "sqlite3": "^5.0.0"
   }
 }
