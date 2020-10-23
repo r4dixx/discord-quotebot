@@ -19,12 +19,25 @@ var Discord = require("discord.js");
 var bot = new Discord.Client();
 var trigger = prefix + command
 
+const sqlite3 = require('sqlite3').verbose();
+let db = new sqlite3.Database('./quote.db')
+db.run('CREATE TABLE IF NOT EXISTS quotes(quote text)');
+
 bot.on("message", (message) => {
   if (message.content == trigger) {
     message.channel.send(randomQuote());
   } else if (message.content.startsWith(trigger)) {
-    // save quote here
-    message.channel.send("**Citation enregistrée → **" + message.content.replace(trigger, "").substring(1));
+
+    var quoteClean = message.content.replace(trigger, "").substring(1)
+
+    db.run(`INSERT INTO quotes(quote) VALUES(?)`, quoteClean, function(err) {
+      if (err) {
+        return console.log(err.message);
+      }
+      console.log(`A row has been inserted with rowid ${this.lastID}`);
+    });
+
+    message.channel.send("**Citation enregistrée → **" + quoteClean);
   }
 });
 
@@ -36,5 +49,12 @@ bot.on("message", (message) => {
     message.channel.send(message.content.replace(ping, ""));
   }
 });
+
+// db.close((err) => {
+//   if (err) {
+//     return console.error(err.message);
+//   }
+//   console.log('Close the database connection.');
+// });
 
 bot.login(config.token);
