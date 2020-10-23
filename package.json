@@ -1,0 +1,27 @@
+{
+  "name": "quotebot",
+  "version": "1.0.0",
+  "description": "bot to display quotes",
+  "main": "bot.js",
+  "scripts": {
+    "test": "ping"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/r4dixx/QuoteBot.git"
+  },
+  "keywords": [
+    "quote",
+    "bot"
+  ],
+  "author": "r4dixx",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/r4dixx/QuoteBot/issues"
+  },
+  "homepage": "https://github.com/r4dixx/QuoteBot#readme",
+  "dependencies": {
+    "discord.js": "^12.4.0",
+    "infinite-loop": "^0.2.2"
+  }
+}
