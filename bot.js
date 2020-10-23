@@ -4,7 +4,7 @@ var prefix = config.prefix;
 var command = config.command;
 
 const sqlite3 = require('sqlite3').verbose();
-let db = new sqlite3.Database('./quote.db')
+let db = new sqlite3.Database('./quotes.db')
 db.run('CREATE TABLE IF NOT EXISTS quotes(quote text)');
 
 function randomQuote() {
