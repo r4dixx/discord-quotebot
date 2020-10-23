@@ -1,11 +1,11 @@
-const config = require('./config.json');
+const config = require("./config.json");
 var quotes = config.quotes;
 var prefix = config.prefix;
 var command_quote = config.command_quote;
 
-const sqlite3 = require('sqlite3').verbose();
+const sqlite3 = require("sqlite3").verbose();
 let db = new sqlite3.Database('./quotes.db')
-db.run('CREATE TABLE IF NOT EXISTS quotes(quote text)');
+db.run("CREATE TABLE IF NOT EXISTS quotes(quote text)");
 
 var Discord = require("discord.js");
 var bot = new Discord.Client();
@@ -14,7 +14,7 @@ var trigger = prefix + command_quote
 bot.on("message", (message) => {
   if (message.content == trigger) {
 
-    let sql = `SELECT * FROM quotes WHERE quote IN (SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1)`;
+    let sql = "SELECT * FROM quotes WHERE quote IN (SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1)";
 
     db.all(sql, [], (err, rows) => {
       if (err) {
@@ -30,19 +30,26 @@ bot.on("message", (message) => {
 
     var quoteClean = message.content.replace(trigger, "").substring(1)
 
-    db.run(`INSERT INTO quotes(quote) VALUES(?)`, quoteClean, function(err) {
+    db.run("INSERT INTO quotes(quote) VALUES(?)", quoteClean, function(err) {
       if (err) {
         return console.log(err.message);
       }
-      console.log(`quote saved: ` + quoteClean);
+      console.log("quote saved: " + quoteClean);
     });
 
-    message.channel.send("**Citation enregistrée → **" + quoteClean);
+    message.channel.send(
+      "_C'est dans la boîte..._" +
+      "\n" +
+      quoteClean
+    );
   } else if (message.content.startsWith(prefix + config.command_help)) {
     message.channel.send(
-      "Enregistrer une citation → " + "`/quote` `utilisateur` `citation`" +
-      "\n" +
-      "Afficher une citation aléatoire → " + "`/quote`"
+      "Enregistrer une citation" + "\n" +
+      "→ `/quote` `utilisateur` `citation`" + "\n" +
+      "Afficher une citation aléatoire" + "\n" +
+      "→ `/quote`" + "\n" +
+      "Afficher ce message" + "\n" +
+      "→ `/help`"
     )
   }
 
