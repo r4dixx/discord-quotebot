@@ -22,6 +22,7 @@
   "homepage": "https://github.com/r4dixx/QuoteBot#readme",
   "dependencies": {
     "discord.js": "^12.4.0",
-    "infinite-loop": "^0.2.2"
+    "infinite-loop": "^0.2.2",
+    "sqlite": "^4.0.15"
   }
 }
