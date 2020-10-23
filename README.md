@@ -29,7 +29,7 @@ Forked from https://github.com/dekuraan/QuoteBot
 ```json
 {
   "prefix": "/",
-  "command": "quote,
+  "command": "quote",
   "token": "123456",
   "quotes": [
     "quote 1",
