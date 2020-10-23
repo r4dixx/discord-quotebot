@@ -45,7 +45,7 @@ bot.on("message", (message) => {
   } else if (message.content.startsWith(prefix + config.command_help)) {
     message.channel.send(
       "Enregistrer une citation" + "\n" +
-      "→ `/quote` `utilisateur` `\"citation\"`" + "\n" +
+      "→ `/quote` `utilisateur` `:` `\"citation\"`" + "\n" +
       "Afficher une citation aléatoire" + "\n" +
       "→ `/quote`" + "\n" +
       "Afficher ce message" + "\n" +
