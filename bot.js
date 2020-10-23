@@ -38,7 +38,14 @@ bot.on("message", (message) => {
     });
 
     message.channel.send("**Citation enregistrée → **" + quoteClean);
+  } else if (message.content.startsWith(prefix + "help")) {
+    message.channel.send(
+      "Enregistrer une citation → " + "`/quote` `utilisateur` `citation`" +
+      "\n" +
+      "Afficher une citation aléatoire → " + "`/quote`"
+    )
   }
+
 });
 
 var ping = prefix + "ping"
