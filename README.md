@@ -28,16 +28,16 @@ Forked from https://github.com/dekuraan/QuoteBot
 7. insert quotes in the config file. your config should look like this:
 ```json
 {
-    "prefix": "!",
-    "command": "quote",
-    "token": "123456",
-    "quotes":[
-      "quote 1",
-      "quote 2",
-      "quote 3"]
+  "prefix": "/",
+  "command": "quote,
+  "token": "123456",
+  "quotes": [
+    "quote 1",
+    "quote 2",
+    "quote 3"
+  ]
 }
 ```
-Note there's no comma on the very last line.
 
 8. Create a discord invite by pasting your bot `Client Id` into where it says CLIENT_ID_GOES_HERE in this link: 
 ```
