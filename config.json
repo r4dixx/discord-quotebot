@@ -1,10 +1,6 @@
 {
   "prefix": "/",
-  "command": "quote",
-  "token": "123456",
-  "quotes": [
-    "quote 1",
-    "quote 2",
-    "quote 3"
-  ]
+  "command_quote": "quote",
+  "command_help": "help",
+  "token": "your_token"
 }
