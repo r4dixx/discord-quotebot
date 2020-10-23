@@ -1,7 +1,7 @@
-var CONFIG = require('./config.json');
-var quotes = CONFIG.quotes;
-var prefix = CONFIG.prefix;
-var command = CONFIG.command;
+const config = require('./config.json');
+var quotes = config.quotes;
+var prefix = config.prefix;
+var command = config.command;
 
 var InfiniteLoop = require('infinite-loop');
 var il = new InfiniteLoop;
@@ -18,15 +18,15 @@ console.log(randomQuote());
 var Discord = require("discord.js");
 var bot = new Discord.Client();
 bot.on("message", (message) => {
-  if (message.content.startsWith(prefix command)) {
-    message.channel.sendMessage(randomQuote());
+  if (message.content.startsWith(prefix + command)) {
+    message.channel.send(randomQuote());
   }
 });
 
 bot.on("message", (message) => {
-  if (message.content.startsWith(prefix "ping")) {
-    message.channel.sendMessage("Pong!");
+  if (message.content.startsWith(prefix + "ping")) {
+    message.channel.send("Pong!");
   }
 });
 
-bot.login(CONFIG.token);
+bot.login(config.token);
