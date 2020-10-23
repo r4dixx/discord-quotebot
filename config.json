@@ -1,6 +1,6 @@
 {
   "prefix": "/",
-  "command": "quote,
+  "command": "quote",
   "token": "123456",
   "quotes": [
     "quote 1",
