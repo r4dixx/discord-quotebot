@@ -1,6 +1,10 @@
 {
-    "prefix": "put prefix here",
-    "command": "put command here",
-    "token": "put bot token here",
-    "quotes":["put", "formatted", "array", "of", "quotes", "here",]
+  "prefix": "/",
+  "command": "quote,
+  "token": "123456",
+  "quotes": [
+    "quote 1",
+    "quote 2",
+    "quote 3"
+  ]
 }
