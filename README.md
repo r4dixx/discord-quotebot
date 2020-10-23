@@ -3,11 +3,13 @@ Forked from https://github.com/dekuraan/QuoteBot
 
 # Setup in 10 steps
 
-1. Install nodejs
+1. Clone the project (`git clone https://github.com/EpicDJL/QuoteBot.git`)
 
-2. Clone the project (`git clone https://github.com/EpicDJL/QuoteBot.git`)
+2. Install nodejs
 
-3. Edit the config file, put the prefix and command of your choice
+3. Run `npm install`
+
+4. Edit the config file, put the prefix and command of your choice
 
 ```json
 {
@@ -16,14 +18,14 @@ Forked from https://github.com/dekuraan/QuoteBot
 ```
 (This makes the command !quote)  
 
-4. create a bot on https://discordapp.com/developers/applications/me then create a bot account:
+5. create a bot on https://discordapp.com/developers/applications/me then create a bot account:
  
-5. copy the "token" and paste it into the config file
+6. copy the "token" and paste it into the config file
 ```json
 {
     "token": "right here :)"
 ```
-6. insert quotes in the config file. your config should look like this:
+7. insert quotes in the config file. your config should look like this:
 ```json
 {
     "prefix": "!",
@@ -37,14 +39,12 @@ Forked from https://github.com/dekuraan/QuoteBot
 ```
 Note there's no comma on the very last line.
 
-7. Create a discord invite by pasting your bot `Client Id` into where it says CLIENT_ID_GOES_HERE in this link: 
+8. Create a discord invite by pasting your bot `Client Id` into where it says CLIENT_ID_GOES_HERE in this link: 
 ```
 https://discordapp.com/oauth2/authorize?client_id=CLIENT_ID_GOES_HERE&scope=bot&permissions=2097176631 
 ```
 A box should pop up asking you to invite the bot to your discord server. choose which server you want and hit ok
 
-8. run `node quote.js` to start the bot, it should output one of the random quotes as sign it is online.
+9. run `node quote.js` to start the bot, it should output one of the random quotes as sign it is online.
 
-9. Check your bot by typing the prefix and command you chose into discord.
-
-10. Enjoy
+10. Check your bot by typing the prefix and command you chose into discord.
