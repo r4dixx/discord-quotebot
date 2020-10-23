@@ -13,10 +13,10 @@ Forked from https://github.com/dekuraan/QuoteBot
 
 ```json
 {
-    "prefix": "!",
+    "prefix": "/",
     "command": "quote",
 ```
-(This makes the command !quote)  
+(This makes the command `/quote`)  
 
 5. create a bot on https://discordapp.com/developers/applications/me then create a bot account:
  
