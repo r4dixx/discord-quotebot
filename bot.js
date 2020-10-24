@@ -16,6 +16,7 @@ db.close();
 client.on("message", (message) => {
   var msg = message.content
   var trigger_quote = PREFIX + COMMAND_QUOTE
+  var trigger_help = PREFIX + COMMAND_HELP
   var trigger_ping = PREFIX + COMMAND_PING
 
   if (msg == trigger_quote) {
@@ -42,15 +43,13 @@ client.on("message", (message) => {
       console.log("quote saved: " + quoteClean);
     });
     db.close();
-    message.channel.send(FEEDBACK_CONFIRM + "\n" + quoteClean);
-  } else if (msg.startsWith(PREFIX + COMMAND_HELP)) {
+    message.channel.send("_" + FEEDBACK_CONFIRM + "_" + "\n" + quoteClean);
+  } else if (msg.startsWith(trigger_help)) {
     message.channel.send(
-      "Enregistrer une citation" + "\n" +
-      "→ `/quote` `utilisateur` `:` `\"citation\"`" + "\n" +
-      "Afficher une citation aléatoire" + "\n" +
-      "→ `/quote`" + "\n" +
-      "Afficher ce message" + "\n" +
-      "→ `/help`"
+      CONFIG.help_add + " " + "`" + trigger_quote + "`" + " " + "`" + CONFIG.required_formatting + "`" + "\n" +
+      CONFIG.help_get + " " + "`" + trigger_quote + "`" + "\n" +
+      CONFIG.help_ping + " " + "`" + trigger_ping + "`" + "\n" +
+      CONFIG.help_self + " " + "`" + trigger_help + "`" + "\n"
     )
     console.log("help displayed");
   } else if (msg == trigger_ping) {
