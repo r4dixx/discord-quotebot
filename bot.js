@@ -1,18 +1,19 @@
-const config = require("./config.json");
-var quotes = config.quotes;
-var prefix = config.prefix;
-var command_quote = config.command_quote;
+const CONFIG = require("./config.json");
+const SQLITE = require("sqlite3").verbose();
+const DISCORD = require("discord.js");
 
-const sqlite3 = require("sqlite3").verbose();
-let db = new sqlite3.Database('./quotes.db')
+const PREFIX = CONFIG.prefix;
+const COMMAND_QUOTE = CONFIG.command_quote
+const TRIGGER = PREFIX + COMMAND_QUOTE
+const COMMAND_HELP = CONFIG.command_help;
+
+let db = new SQLITE.Database('./quotes.db')
 db.run("CREATE TABLE IF NOT EXISTS quotes(quote text)");
 
-var Discord = require("discord.js");
-var bot = new Discord.Client();
-var trigger = prefix + command_quote
+var bot = new DISCORD.Client();
 
 bot.on("message", (message) => {
-  if (message.content == trigger) {
+  if (message.content == TRIGGER) {
 
     let sql = "SELECT * FROM quotes WHERE quote IN (SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1)";
 
@@ -26,9 +27,9 @@ bot.on("message", (message) => {
       });
     })
 
-  } else if (message.content.startsWith(trigger)) {
+  } else if (message.content.startsWith(TRIGGER)) {
 
-    var quoteClean = message.content.replace(trigger, "").substring(1)
+    var quoteClean = message.content.replace(TRIGGER, "").substring(1)
 
     db.run("INSERT INTO quotes(quote) VALUES(?)", quoteClean, function(err) {
       if (err) {
@@ -42,7 +43,7 @@ bot.on("message", (message) => {
       "\n" +
       quoteClean
     );
-  } else if (message.content.startsWith(prefix + config.command_help)) {
+  } else if (message.content.startsWith(PREFIX + COMMAND_HELP)) {
     message.channel.send(
       "Enregistrer une citation" + "\n" +
       "→ `/quote` `utilisateur` `:` `\"citation\"`" + "\n" +
@@ -55,7 +56,7 @@ bot.on("message", (message) => {
 
 });
 
-var ping = prefix + "ping"
+var ping = PREFIX + "ping"
 bot.on("message", (message) => {
   if (message.content == ping) {
     message.channel.send("pong");
@@ -71,4 +72,4 @@ bot.on("message", (message) => {
 //   console.log('Close the database connection.');
 // });
 
-bot.login(config.token);
+bot.login(CONFIG.token);
