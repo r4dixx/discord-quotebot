@@ -3,5 +3,6 @@
   "command_quote": "quote",
   "command_help": "help",
   "command_ping": "ping",
+  "feedback_confirm": "_Quote saved:_",
   "token": "your_token"
 }

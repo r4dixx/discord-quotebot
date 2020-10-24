@@ -1,24 +1,27 @@
-const CONFIG = require("./config.json");
 const SQLITE = require("sqlite3").verbose();
 const DISCORD = require("discord.js");
-
+const CONFIG = require("./config.json");
 const PREFIX = CONFIG.prefix;
 const COMMAND_QUOTE = CONFIG.command_quote
-const TRIGGER_QUOTE = PREFIX + COMMAND_QUOTE
 const COMMAND_HELP = CONFIG.command_help;
 const COMMAND_PING = CONFIG.command_ping;
+const FEEDBACK_CONFIRM = CONFIG.feedback_confirm;
 
-const bot = new DISCORD.Client();
+const client = new DISCORD.Client();
 
 let db = new SQLITE.Database('./quotes.db')
 db.run("CREATE TABLE IF NOT EXISTS quotes(quote text)");
+db.close();
 
-bot.on("message", (message) => {
-  if (message.content == TRIGGER_QUOTE) {
+client.on("message", (message) => {
+  var msg = message.content
+  var trigger_quote = PREFIX + COMMAND_QUOTE
+  var trigger_ping = PREFIX + COMMAND_PING
 
-    let sql = "SELECT * FROM quotes WHERE quote IN (SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1)";
-
-    db.all(sql, [], (err, rows) => {
+  if (msg == trigger_quote) {
+    let db = new SQLITE.Database('./quotes.db')
+    let query = "SELECT * FROM quotes WHERE quote IN (SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1)";
+    db.all(query, [], (err, rows) => {
       if (err) {
         throw err;
       }
@@ -27,24 +30,20 @@ bot.on("message", (message) => {
         message.channel.send(row.quote)
       });
     })
-
-  } else if (message.content.startsWith(TRIGGER_QUOTE)) {
-
-    var quoteClean = message.content.replace(TRIGGER_QUOTE, "").substring(1)
-
-    db.run("INSERT INTO quotes(quote) VALUES(?)", quoteClean, function(err) {
+    db.close();
+  } else if (msg.startsWith(trigger_quote)) {
+    var quoteClean = msg.replace(trigger_quote, "").substring(1)
+    let db = new SQLITE.Database('./quotes.db')
+    let query = "INSERT INTO quotes(quote) VALUES(?)"
+    db.run(query, quoteClean, function(err) {
       if (err) {
         return console.log(err.message);
       }
       console.log("quote saved: " + quoteClean);
     });
-
-    message.channel.send(
-      "_C'est dans la boîte..._" +
-      "\n" +
-      quoteClean
-    );
-  } else if (message.content.startsWith(PREFIX + COMMAND_HELP)) {
+    db.close();
+    message.channel.send(FEEDBACK_CONFIRM + "\n" + quoteClean);
+  } else if (msg.startsWith(PREFIX + COMMAND_HELP)) {
     message.channel.send(
       "Enregistrer une citation" + "\n" +
       "→ `/quote` `utilisateur` `:` `\"citation\"`" + "\n" +
@@ -53,23 +52,12 @@ bot.on("message", (message) => {
       "Afficher ce message" + "\n" +
       "→ `/help`"
     )
-  }
-
-});
-
-bot.on("message", (message) => {
-  if (message.content == PREFIX + COMMAND_PING) {
-    message.channel.send("pong");
-  } else if (message.content.startsWith(PREFIX + COMMAND_PING)) {
-    message.channel.send(message.content.replace(ping, ""));
+    console.log("help displayed");
+  } else if (msg == trigger_ping) {
+    message.reply("pong");
+  } else if (msg.startsWith(trigger_ping)) {
+    message.reply(msg.replace(trigger_ping, ""));
   }
 });
 
-// db.close((err) => {
-//   if (err) {
-//     return console.error(err.message);
-//   }
-//   console.log('Close the database connection.');
-// });
-
-bot.login(CONFIG.token);
+client.login(CONFIG.token);
