@@ -2,5 +2,6 @@
   "prefix": "/",
   "command_quote": "quote",
   "command_help": "help",
+  "command_ping": "ping",
   "token": "your_token"
 }
