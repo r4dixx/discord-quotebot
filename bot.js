@@ -9,9 +9,21 @@ const FEEDBACK_CONFIRM = CONFIG.feedback_confirm;
 
 const client = new DISCORD.Client();
 
-let db = new SQLITE.Database('./quotes.db')
+let db = new SQLITE.Database('./quotes.db', (err) => {
+  if (err) {
+    return console.error(err.message);
+  }
+  console.log('Connected to SQlite database.');
+});
+
 db.run("CREATE TABLE IF NOT EXISTS quotes(quote text)");
-db.close();
+
+db.close((err) => {
+  if (err) {
+    return console.error(err.message);
+  }
+  console.log('Close the database connection.');
+});
 
 client.on("message", (message) => {
   var msg = message.content
@@ -20,9 +32,15 @@ client.on("message", (message) => {
   var trigger_ping = PREFIX + COMMAND_PING
 
   if (msg == trigger_quote) {
-    let db = new SQLITE.Database('./quotes.db')
-    let query = "SELECT * FROM quotes WHERE quote IN (SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1)";
-    db.all(query, [], (err, rows) => {
+
+    let db = new SQLITE.Database('./quotes.db', (err) => {
+      if (err) {
+        return console.error(err.message);
+      }
+      console.log('Connected to SQlite database.');
+    });
+
+    db.all("SELECT * FROM quotes WHERE quote IN (SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1)", [], (err, rows) => {
       if (err) {
         throw err;
       }
@@ -31,18 +49,38 @@ client.on("message", (message) => {
         message.channel.send(row.quote)
       });
     })
-    db.close();
+
+    db.close((err) => {
+      if (err) {
+        return console.error(err.message);
+      }
+      console.log('Close the database connection.');
+    });
+
   } else if (msg.startsWith(trigger_quote)) {
     var quoteClean = msg.replace(trigger_quote, "").substring(1)
-    let db = new SQLITE.Database('./quotes.db')
-    let query = "INSERT INTO quotes(quote) VALUES(?)"
-    db.run(query, quoteClean, function(err) {
+
+    let db = new SQLITE.Database('./quotes.db', (err) => {
+      if (err) {
+        return console.error(err.message);
+      }
+      console.log('Connected to SQlite database.');
+    });
+
+    db.run("INSERT INTO quotes(quote) VALUES(?)", quoteClean, function(err) {
       if (err) {
         return console.log(err.message);
       }
       console.log("quote saved: " + quoteClean);
     });
-    db.close();
+
+    db.close((err) => {
+      if (err) {
+        return console.error(err.message);
+      }
+      console.log('Close the database connection.');
+    });
+
     message.channel.send("_" + FEEDBACK_CONFIRM + "_" + "\n" + quoteClean);
   } else if (msg.startsWith(trigger_help)) {
     message.channel.send(
