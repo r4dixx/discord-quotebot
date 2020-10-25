@@ -11,9 +11,15 @@ const FEEDBACK_CONFIRM = CONFIG.feedback_confirm;
 
 let db = null
 
-openDb()
-db.run('CREATE TABLE IF NOT EXISTS quotes(quote text)');
-closeDb()
+const dbPath = './quotes.db'
+
+if (require('fs').existsSync(dbPath)) {
+  console.log(`File ${dbPath} exists. Moving on`);
+} else {
+  openDb()
+  db.run('CREATE TABLE IF NOT EXISTS quotes(quote text)');
+  closeDb()
+}
 
 CLIENT.on('message', (message) => {
   var msg = message.content
@@ -59,7 +65,7 @@ CLIENT.on('message', (message) => {
 CLIENT.login(CONFIG.token);
 
 function openDb() {
-  db = new SQLITE.Database('./quotes.db', (err) => {
+  db = new SQLITE.Database(dbPath, (err) => {
     if (err) {
       return console.error(err.message);
     }
