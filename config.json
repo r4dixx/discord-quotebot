@@ -6,7 +6,7 @@
   "feedback_confirm": "Quote saved:",
   "help_add": "Add a quote:",
   "help_get": "Get a random quote:",
-  "help_ping": "Test:",
+  "help_ping": "Test if bot up",
   "help_self": "Display this message:",
   "required_formatting": "user: \"quote\"",
   "token": "your_token"
