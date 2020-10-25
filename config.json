@@ -2,12 +2,10 @@
   "prefix": "/",
   "command_quote": "quote",
   "command_help": "help",
-  "command_ping": "ping",
   "feedback_confirm": "Quote saved:",
   "help_add": "Add a quote:",
-  "help_get": "Get a random quote:",
-  "help_ping": "Test if bot up:",
+  "help_add_formatting": "user: \"quote\"",
+  "help_display": "Get a random quote:",
   "help_self": "Display this message:",
-  "required_formatting": "user: \"quote\"",
   "token": "your_token"
 }
