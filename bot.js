@@ -17,7 +17,12 @@ if (require('fs').existsSync(dbPath)) {
   console.log(`File ${dbPath} exists. Moving on`);
 } else {
   openDb()
-  db.run('CREATE TABLE IF NOT EXISTS quotes(quote text)');
+  db.run('CREATE TABLE IF NOT EXISTS quotes(quote text)', function(err) {
+    if (err) {
+      return console.log(err.message);
+    }
+    console.log("Quotes table created");
+  });
   closeDb()
 }
 
