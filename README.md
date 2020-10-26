@@ -17,9 +17,9 @@ Warning! The code is very messy. But hey it kinda works
  
 6. copy the "token" and paste it into the config file
 
-7. Create a discord invite by pasting your bot `Client Id` into where it says CLIENT_ID_GOES_HERE in this link: 
+7. Create a discord invite with your `Client Id` and give proper permissions (`3072` = read and send messaged)
 ```
-https://discordapp.com/oauth2/authorize?client_id=CLIENT_ID_GOES_HERE&scope=bot&permissions=2097176631 
+https://discordapp.com/oauth2/authorize?client_id=CLIENT_ID_GOES_HERE&scope=bot&permissions=3072
 ```
 A box should pop up asking you to invite the bot to your discord server. Choose which server you want and hit ok
 
