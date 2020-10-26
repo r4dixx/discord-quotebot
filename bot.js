@@ -67,7 +67,7 @@ CLIENT.on('message', (message) => {
 
   function displayHelp() {
     const HELP = FEEDBACK.help
-    message.channel.send(`${HELP.add}\n\`${TRIGGER_QUOTE}\` \`${HELP.formatting}\`\n${HELP.display}\n\`${TRIGGER_QUOTE}\`\n${HELP.self}\n\`${TRIGGER_HELP}\``);
+    message.channel.send(`${HELP.add}\n→ \`${TRIGGER_QUOTE}\` \`${HELP.formatting}\`\n${HELP.display}\n→ \`${TRIGGER_QUOTE}\`\n${HELP.self}\n→ \`${TRIGGER_HELP}\``);
     console.log('Help displayed');
   }
 
