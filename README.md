@@ -17,7 +17,7 @@ Warning! The code is very messy. But hey it kinda works
  
 6. copy the "token" and paste it into the config file
 
-7. Create a discord invite with your `Client Id` and give proper permissions (`3072` = read and send messaged)
+7. Create a discord invite with your `Client Id` and give proper permissions (`3072` = read and send messages)
 ```
 https://discordapp.com/oauth2/authorize?client_id=CLIENT_ID_GOES_HERE&scope=bot&permissions=3072
 ```
