@@ -16,7 +16,7 @@ A discord bot that outputs a random quote upon command
 
 7. Create a discord invite with your **Application** `Client Id` and proper permissions (`3072` = read and send messages) : `https://discordapp.com/oauth2/authorize?client_id=CLIENT_ID_GOES_HERE&scope=bot&permissions=3072`
 
-8. Run `node quote.js` to start the bot.
+8. Run `node main.js` to start the bot.
 
 9. Check your bot by typing the prefix and command you chose into Discord.
 
