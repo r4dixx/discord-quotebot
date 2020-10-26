@@ -9,11 +9,19 @@ const COMMAND_QUOTE = CONFIG.command_quote
 const COMMAND_HELP = CONFIG.command_help;
 const FEEDBACK_CONFIRM = CONFIG.feedback_confirm;
 
-let db = null
+fs = require('fs')
 
+tokenPath = './token.json'
+if (fs.existsSync(tokenPath)) {
+  CLIENT.login(require(tokenPath).token);
+} else {
+  console.log(`Error: No token file`);
+}
+
+let db = null
 const dbPath = './quotes.db'
 
-if (require('fs').existsSync(dbPath)) {
+if (fs.existsSync(dbPath)) {
   console.log(`File ${dbPath} exists. Moving on`);
 } else {
   openDb()
@@ -66,8 +74,6 @@ CLIENT.on('message', (message) => {
     console.log(`Pong: ${pong}`);
   }
 });
-
-CLIENT.login(CONFIG.token);
 
 function openDb() {
   db = new SQLITE.Database(dbPath, (err) => {

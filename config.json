@@ -6,6 +6,5 @@
   "help_add": "Add a quote:",
   "help_add_formatting": "user: \"quote\"",
   "help_display": "Get a random quote:",
-  "help_self": "Display this message:",
-  "token": "your_token"
+  "help_self": "Display this message:"
 }
