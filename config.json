@@ -3,6 +3,7 @@
   "command_quote": "quote",
   "command_help": "help",
   "feedback_confirm": "Quote saved:",
+  "feedback_fail": "No quote available",
   "help_add": "Add a quote:",
   "help_add_formatting": "user: \"quote\"",
   "help_display": "Get a random quote:",

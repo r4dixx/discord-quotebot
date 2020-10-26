@@ -38,10 +38,15 @@ CLIENT.on('message', (message) => {
       if (err) {
         throw err;
       }
-      rows.forEach((row) => {
-        message.channel.send(row.quote);
-        console.log(`Quote displayed: ${row.quote}`);
-      });
+      if (isEmpty(rows)) {
+        message.channel.send(CONFIG.feedback_fail);
+        console.log('No quote saved in database');
+      } else {
+        rows.forEach((row) => {
+          message.channel.send(row.quote);
+          console.log(`Quote displayed: ${row.quote}`);
+        });
+      }
     });
     closeDb();
   }
@@ -53,10 +58,10 @@ CLIENT.on('message', (message) => {
       if (err) {
         return console.log(err.message);
       }
+      message.channel.send(`${CONFIG.feedback_confirm}\n${quoteClean}`);
+      console.log(`Quote saved: ${quoteClean}`);
     });
     closeDb();
-    message.channel.send(`${CONFIG.feedback_confirm}\n${quoteClean}`);
-    console.log(`Quote saved: ${quoteClean}`);
   }
 
   function displayHelp() {
@@ -116,4 +121,12 @@ function closeDb() {
     }
     console.log('Closed database connection');
   });
+}
+
+function isEmpty(obj) {
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key))
+      return false;
+  }
+  return true;
 }
