@@ -19,8 +19,9 @@ createTableIfNecessary()
 
 CLIENT.on('message', (message) => {
   const MESSAGE = message.content;
-  const TRIGGER_QUOTE = PREFIX + CONFIG.command_quote;
-  const TRIGGER_HELP = PREFIX + CONFIG.command_help;
+  const TRIGGER_QUOTE = PREFIX + CONFIG.command.quote;
+  const TRIGGER_HELP = PREFIX + CONFIG.command.help;
+  const FEEDBACK = CONFIG.feedback;
 
   if (MESSAGE === TRIGGER_QUOTE) {
     displayRandomQuote();
@@ -39,7 +40,7 @@ CLIENT.on('message', (message) => {
         throw err;
       }
       if (isEmpty(rows)) {
-        message.channel.send(CONFIG.feedback_fail);
+        message.channel.send(FEEDBACK.failure);
         console.log('No quote saved in database');
       } else {
         rows.forEach((row) => {
@@ -58,14 +59,15 @@ CLIENT.on('message', (message) => {
       if (err) {
         return console.log(err.message);
       }
-      message.channel.send(`${CONFIG.feedback_confirm}\n${quoteClean}`);
+      message.channel.send(`${FEEDBACK.confirmation}\n${quoteClean}`);
       console.log(`Quote saved: ${quoteClean}`);
     });
     closeDb();
   }
 
   function displayHelp() {
-    message.channel.send(`${CONFIG.help_add} \`${TRIGGER_QUOTE}\` \`${CONFIG.help_add_formatting}\`\n${CONFIG.help_display} \`${TRIGGER_QUOTE}\`\n${CONFIG.help_self} \`${TRIGGER_HELP}\``);
+    const HELP = FEEDBACK.help
+    message.channel.send(`${HELP.add} \`${TRIGGER_QUOTE}\` \`${HELP.formatting}\`\n${HELP.display} \`${TRIGGER_QUOTE}\`\n${HELP.self} \`${TRIGGER_HELP}\``);
     console.log('Help displayed');
   }
 
