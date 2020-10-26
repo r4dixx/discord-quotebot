@@ -1,15 +1,8 @@
-const FS = require('fs');
-const SQLITE = require('sqlite3');
 const DISCORD = require('discord.js');
-const CONFIG = require('./config.json');
-
-const DB_PATH = './quotes.db';
-const TOKEN_PATH = './token.json';
-const TOKEN_FILE = require(TOKEN_PATH);
-
 const CLIENT = new DISCORD.Client();
 
-const PREFIX = CONFIG.prefix;
+const FS = require('fs');
+const DB_PATH = './quotes.db';
 
 let db;
 
@@ -19,6 +12,8 @@ createTableIfNecessary()
 
 CLIENT.on('message', (message) => {
   const MESSAGE = message.content;
+  const CONFIG = require('./config.json');
+  const PREFIX = CONFIG.prefix;
   const TRIGGER_QUOTE = PREFIX + CONFIG.command.quote;
   const TRIGGER_HELP = PREFIX + CONFIG.command.help;
   const FEEDBACK = CONFIG.feedback;
@@ -100,6 +95,8 @@ function createTableIfNecessary() {
 }
 
 function getToken() {
+  const TOKEN_PATH = './token.json';
+  const TOKEN_FILE = require(TOKEN_PATH);
   if (FS.existsSync(TOKEN_PATH)) {
     CLIENT.login(TOKEN_FILE.token);
   } else {
@@ -108,6 +105,7 @@ function getToken() {
 }
 
 function openDb() {
+  const SQLITE = require('sqlite3');
   db = new SQLITE.Database(DB_PATH, (err) => {
     if (err) {
       return console.error(err.message);
