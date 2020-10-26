@@ -6,7 +6,7 @@ const DB_PATH = './quotes.db';
 
 let db;
 
-getToken()
+login()
 
 createTableIfNecessary()
 
@@ -94,11 +94,14 @@ function createTableIfNecessary() {
   }
 }
 
-function getToken() {
+function login() {
   const TOKEN_PATH = './token.json';
   const TOKEN_FILE = require(TOKEN_PATH);
   if (FS.existsSync(TOKEN_PATH)) {
     CLIENT.login(TOKEN_FILE.token);
+    CLIENT.on('ready', () => {
+      console.log('Discord client logged in');
+    });
   } else {
     console.log('Error: No token file');
   }
