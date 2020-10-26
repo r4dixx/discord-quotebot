@@ -52,41 +52,49 @@ if (FS.existsSync(DB_PATH)) {
 }
 
 CLIENT.on('message', (message) => {
-  const msg = message.content;
-  const triggerQuote = PREFIX + CONFIG.command_quote;
-  const triggerHelp = PREFIX + CONFIG.command_help;
+  const MESSAGE = message.content;
+  const TRIGGER_QUOTE = PREFIX + CONFIG.command_quote;
+  const TRIGGER_HELP = PREFIX + CONFIG.command_help;
 
-  if (msg === triggerQuote) {
+  function displayRandomQuote() {
     openDb();
     db.all('SELECT * FROM quotes WHERE quote IN (SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1)', [], (err, rows) => {
       if (err) {
         throw err;
       }
       rows.forEach((row) => {
-        console.log(`Quote displayed: ${row.quote}`);
         message.channel.send(row.quote);
       });
     });
     closeDb();
-  } else if (msg.startsWith(triggerQuote)) {
-    const quoteClean = msg.replace(triggerQuote, '').substring(1);
+  }
+
+  function saveQuote() {
+    const quoteClean = MESSAGE.replace(TRIGGER_QUOTE, '').substring(1);
     openDb();
     db.run('INSERT INTO quotes(quote) VALUES(?)', quoteClean, (err) => {
       if (err) {
         return console.log(err.message);
       }
-      console.log(`Quote saved: ${quoteClean}`);
     });
     closeDb();
     message.channel.send(`${CONFIG.feedback_confirm}\n${quoteClean}`);
-  } else if (msg.startsWith(triggerHelp)) {
-    message.channel.send(`${CONFIG.help_add} \`${triggerQuote}\` \`${CONFIG.help_add_formatting}\`\n${CONFIG.help_display} \`${triggerQuote}\`\n${CONFIG.help_self} \`${triggerHelp}\``);
+  }
+
+  if (MESSAGE === TRIGGER_QUOTE) {
+    displayRandomQuote();
+    console.log(`Quote displayed: ${row.quote}`);
+  } else if (MESSAGE.startsWith(TRIGGER_QUOTE)) {
+    saveQuote();
+    console.log(`Quote saved: ${quoteClean}`);
+  } else if (MESSAGE.startsWith(TRIGGER_HELP)) {
+    message.channel.send(`${CONFIG.help_add} \`${TRIGGER_QUOTE}\` \`${CONFIG.help_add_formatting}\`\n${CONFIG.help_display} \`${TRIGGER_QUOTE}\`\n${CONFIG.help_self} \`${TRIGGER_HELP}\``);
     console.log('Help displayed');
-  } else if (msg === '/ping') {
+  } else if (MESSAGE === '/ping') {
     message.reply('Pong');
-    console.log('Pong');
-  } else if (msg.startsWith('/ping')) {
-    const pong = msg.replace('/ping', '').substring(1);
+    console.log('Ping Pong');
+  } else if (MESSAGE.startsWith('/ping')) {
+    const pong = MESSAGE.replace('/ping', '').substring(1);
     message.reply(`Pong: ${pong}`);
     console.log(`Pong: ${pong}`);
   }
