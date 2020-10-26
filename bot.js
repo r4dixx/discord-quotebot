@@ -1,8 +1,8 @@
-const SQLITE = require('sqlite3').verbose();
+const FS = require('fs');
+const SQLITE = require('sqlite3');
 const DISCORD = require('discord.js');
 const CONFIG = require('./config.json');
 
-const FS = require('fs');
 const DB_PATH = './quotes.db';
 const TOKEN_PATH = './token.json';
 const TOKEN_FILE = require(TOKEN_PATH);
@@ -10,9 +10,6 @@ const TOKEN_FILE = require(TOKEN_PATH);
 const CLIENT = new DISCORD.Client();
 
 const PREFIX = CONFIG.prefix;
-const COMMAND_QUOTE = CONFIG.command_quote;
-const COMMAND_HELP = CONFIG.command_help;
-const FEEDBACK_CONFIRM = CONFIG.feedback_confirm;
 
 if (FS.existsSync(TOKEN_PATH)) {
   CLIENT.login(TOKEN_FILE.token);
@@ -20,7 +17,7 @@ if (FS.existsSync(TOKEN_PATH)) {
   console.log('Error: No token file');
 }
 
-let db = null;
+let db;
 
 function openDb() {
   db = new SQLITE.Database(DB_PATH, (err) => {
@@ -56,8 +53,8 @@ if (FS.existsSync(DB_PATH)) {
 
 CLIENT.on('message', (message) => {
   const msg = message.content;
-  const triggerQuote = PREFIX + COMMAND_QUOTE;
-  const triggerHelp = PREFIX + COMMAND_HELP;
+  const triggerQuote = PREFIX + CONFIG.command_quote;
+  const triggerHelp = PREFIX + CONFIG.command_help;
 
   if (msg === triggerQuote) {
     openDb();
@@ -81,7 +78,7 @@ CLIENT.on('message', (message) => {
       console.log(`Quote saved: ${quoteClean}`);
     });
     closeDb();
-    message.channel.send(`${FEEDBACK_CONFIRM}\n${quoteClean}`);
+    message.channel.send(`${CONFIG.feedback_confirm}\n${quoteClean}`);
   } else if (msg.startsWith(triggerHelp)) {
     message.channel.send(`${CONFIG.help_add} \`${triggerQuote}\` \`${CONFIG.help_add_formatting}\`\n${CONFIG.help_display} \`${triggerQuote}\`\n${CONFIG.help_self} \`${triggerHelp}\``);
     console.log('Help displayed');
