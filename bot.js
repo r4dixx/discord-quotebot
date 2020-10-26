@@ -1,74 +1,132 @@
-const config = require("./config.json");
-var quotes = config.quotes;
-var prefix = config.prefix;
-var command_quote = config.command_quote;
+const FS = require('fs');
+const SQLITE = require('sqlite3');
+const DISCORD = require('discord.js');
+const CONFIG = require('./config.json');
 
-const sqlite3 = require("sqlite3").verbose();
-let db = new sqlite3.Database('./quotes.db')
-db.run("CREATE TABLE IF NOT EXISTS quotes(quote text)");
+const DB_PATH = './quotes.db';
+const TOKEN_PATH = './token.json';
+const TOKEN_FILE = require(TOKEN_PATH);
 
-var Discord = require("discord.js");
-var bot = new Discord.Client();
-var trigger = prefix + command_quote
+const CLIENT = new DISCORD.Client();
 
-bot.on("message", (message) => {
-  if (message.content == trigger) {
+const PREFIX = CONFIG.prefix;
 
-    let sql = "SELECT * FROM quotes WHERE quote IN (SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1)";
+let db;
 
-    db.all(sql, [], (err, rows) => {
+getToken()
+
+createTableIfNecessary()
+
+CLIENT.on('message', (message) => {
+  const MESSAGE = message.content;
+  const TRIGGER_QUOTE = PREFIX + CONFIG.command_quote;
+  const TRIGGER_HELP = PREFIX + CONFIG.command_help;
+
+  if (MESSAGE === TRIGGER_QUOTE) {
+    displayRandomQuote();
+  } else if (MESSAGE.startsWith(TRIGGER_QUOTE)) {
+    saveQuote();
+  } else if (MESSAGE.startsWith(TRIGGER_HELP)) {
+    displayHelp()
+  } else {
+    ping()
+  }
+
+  function displayRandomQuote() {
+    openDb();
+    db.all('SELECT * FROM quotes WHERE quote IN (SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1)', [], (err, rows) => {
       if (err) {
         throw err;
       }
-      rows.forEach((row) => {
-        console.log("quote displayed: " + row.quote);
-        message.channel.send(row.quote)
-      });
-    })
+      if (isEmpty(rows)) {
+        message.channel.send(CONFIG.feedback_fail);
+        console.log('No quote saved in database');
+      } else {
+        rows.forEach((row) => {
+          message.channel.send(row.quote);
+          console.log(`Quote displayed: ${row.quote}`);
+        });
+      }
+    });
+    closeDb();
+  }
 
-  } else if (message.content.startsWith(trigger)) {
-
-    var quoteClean = message.content.replace(trigger, "").substring(1)
-
-    db.run("INSERT INTO quotes(quote) VALUES(?)", quoteClean, function(err) {
+  function saveQuote() {
+    var quoteClean = MESSAGE.replace(TRIGGER_QUOTE, '').substring(1);
+    openDb();
+    db.run('INSERT INTO quotes(quote) VALUES(?)', quoteClean, (err) => {
       if (err) {
         return console.log(err.message);
       }
-      console.log("quote saved: " + quoteClean);
+      message.channel.send(`${CONFIG.feedback_confirm}\n${quoteClean}`);
+      console.log(`Quote saved: ${quoteClean}`);
     });
-
-    message.channel.send(
-      "_C'est dans la boîte..._" +
-      "\n" +
-      quoteClean
-    );
-  } else if (message.content.startsWith(prefix + config.command_help)) {
-    message.channel.send(
-      "Enregistrer une citation" + "\n" +
-      "→ `/quote` `utilisateur` `:` `\"citation\"`" + "\n" +
-      "Afficher une citation aléatoire" + "\n" +
-      "→ `/quote`" + "\n" +
-      "Afficher ce message" + "\n" +
-      "→ `/help`"
-    )
+    closeDb();
   }
 
-});
+  function displayHelp() {
+    message.channel.send(`${CONFIG.help_add} \`${TRIGGER_QUOTE}\` \`${CONFIG.help_add_formatting}\`\n${CONFIG.help_display} \`${TRIGGER_QUOTE}\`\n${CONFIG.help_self} \`${TRIGGER_HELP}\``);
+    console.log('Help displayed');
+  }
 
-var ping = prefix + "ping"
-bot.on("message", (message) => {
-  if (message.content == ping) {
-    message.channel.send("pong");
-  } else if (message.content.startsWith(ping)) {
-    message.channel.send(message.content.replace(ping, ""));
+  function ping() {
+    if (MESSAGE === '/ping') {
+      message.reply('Pong');
+      console.log('Pong');
+    } else if (MESSAGE.startsWith('/ping')) {
+      const pong = MESSAGE.replace('/ping', '').substring(1);
+      message.reply(`Pong: ${pong}`);
+      console.log(`Pong: ${pong}`);
+    }
   }
 });
 
-// db.close((err) => {
-//   if (err) {
-//     return console.error(err.message);
-//   }
-//   console.log('Close the database connection.');
-// });
+function createTableIfNecessary() {
+  if (FS.existsSync(DB_PATH)) {
+    console.log(`File ${DB_PATH} exists. Moving on`);
+  } else {
+    console.log(`${DB_PATH} not found, creating...`);
+    openDb();
+    db.run('CREATE TABLE IF NOT EXISTS quotes(quote text)', (err) => {
+      if (err) {
+        return console.log(err.message);
+      }
+      console.log('Quotes table created');
+    });
+    closeDb();
+  }
+}
 
-bot.login(config.token);
+function getToken() {
+  if (FS.existsSync(TOKEN_PATH)) {
+    CLIENT.login(TOKEN_FILE.token);
+  } else {
+    console.log('Error: No token file');
+  }
+}
+
+function openDb() {
+  db = new SQLITE.Database(DB_PATH, (err) => {
+    if (err) {
+      return console.error(err.message);
+    }
+    console.log('Connected to SQlite database');
+  });
+}
+
+function closeDb() {
+  db.close((err) => {
+    if (err) {
+      return console.error(err.message);
+    }
+    console.log('Closed database connection');
+  });
+}
+
+function isEmpty(obj) {
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key))
+      return false;
+  }
+  return true;
+}
