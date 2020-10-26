@@ -24,6 +24,7 @@ const dbPath = './quotes.db'
 if (fs.existsSync(dbPath)) {
   console.log(`File ${dbPath} exists. Moving on`);
 } else {
+  console.log(`${dbPath} not found, creating...`);
   openDb()
   db.run('CREATE TABLE IF NOT EXISTS quotes(quote text)', function(err) {
     if (err) {
