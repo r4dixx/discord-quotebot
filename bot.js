@@ -1,3 +1,5 @@
+require('./tools.js')();
+
 const DISCORD = require('discord.js')
 const CLIENT = new DISCORD.Client()
 
@@ -106,12 +108,4 @@ function closeDb() {
     if (err) return console.error(err.message)
     console.log('Closed database connection')
   })
-}
-
-function isEmpty(obj) {
-  for (var key in obj) {
-    if (obj.hasOwnProperty(key))
-      return false
-  }
-  return true
 }
