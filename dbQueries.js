@@ -22,7 +22,7 @@ module.exports = function() {
   getQuoteRandom = function() {
     openDb();
     getDb().all('SELECT * FROM quotes ORDER BY RANDOM() LIMIT 1', [], (err, rows) => {
-      if (err) throw err;
+      if (err) return console.log(err.message);
       rows.forEach((row) => {
         console.log(`Quote displayed: ${row.quote}`);
         return row.quote;
