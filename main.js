@@ -1,14 +1,13 @@
 /*jshint esversion: 6 */
 
 require('./tools.js')();
+require('./dbHelper.js')();
 
 const DISCORD = require('discord.js');
 const CLIENT = new DISCORD.Client();
 
 const FS = require('fs');
 const DB_PATH = './quotes.db';
-
-let db;
 
 login();
 
@@ -29,7 +28,7 @@ CLIENT.on('message', (message) => {
 
   function displayRandomQuote() {
     openDb();
-    db.all('SELECT * FROM quotes ORDER BY RANDOM() LIMIT 1', [], (err, rows) => {
+    getDb().all('SELECT * FROM quotes ORDER BY RANDOM() LIMIT 1', [], (err, rows) => {
       if (err) throw err;
       if (isEmpty(rows)) {
         message.channel.send(FEEDBACK.failure);
@@ -47,7 +46,7 @@ CLIENT.on('message', (message) => {
   function saveQuote() {
     var quoteClean = MESSAGE.replace(`${TRIGGER_QUOTE} `, '').substring(1);
     openDb();
-    db.run('INSERT INTO quotes(quote) VALUES(?)', quoteClean, (err) => {
+    getDb().run('INSERT INTO quotes(quote) VALUES(?)', quoteClean, (err) => {
       if (err) return console.log(err.message);
       message.channel.send(`${FEEDBACK.confirmation}\n${quoteClean}`);
       console.log(`Quote saved: ${quoteClean}`);
@@ -78,7 +77,7 @@ function createTableIfNecessary() {
   else {
     console.log(`${DB_PATH} not found, creating...`);
     openDb();
-    db.run('CREATE TABLE IF NOT EXISTS quotes(quote text)', (err) => {
+    getDb().run('CREATE TABLE IF NOT EXISTS quotes(quote text)', (err) => {
       if (err) return console.log(err.message);
       console.log('Quotes table created');
     });
@@ -95,19 +94,4 @@ function login() {
       console.log('Discord client logged in');
     });
   } else console.log('Error: No token file');
-}
-
-function openDb() {
-  const SQLITE = require('sqlite3');
-  db = new SQLITE.Database(DB_PATH, (err) => {
-    if (err) return console.error(err.message);
-    console.log('Connected to SQlite database');
-  });
-}
-
-function closeDb() {
-  db.close((err) => {
-    if (err) return console.error(err.message);
-    console.log('Closed database connection');
-  });
 }
