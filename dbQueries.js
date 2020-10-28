@@ -24,6 +24,7 @@ module.exports = function() {
     getDb().all('SELECT * FROM quotes ORDER BY RANDOM() LIMIT 1', [], (err, rows) => {
       if (err) throw err;
       rows.forEach((row) => {
+        console.log(`Quote displayed: ${row.quote}`);
         return row.quote;
       });
     });

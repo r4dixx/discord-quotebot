@@ -29,10 +29,8 @@ CLIENT.on('message', (message) => {
     let randomQuote = getQuoteRandom();
     if (isEmpty(randomQuote)) {
       message.channel.send(FEEDBACK.failure);
-      console.log('No quote saved in database');
     } else {
       message.channel.send(randomQuote);
-      console.log(`Quote displayed: ${randomQuote}`);
     }
   }
 
@@ -50,12 +48,12 @@ CLIENT.on('message', (message) => {
 
   function ping() {
     if (MESSAGE === '/ping') {
-      message.reply('Pong');
       console.log('Pong');
+      message.reply('Pong');
     } else if (MESSAGE.startsWith('/ping ')) {
-      const pong = MESSAGE.replace('/ping ', '').substring(1);
-      message.reply(`Pong: ${pong}`);
-      console.log(`Pong: ${pong}`);
+      pong = `Pong: ${MESSAGE.replace('/ping ', '').substring(1)}`;
+      console.log(pong);
+      message.reply(pong);
     }
   }
 });
