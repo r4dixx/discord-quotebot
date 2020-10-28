@@ -1,12 +1,11 @@
 /*jshint esversion: 6 */
 
 require('./tools.js')();
-require('./dbHelper.js')();
+require('./dbQueries.js')();
 
 const DISCORD = require('discord.js');
 const CLIENT = new DISCORD.Client();
 
-const FS = require('fs');
 const DB_PATH = './quotes.db';
 
 login();
@@ -72,22 +71,10 @@ CLIENT.on('message', (message) => {
   }
 });
 
-function createTableIfNecessary() {
-  if (FS.existsSync(DB_PATH)) console.log(`File ${DB_PATH} exists. Moving on`);
-  else {
-    console.log(`${DB_PATH} not found, creating...`);
-    openDb();
-    getDb().run('CREATE TABLE IF NOT EXISTS quotes(quote text)', (err) => {
-      if (err) return console.log(err.message);
-      console.log('Quotes table created');
-    });
-    closeDb();
-  }
-}
-
 function login() {
   const TOKEN_PATH = './token.json';
   const TOKEN_FILE = require(TOKEN_PATH);
+  const FS = require('fs');
   if (FS.existsSync(TOKEN_PATH)) {
     CLIENT.login(TOKEN_FILE.token);
     CLIENT.on('ready', () => {
