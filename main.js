@@ -40,7 +40,6 @@ CLIENT.on('message', (message) => {
     let quote = MESSAGE.replace(`${TRIGGER_QUOTE} `, '').substring(1);
     insertQuote(quote);
     message.channel.send(`${FEEDBACK.confirmation}\n${quote}`);
-    console.log(`Quote saved: ${quote}`);
   }
 
   function displayHelp() {

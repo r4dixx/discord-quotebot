@@ -34,6 +34,7 @@ module.exports = function() {
     openDb();
     getDb().run('INSERT INTO quotes(quote) VALUES(?)', quote, (err) => {
       if (err) return console.log(err.message);
+      console.log(`Quote saved: ${quote}`);
     });
     closeDb();
   };
