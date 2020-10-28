@@ -23,8 +23,8 @@ CLIENT.on('message', (message) => {
   const FEEDBACK = CONFIG.feedback;
 
   if (MESSAGE === TRIGGER_QUOTE) displayRandomQuote();
-  else if (MESSAGE.startsWith(TRIGGER_QUOTE)) saveQuote();
-  else if (MESSAGE.startsWith(TRIGGER_HELP)) displayHelp();
+  else if (MESSAGE.startsWith(`${TRIGGER_QUOTE} `)) saveQuote();
+  else if (MESSAGE.startsWith(`${TRIGGER_HELP} `)) displayHelp();
   else ping();
 
   function displayRandomQuote() {
@@ -45,7 +45,7 @@ CLIENT.on('message', (message) => {
   }
 
   function saveQuote() {
-    var quoteClean = MESSAGE.replace(TRIGGER_QUOTE, '').substring(1);
+    var quoteClean = MESSAGE.replace(`${TRIGGER_QUOTE} `, '').substring(1);
     openDb();
     db.run('INSERT INTO quotes(quote) VALUES(?)', quoteClean, (err) => {
       if (err) return console.log(err.message);
@@ -65,8 +65,8 @@ CLIENT.on('message', (message) => {
     if (MESSAGE === '/ping') {
       message.reply('Pong');
       console.log('Pong');
-    } else if (MESSAGE.startsWith('/ping')) {
-      const pong = MESSAGE.replace('/ping', '').substring(1);
+    } else if (MESSAGE.startsWith('/ping ')) {
+      const pong = MESSAGE.replace('/ping ', '').substring(1);
       message.reply(`Pong: ${pong}`);
       console.log(`Pong: ${pong}`);
     }
