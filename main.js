@@ -24,7 +24,7 @@ CLIENT.on('message', (message) => {
 
   if (MESSAGE === TRIGGER_QUOTE) displayRandomQuote();
   else if (MESSAGE.startsWith(`${TRIGGER_QUOTE} `)) saveQuote();
-  else if (MESSAGE.startsWith(`${TRIGGER_HELP} `)) displayHelp();
+  else if (MESSAGE === TRIGGER_HELP) displayHelp();
   else ping();
 
   function displayRandomQuote() {
