@@ -30,4 +30,12 @@ module.exports = function() {
     closeDb();
   };
 
+  insertQuote = function(quote) {
+    openDb();
+    getDb().run('INSERT INTO quotes(quote) VALUES(?)', quote, (err) => {
+      if (err) return console.log(err.message);
+    });
+    closeDb();
+  };
+
 };

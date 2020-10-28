@@ -37,14 +37,10 @@ CLIENT.on('message', (message) => {
   }
 
   function saveQuote() {
-    var quoteClean = MESSAGE.replace(`${TRIGGER_QUOTE} `, '').substring(1);
-    openDb();
-    getDb().run('INSERT INTO quotes(quote) VALUES(?)', quoteClean, (err) => {
-      if (err) return console.log(err.message);
-      message.channel.send(`${FEEDBACK.confirmation}\n${quoteClean}`);
-      console.log(`Quote saved: ${quoteClean}`);
-    });
-    closeDb();
+    let quote = MESSAGE.replace(`${TRIGGER_QUOTE} `, '').substring(1);
+    insertQuote(quote);
+    message.channel.send(`${FEEDBACK.confirmation}\n${quote}`);
+    console.log(`Quote saved: ${quote}`);
   }
 
   function displayHelp() {
