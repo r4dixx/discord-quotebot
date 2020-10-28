@@ -29,7 +29,7 @@ CLIENT.on('message', (message) => {
 
   function displayRandomQuote() {
     openDb();
-    db.all('SELECT * FROM quotes WHERE quote IN (SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1)', [], (err, rows) => {
+    db.all('SELECT * FROM quotes ORDER BY RANDOM() LIMIT 1', [], (err, rows) => {
       if (err) throw err;
       if (isEmpty(rows)) {
         message.channel.send(FEEDBACK.failure);
