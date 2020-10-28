@@ -35,7 +35,7 @@ CLIENT.on('message', (message) => {
   }
 
   function saveQuote() {
-    let quote = MESSAGE.replace(`${TRIGGER_QUOTE} `, '').substring(1);
+    let quote = MESSAGE.replace(`${TRIGGER_QUOTE} `, '');
     insertQuote(quote);
     message.channel.send(`${FEEDBACK.confirmation}\n${quote}`);
   }
@@ -51,7 +51,7 @@ CLIENT.on('message', (message) => {
       console.log('Pong');
       message.reply('Pong');
     } else if (MESSAGE.startsWith('/ping ')) {
-      pong = `Pong: ${MESSAGE.replace('/ping ', '').substring(1)}`;
+      pong = `Pong: ${MESSAGE.replace('/ping ', '')}`;
       console.log(pong);
       message.reply(pong);
     }
