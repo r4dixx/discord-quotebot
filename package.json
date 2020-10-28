@@ -2,7 +2,7 @@
   "name": "quotebot",
   "version": "1.0.0",
   "description": "bot to display quotes",
-  "main": "bot.js",
+  "main": "main.js",
   "scripts": {
     "test": "ping"
   },
