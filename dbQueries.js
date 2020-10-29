@@ -29,19 +29,16 @@ module.exports = function() {
 
   getQuoteRandom = function() {
     openDb();
-    getDb().all('SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1', [], (err, rows) => {
+    getDb().get('SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1', (err, row) => {
       if (err) throw err;
-      if (isEmpty(rows)) {
+      if (isEmpty(row)) {
         console.log('No quote saved in database');
         return null;
       } else {
-        rows.forEach((row) => {
-          console.log(`Quote to be displayed: ${row.quote}`);
-          return row.quote;
-        });
+        console.log(`Quote to be displayed: ${row.quote}`);
+        return row.quote;
       }
     });
     closeDb();
   };
-
 };
