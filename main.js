@@ -1,10 +1,8 @@
 /*jshint esversion: 6 */
 
-require('./tools.js')();
+require('./discordHelper.js')();
 require('./dbQueries.js')();
-
-const DISCORD = require('discord.js');
-const CLIENT = new DISCORD.Client();
+require('./tools.js')();
 
 const DB_PATH = './quotes.db';
 
@@ -12,7 +10,7 @@ login();
 
 createTableIfNecessary();
 
-CLIENT.on('message', (message) => {
+getClient().on('message', (message) => {
   const MESSAGE = message.content;
   const CONFIG = require('./config.json');
   const PREFIX = CONFIG.prefix;
@@ -65,15 +63,3 @@ CLIENT.on('message', (message) => {
     }
   }
 });
-
-function login() {
-  const TOKEN_PATH = './token.json';
-  const TOKEN_FILE = require(TOKEN_PATH);
-  const FS = require('fs');
-  if (FS.existsSync(TOKEN_PATH)) {
-    CLIENT.login(TOKEN_FILE.token);
-    CLIENT.on('ready', () => {
-      console.log('Discord client logged in');
-    });
-  } else console.log('Error: No token file');
-}
