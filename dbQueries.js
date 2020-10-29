@@ -27,4 +27,21 @@ module.exports = function() {
     closeDb();
   };
 
+  getQuoteRandom = function() {
+    openDb();
+    getDb().all('SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1', [], (err, rows) => {
+      if (err) throw err;
+      if (isEmpty(rows)) {
+        console.log('No quote saved in database');
+        return null;
+      } else {
+        rows.forEach((row) => {
+          console.log(`Quote to be displayed: ${row.quote}`);
+          return row.quote;
+        });
+      }
+    });
+    closeDb();
+  };
+
 };
