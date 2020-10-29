@@ -26,12 +26,20 @@ CLIENT.on('message', (message) => {
   else ping();
 
   function displayRandomQuote() {
-    let randomQuote = getQuoteRandom();
-    if (isEmpty(randomQuote)) {
-      message.channel.send(FEEDBACK.failure);
-    } else {
-      message.channel.send(randomQuote);
-    }
+    openDb();
+    getDb().all('SELECT * FROM quotes ORDER BY RANDOM() LIMIT 1', [], (err, rows) => {
+      if (err) throw err;
+      if (isEmpty(rows)) {
+        message.channel.send(FEEDBACK.failure);
+        console.log('No quote saved in database');
+      } else {
+        rows.forEach((row) => {
+          message.channel.send(row.quote);
+          console.log(`Quote displayed: ${row.quote}`);
+        });
+      }
+    });
+    closeDb();
   }
 
   function saveQuote() {

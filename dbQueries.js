@@ -1,8 +1,8 @@
 /*jshint esversion: 6 */
 
-module.exports = function() {
+require('./dbHelper.js')();
 
-  require('./dbHelper.js')();
+module.exports = function() {
 
   createTableIfNecessary = function() {
     const FS = require('fs');
@@ -17,18 +17,6 @@ module.exports = function() {
       });
       closeDb();
     }
-  };
-
-  getQuoteRandom = function() {
-    openDb();
-    getDb().all('SELECT * FROM quotes ORDER BY RANDOM() LIMIT 1', [], (err, rows) => {
-      if (err) return console.log(err.message);
-      rows.forEach((row) => {
-        console.log(`Quote displayed: ${row.quote}`);
-        return row.quote;
-      });
-    });
-    closeDb();
   };
 
   insertQuote = function(quote) {
