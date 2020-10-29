@@ -2,15 +2,13 @@
 
 module.exports = function() {
 
-  const DISCORD = require('discord.js');
-  const CLIENT = new DISCORD.Client();
+  const CLIENT = new (require('discord.js')).Client();
 
   login = function() {
     const TOKEN_PATH = './token.json';
-    const TOKEN_FILE = require(TOKEN_PATH);
     const FS = require('fs');
     if (FS.existsSync(TOKEN_PATH)) {
-      CLIENT.login(TOKEN_FILE.token);
+      CLIENT.login(require(TOKEN_PATH).token);
       CLIENT.on('ready', () => {
         console.log('Discord client logged in');
       });

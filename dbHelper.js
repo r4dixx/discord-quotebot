@@ -5,9 +5,7 @@ module.exports = function() {
   let db;
 
   openDb = function() {
-    const SQLITE = require('sqlite3');
-    const DB_PATH = './quotes.db';
-    db = new SQLITE.Database(DB_PATH, (err) => {
+    db = new (require('sqlite3')).Database('./quotes.db', (err) => {
       if (err) return console.error(err.message);
       console.log('Connected to SQlite database');
     });

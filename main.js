@@ -4,8 +4,6 @@ require('./discordHelper.js')();
 require('./dbQueries.js')();
 require('./tools.js')();
 
-const DB_PATH = './quotes.db';
-
 login();
 
 createTableIfNecessary();
