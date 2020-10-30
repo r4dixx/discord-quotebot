@@ -2,7 +2,6 @@
 
 require('./discordHelper.js')();
 require('./dbQueries.js')();
-require('./tools.js')();
 
 login();
 
@@ -22,19 +21,7 @@ getClient().on('message', (message) => {
   else ping();
 
   function displayRandomQuote() {
-    // TODO
-    openDb();
-    getDb().get('SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1', (err, row) => {
-      if (err) throw err;
-      if (isEmpty(row)) {
-        console.log('No quote saved in database');
-        message.channel.send(FEEDBACK.failure);
-      } else {
-        console.log(`Quote to be displayed: ${row.quote}`);
-        message.channel.send(row.quote);
-      }
-    });
-    closeDb();
+    message.channel.send(getRandomQuote() || FEEDBACK.failure);
   }
 
   function saveQuote() {
