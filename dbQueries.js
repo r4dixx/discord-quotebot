@@ -11,19 +11,37 @@ module.exports = function() {
       console.log(`${DB_PATH} not found, creating...`);
       openDb();
       getDb().run('CREATE TABLE IF NOT EXISTS quotes(quote text)', (err) => {
-        if (err) return console.log(err.message);
+        if (err) throw err;
         console.log('Quotes table created');
       });
       closeDb();
     }
   };
 
+  queryQuoteRandom = function() {
+    return new Promise(function(resolve, reject) {
+      openDb();
+      getDb().get('SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1', (err, row) => {
+        if (err) throw err;
+        else if (row == null || row.quote == null) {
+          console.log('No quote found in database');
+          resolve(null);
+        } else {
+          console.log(`Quote to be displayed: ${row.quote}`);
+          resolve(row.quote);
+        }
+      });
+      closeDb();
+    });
+  };
+
   insertQuote = function(quote) {
     openDb();
     getDb().run('INSERT INTO quotes(quote) VALUES(?)', quote, (err) => {
-      if (err) return console.log(err.message);
+      if (err) throw err;
       console.log(`Quote saved: ${quote}`);
     });
     closeDb();
   };
+
 };
