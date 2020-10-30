@@ -18,20 +18,6 @@ module.exports = function() {
     }
   };
 
-  getRandomQuote = function() {
-    openDb();
-    getDb().get('SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1', (err, row) => {
-      if (err) throw err;
-      else if (row == null || row.quote == null) {
-        console.log('No quote found in database');
-      } else {
-        console.log(`Quote to be displayed: ${row.quote}`);
-        return row.quote;
-      }
-    });
-    closeDb();
-  };
-
   insertQuote = function(quote) {
     openDb();
     getDb().run('INSERT INTO quotes(quote) VALUES(?)', quote, (err) => {
