@@ -2,7 +2,6 @@
 
 require('./discordHelper.js')();
 require('./dbQueries.js')();
-require('./tools.js')();
 
 login();
 
@@ -21,13 +20,14 @@ getClient().on('message', (message) => {
   else if (MESSAGE === TRIGGER_HELP) displayHelp();
   else ping();
 
+
   function displayRandomQuote() {
-    // TODO
+    // TODO move to dbQueries
     openDb();
     getDb().get('SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1', (err, row) => {
       if (err) throw err;
-      if (isEmpty(row)) {
-        console.log('No quote saved in database');
+      else if (row == null || row.quote == null) {
+        console.log('No quote found in database');
         message.channel.send(FEEDBACK.failure);
       } else {
         console.log(`Quote to be displayed: ${row.quote}`);
@@ -45,7 +45,7 @@ getClient().on('message', (message) => {
 
   function displayHelp() {
     const HELP = FEEDBACK.help;
-    message.channel.send(`${HELP.add}\n→ \`${TRIGGER_QUOTE}\` \`${HELP.formatting}\`\n${HELP.display}\n→ \`${TRIGGER_QUOTE}\`\n${HELP.self}\n→ \`${TRIGGER_HELP}\``);
+    message.channel.send(`${HELP.add}\n→ \`${TRIGGER_QUOTE} ${HELP.formatting}\`\n${HELP.display}\n→ \`${TRIGGER_QUOTE}\`\n${HELP.self}\n→ \`${TRIGGER_HELP}\``);
     console.log('Help displayed');
   }
 

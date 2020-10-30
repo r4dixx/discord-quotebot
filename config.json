@@ -9,7 +9,7 @@
     "failure": "No quote available",
     "help": {
       "add": "Add a quote:",
-      "formatting": "user: \"quote\"",
+      "formatting": "@user: \"text\"",
       "display": "Get a random quote:",
       "self": "Display this message:"
     }
