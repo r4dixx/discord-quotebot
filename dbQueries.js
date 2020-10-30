@@ -11,7 +11,7 @@ module.exports = function() {
       console.log(`${DB_PATH} not found, creating...`);
       openDb();
       getDb().run('CREATE TABLE IF NOT EXISTS quotes(quote text)', (err) => {
-        if (err) return console.log(err.message);
+        if (err) throw err;
         console.log('Quotes table created');
       });
       closeDb();
@@ -38,10 +38,10 @@ module.exports = function() {
   insertQuote = function(quote) {
     openDb();
     getDb().run('INSERT INTO quotes(quote) VALUES(?)', quote, (err) => {
-      if (err) return console.log(err.message);
+      if (err) throw err;
       console.log(`Quote saved: ${quote}`);
     });
     closeDb();
   };
-  
+
 };
