@@ -26,19 +26,4 @@ module.exports = function() {
     });
     closeDb();
   };
-
-  getQuoteRandom = function() {
-    openDb();
-    getDb().get('SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1', (err, row) => {
-      if (err) throw err;
-      if (isEmpty(row)) {
-        console.log('No quote saved in database');
-        return null;
-      } else {
-        console.log(`Quote to be displayed: ${row.quote}`);
-        return row.quote;
-      }
-    });
-    closeDb();
-  };
 };

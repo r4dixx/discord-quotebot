@@ -22,8 +22,19 @@ getClient().on('message', (message) => {
   else ping();
 
   function displayRandomQuote() {
-    let randomQuote = getQuoteRandom();
-      message.channel.send(randomQuote || FEEDBACK.failure);
+    // TODO
+    openDb();
+    getDb().get('SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1', (err, row) => {
+      if (err) throw err;
+      if (isEmpty(row)) {
+        console.log('No quote saved in database');
+        message.channel.send(FEEDBACK.failure);
+      } else {
+        console.log(`Quote to be displayed: ${row.quote}`);
+        message.channel.send(row.quote);
+      }
+    });
+    closeDb();
   }
 
   function saveQuote() {
