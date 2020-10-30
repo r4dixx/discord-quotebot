@@ -23,11 +23,7 @@ getClient().on('message', (message) => {
 
   function displayRandomQuote() {
     let randomQuote = getQuoteRandom();
-    if (randomQuote == null) {
-      message.channel.send(FEEDBACK.failure);
-    } else {
-      message.channel.send(randomQuote);
-    }
+      message.channel.send(randomQuote || FEEDBACK.failure);
   }
 
   function saveQuote() {
