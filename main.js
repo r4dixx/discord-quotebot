@@ -1,20 +1,14 @@
 /*jshint esversion: 6 */
 
+require('./discordHelper.js')();
+require('./dbQueries.js')();
 require('./tools.js')();
-
-const DISCORD = require('discord.js');
-const CLIENT = new DISCORD.Client();
-
-const FS = require('fs');
-const DB_PATH = './quotes.db';
-
-let db;
 
 login();
 
 createTableIfNecessary();
 
-CLIENT.on('message', (message) => {
+getClient().on('message', (message) => {
   const MESSAGE = message.content;
   const CONFIG = require('./config.json');
   const PREFIX = CONFIG.prefix;
@@ -28,31 +22,25 @@ CLIENT.on('message', (message) => {
   else ping();
 
   function displayRandomQuote() {
+    // TODO
     openDb();
-    db.all('SELECT * FROM quotes ORDER BY RANDOM() LIMIT 1', [], (err, rows) => {
+    getDb().get('SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1', (err, row) => {
       if (err) throw err;
-      if (isEmpty(rows)) {
-        message.channel.send(FEEDBACK.failure);
+      if (isEmpty(row)) {
         console.log('No quote saved in database');
+        message.channel.send(FEEDBACK.failure);
       } else {
-        rows.forEach((row) => {
-          message.channel.send(row.quote);
-          console.log(`Quote displayed: ${row.quote}`);
-        });
+        console.log(`Quote to be displayed: ${row.quote}`);
+        message.channel.send(row.quote);
       }
     });
     closeDb();
   }
 
   function saveQuote() {
-    var quoteClean = MESSAGE.replace(`${TRIGGER_QUOTE} `, '').substring(1);
-    openDb();
-    db.run('INSERT INTO quotes(quote) VALUES(?)', quoteClean, (err) => {
-      if (err) return console.log(err.message);
-      message.channel.send(`${FEEDBACK.confirmation}\n${quoteClean}`);
-      console.log(`Quote saved: ${quoteClean}`);
-    });
-    closeDb();
+    let quote = MESSAGE.replace(`${TRIGGER_QUOTE} `, '');
+    insertQuote(quote);
+    message.channel.send(`${FEEDBACK.confirmation}\n${quote}`);
   }
 
   function displayHelp() {
@@ -63,51 +51,12 @@ CLIENT.on('message', (message) => {
 
   function ping() {
     if (MESSAGE === '/ping') {
-      message.reply('Pong');
       console.log('Pong');
+      message.reply('Pong');
     } else if (MESSAGE.startsWith('/ping ')) {
-      const pong = MESSAGE.replace('/ping ', '').substring(1);
-      message.reply(`Pong: ${pong}`);
-      console.log(`Pong: ${pong}`);
+      pong = `Pong: ${MESSAGE.replace('/ping ', '')}`;
+      console.log(pong);
+      message.reply(pong);
     }
   }
 });
-
-function createTableIfNecessary() {
-  if (FS.existsSync(DB_PATH)) console.log(`File ${DB_PATH} exists. Moving on`);
-  else {
-    console.log(`${DB_PATH} not found, creating...`);
-    openDb();
-    db.run('CREATE TABLE IF NOT EXISTS quotes(quote text)', (err) => {
-      if (err) return console.log(err.message);
-      console.log('Quotes table created');
-    });
-    closeDb();
-  }
-}
-
-function login() {
-  const TOKEN_PATH = './token.json';
-  const TOKEN_FILE = require(TOKEN_PATH);
-  if (FS.existsSync(TOKEN_PATH)) {
-    CLIENT.login(TOKEN_FILE.token);
-    CLIENT.on('ready', () => {
-      console.log('Discord client logged in');
-    });
-  } else console.log('Error: No token file');
-}
-
-function openDb() {
-  const SQLITE = require('sqlite3');
-  db = new SQLITE.Database(DB_PATH, (err) => {
-    if (err) return console.error(err.message);
-    console.log('Connected to SQlite database');
-  });
-}
-
-function closeDb() {
-  db.close((err) => {
-    if (err) return console.error(err.message);
-    console.log('Closed database connection');
-  });
-}
