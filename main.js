@@ -26,23 +26,6 @@ getClient().on('message', (message) => {
     });
   }
 
-  function queryQuoteRandom() {
-    return new Promise(function(resolve, reject) {
-      openDb();
-      getDb().get('SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1', (err, row) => {
-        if (err) throw err;
-        else if (row == null || row.quote == null) {
-          console.log('No quote found in database');
-          resolve(null);
-        } else {
-          console.log(`Quote to be displayed: ${row.quote}`);
-          resolve(row.quote);
-        }
-      });
-      closeDb();
-    });
-  }
-
   function saveQuote() {
     let quote = MESSAGE.replace(`${TRIGGER_QUOTE} `, '');
     insertQuote(quote);
