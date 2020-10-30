@@ -22,19 +22,19 @@ getClient().on('message', (message) => {
 
   function sendRandomQuote() {
     queryQuoteRandom().then(function(result) {
-      message.channel.send(result || FEEDBACK.failure);
+      message.channel.send(result || FEEDBACK.fail);
     });
   }
 
   function saveQuote() {
     let quote = MESSAGE.replace(`${TRIGGER_QUOTE} `, '');
     insertQuote(quote);
-    message.channel.send(`${FEEDBACK.confirmation}\n${quote}`);
+    message.channel.send(`${FEEDBACK.confirm}\n${quote}`);
   }
 
   function sendHelp() {
     const HELP = FEEDBACK.help;
-    message.channel.send(`${HELP.add}\n→ \`${TRIGGER_QUOTE} ${HELP.formatting}\`\n${HELP.display}\n→ \`${TRIGGER_QUOTE}\`\n${HELP.self}\n→ \`${TRIGGER_HELP}\``);
+    message.channel.send(`${HELP.save}\n→ \`${TRIGGER_QUOTE} ${HELP.format}\`\n${HELP.send}\n→ \`${TRIGGER_QUOTE}\`\n${HELP.self}\n→ \`${TRIGGER_HELP}\``);
     console.log('Help displayed');
   }
 
