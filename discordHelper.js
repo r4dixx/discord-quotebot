@@ -2,7 +2,7 @@
 
 module.exports = function() {
 
-  const CLIENT = new (require('discord.js')).Client();
+  const CLIENT = new(require('discord.js')).Client();
 
   login = function() {
     const TOKEN_PATH = './token.json';

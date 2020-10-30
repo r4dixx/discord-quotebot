@@ -22,18 +22,18 @@ getClient().on('message', (message) => {
 
   function sendRandomQuote() {
     queryQuoteRandom().then(function(result) {
-      message.channel.send(result || FEEDBACK.fail);
+      message.channel.send(result || FEEDBACK.failure);
     });
   }
 
   function saveQuote() {
     let quote = MESSAGE.replace(`${TRIGGER_QUOTE} `, '');
     insertQuote(quote);
-    message.channel.send(`${FEEDBACK.confirm}\n${quote}`);
+    message.channel.send(`${FEEDBACK.success}\n${quote}`);
   }
 
   function sendHelp() {
-    const HELP = FEEDBACK.help;
+    const HELP = CONFIG.help;
     message.channel.send(`${HELP.save}\n→ \`${TRIGGER_QUOTE} ${HELP.format}\`\n${HELP.send}\n→ \`${TRIGGER_QUOTE}\`\n${HELP.self}\n→ \`${TRIGGER_HELP}\``);
     console.log('Help displayed');
   }
@@ -43,7 +43,7 @@ getClient().on('message', (message) => {
       console.log('Pong');
       message.reply('Pong');
     } else if (MESSAGE.startsWith('/ping ')) {
-      pong = `Pong: ${MESSAGE.replace('/ping ', '')}`;
+      let pong = `Pong: ${MESSAGE.replace('/ping ', '')}`;
       console.log(pong);
       message.reply(pong);
     }

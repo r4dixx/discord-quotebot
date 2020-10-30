@@ -5,13 +5,13 @@
     "help": "help"
   },
   "feedback": {
-    "confirm": "Quote saved:",
-    "fail": "No quote available",
-    "help": {
-      "save": "Add a quote:",
-      "format": "@user: \"text\"",
-      "send": "Get a random quote:",
-      "self": "Display this message:"
-    }
+    "success": "Quote saved:",
+    "failure": "No quote available"
+  },
+  "help": {
+    "save": "Add a quote:",
+    "format": "@user: \"text\"",
+    "send": "Get a random quote:",
+    "self": "Display this message:"
   }
 }
