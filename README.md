@@ -2,7 +2,7 @@ A discord bot that outputs a random quote upon command
 
 # Setup in 10 steps
 
-1.  Clone the project (`git clone https://github.com/EpicDJL/QuoteBot.git`)
+1.  Clone the project
 
 2.  Install nodejs
 
