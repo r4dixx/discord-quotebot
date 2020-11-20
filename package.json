@@ -1,7 +1,7 @@
 {
   "name": "quotebot",
   "version": "1.0.0",
-  "description": "bot to display quotes",
+  "description": "Open-source Discord bot to output random quotes upon command",
   "main": "main.js",
   "scripts": {
     "test": "ping"
@@ -11,8 +11,9 @@
     "url": "git+https://github.com/r4dixx/QuoteBot.git"
   },
   "keywords": [
-    "quote",
-    "bot"
+    "discord",
+    "bot",
+    "quote"
   ],
   "author": "r4dixx",
   "license": "GPL-3.0",
