@@ -21,3 +21,7 @@ A discord bot that outputs a random quote upon command
 9.  Check your bot by typing the prefix and command you chose into Discord.
 
 10. Profit
+
+# Credits
+
+This project is based upon [dekuraan/QuoteBot](https://github.com/dekuraan/QuoteBot). Thanks for giving me a starter point! I messed up with git and now the history is crap ¯\\\_(ツ)\_/¯ First original commits on Oct 23, 2020.
