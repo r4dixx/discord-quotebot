@@ -12,7 +12,7 @@ A discord bot that outputs a random quote upon command
 
 5.  Create an app on [https://discordapp.com/developers/applications/me](https://discordapp.com/developers/applications/me) and create a bot account
 
-6.  Copy the "token" and paste it into [token.json](token.json)
+6.  Copy the "token" and paste it into [config_private.json](config_private.json)
 
 7.  Create a discord invite with your **Application** `Client Id` and proper permissions (`3072` = read and send messages) : `https://discordapp.com/oauth2/authorize?client_id=CLIENT_ID_GOES_HERE&scope=bot&permissions=3072`
 
