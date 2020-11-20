@@ -4,7 +4,7 @@
   "description": "Open-source Discord bot to output random quotes upon command",
   "main": "main.js",
   "scripts": {
-    "test": "ping"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
