@@ -21,13 +21,13 @@ module.exports = function() {
   queryQuoteRandom = function() {
     return new Promise(function(resolve, reject) {
       openDb();
-      getDb().get('SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1', (err, row) => {
+      getDb().get('SELECT rowid, quote FROM quotes ORDER BY RANDOM() LIMIT 1', (err, row) => {
         if (err) throw err;
         else if (row == null || row.quote == null) {
           console.log('No quote found in database');
           resolve(null);
         } else {
-          console.log(`Quote to be displayed: ${row.quote}`);
+          console.log(`Quote to be displayed: #${row.rowid} ${row.quote}`);
           resolve(row.quote);
         }
       });
