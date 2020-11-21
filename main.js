@@ -23,7 +23,7 @@ getClient().on('message', (message) => {
 
   if (MESSAGE === COMMAND_GET) sendRandomQuote();
   else if (MESSAGE.startsWith(`${COMMAND_ADD} `)) addQuote();
-  else if (MESSAGE.startsWith(`${COMMAND_DELETE} `)) deleteQuote();
+  else if (MESSAGE == COMMAND_DELETE) deleteQuote();
   else if (MESSAGE === COMMAND_HELP || message.mentions.members.has(getClient().user.id)) sendHelp();
   else ping();
 
@@ -40,7 +40,11 @@ getClient().on('message', (message) => {
   }
 
   function deleteQuote() {
-    console.log("delete");
+    const BOT_ADMIN_IDS = require('./config_private.json').botAdminIds;
+    console.log(BOT_ADMIN_IDS);
+    console.log(message.author.id);
+    if (BOT_ADMIN_IDS.includes(message.author.id)) console.log(true);
+    else console.log(false);
   }
 
   function sendHelp() {
