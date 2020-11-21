@@ -2,23 +2,28 @@ A discord bot that outputs a random quote upon command
 
 # Setup in 10 steps
 
-1.  Clone the project
+1.  Download [the latest release](https://github.com/r4dixx/QuoteBot/releases)
 
-2.  Install nodejs
+2.  Make sure nodeJs is installed. If it isn't [head up here](https://nodejs.org/en/download/package-manager/)
 
-3.  Run `npm install`
+3.  `cd` to the root of this project and run `npm install` to install dependencies
 
 4.  Edit [config.json](config.json) and customize to your likings
 
-5.  Create an app on [https://discordapp.com/developers/applications/me](https://discordapp.com/developers/applications/me) and create a bot account
+5.  [Create a new Discord app](https://discordapp.com/developers/applications/me) and an associated bot account
 
-6.  Copy the "token" and paste it into [token.json](token.json)
+6.  Copy your bot token and paste it into [config_private.json](config_private.json)  
 
-7.  Create a discord invite with your **Application** `Client Id` and proper permissions (`3072` = read and send messages) : `https://discordapp.com/oauth2/authorize?client_id=CLIENT_ID_GOES_HERE&scope=bot&permissions=3072`
+    -   **Warning**: Do not commit this file as it contains private information  
 
-8.  Run `node main.js` to start the bot.
+7.  Create a Discord invite with your Application Client ID and `send messages` permissions :
 
-9.  Check your bot by typing the prefix and command you chose into Discord.
+    -   `https://discordapp.com/oauth2/authorize?client_id=`CLIENT_ID_GOES_HERE`&scope=bot&permissions=2048`
+
+
+8.  `cd` to the root of this project and run `node main.js` to start the bot.
+
+9.  Check if everything is up and running in your Discord server.
 
 10. Profit
 

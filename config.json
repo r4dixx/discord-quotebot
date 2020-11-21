@@ -1,17 +1,26 @@
 {
   "prefix": "/",
   "command": {
-    "quote": "quote",
-    "help": "help"
+    "add": "qadd",
+    "add_alt": "quote",
+    "get": "qget",
+    "get_alt": "quote",
+    "help": "qhelp"
   },
   "feedback": {
-    "success": "Quote saved:",
-    "failure": "No quote available"
+    "success": {
+      "add": "Quote saved successfully"
+    },
+    "error": {
+      "get": "No quote available"
+    }
   },
   "help": {
-    "save": "Add a quote:",
-    "format": "@user: \"text\"",
-    "send": "Get a random quote:",
-    "self": "Display this message:"
+    "about": "Beep Beep Boop :robot:\nI am a bot that saves and outputs quotes upon commands.",
+    "title": "**Here's what you can do:**",
+    "add": "Save a quote",
+    "add_format": "your_quote",
+    "get": "Get a random quote",
+    "self": "Display this message"
   }
 }
