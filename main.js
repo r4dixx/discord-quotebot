@@ -16,15 +16,13 @@ getClient().on('message', (message) => {
   const CONFIG_COMMAND = CONFIG.command;
   const CONFIG_FEEDBACK = CONFIG.feedback;
 
-  const COMMAND_ADD = PREFIX + CONFIG_COMMAND.add;
-  const COMMAND_ADD_ALT = PREFIX + CONFIG_COMMAND.add_alt;
   const COMMAND_GET = PREFIX + CONFIG_COMMAND.get;
-  const COMMAND_GET_ALT = PREFIX + CONFIG_COMMAND.get_alt;
+  const COMMAND_ADD = PREFIX + CONFIG_COMMAND.add;
   const COMMAND_DELETE = PREFIX + CONFIG_COMMAND.delete;
   const COMMAND_HELP = PREFIX + CONFIG_COMMAND.help;
 
-  if (MESSAGE === COMMAND_GET || MESSAGE === COMMAND_GET_ALT) sendRandomQuote();
-  else if (MESSAGE.startsWith(`${COMMAND_ADD} `) || MESSAGE.startsWith(`${COMMAND_ADD_ALT} `)) addQuote();
+  if (MESSAGE === COMMAND_GET) sendRandomQuote();
+  else if (MESSAGE.startsWith(`${COMMAND_ADD} `)) addQuote();
   else if (MESSAGE.startsWith(`${COMMAND_DELETE} `)) deleteQuote();
   else if (MESSAGE === COMMAND_HELP || message.mentions.members.has(getClient().user.id)) sendHelp();
   else ping();
@@ -36,10 +34,7 @@ getClient().on('message', (message) => {
   }
 
   function addQuote() {
-    let quote = "";
-    if (MESSAGE.startsWith(`${COMMAND_ADD} `)) quote = MESSAGE.replace(`${COMMAND_ADD} `, '');
-    else if (MESSAGE.startsWith(`${COMMAND_ADD_ALT} `)) quote = MESSAGE.replace(`${COMMAND_ADD_ALT} `, '');
-
+    let quote = MESSAGE.replace(`${COMMAND_ADD} `, '');
     insertQuote(quote);
     message.channel.send(`${CONFIG_FEEDBACK.success.add}\n→ ${quote}`);
   }
@@ -54,19 +49,15 @@ getClient().on('message', (message) => {
     message.channel.send(`
 ${HELP.about}
 
-${HELP.title}
+${HELP.type_user}
+• ${HELP.get}: \`${COMMAND_GET}\`
+• ${HELP.add}: \`${COMMAND_ADD}\` \`${HELP.add_format}\`
 
-${HELP.add}
-→ \`${COMMAND_ADD}\` \`${HELP.add_format}\`
-→ \`${COMMAND_ADD_ALT}\` \`${HELP.add_format}\`
-${HELP.get}
-→ \`${COMMAND_GET}\`
-→ \`${COMMAND_GET_ALT}\`
-${HELP.delete}
-→ \`${COMMAND_DELETE}\`
-${HELP.self}
-→ \`${COMMAND_HELP}\`
-→ \`@${getClient().user.username}\`
+${HELP.type_admin}
+• ${HELP.delete}: \`${COMMAND_DELETE}\`
+
+${HELP.type_self}
+• \`${COMMAND_HELP}\` or \`@${getClient().user.username}\`
     `);
 
     console.log('Help displayed');
