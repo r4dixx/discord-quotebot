@@ -3,7 +3,8 @@
   "command": {
     "add": "qadd",
     "add_alt": "quote",
-    "get": "quote",
+    "get": "qget",
+    "get_alt": "quote",
     "help": "qhelp"
   },
   "feedback": {
