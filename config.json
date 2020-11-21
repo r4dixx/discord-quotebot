@@ -1,10 +1,10 @@
 {
   "prefix": "/",
   "command": {
-    "add": "add",
+    "add": "qadd",
     "add_alt": "quote",
     "get": "quote",
-    "help": "help"
+    "help": "qhelp"
   },
   "feedback": {
     "success": {
