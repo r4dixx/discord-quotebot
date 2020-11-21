@@ -40,11 +40,13 @@ getClient().on('message', (message) => {
   }
 
   function deleteQuote() {
-    const BOT_ADMIN_IDS = require('./config_private.json').botAdminIds;
-    console.log(BOT_ADMIN_IDS);
-    console.log(message.author.id);
-    if (BOT_ADMIN_IDS.includes(message.author.id)) console.log(true);
-    else console.log(false);
+    const BOT_ADMIN_IDS = (require('./config_private.json').botAdminIds);
+    const AUTHOR_ID = message.author.id;
+    if (BOT_ADMIN_IDS.includes(AUTHOR_ID)) {
+      console.log(`Success: author id ${AUTHOR_ID} is a bot admin`);
+    } else {
+      console.log(`Error: author id ${AUTHOR_ID} is not a bot admin. Bot admins are ${BOT_ADMIN_IDS}. Aborting...`);
+    }
   }
 
   function sendHelp() {

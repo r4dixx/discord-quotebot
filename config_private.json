@@ -1,4 +1,5 @@
 {
   "_comment": "DO NOT COMMIT THIS FILE",
+  "botAdminIds": ["your_user_id", "another_user_id", "and_maybe_another"],
   "token": "your_token"
 }
