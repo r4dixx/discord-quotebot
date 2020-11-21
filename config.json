@@ -1,12 +1,10 @@
 {
-  "prefix": "/",
+  "prefix": "!",
   "command": {
-    "add": "qadd",
-    "add_alt": "quote",
-    "get": "qget",
-    "get_alt": "quote",
-    "delete": "qdel",
-    "help": "qhelp"
+    "get": "quote",
+    "add": "quote",
+    "delete": "unquote",
+    "help": "help"
   },
   "feedback": {
     "success": {
@@ -18,11 +16,12 @@
   },
   "help": {
     "about": "Beep Beep Boop :robot:\nI am a bot that saves and outputs quotes upon commands.",
-    "title": "**Here's what you can do:**",
+    "type_user": "**Everyone can:**",
+    "type_admin": "**Bot admins only can:**",
+    "type_self": "**Want to display this message again?**",
+    "get": "Get a random quote",
     "add": "Save a quote",
     "add_format": "your_quote",
-    "get": "Get a random quote",
-    "delete": "Delete last quote",
-    "self": "Display this message"
+    "delete": "Undo last saved quote"
   }
 }
