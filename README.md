@@ -1,4 +1,4 @@
-A discord bot that outputs a random quote upon command  
+Discord bot to output, save, and edit quotes upon commands.
 
 # Setup in 10 steps
 
