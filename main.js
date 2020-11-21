@@ -23,7 +23,7 @@ getClient().on('message', (message) => {
 
   if (MESSAGE === COMMAND_GET) sendRandomQuote();
   else if (MESSAGE.startsWith(`${COMMAND_ADD} `) || MESSAGE.startsWith(`${COMMAND_ADD_ALT} `)) addQuote();
-  else if (MESSAGE === COMMAND_HELP) sendHelp();
+  else if (MESSAGE === COMMAND_HELP || message.mentions.members.first().user.id === getClient().user.id) sendHelp();
   else ping();
 
   function sendRandomQuote() {
