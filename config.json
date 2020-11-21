@@ -2,22 +2,24 @@
   "prefix": "/",
   "command": {
     "add": "add",
+    "add_alt": "quote",
     "get": "quote",
     "help": "help"
   },
   "feedback": {
     "success": {
-      "add": "Quote saved:"
+      "add": "Quote saved successfully"
     },
     "error": {
       "get": "No quote available"
     }
   },
   "help": {
-    "about": "Beep Beep Boop :robot: I am a bot that saves and outputs quotes upon command. Here's what you need to know:",
-    "add": "Add a quote:",
-    "add_format": "@user: \"text\"",
-    "get": "Get a random quote:",
-    "self": "Display this message:"
+    "about": "Beep Beep Boop :robot:\nI am a bot that saves and outputs quotes upon commands.",
+    "title": "**Here's what you can do:**",
+    "add": "Save a quote",
+    "add_format": "your_quote",
+    "get": "Get a random quote",
+    "self": "_Want to see this again? Mention me or use_"
   }
 }
