@@ -14,6 +14,7 @@
     }
   },
   "help": {
+    "about": "Beep Beep Boop :robot: I am a bot that saves and outputs quotes upon command. Here's what you need to know:",
     "add": "Add a quote:",
     "add_format": "@user: \"text\"",
     "get": "Get a random quote:",
