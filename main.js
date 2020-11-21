@@ -19,9 +19,10 @@ getClient().on('message', (message) => {
   const COMMAND_ADD = PREFIX + CONFIG_COMMAND.add;
   const COMMAND_ADD_ALT = PREFIX + CONFIG_COMMAND.add_alt;
   const COMMAND_GET = PREFIX + CONFIG_COMMAND.get;
+  const COMMAND_GET_ALT = PREFIX + CONFIG_COMMAND.get_alt;
   const COMMAND_HELP = PREFIX + CONFIG_COMMAND.help;
 
-  if (MESSAGE === COMMAND_GET) sendRandomQuote();
+  if (MESSAGE === COMMAND_GET || MESSAGE === COMMAND_GET_ALT) sendRandomQuote();
   else if (MESSAGE.startsWith(`${COMMAND_ADD} `) || MESSAGE.startsWith(`${COMMAND_ADD_ALT} `)) addQuote();
   else if (MESSAGE === COMMAND_HELP || message.mentions.members.has(getClient().user.id)) sendHelp();
   else ping();
@@ -43,7 +44,7 @@ getClient().on('message', (message) => {
 
   function sendHelp() {
     const HELP = CONFIG.help;
-    message.channel.send(`${HELP.about}\n\n${HELP.title}\n\n${HELP.add}\n→ \`${COMMAND_ADD}\` \`${HELP.add_format}\`\n→ \`${COMMAND_ADD_ALT}\` \`${HELP.add_format}\`\n${HELP.get}\n→ \`${COMMAND_GET}\`\n\n${HELP.self} _\`${COMMAND_HELP}\`_`);
+    message.channel.send(`${HELP.about}\n\n${HELP.title}\n\n${HELP.add}\n→ \`${COMMAND_ADD}\` \`${HELP.add_format}\`\n→ \`${COMMAND_ADD_ALT}\` \`${HELP.add_format}\`\n${HELP.get}\n→ \`${COMMAND_GET}\`\n→ \`${COMMAND_GET_ALT}\`\n\n${HELP.self} _\`${COMMAND_HELP}\`_`);
     console.log('Help displayed');
   }
 
