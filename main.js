@@ -47,10 +47,6 @@ getClient().on('message', (message) => {
     if (MESSAGE === '/ping') {
       console.log('Pong');
       message.reply('Pong');
-    } else if (MESSAGE.startsWith('/ping ')) {
-      let pong = `Pong: ${MESSAGE.replace('/ping ', '')}`;
-      console.log(pong);
-      message.reply(pong);
     }
   }
 });
