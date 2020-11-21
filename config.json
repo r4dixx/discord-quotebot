@@ -5,6 +5,7 @@
     "add_alt": "quote",
     "get": "qget",
     "get_alt": "quote",
+    "delete": "qdel",
     "help": "qhelp"
   },
   "feedback": {
@@ -21,6 +22,7 @@
     "add": "Save a quote",
     "add_format": "your_quote",
     "get": "Get a random quote",
+    "delete": "Delete last quote",
     "self": "Display this message"
   }
 }
