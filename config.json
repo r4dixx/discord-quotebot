@@ -16,9 +16,11 @@
   },
   "help": {
     "about": "Beep Beep Boop :robot:\nI am a bot that saves and outputs quotes upon commands.",
-    "type_user": "**Everyone can:**",
-    "type_admin": "**Bot admins only can:**",
-    "type_self": "**Want to display this message again?**",
+    "user_type": {
+      "user": "**Everyone can:**",
+      "admin": "**Bot admins only can:**",
+      "self": "**Want to display this message again?**"
+    },
     "get": "Get a random quote",
     "add": "Save a quote",
     "add_format": "your_quote",

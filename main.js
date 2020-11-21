@@ -51,18 +51,19 @@ getClient().on('message', (message) => {
 
   function sendHelp() {
     const HELP = CONFIG.help;
+    const HELP_USER_TYPE = HELP.user_type;
 
     message.channel.send(`
 ${HELP.about}
 
-${HELP.type_user}
+${HELP_USER_TYPE.user}
 • ${HELP.get}: \`${COMMAND_GET}\`
 • ${HELP.add}: \`${COMMAND_ADD}\` \`${HELP.add_format}\`
 
-${HELP.type_admin}
+${HELP_USER_TYPE.admin}
 • ${HELP.delete}: \`${COMMAND_DELETE}\`
 
-${HELP.type_self}
+${HELP_USER_TYPE.self}
 • \`${COMMAND_HELP}\` or \`@${getClient().user.username}\`
     `);
 
