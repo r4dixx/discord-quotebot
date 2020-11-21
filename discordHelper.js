@@ -5,10 +5,10 @@ module.exports = function() {
   const CLIENT = new(require('discord.js')).Client();
 
   login = function() {
-    const TOKEN_PATH = './token.json';
+    const CONFIG_PRIVATE = './config_private.json';
     const FS = require('fs');
-    if (FS.existsSync(TOKEN_PATH)) {
-      CLIENT.login(require(TOKEN_PATH).token);
+    if (FS.existsSync(CONFIG_PRIVATE)) {
+      CLIENT.login(require(CONFIG_PRIVATE).token);
       CLIENT.on('ready', () => {
         console.log('Discord client logged in');
       });
