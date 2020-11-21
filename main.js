@@ -20,10 +20,12 @@ getClient().on('message', (message) => {
   const COMMAND_ADD_ALT = PREFIX + CONFIG_COMMAND.add_alt;
   const COMMAND_GET = PREFIX + CONFIG_COMMAND.get;
   const COMMAND_GET_ALT = PREFIX + CONFIG_COMMAND.get_alt;
+  const COMMAND_DELETE = PREFIX + CONFIG_COMMAND.delete;
   const COMMAND_HELP = PREFIX + CONFIG_COMMAND.help;
 
   if (MESSAGE === COMMAND_GET || MESSAGE === COMMAND_GET_ALT) sendRandomQuote();
   else if (MESSAGE.startsWith(`${COMMAND_ADD} `) || MESSAGE.startsWith(`${COMMAND_ADD_ALT} `)) addQuote();
+  else if (MESSAGE.startsWith(`${COMMAND_DELETE} `)) deleteQuote();
   else if (MESSAGE === COMMAND_HELP || message.mentions.members.has(getClient().user.id)) sendHelp();
   else ping();
 
@@ -42,6 +44,10 @@ getClient().on('message', (message) => {
     message.channel.send(`${CONFIG_FEEDBACK.success.add}\n→ ${quote}`);
   }
 
+  function deleteQuote() {
+    console.log("delete");
+  }
+
   function sendHelp() {
     const HELP = CONFIG.help;
 
@@ -56,6 +62,8 @@ ${HELP.add}
 ${HELP.get}
 → \`${COMMAND_GET}\`
 → \`${COMMAND_GET_ALT}\`
+${HELP.delete}
+→ \`${COMMAND_DELETE}\`
 ${HELP.self}
 → \`${COMMAND_HELP}\`
 → \`@${getClient().user.username}\`

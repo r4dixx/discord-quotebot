@@ -27,7 +27,6 @@ module.exports = function() {
           console.log('No quote found in database');
           resolve(null);
         } else {
-          console.log(`Quote to be displayed: #${row.rowid} ${row.quote}`);
           resolve(row.quote);
         }
       });
