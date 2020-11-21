@@ -39,7 +39,7 @@ getClient().on('message', (message) => {
 
   function sendHelp() {
     const HELP = CONFIG.help;
-    message.channel.send(`${HELP.add}\n→ \`${COMMAND_GET} ${HELP.add_format}\`\n${HELP.get}\n→ \`${COMMAND_GET}\`\n${HELP.self}\n→ \`${COMMAND_HELP}\``);
+    message.channel.send(`${HELP.about}\n\n${HELP.add}\n→ \`${COMMAND_GET} ${HELP.add_format}\`\n${HELP.get}\n→ \`${COMMAND_GET}\`\n${HELP.self}\n→ \`${COMMAND_HELP}\``);
     console.log('Help displayed');
   }
 
