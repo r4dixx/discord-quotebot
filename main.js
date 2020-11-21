@@ -33,7 +33,10 @@ getClient().on('message', (message) => {
   }
 
   function addQuote() {
-    let quote = MESSAGE.replace(`${COMMAND_ADD} `, '');
+    let quote = "";
+    if (MESSAGE.startsWith(`${COMMAND_ADD} `)) quote = MESSAGE.replace(`${COMMAND_ADD} `, '');
+    else if (MESSAGE.startsWith(`${COMMAND_ADD_ALT} `)) quote = MESSAGE.replace(`${COMMAND_ADD_ALT} `, '');
+
     insertQuote(quote);
     message.channel.send(`${CONFIG_FEEDBACK.success.add}\n→ ${quote}`);
   }
