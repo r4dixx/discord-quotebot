@@ -21,6 +21,6 @@
     "add": "Save a quote",
     "add_format": "your_quote",
     "get": "Get a random quote",
-    "self": "_Want to see this again? Mention me or use_"
+    "self": "Display this message"
   }
 }
