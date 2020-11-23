@@ -9,11 +9,11 @@
   "feedback": {
     "success": {
       "add": "Quote saved successfully",
-      "delete": "Last quote deleted successfully"
+      "delete": "Deleted:"
     },
     "error": {
       "get": "No quote available",
-      "delete": "Cannot delete last saved quote. You're not a bot admin"
+      "delete": "Cannot delete last saved quote"
     }
   },
   "help": {

@@ -46,7 +46,9 @@ getClient().on('message', (message) => {
     const AUTHOR_ID = message.author.id;
     if (BOT_ADMIN_IDS.includes(AUTHOR_ID)) {
       console.log(`Success: author id ${AUTHOR_ID} is a bot admin`);
-      message.channel.send(CONFIG_FEEDBACK_SUCCESS.delete);
+      deleteQuoteLast().then(function(result) {
+        message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete} ${result}` || CONFIG_FEEDBACK_ERROR.delete);
+      });
     } else {
       console.log(`Error: author id ${AUTHOR_ID} is not a bot admin. Bot admins are ${BOT_ADMIN_IDS}. Aborting...`);
       message.channel.send(CONFIG_FEEDBACK_ERROR.delete);
