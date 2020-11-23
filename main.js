@@ -5,7 +5,7 @@ require('./dbQueries.js')();
 
 login();
 
-createTableIfNecessary();
+dbCreateTableIfNecessary();
 
 getClient().on('message', (message) => {
 
@@ -23,31 +23,31 @@ getClient().on('message', (message) => {
   const COMMAND_DELETE = PREFIX + CONFIG_COMMAND.delete;
   const COMMAND_HELP = PREFIX + CONFIG_COMMAND.help;
 
-  if (MESSAGE === COMMAND_GET) sendRandomQuote();
+  if (MESSAGE === COMMAND_GET) sendQuoteRandom();
   else if (MESSAGE.startsWith(`${COMMAND_ADD} `)) addQuote();
-  else if (MESSAGE == COMMAND_DELETE) deleteQuote();
+  else if (MESSAGE == COMMAND_DELETE) deleteQuoteLast();
   else if (MESSAGE === COMMAND_HELP || message.mentions.members.has(getClient().user.id)) sendHelp();
   else ping();
 
-  function sendRandomQuote() {
-    queryQuoteRandom().then(function(result) {
+  function sendQuoteRandom() {
+    dbQueryQuoteRandom().then(function(result) {
       message.channel.send(result || CONFIG_FEEDBACK_ERROR.get);
     });
   }
 
   function addQuote() {
     let quote = MESSAGE.replace(`${COMMAND_ADD} `, '');
-    insertQuote(quote);
+    dbInsertQuote(quote);
     message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.add}\n→ ${quote}`);
   }
 
-  function deleteQuote() {
+  function deleteQuoteLast() {
     const BOT_ADMIN_IDS = require('./config_private.json').botAdminIds;
     const AUTHOR_ID = message.author.id;
     console.log(`Requesting rights for deleting quote...`);
     if (BOT_ADMIN_IDS.includes(AUTHOR_ID)) {
       console.log(`Success: author id ${AUTHOR_ID} is a bot admin`);
-      deleteQuoteLast();
+      dbDeleteQuoteLast();
       message.channel.send(CONFIG_FEEDBACK_SUCCESS.delete);
       // TODO error if no quote available
     } else {
