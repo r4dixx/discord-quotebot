@@ -12,8 +12,8 @@
       "delete": "Quote deleted"
     },
     "error": {
-      "get": "Error: No quote available",
-      "delete": "Error: No quote available.",
+      "get": "No quote available",
+      "delete": "No quote available.",
       "rights": "Operation failed. Insufficient privileges."
     }
   },

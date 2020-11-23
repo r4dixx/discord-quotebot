@@ -26,6 +26,7 @@ getClient().on('message', (message) => {
   if (MESSAGE === COMMAND_GET) sendQuoteRandom();
   else if (MESSAGE.startsWith(`${COMMAND_ADD} `)) addQuote();
   else if (MESSAGE == COMMAND_DELETE) deleteQuoteLast();
+  else if (MESSAGE.startsWith(`${COMMAND_GET} #`)) deleteQuote();
   else if (MESSAGE === COMMAND_HELP || message.mentions.members.has(getClient().user.id)) sendHelp();
   else ping();
 
@@ -42,18 +43,17 @@ getClient().on('message', (message) => {
   }
 
   function deleteQuoteLast() {
-    const BOT_ADMIN_IDS = require('./config_private.json').botAdminIds;
-    const AUTHOR_ID = message.author.id;
-    console.log(`Requesting rights for deleting quote...`);
-    if (BOT_ADMIN_IDS.includes(AUTHOR_ID)) {
-      console.log(`Success: author id ${AUTHOR_ID} is a bot admin`);
+    if (checkRights(message.author.id) == true) {
       dbDeleteItemLast().then(function(result) {
         if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n→ ${result}`);
         else message.channel.send(CONFIG_FEEDBACK_ERROR.delete);
       });
-    } else {
-      console.log(`Error: author id ${AUTHOR_ID} is not a bot admin. Bot admins are ${BOT_ADMIN_IDS}. Aborting...`);
-      message.channel.send(CONFIG_FEEDBACK_ERROR.rights);
+    }
+  }
+
+  function deleteQuote() {
+    if (checkRights(message.author.id) == true) {
+
     }
   }
 
@@ -82,6 +82,19 @@ ${HELP_USER_TYPE.self}
     if (MESSAGE === '/ping') {
       console.log('Pong');
       message.reply('Pong');
+    }
+  }
+
+  function checkRights(currentAuthorId) {
+    const BOT_ADMIN_IDS = require('./config_private.json').botAdminIds;
+    console.log(`Requesting rights...`);
+    if (BOT_ADMIN_IDS.includes(currentAuthorId)) {
+      console.log(`Success: author id ${currentAuthorId} is a bot admin`);
+      return true;
+    } else {
+      console.log(`Error: ${currentAuthorId} is not a bot admin. Aborting...`);
+      message.channel.send(CONFIG_FEEDBACK_ERROR.rights);
+      return false;
     }
   }
 });
