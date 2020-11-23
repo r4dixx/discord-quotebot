@@ -30,14 +30,14 @@ getClient().on('message', (message) => {
   else ping();
 
   function sendQuoteRandom() {
-    dbQueryQuoteRandom().then(function(result) {
+    dbQueryItemRandom().then(function(result) {
       message.channel.send(result || CONFIG_FEEDBACK_ERROR.get);
     });
   }
 
   function addQuote() {
     let quote = MESSAGE.replace(`${COMMAND_ADD} `, '');
-    dbInsertQuote(quote);
+    dbInsertItem(quote);
     message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.add}\n→ ${quote}`);
   }
 
@@ -47,7 +47,7 @@ getClient().on('message', (message) => {
     console.log(`Requesting rights for deleting quote...`);
     if (BOT_ADMIN_IDS.includes(AUTHOR_ID)) {
       console.log(`Success: author id ${AUTHOR_ID} is a bot admin`);
-      dbDeleteQuoteLast().then(function(result) {
+      dbDeleteItemLast().then(function(result) {
         if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n→ ${result}`);
         else message.channel.send(CONFIG_FEEDBACK_ERROR.delete);
       });

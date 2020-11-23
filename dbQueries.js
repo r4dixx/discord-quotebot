@@ -18,7 +18,7 @@ module.exports = function() {
     }
   };
 
-  dbInsertQuote = function(quote) {
+  dbInsertItem = function(quote) {
     dbOpen();
     dbGet().run('INSERT INTO quotes(quote) VALUES(?)', quote, (err) => {
       if (err) return console.error(err.message);
@@ -27,7 +27,7 @@ module.exports = function() {
     dbClose();
   };
 
-  dbQueryQuoteRandom = function() {
+  dbQueryItemRandom = function() {
     return new Promise(function(resolve, reject) {
       dbOpen();
       dbGet().get('SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1', (err, row) => {
@@ -44,7 +44,7 @@ module.exports = function() {
     });
   };
 
-  dbDeleteQuoteLast = function() {
+  dbDeleteItemLast = function() {
     return new Promise(function(resolve, reject) {
       dbOpen();
       var idLast;
