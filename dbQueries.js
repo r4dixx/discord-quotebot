@@ -27,6 +27,23 @@ module.exports = function() {
     closeDb();
   };
 
+  deleteQuoteLast = function() {
+    return new Promise(function(resolve, reject) {
+      openDb();
+      getDb().get('SELECT * FROM quotes ORDER BY rowId DESC LIMIT 1', (err, row) => { // TODO switch to delete
+        if (err) throw err;
+        else if (row == null || row.quote == null) {
+          console.log('No quote found in database');
+          resolve(null);
+        } else {
+          console.log(`Deleted quote: ${row.quote}`);
+          resolve(row.quote);
+        }
+      });
+      closeDb();
+    });
+  };
+
   queryQuoteRandom = function() {
     return new Promise(function(resolve, reject) {
       openDb();
@@ -36,10 +53,12 @@ module.exports = function() {
           console.log('No quote found in database');
           resolve(null);
         } else {
+          console.log(`Quote to be displayed: ${row.quote}`);
           resolve(row.quote);
         }
       });
       closeDb();
     });
   };
+
 };
