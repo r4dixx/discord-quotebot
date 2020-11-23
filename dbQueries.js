@@ -49,19 +49,22 @@ module.exports = function() {
       dbOpen();
       var idLast;
       var quoteLast;
+      // Query last saved quote
       dbGet().get('SELECT rowid, quote FROM quotes ORDER BY rowid DESC LIMIT 1', (err, row) => {
         if (err) return console.error(err.message);
         if (row == null || row.quote == null) {
           console.log('Error: Cannot get last saved quote. No quote found in database');
           resolve(null);
         } else {
+          // If exists, we store information for further display...
           idLast = row.rowid;
           quoteLast = row.quote;
+          // And trigger deletion
           dbGet().run(`DELETE FROM quotes WHERE rowid = ?`, idLast, function(err) {
             if (err) return console.error(err.message);
             console.log(`Deleted last saved quote (#${idLast}) → ${quoteLast}`);
-            resolve(quoteLast);
           });
+          resolve(quoteLast);
         }
       });
       dbClose();
