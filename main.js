@@ -47,12 +47,13 @@ getClient().on('message', (message) => {
     console.log(`Requesting rights for deleting quote...`);
     if (BOT_ADMIN_IDS.includes(AUTHOR_ID)) {
       console.log(`Success: author id ${AUTHOR_ID} is a bot admin`);
-      dbDeleteQuoteLast();
-      message.channel.send(CONFIG_FEEDBACK_SUCCESS.delete);
-      // TODO error if no quote available
+      dbDeleteQuoteLast().then(function(result) {
+        if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n→ ${result}`);
+        else message.channel.send(CONFIG_FEEDBACK_ERROR.delete);
+      });
     } else {
       console.log(`Error: author id ${AUTHOR_ID} is not a bot admin. Bot admins are ${BOT_ADMIN_IDS}. Aborting...`);
-      message.channel.send(CONFIG_FEEDBACK_ERROR.delete);
+      message.channel.send(CONFIG_FEEDBACK_ERROR.rights);
     }
   }
 

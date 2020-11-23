@@ -8,12 +8,13 @@
   },
   "feedback": {
     "success": {
-      "add": "Quote saved successfully",
-      "delete": "Last saved quote deleted successfully"
+      "add": "Quote saved",
+      "delete": "Quote deleted"
     },
     "error": {
       "get": "Error: No quote available",
-      "delete": "Error: Cannot delete last saved quote"
+      "delete": "Error: No quote available.",
+      "rights": "Operation failed. Insufficient privileges."
     }
   },
   "help": {
