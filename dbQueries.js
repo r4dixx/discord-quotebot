@@ -30,15 +30,11 @@ module.exports = function() {
   deleteQuoteLast = function() {
     return new Promise(function(resolve, reject) {
       openDb();
-      getDb().get('SELECT * FROM quotes ORDER BY rowId DESC LIMIT 1', (err, row) => { // TODO switch to delete
+      getDb().get('DELETE FROM quotes WHERE rowid = (SELECT MAX(rowid) FROM quotes)', (err) => {
         if (err) throw err;
-        else if (row == null || row.quote == null) {
-          console.log('No quote found in database');
-          resolve(null);
-        } else {
-          console.log(`Deleted quote: ${row.quote}`);
-          resolve(row.quote);
-        }
+        const SUCCESS = "Last quote deleted successfully";
+        console.log(SUCCESS);
+        resolve(SUCCESS);
       });
       closeDb();
     });
