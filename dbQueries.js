@@ -10,7 +10,7 @@ module.exports = function() {
     else {
       console.log(`${DB_PATH} not found, creating...`);
       openDb();
-      getDb().run('CREATE TABLE IF NOT EXISTS quotes(quote text)', (err) => {
+      getDb().run('CREATE TABLE IF NOT EXISTS quotes(quote TEXT)', (err) => {
         if (err) throw err;
         console.log('Quotes table created');
       });
@@ -27,26 +27,13 @@ module.exports = function() {
     closeDb();
   };
 
-  deleteQuoteLast = function() {
-    return new Promise(function(resolve, reject) {
-      openDb();
-      getDb().get('DELETE FROM quotes WHERE rowid = (SELECT MAX(rowid) FROM quotes)', (err) => {
-        if (err) throw err;
-        const SUCCESS = "Last quote deleted successfully";
-        console.log(SUCCESS);
-        resolve(SUCCESS);
-      });
-      closeDb();
-    });
-  };
-
   queryQuoteRandom = function() {
     return new Promise(function(resolve, reject) {
       openDb();
       getDb().get('SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1', (err, row) => {
         if (err) throw err;
         else if (row == null || row.quote == null) {
-          console.log('No quote found in database');
+          console.log('Cannot get random quote. No quote found in database');
           resolve(null);
         } else {
           console.log(`Quote to be displayed: ${row.quote}`);
@@ -55,6 +42,16 @@ module.exports = function() {
       });
       closeDb();
     });
+  };
+
+  // TODO check if there is a row
+  deleteQuoteLast = function() {
+    openDb();
+    getDb().run('DELETE FROM quotes WHERE rowid = (SELECT MAX(rowid) FROM quotes)', (err) => {
+      if (err) throw err;
+      else console.log('Last quote deleted successfully');
+    });
+    closeDb();
   };
 
 };

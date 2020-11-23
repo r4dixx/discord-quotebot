@@ -38,7 +38,7 @@ getClient().on('message', (message) => {
   function addQuote() {
     let quote = MESSAGE.replace(`${COMMAND_ADD} `, '');
     insertQuote(quote);
-    message.channel.send(`${CONFIG_FEEDBACK.success.add}\n→ ${quote}`);
+    message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.add}\n→ ${quote}`);
   }
 
   function deleteQuote() {
@@ -47,9 +47,9 @@ getClient().on('message', (message) => {
     console.log(`Requesting rights for deleting quote...`);
     if (BOT_ADMIN_IDS.includes(AUTHOR_ID)) {
       console.log(`Success: author id ${AUTHOR_ID} is a bot admin`);
-      deleteQuoteLast().then(function(result) {
-        message.channel.send(result || CONFIG_FEEDBACK_ERROR.delete);
-      });
+      deleteQuoteLast();
+      message.channel.send(CONFIG_FEEDBACK_SUCCESS.delete);
+      // TODO error if no quote available
     } else {
       console.log(`Error: author id ${AUTHOR_ID} is not a bot admin. Bot admins are ${BOT_ADMIN_IDS}. Aborting...`);
       message.channel.send(CONFIG_FEEDBACK_ERROR.delete);
