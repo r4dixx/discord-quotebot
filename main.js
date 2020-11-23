@@ -44,10 +44,11 @@ getClient().on('message', (message) => {
   function deleteQuote() {
     const BOT_ADMIN_IDS = require('./config_private.json').botAdminIds;
     const AUTHOR_ID = message.author.id;
+    console.log(`Requesting rights for deleting quote...`);
     if (BOT_ADMIN_IDS.includes(AUTHOR_ID)) {
       console.log(`Success: author id ${AUTHOR_ID} is a bot admin`);
       deleteQuoteLast().then(function(result) {
-        message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete} ${result}` || CONFIG_FEEDBACK_ERROR.delete);
+        message.channel.send(result || CONFIG_FEEDBACK_ERROR.delete);
       });
     } else {
       console.log(`Error: author id ${AUTHOR_ID} is not a bot admin. Bot admins are ${BOT_ADMIN_IDS}. Aborting...`);
