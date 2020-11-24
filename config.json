@@ -22,7 +22,7 @@
       }
     },
     "help": {
-      "about": "Beep Beep Boop!\nI am a bot that outputs quotes upon commands.\nHere's how I work:",
+      "about": ":robot: Beep Beep Boop!\nI am a bot that outputs quotes upon commands.\nHere's how I work:",
       "title": {
         "user": ":busts_in_silhouette: **Everyone can**",
         "admin": ":detective: **This bot's admins only can**",
