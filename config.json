@@ -25,7 +25,7 @@
       "about": "Beep Beep Boop :robot:\nI am a bot that saves and outputs quotes upon commands.",
       "title": {
         "user": "**Everyone can:**",
-        "admin": "**Bot admins only can:**",
+        "admin": "**This bot's admins only can:**",
         "self": "**Want to display this message again?**"
       },
       "commands": {
