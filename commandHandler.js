@@ -43,7 +43,7 @@ module.exports = function() {
       const CONFIG_HELP_COMMANDS = CONFIG_HELP.commands;
       const CONFIG_HELP_SHOW = CONFIG_HELP.show;
 
-      message.channel.send(`${CONFIG_HELP.about}\n\n${CONFIG_HELP_TITLE.user}\n• ${CONFIG_HELP_COMMANDS.get} → \`${buildTrigger(CONFIG_COMMAND.get)}\`\n• ${CONFIG_HELP_COMMANDS.add} → \`${buildTrigger(CONFIG_COMMAND.add)}\` \`${CONFIG_HELP_COMMANDS.add_format}\`\n\n${CONFIG_HELP_TITLE.admin}\n• ${CONFIG_HELP_COMMANDS.delete} → \`${buildTrigger(CONFIG_COMMAND.delete)}\`\n\n${CONFIG_HELP_TITLE.self}\n• ${CONFIG_HELP_SHOW.with_command} \`${buildTrigger(CONFIG_COMMAND.help)}\` ${CONFIG_HELP_SHOW.with_mention} <@!${getClient().user.id}>`);
+      message.channel.send(`${CONFIG_HELP.about}\n\n${CONFIG_HELP_TITLE.user}\n• ${CONFIG_HELP_COMMANDS.get} → \`${buildTrigger(CONFIG_COMMAND.get)}\`\n• ${CONFIG_HELP_COMMANDS.add} → \`${buildTrigger(CONFIG_COMMAND.add)}\` \`${CONFIG_HELP_COMMANDS.format}\`\n\n${CONFIG_HELP_TITLE.admin}\n• ${CONFIG_HELP_COMMANDS.delete.last} → \`${buildTrigger(CONFIG_COMMAND.delete)}\`\n• ${CONFIG_HELP_COMMANDS.delete.item} → \`${buildTrigger(CONFIG_COMMAND.delete)}\` \`${CONFIG_HELP_COMMANDS.format}\`\n\n${CONFIG_HELP_TITLE.self}\n• ${CONFIG_HELP_SHOW.with_command} \`${buildTrigger(CONFIG_COMMAND.help)}\` ${CONFIG_HELP_SHOW.with_mention} <@!${getClient().user.id}>`);
 
       console.log('Help displayed');
     };
