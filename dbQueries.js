@@ -62,7 +62,7 @@ module.exports = function() {
           // And trigger deletion
           dbGet().run(`DELETE FROM quotes WHERE rowid = ?`, idLast, function(err) {
             if (err) return console.error(err.message);
-            console.log(`Deleted last saved quote (#${idLast}) → ${quoteLast}`);
+            console.log(`Deleted last saved quote → #${idLast} - ${quoteLast}`);
           });
           resolve(quoteLast);
         }
