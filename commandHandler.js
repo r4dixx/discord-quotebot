@@ -14,7 +14,8 @@ module.exports = function() {
 
     sendQuoteRandom = function() {
       dbQueryItemRandom().then(function(result) {
-        message.channel.send(result || CONFIG_FEEDBACK_ERROR.get);
+        if (result != null) message.channel.send(`:speaking_head: ${result}`);
+        else message.channel.send(CONFIG_FEEDBACK_ERROR.get);
       });
     };
 
