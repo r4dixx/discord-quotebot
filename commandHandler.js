@@ -24,19 +24,18 @@ module.exports = function() {
       message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.add}\n${quote}`);
     };
 
-    deleteQuoteLast = function() {
-      dbDeleteItemLast().then(function(result) {
-        if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${result}`);
-        else message.channel.send(CONFIG_FEEDBACK_ERROR.delete.last);
-      });
-    };
-
-    deleteQuote = function() {
-      let quote = message.content.replace(`${buildTrigger(CONFIG_COMMAND.delete)} `, '');
-      dbDeleteItem(quote).then(function(result) {
-        if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${result}`);
-        else message.channel.send(CONFIG_FEEDBACK_ERROR.delete.item);
-      });
+    deleteQuote = function(forLast) {
+      if (forLast == true) {
+        dbDeleteItemLast().then(function(result) {
+          if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${result}`);
+          else message.channel.send(CONFIG_FEEDBACK_ERROR.delete.last);
+        });
+      } else {
+        dbDeleteItem(message.content.replace(`${buildTrigger(CONFIG_COMMAND.delete)} `, '')).then(function(result) {
+          if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${result}`);
+          else message.channel.send(erroCONFIG_FEEDBACK_ERROR.delete.item);
+        });
+      }
     };
 
     sendHelp = function() {

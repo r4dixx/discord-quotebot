@@ -83,7 +83,7 @@ module.exports = function() {
           // If exists, trigger deletion
           dbGet().run(`DELETE FROM quotes WHERE quote = ?`, quote, function(err) {
             if (err) return console.error(err.message);
-            console.log(`Deleted given quote → quote`);
+            console.log(`Deleted given quote: quote`);
           });
           resolve(quote);
         }
