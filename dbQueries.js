@@ -18,11 +18,11 @@ module.exports = function() {
     }
   };
 
-  dbInsertItem = function(quote) {
+  dbInsertItem = function(quoteForInsertion) {
     dbOpen();
-    dbGet().run('INSERT INTO quotes(quote) VALUES(?)', quote, (err) => {
+    dbGet().run(`INSERT INTO quotes(quote) VALUES('${quoteForInsertion}')`, (err) => {
       if (err) return console.error(err.message);
-      console.log(`Quote saved: ${quote}`);
+      console.log(`Quote saved: ${quoteForInsertion}`);
     });
     dbClose();
   };
@@ -44,48 +44,25 @@ module.exports = function() {
     });
   };
 
-  dbDeleteItemLast = function() {
+  dbDeleteItemOrRandom = function(quoteForDeletion) {
     return new Promise(function(resolve, reject) {
+      let query;
+      if (quoteForDeletion != null) query = `SELECT quote FROM quotes WHERE quote = '${quoteForDeletion}'`;
+      else query = 'SELECT rowid, quote FROM quotes ORDER BY rowid DESC LIMIT 1';
+
       dbOpen();
-      var quoteLast;
-      // Query last saved quote
-      dbGet().get('SELECT rowid, quote FROM quotes ORDER BY rowid DESC LIMIT 1', (err, row) => {
+      dbGet().get(query, (err, row) => {
         if (err) return console.error(err.message);
         if (row == null || row.quote == null) {
-          console.log('Error: Cannot get last saved quote. No quote found in database');
+          console.log('Error: Cannot get quote for deletion. Not found in database');
           resolve(null);
         } else {
-          // If exists, we store information for further display...
-          quoteLast = row.quote;
-          // And trigger deletion
-          dbGet().run(`DELETE FROM quotes WHERE quote = ?`, quoteLast, function(err) {
+          if (quoteForDeletion == null) quoteForDeletion = row.quote;
+          dbGet().run(`DELETE FROM quotes WHERE quote = '${quoteForDeletion}'`, function(err) {
             if (err) return console.error(err.message);
-            console.log(`Deleted last saved quote: ${quoteLast}`);
+            console.log(`Deleted quote: ${quoteForDeletion}`);
           });
-          resolve(quoteLast);
-        }
-      });
-      dbClose();
-    });
-  };
-
-
-  dbDeleteItem = function(quote) {
-    return new Promise(function(resolve, reject) {
-      dbOpen();
-      // Query for given quote
-      dbGet().get('SELECT quote FROM quotes WHERE quote = ?', quote, (err, row) => {
-        if (err) return console.error(err.message);
-        if (row == null || row.quote == null) {
-          console.log('Error: Cannot get given quote. Not found in database');
-          resolve(null);
-        } else {
-          // If exists, trigger deletion
-          dbGet().run(`DELETE FROM quotes WHERE quote = ?`, quote, function(err) {
-            if (err) return console.error(err.message);
-            console.log(`Deleted given quote: quote`);
-          });
-          resolve(quote);
+          resolve(quoteForDeletion);
         }
       });
       dbClose();
