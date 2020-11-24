@@ -14,9 +14,12 @@
       "delete": "Quote deleted:"
     },
     "error": {
-      "get": "No quote available.",
-      "delete": "No quote available.",
-      "rights": "Operation failed. Insufficient privileges."
+      "rights": "Operation failed. Insufficient privileges.",
+      "get": "Operation failed. No quote available.",
+      "delete": {
+        "item": "Operation failed. Given quote doesn't exist.",
+        "last": "Operation failed. No quote available."
+      }
     },
     "help": {
       "about": "Beep Beep Boop :robot:\nI am a bot that saves and outputs quotes upon commands.",
