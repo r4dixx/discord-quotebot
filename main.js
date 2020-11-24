@@ -9,10 +9,13 @@ dbCreateTableIfNecessary();
 
 getClient().on('message', (message) => {
 
-  const MESSAGE = message.content;
   const CONFIG = require('./config.json');
-
   const PREFIX = CONFIG.prefix;
+
+  if (!message.content.startsWith(PREFIX) || message.author.bot) return;
+
+  const MESSAGE = message.content;
+
   const CONFIG_COMMAND = CONFIG.command;
   const CONFIG_FEEDBACK = CONFIG.feedback;
   const CONFIG_FEEDBACK_SUCCESS = CONFIG_FEEDBACK.success;
