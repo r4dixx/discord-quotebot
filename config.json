@@ -41,9 +41,15 @@
       "commands": {
         "get": "Get a random quote",
         "insert": "Save a quote",
+        "update": {
+          "item": "Edit any quote",
+          "last": "Edit last saved quote",
+          "before": "old_quote",
+          "after": "new_quote"
+        },
         "delete": {
           "item": "Delete any quote",
-          "last": "Undo last saved quote"
+          "last": "Delete last saved quote"
         },
         "format": "your_quote"
       },
