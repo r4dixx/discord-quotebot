@@ -21,7 +21,7 @@ module.exports = function() {
       console.log(`Success: author id ${currentAuthorId} is a bot admin`);
       return true;
     } else {
-      console.log(`Error: ${currentAuthorId} is not a bot admin. Aborting...`);
+      console.log(`Error: ${currentAuthorId} is not a bot admin. Operation aborted.`);
       return false;
     }
   };

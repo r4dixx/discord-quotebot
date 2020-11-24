@@ -22,12 +22,17 @@ getClient().on('message', (message) => {
 
   const MESSAGE_CONTENT = message.content;
 
-  if (MESSAGE_CONTENT === buildTrigger(CONFIG_COMMAND.get)) sendQuoteRandom();
-  else if (MESSAGE_CONTENT.startsWith(buildTrigger(CONFIG_COMMAND.add) + ' ')) addQuote();
-  else if (MESSAGE_CONTENT == buildTrigger(CONFIG_COMMAND.delete)) deleteQuoteLast();
+  if (MESSAGE_CONTENT === buildTrigger(CONFIG_COMMAND.get))
+    sendQuoteRandom();
+  else if (MESSAGE_CONTENT.startsWith(buildTrigger(CONFIG_COMMAND.add) + ' '))
+    addQuote();
+  else if (MESSAGE_CONTENT == buildTrigger(CONFIG_COMMAND.delete) && hasRights()) deleteQuoteLast();
   // else if (MESSAGE_CONTENT.startsWith(buildTrigger(CONFIG_COMMAND.get)  + ' ' + '#'')) deleteQuote();
-  else if (MESSAGE_CONTENT === buildTrigger(CONFIG_COMMAND.help) || message.mentions.members.has(THIS_AUTHOR_ID)) sendHelp();
-  else if (MESSAGE_CONTENT === buildTrigger('ping')) sendPong();
+  else if (MESSAGE_CONTENT === buildTrigger(CONFIG_COMMAND.help) || message.mentions.members.has(THIS_AUTHOR_ID))
+    sendHelp();
+  else if (MESSAGE_CONTENT === buildTrigger('ping'))
+    sendPong();
+
 
   function sendQuoteRandom() {
     dbQueryItemRandom().then(function(result) {
@@ -42,12 +47,10 @@ getClient().on('message', (message) => {
   }
 
   function deleteQuoteLast() {
-    if (getRights(MESSAGE_AUTHOR_ID) == true) {
-      dbDeleteItemLast().then(function(result) {
-        if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${result}`);
-        else message.channel.send(CONFIG_FEEDBACK_ERROR.delete);
-      });
-    } else message.channel.send(CONFIG_FEEDBACK_ERROR.rights);
+    dbDeleteItemLast().then(function(result) {
+      if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${result}`);
+      else message.channel.send(CONFIG_FEEDBACK_ERROR.delete);
+    });
   }
 
   // function deleteQuote() {
@@ -70,6 +73,14 @@ getClient().on('message', (message) => {
   function sendPong() {
     console.log(`Sent \"pong\" to ${message.author.username}`);
     message.reply('pong');
+  }
+
+  function hasRights() {
+    if (getRights(MESSAGE_AUTHOR_ID)) return true;
+    else {
+      message.channel.send(CONFIG_FEEDBACK_ERROR.rights);
+      return false;
+    }
   }
 
 });
