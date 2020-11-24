@@ -31,8 +31,11 @@
       "commands": {
         "get": "Get a random quote",
         "add": "Save a quote",
-        "add_format": "your_quote",
-        "delete": "Undo last saved quote"
+        "format": "your_quote",
+        "delete": {
+          "item": "Delete any quote",
+          "last": "Undo last saved quote"
+        }
       },
       "show": {
         "with_command": "Use",
