@@ -10,15 +10,15 @@
   },
   "feedback": {
     "success": {
-      "add": ":tada: _Quote saved..._",
-      "delete": ":put_litter_in_its_place: _Quote deleted:_"
+      "add": ":brain: _I'll remember this one..._",
+      "delete": ":put_litter_in_its_place: _To the trash:_"
     },
     "error": {
       "rights": ":no_entry: Operation failed. Insufficient privileges.",
-      "get": ":person_shrugging: Operation failed. No quote available.",
+      "get": ":person_shrugging: Error: No quote available.",
       "delete": {
-        "item": ":person_shrugging: Operation failed. Given quote doesn't exist.",
-        "last": ":person_shrugging: Operation failed. No quote available."
+        "item": ":person_shrugging: Error: Given quote doesn't exist.",
+        "last": ":person_shrugging: Error: No quote available."
       }
     },
     "help": {
