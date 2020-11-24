@@ -16,15 +16,10 @@ getClient().on('message', (message) => {
 
   const MESSAGE = message.content;
 
-  const CONFIG_COMMAND = CONFIG.command;
-  const CONFIG_FEEDBACK = CONFIG.feedback;
-  const CONFIG_FEEDBACK_SUCCESS = CONFIG_FEEDBACK.success;
-  const CONFIG_FEEDBACK_ERROR = CONFIG_FEEDBACK.error;
-
-  const COMMAND_GET = PREFIX + CONFIG_COMMAND.get;
-  const COMMAND_ADD = PREFIX + CONFIG_COMMAND.add;
-  const COMMAND_DELETE = PREFIX + CONFIG_COMMAND.delete;
-  const COMMAND_HELP = PREFIX + CONFIG_COMMAND.help;
+  const COMMAND_GET = PREFIX + CONFIG.command.get;
+  const COMMAND_ADD = PREFIX + CONFIG.command.add;
+  const COMMAND_DELETE = PREFIX + CONFIG.command.delete;
+  const COMMAND_HELP = PREFIX + CONFIG.command.help;
 
   if (MESSAGE === COMMAND_GET) sendQuoteRandom();
   else if (MESSAGE.startsWith(`${COMMAND_ADD} `)) addQuote();
@@ -35,21 +30,21 @@ getClient().on('message', (message) => {
 
   function sendQuoteRandom() {
     dbQueryItemRandom().then(function(result) {
-      message.channel.send(result || CONFIG_FEEDBACK_ERROR.get);
+      message.channel.send(result ||  CONFIG.feedback.error.get);
     });
   }
 
   function addQuote() {
     let quote = MESSAGE.replace(`${COMMAND_ADD} `, '');
     dbInsertItem(quote);
-    message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.add}\n→ ${quote}`);
+    message.channel.send(`${CONFIG.feedback.success.add}\n→ ${quote}`);
   }
 
   function deleteQuoteLast() {
     if (checkRights(message.author.id) == true) {
       dbDeleteItemLast().then(function(result) {
-        if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n→ ${result}`);
-        else message.channel.send(CONFIG_FEEDBACK_ERROR.delete);
+        if (result != null) message.channel.send(`${CONFIG.feedback.success.delete}\n→ ${result}`);
+        else message.channel.send( CONFIG.feedback.error.delete);
       });
     }
   }
@@ -96,7 +91,7 @@ ${HELP_USER_TYPE.self}
       return true;
     } else {
       console.log(`Error: ${currentAuthorId} is not a bot admin. Aborting...`);
-      message.channel.send(CONFIG_FEEDBACK_ERROR.rights);
+      message.channel.send( CONFIG.feedback.error.rights);
       return false;
     }
   }
