@@ -20,7 +20,7 @@ getClient().on('message', (message) => {
   else if (message.content.startsWith(buildTrigger(CONFIG_COMMAND.add) + ' '))
     addQuote();
   else if (message.content == buildTrigger(CONFIG_COMMAND.delete) && hasRights())
-    deleteQuoteLast();
+    deleteQuote(forLast = true);
   else if (message.content.startsWith(buildTrigger(CONFIG_COMMAND.delete) + ' ') && hasRights()) {
     deleteQuote();}
   else if (message.content === buildTrigger(CONFIG_COMMAND.help) || message.mentions.members.has(getClient().user.id))
