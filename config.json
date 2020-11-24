@@ -10,23 +10,23 @@
   },
   "feedback": {
     "success": {
-      "add": "Quote saved:",
-      "delete": "Quote deleted:"
+      "add": ":tada: _Quote saved..._",
+      "delete": ":put_litter_in_its_place: _Quote deleted:_"
     },
     "error": {
-      "rights": "Operation failed. Insufficient privileges.",
-      "get": "Operation failed. No quote available.",
+      "rights": ":no_entry: Operation failed. Insufficient privileges.",
+      "get": ":person_shrugging: Operation failed. No quote available.",
       "delete": {
-        "item": "Operation failed. Given quote doesn't exist.",
-        "last": "Operation failed. No quote available."
+        "item": ":person_shrugging: Operation failed. Given quote doesn't exist.",
+        "last": ":person_shrugging: Operation failed. No quote available."
       }
     },
     "help": {
-      "about": "Beep Beep Boop :robot:\nI am a bot that saves and outputs quotes upon commands.",
+      "about": "Beep Beep Boop!\nI am a bot that outputs quotes upon commands.\nHere's how I work:",
       "title": {
-        "user": "**Everyone can:**",
-        "admin": "**This bot's admins only can:**",
-        "self": "**Want to display this message again?**"
+        "user": ":busts_in_silhouette: **Everyone can**",
+        "admin": ":detective: **This bot's admins only can**",
+        "self": ":hand_splayed: **Want to display this message again?**"
       },
       "commands": {
         "get": "Get a random quote",
