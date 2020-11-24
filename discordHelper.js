@@ -26,6 +26,10 @@ module.exports = function() {
     }
   };
 
+  buildTrigger = function(command) {
+    return require('./config.json').trigger.prefix + command;
+  };
+
   getClient = function() {
     return CLIENT;
   };
