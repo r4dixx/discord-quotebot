@@ -44,6 +44,27 @@ module.exports = function() {
     });
   };
 
+  dbUpdateLast = function(updatedQuote) {
+    return new Promise(function(resolve, reject) {
+      dbOpen();
+      dbGet().get('SELECT rowid, quote FROM quotes ORDER BY rowid DESC LIMIT 1', (err, row) => {
+        if (err) return console.error(err.message);
+        if (row == null || row.quote == null) {
+          console.log('Error: Cannot get quote for edition. Not found in database');
+          resolve(null);
+        } else {
+          previousQuote = row.quote;
+          dbGet().run('UPDATE quotes SET quote = ? WHERE rowid = (SELECT MAX(rowid) FROM quotes)', updatedQuote, function(err) {
+            if (err) return console.error(err.message);
+            console.log(`Updated last quote: ${updatedQuote}`);
+          });
+          resolve(previousQuote);
+        }
+      });
+      dbClose();
+    });
+  };
+
   dbDeleteItemOrLast = function(quoteForDeletion) {
     return new Promise(function(resolve, reject) {
       let query;
@@ -67,5 +88,4 @@ module.exports = function() {
       dbClose();
     });
   };
-
 };

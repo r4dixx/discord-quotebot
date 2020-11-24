@@ -12,7 +12,11 @@
   "feedback": {
     "success": {
       "insert": ":brain: _I'll remember this one..._",
-      "update" : ":pencil: _Quote edited. This is what it gives now:_",
+      "update": {
+        "title": ":pencil: _Quote edited successfully_",
+        "before": "_**from:**_",
+        "after": "_**to:**_"
+      },
       "delete": ":put_litter_in_its_place: _To the trash:_"
     },
     "error": {

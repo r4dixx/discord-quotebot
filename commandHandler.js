@@ -25,8 +25,16 @@ module.exports = function() {
       message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.insert}\n${quote}`);
     };
 
-    updateQuote = function(quote) {
-      console.log(quote);
+    updateQuoteLast = function(updatedQuote) {
+      dbUpdateLast(updatedQuote).then(function(result) {
+        if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.update.title}\n${CONFIG_FEEDBACK_SUCCESS.update.before}\n${result}\n${CONFIG_FEEDBACK_SUCCESS.update.after}\n${updatedQuote}`);
+        else {
+          let errorMessage;
+          if (quote != null) errorMessage = CONFIG_FEEDBACK_ERROR.update.item;
+          else errorMessage = CONFIG_FEEDBACK_ERROR.update.last;
+          message.channel.send(errorMessage);
+        }
+      });
     };
 
     deleteQuote = function(quote) {
