@@ -12,13 +12,18 @@
   "feedback": {
     "success": {
       "insert": ":brain: _I'll remember this one..._",
+      "update" : ":pencil: _Quote edited. This is what it gives now:_",
       "delete": ":put_litter_in_its_place: _To the trash:_"
     },
     "error": {
       "rights": ":no_entry: Operation failed. Insufficient privileges.",
       "get": ":person_shrugging: Error: No quote available.",
+      "update": {
+        "item": ":person_shrugging: Cannot edit this quote. It doesn't appear to exist.",
+        "last": ":person_shrugging: Error: No quote available."
+      },
       "delete": {
-        "item": ":person_shrugging: Error: Given quote doesn't exist.",
+        "item": ":person_shrugging: Cannot delete this quote. It doesn't appear to exist.",
         "last": ":person_shrugging: Error: No quote available."
       }
     },
