@@ -1,3 +1,22 @@
+## 2.0.0
+
+### Feature
+-   Delete quote using `!unquote your_quote`
+-   Undo last saved quote using `!unquote`
+-   Bot admins
+-   More configuration options
+
+### Documentation
+-   Clearer and more complete steps
+-   Links to official documentation
+-   Disclaimers for sensible steps
+
+### Fix
+-   Improve stability
+
+### Tech
+-   Better project decoupling (with commandHandler.js for instance)
+
 ## 1.1.0
 
 ### Feature

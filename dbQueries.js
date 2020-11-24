@@ -1,47 +1,71 @@
 /*jshint esversion: 6 */
 
-require('./dbHelper.js')();
-
 module.exports = function() {
 
-  createTableIfNecessary = function() {
+  require('./dbHelper.js')();
+
+  dbCreateTableIfNecessary = function() {
     const DB_PATH = './quotes.db';
     if (require('fs').existsSync(DB_PATH)) console.log(`File ${DB_PATH} exists. Moving on`);
     else {
       console.log(`${DB_PATH} not found, creating...`);
-      openDb();
-      getDb().run('CREATE TABLE IF NOT EXISTS quotes(quote text)', (err) => {
-        if (err) throw err;
+      dbOpen();
+      dbGet().run('CREATE TABLE IF NOT EXISTS quotes(quote TEXT)', (err) => {
+        if (err) return console.error(err.message);
         console.log('Quotes table created');
       });
-      closeDb();
+      dbClose();
     }
   };
 
-  queryQuoteRandom = function() {
+  dbInsertItem = function(quoteForInsertion) {
+    dbOpen();
+    dbGet().run('INSERT INTO quotes(quote) VALUES(?)', quoteForInsertion, (err) => {
+      if (err) return console.error(err.message);
+      console.log(`Quote saved: ${quoteForInsertion}`);
+    });
+    dbClose();
+  };
+
+  dbQueryItemRandom = function() {
     return new Promise(function(resolve, reject) {
-      openDb();
-      getDb().get('SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1', (err, row) => {
-        if (err) throw err;
-        else if (row == null || row.quote == null) {
-          console.log('No quote found in database');
+      dbOpen();
+      dbGet().get('SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1', (err, row) => {
+        if (err) return console.error(err.message);
+        if (row == null || row.quote == null) {
+          console.log('Cannot get random quote. No quote found in database');
           resolve(null);
         } else {
           console.log(`Quote to be displayed: ${row.quote}`);
           resolve(row.quote);
         }
       });
-      closeDb();
+      dbClose();
     });
   };
 
-  insertQuote = function(quote) {
-    openDb();
-    getDb().run('INSERT INTO quotes(quote) VALUES(?)', quote, (err) => {
-      if (err) throw err;
-      console.log(`Quote saved: ${quote}`);
+  dbDeleteItemOrLast = function(quoteForDeletion) {
+    return new Promise(function(resolve, reject) {
+      let query;
+      dbOpen();
+      if (quoteForDeletion != null) query = 'SELECT quote FROM quotes WHERE quote = ?';
+      else query = 'SELECT rowid, quote FROM quotes ORDER BY rowid DESC LIMIT 1';
+      dbGet().get(query, quoteForDeletion, (err, row) => {
+        if (err) return console.error(err.message);
+        if (row == null || row.quote == null) {
+          console.log('Error: Cannot get quote for deletion. Not found in database');
+          resolve(null);
+        } else {
+          if (quoteForDeletion == null) quoteForDeletion = row.quote;
+          dbGet().run('DELETE FROM quotes WHERE quote = ?', quoteForDeletion, function(err) {
+            if (err) return console.error(err.message);
+            console.log(`Deleted quote: ${quoteForDeletion}`);
+          });
+          resolve(quoteForDeletion);
+        }
+      });
+      dbClose();
     });
-    closeDb();
   };
 
 };
