@@ -20,7 +20,7 @@ module.exports = function() {
 
   dbInsertItem = function(quoteForInsertion) {
     dbOpen();
-    dbGet().run(`INSERT INTO quotes(quote) VALUES('${quoteForInsertion}')`, (err) => {
+    dbGet().run('INSERT INTO quotes(quote) VALUES(?)', quoteForInsertion, (err) => {
       if (err) return console.error(err.message);
       console.log(`Quote saved: ${quoteForInsertion}`);
     });
