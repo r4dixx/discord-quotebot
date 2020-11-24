@@ -9,20 +9,18 @@ dbCreateTableIfNecessary();
 
 getClient().on('message', (message) => {
 
-  const CONFIG = require('./config.json');
-  const CONFIG_TRIGGER = CONFIG.trigger;
-  const CONFIG_PREFIX = CONFIG_TRIGGER.prefix;
-  const CONFIG_COMMAND = CONFIG_TRIGGER.command;
-
   const THIS_AUTHOR_ID = getClient().user.id;
   const MESSAGE_AUTHOR_ID = message.author.id;
-  const MESSAGE_CONTENT = message.content;
 
   if (MESSAGE_AUTHOR_ID == THIS_AUTHOR_ID) return;
 
+  const CONFIG = require('./config.json');
+  const CONFIG_COMMAND = CONFIG.trigger.command;
   const CONFIG_FEEDBACK = CONFIG.feedback;
   const CONFIG_FEEDBACK_SUCCESS = CONFIG_FEEDBACK.success;
   const CONFIG_FEEDBACK_ERROR = CONFIG_FEEDBACK.error;
+
+  const MESSAGE_CONTENT = message.content;
 
   if (MESSAGE_CONTENT === buildTrigger(CONFIG_COMMAND.get)) sendQuoteRandom();
   else if (MESSAGE_CONTENT.startsWith(buildTrigger(CONFIG_COMMAND.add) + ' ')) addQuote();
@@ -72,10 +70,6 @@ getClient().on('message', (message) => {
   function sendPong() {
     console.log(`Sent \"pong\" to ${message.author.username}`);
     message.reply('pong');
-  }
-
-  function buildTrigger(command) {
-    return CONFIG_PREFIX + command;
   }
 
 });
