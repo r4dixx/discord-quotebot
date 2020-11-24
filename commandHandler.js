@@ -27,15 +27,17 @@ module.exports = function() {
     deleteQuoteLast = function() {
       dbDeleteItemLast().then(function(result) {
         if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${result}`);
-        else message.channel.send(CONFIG_FEEDBACK_ERROR.delete);
+        else message.channel.send(CONFIG_FEEDBACK_ERROR.delete.last);
       });
     };
 
-    // function deleteQuote() {
-    //   if (getRights(message.author.id) == true) {
-    //
-    //   } else message.channel.send(CONFIG_FEEDBACK_ERROR.rights);
-    // }
+    deleteQuote = function() {
+      let quote = message.content.replace(`${buildTrigger(CONFIG_COMMAND.delete)} `, '');
+      dbDeleteItem(quote).then(function(result) {
+        if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${result}`);
+        else message.channel.send(CONFIG_FEEDBACK_ERROR.delete.item);
+      });
+    };
 
     sendHelp = function() {
       const CONFIG_HELP = CONFIG_FEEDBACK.help;

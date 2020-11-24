@@ -19,8 +19,10 @@ getClient().on('message', (message) => {
     sendQuoteRandom();
   else if (message.content.startsWith(buildTrigger(CONFIG_COMMAND.add) + ' '))
     addQuote();
-  else if (message.content == buildTrigger(CONFIG_COMMAND.delete) && hasRights()) deleteQuoteLast();
-  // else if (message.content.startsWith(buildTrigger(CONFIG_COMMAND.get)  + ' ' + '#'')) deleteQuote();
+  else if (message.content == buildTrigger(CONFIG_COMMAND.delete) && hasRights())
+    deleteQuoteLast();
+  else if (message.content.startsWith(buildTrigger(CONFIG_COMMAND.delete) + ' ') && hasRights()) {
+    deleteQuote();}
   else if (message.content === buildTrigger(CONFIG_COMMAND.help) || message.mentions.members.has(getClient().user.id))
     sendHelp();
   else if (message.content === buildTrigger('ping'))

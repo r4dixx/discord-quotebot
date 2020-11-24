@@ -71,4 +71,27 @@ module.exports = function() {
     });
   };
 
+
+  dbDeleteItem = function(quote) {
+    return new Promise(function(resolve, reject) {
+      dbOpen();
+      // Query for given quote
+      dbGet().get('SELECT quote FROM quotes WHERE quote = ?', quote, (err, row) => {
+        if (err) return console.error(err.message);
+        if (row == null || row.quote == null) {
+          console.log('Error: Cannot get given quote. Not found in database');
+          resolve(null);
+        } else {
+          // If exists, trigger deletion
+          dbGet().run(`DELETE FROM quotes WHERE quote = ?`, quote, function(err) {
+            if (err) return console.error(err.message);
+            console.log(`Deleted given quote → quote`);
+          });
+          resolve(quote);
+        }
+      });
+      dbClose();
+    });
+  };
+
 };
