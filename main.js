@@ -19,7 +19,7 @@ getClient().on('message', (message) => {
     sendQuoteRandom();
   else if (message.content.startsWith(buildTrigger(CONFIG_COMMAND.add) + ' '))
     addQuote();
-  else if (message.content.includes(buildTrigger(CONFIG_COMMAND.delete)) && userIsAdmin())
+  else if (message.content === buildTrigger(CONFIG_COMMAND.delete) && userIsAdmin())
     deleteQuote();
   else if (message.content.startsWith(`${buildTrigger(CONFIG_COMMAND.delete)} `) && userIsAdmin())
     deleteQuote(message.content.replace(`${buildTrigger(CONFIG_COMMAND.delete)} `, ''));
