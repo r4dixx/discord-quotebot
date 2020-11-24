@@ -1,8 +1,8 @@
 /*jshint esversion: 6 */
 
-require('./dbHelper.js')();
-
 module.exports = function() {
+
+  require('./dbHelper.js')();
 
   dbCreateTableIfNecessary = function() {
     const DB_PATH = './quotes.db';
