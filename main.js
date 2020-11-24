@@ -21,9 +21,9 @@ getClient().on('message', (message) => {
     addQuote();
   else if (message.content.includes(buildTrigger(CONFIG_COMMAND.delete)) && userIsAdmin())
     deleteQuote();
-  else if (message.content.startsWith(`${buildTrigger(CONFIG_COMMAND.delete)} `) && userIsAdmin()) {
+  else if (message.content.startsWith(`${buildTrigger(CONFIG_COMMAND.delete)} `) && userIsAdmin())
     deleteQuote(message.content.replace(`${buildTrigger(CONFIG_COMMAND.delete)} `, ''));
-  } else if (message.content === buildTrigger(CONFIG_COMMAND.help) || message.mentions.members.has(getClient().user.id))
+  else if (message.content === buildTrigger(CONFIG_COMMAND.help) || (message.mentions.members.has(getClient().user.id) || null))
     sendHelp();
   else if (message.content === buildTrigger('ping'))
     sendPong();
