@@ -15,7 +15,7 @@ module.exports = function() {
     } else console.log('Error: No token file');
   };
 
-  getRights = function(currentAuthorId) {
+  getRightsAdmin = function(currentAuthorId) {
     console.log(`Requesting rights...`);
     if (require('./config_private.json').botAdminIds.includes(currentAuthorId)) {
       console.log(`Success: author id ${currentAuthorId} is a bot admin`);

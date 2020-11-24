@@ -44,13 +44,12 @@ module.exports = function() {
     });
   };
 
-  dbDeleteItemOrRandom = function(quoteForDeletion) {
+  dbDeleteItemOrLast = function(quoteForDeletion) {
     return new Promise(function(resolve, reject) {
       let query;
+      dbOpen();
       if (quoteForDeletion != null) query = `SELECT quote FROM quotes WHERE quote = '${quoteForDeletion}'`;
       else query = 'SELECT rowid, quote FROM quotes ORDER BY rowid DESC LIMIT 1';
-
-      dbOpen();
       dbGet().get(query, (err, row) => {
         if (err) return console.error(err.message);
         if (row == null || row.quote == null) {
