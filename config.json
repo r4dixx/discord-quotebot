@@ -3,15 +3,15 @@
     "prefix": "!",
     "command": {
       "get": "quote",
-      "add": "quote",
-      "edit": "requote",
+      "insert": "quote",
+      "update": "requote",
       "delete": "unquote",
       "help": "help"
     }
   },
   "feedback": {
     "success": {
-      "add": ":brain: _I'll remember this one..._",
+      "insert": ":brain: _I'll remember this one..._",
       "delete": ":put_litter_in_its_place: _To the trash:_"
     },
     "error": {
@@ -31,12 +31,12 @@
       },
       "commands": {
         "get": "Get a random quote",
-        "add": "Save a quote",
-        "format": "your_quote",
+        "insert": "Save a quote",
         "delete": {
           "item": "Delete any quote",
           "last": "Undo last saved quote"
-        }
+        },
+        "format": "your_quote"
       },
       "show": {
         "with_command": "Use",
