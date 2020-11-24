@@ -1,26 +1,46 @@
 {
-  "prefix": "/",
-  "command": {
-    "add": "qadd",
-    "add_alt": "quote",
-    "get": "qget",
-    "get_alt": "quote",
-    "help": "qhelp"
+  "trigger": {
+    "prefix": "!",
+    "command": {
+      "get": "quote",
+      "add": "quote",
+      "delete": "unquote",
+      "help": "help"
+    }
   },
   "feedback": {
     "success": {
-      "add": "Quote saved successfully"
+      "add": ":brain: _I'll remember this one..._",
+      "delete": ":put_litter_in_its_place: _To the trash:_"
     },
     "error": {
-      "get": "No quote available"
+      "rights": ":no_entry: Operation failed. Insufficient privileges.",
+      "get": ":person_shrugging: Error: No quote available.",
+      "delete": {
+        "item": ":person_shrugging: Error: Given quote doesn't exist.",
+        "last": ":person_shrugging: Error: No quote available."
+      }
+    },
+    "help": {
+      "about": ":robot: Beep Beep Boop!\nI am a bot that outputs quotes upon commands.\nHere's how I work:",
+      "title": {
+        "user": ":busts_in_silhouette: **Everyone can**",
+        "admin": ":detective: **This bot's admins only can**",
+        "self": ":hand_splayed: **Want to display this message again?**"
+      },
+      "commands": {
+        "get": "Get a random quote",
+        "add": "Save a quote",
+        "format": "your_quote",
+        "delete": {
+          "item": "Delete any quote",
+          "last": "Undo last saved quote"
+        }
+      },
+      "show": {
+        "with_command": "Use",
+        "with_mention": "or mention me"
+      }
     }
-  },
-  "help": {
-    "about": "Beep Beep Boop :robot:\nI am a bot that saves and outputs quotes upon commands.",
-    "title": "**Here's what you can do:**",
-    "add": "Save a quote",
-    "add_format": "your_quote",
-    "get": "Get a random quote",
-    "self": "Display this message"
   }
 }
