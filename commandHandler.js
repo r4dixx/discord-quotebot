@@ -24,18 +24,16 @@ module.exports = function() {
       message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.add}\n${quote}`);
     };
 
-    deleteQuote = function(forLast) {
-      if (forLast == true) {
-        dbDeleteItemLast().then(function(result) {
-          if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${result}`);
-          else message.channel.send(CONFIG_FEEDBACK_ERROR.delete.last);
-        });
-      } else {
-        dbDeleteItem(message.content.replace(`${buildTrigger(CONFIG_COMMAND.delete)} `, '')).then(function(result) {
-          if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${result}`);
-          else message.channel.send(erroCONFIG_FEEDBACK_ERROR.delete.item);
-        });
-      }
+    deleteQuoteOrRandom = function(quote) {
+      dbDeleteItemOrRandom(quote).then(function(result) {
+        if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${result}`);
+        else {
+          let errorMessage;
+          if (quote != null) errorMessage = CONFIG_FEEDBACK_ERROR.delete.item;
+          else errorMessage = CONFIG_FEEDBACK_ERROR.delete.last;
+          message.channel.send(errorMessage);
+        }
+      });
     };
 
     sendHelp = function() {
