@@ -24,8 +24,8 @@ module.exports = function() {
       message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.add}\n${quote}`);
     };
 
-    deleteQuoteOrRandom = function(quote) {
-      dbDeleteItemOrRandom(quote).then(function(result) {
+    deleteQuote = function(quote) {
+      dbDeleteItemOrLast(quote).then(function(result) {
         if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${result}`);
         else {
           let errorMessage;
