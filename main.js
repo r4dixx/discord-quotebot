@@ -10,77 +10,59 @@ dbCreateTableIfNecessary();
 getClient().on('message', (message) => {
 
   const CONFIG = require('./config.json');
-  const PREFIX = CONFIG.prefix;
+  const CONFIG_PREFIX = CONFIG.prefix;
+  const CONFIG_COMMAND = CONFIG.command;
 
-  if (!message.content.startsWith(PREFIX) || message.author.bot) return;
+  const THIS_AUTHOR_ID = getClient().user.id;
+  const MESSAGE_AUTHOR_ID = message.author.id;
+  const MESSAGE_CONTENT = message.content;
 
-  const MESSAGE = message.content;
+  if (MESSAGE_AUTHOR_ID == THIS_AUTHOR_ID) return;
 
-  const COMMAND_GET = PREFIX + CONFIG.command.get;
-  const COMMAND_ADD = PREFIX + CONFIG.command.add;
-  const COMMAND_DELETE = PREFIX + CONFIG.command.delete;
-  const COMMAND_HELP = PREFIX + CONFIG.command.help;
+  const CONFIG_FEEDBACK_SUCCESS = CONFIG.feedback.success;
+  const CONFIG_FEEDBACK_ERROR = CONFIG.feedback.error;
 
-  if (MESSAGE === COMMAND_GET) sendQuoteRandom();
-  else if (MESSAGE.startsWith(`${COMMAND_ADD} `)) addQuote();
-  else if (MESSAGE == COMMAND_DELETE) deleteQuoteLast();
-  else if (MESSAGE.startsWith(`${COMMAND_GET} #`)) deleteQuote();
-  else if (MESSAGE === COMMAND_HELP || message.mentions.members.has(getClient().user.id)) sendHelp();
-  else ping();
+  if (MESSAGE_CONTENT === getTrigger(CONFIG_COMMAND.get)) sendQuoteRandom();
+  else if (MESSAGE_CONTENT.startsWith(getTrigger(CONFIG_COMMAND.add) + ' ')) addQuote();
+  else if (MESSAGE_CONTENT == getTrigger(CONFIG_COMMAND.delete)) deleteQuoteLast();
+  // else if (MESSAGE_CONTENT.startsWith(getTrigger(CONFIG_COMMAND.get)  + ' ' + '#'')) deleteQuote();
+  else if (MESSAGE_CONTENT === getTrigger(CONFIG_COMMAND.help) || message.mentions.members.has(THIS_AUTHOR_ID)) sendHelp();
+  else if (MESSAGE_CONTENT === getTrigger('ping')) { console.log('Pong'); message.reply('Pong'); }
 
   function sendQuoteRandom() {
     dbQueryItemRandom().then(function(result) {
-      message.channel.send(result ||  CONFIG.feedback.error.get);
+      message.channel.send(result || CONFIG_FEEDBACK_ERROR.get);
     });
   }
 
   function addQuote() {
-    let quote = MESSAGE.replace(`${COMMAND_ADD} `, '');
+    let quote = MESSAGE_CONTENT.replace(`${getTrigger(CONFIG_COMMAND.add)} `, '');
     dbInsertItem(quote);
-    message.channel.send(`${CONFIG.feedback.success.add}\n→ ${quote}`);
+    message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.add}\n${quote}`);
   }
 
   function deleteQuoteLast() {
-    if (checkRights(message.author.id) == true) {
+    if (checkRights(MESSAGE_AUTHOR_ID) == true) {
       dbDeleteItemLast().then(function(result) {
-        if (result != null) message.channel.send(`${CONFIG.feedback.success.delete}\n→ ${result}`);
-        else message.channel.send( CONFIG.feedback.error.delete);
+        if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${result}`);
+        else message.channel.send(CONFIG_FEEDBACK_ERROR.delete);
       });
     }
   }
 
-  function deleteQuote() {
-    if (checkRights(message.author.id) == true) {
-
-    }
-  }
+  // function deleteQuote() {
+  //   if (checkRights(MESSAGE_AUTHOR_ID) == true) {
+  //
+  //   }
+  // }
 
   function sendHelp() {
     const HELP = CONFIG.help;
     const HELP_USER_TYPE = HELP.user_type;
 
-    message.channel.send(`
-${HELP.about}
-
-${HELP_USER_TYPE.user}
-• ${HELP.get}: \`${COMMAND_GET}\`
-• ${HELP.add}: \`${COMMAND_ADD}\` \`${HELP.add_format}\`
-
-${HELP_USER_TYPE.admin}
-• ${HELP.delete}: \`${COMMAND_DELETE}\`
-
-${HELP_USER_TYPE.self}
-• \`${COMMAND_HELP}\` or mention me <@!${getClient().user.id}>
-    `);
+    message.channel.send(`${HELP.about}\n\n${HELP_USER_TYPE.user}\n• ${HELP.get} → \`${getTrigger(CONFIG_COMMAND.get)}\`\n• ${HELP.add} → \`${getTrigger(CONFIG_COMMAND.add)}\` \`${HELP.add_format}\`\n\n${HELP_USER_TYPE.admin}\n• ${HELP.delete} → \`${getTrigger(CONFIG_COMMAND.delete)}\`\n\n${HELP_USER_TYPE.self}\n• \`${getTrigger(CONFIG_COMMAND.help)}\` or mention me <@!${THIS_AUTHOR_ID}>`);
 
     console.log('Help displayed');
-  }
-
-  function ping() {
-    if (MESSAGE === '/ping') {
-      console.log('Pong');
-      message.reply('Pong');
-    }
   }
 
   function checkRights(currentAuthorId) {
@@ -91,8 +73,13 @@ ${HELP_USER_TYPE.self}
       return true;
     } else {
       console.log(`Error: ${currentAuthorId} is not a bot admin. Aborting...`);
-      message.channel.send( CONFIG.feedback.error.rights);
+      message.channel.send(CONFIG_FEEDBACK_ERROR.rights);
       return false;
     }
   }
+
+  function getTrigger(command) {
+    return CONFIG_PREFIX + command;
+  }
+
 });

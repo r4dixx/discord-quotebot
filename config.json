@@ -8,11 +8,11 @@
   },
   "feedback": {
     "success": {
-      "add": "Quote saved",
-      "delete": "Quote deleted"
+      "add": "Quote saved:",
+      "delete": "Quote deleted:"
     },
     "error": {
-      "get": "No quote available",
+      "get": "No quote available.",
       "delete": "No quote available.",
       "rights": "Operation failed. Insufficient privileges."
     }
