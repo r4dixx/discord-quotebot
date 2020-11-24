@@ -72,7 +72,7 @@ ${HELP_USER_TYPE.admin}
 • ${HELP.delete}: \`${COMMAND_DELETE}\`
 
 ${HELP_USER_TYPE.self}
-• \`${COMMAND_HELP}\` or \`@${getClient().user.username}\`
+• \`${COMMAND_HELP}\` or mention me <@!${getClient().user.id}>
     `);
 
     console.log('Help displayed');
