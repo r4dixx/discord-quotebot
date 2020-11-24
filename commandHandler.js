@@ -25,6 +25,10 @@ module.exports = function() {
       message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.add}\n${quote}`);
     };
 
+    editQuote = function(quote) {
+      console.log(quote);
+    };
+
     deleteQuote = function(quote) {
       dbDeleteItemOrLast(quote).then(function(result) {
         if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${result}`);

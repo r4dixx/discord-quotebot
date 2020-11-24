@@ -4,6 +4,7 @@
     "command": {
       "get": "quote",
       "add": "quote",
+      "edit": "requote",
       "delete": "unquote",
       "help": "help"
     }
