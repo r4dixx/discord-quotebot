@@ -47,7 +47,6 @@ module.exports = function() {
   dbDeleteItemLast = function() {
     return new Promise(function(resolve, reject) {
       dbOpen();
-      var idLast;
       var quoteLast;
       // Query last saved quote
       dbGet().get('SELECT rowid, quote FROM quotes ORDER BY rowid DESC LIMIT 1', (err, row) => {
@@ -57,12 +56,11 @@ module.exports = function() {
           resolve(null);
         } else {
           // If exists, we store information for further display...
-          idLast = row.rowid;
           quoteLast = row.quote;
           // And trigger deletion
-          dbGet().run(`DELETE FROM quotes WHERE rowid = ?`, idLast, function(err) {
+          dbGet().run(`DELETE FROM quotes WHERE quote = ?`, quoteLast, function(err) {
             if (err) return console.error(err.message);
-            console.log(`Deleted last saved quote → #${idLast} - ${quoteLast}`);
+            console.log(`Deleted last saved quote: ${quoteLast}`);
           });
           resolve(quoteLast);
         }
