@@ -19,10 +19,10 @@ getClient().on('message', (message) => {
     sendQuoteRandom();
   else if (message.content.startsWith(buildTrigger(CONFIG_COMMAND.insert) + ' '))
     insertQuote(message.content.replace(`${buildTrigger(CONFIG_COMMAND.insert)} `, ''));
+  else if (message.content.startsWith(buildTrigger(CONFIG_COMMAND.update) + ' ') && userIsAdmin())
+    updateQuoteLast(message.content.replace(`${buildTrigger(CONFIG_COMMAND.update)} `, ''));
   // else if (message.content === buildTrigger(CONFIG_COMMAND.update) && userIsAdmin())
   //   updateQuote();
-  // else if (message.content.startsWith(buildTrigger(CONFIG_COMMAND.update) + ' ') && userIsAdmin())
-  //   updateQuoteLast(message.content.replace(`${buildTrigger(CONFIG_COMMAND.update)} `, ''));
   else if (message.content === buildTrigger(CONFIG_COMMAND.delete) && userIsAdmin())
     deleteQuoteLast();
   else if (message.content.startsWith(buildTrigger(CONFIG_COMMAND.delete) + ' ') && userIsAdmin())

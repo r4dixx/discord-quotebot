@@ -44,26 +44,26 @@ module.exports = function() {
     });
   };
 
-  // dbUpdateLast = function(updatedQuote) {
-  //   return new Promise(function(resolve, reject) {
-  //     dbOpen();
-  //     dbGet().get('SELECT rowid, quote FROM quotes ORDER BY rowid DESC LIMIT 1', (err, row) => {
-  //       if (err) return console.error(err.message);
-  //       if (row == null || row.quote == null) {
-  //         console.log('Error: Cannot get quote for edition. Not found in database');
-  //         resolve(null);
-  //       } else {
-  //         previousQuote = row.quote;
-  //         dbGet().run('UPDATE quotes SET quote = ? WHERE rowid = (SELECT MAX(rowid) FROM quotes)', updatedQuote, function(err) {
-  //           if (err) return console.error(err.message);
-  //           console.log(`Updated last quote: ${updatedQuote}`);
-  //         });
-  //         resolve(previousQuote);
-  //       }
-  //     });
-  //     dbClose();
-  //   });
-  // };
+  dbUpdateLast = function(quoteNew) {
+    return new Promise(function(resolve, reject) {
+      dbOpen();
+      dbGet().get('SELECT rowid, quote FROM quotes ORDER BY rowid DESC LIMIT 1', (err, row) => {
+        if (err) return console.error(err.message);
+        if (row == null || row.quote == null) {
+          console.log('Error: Cannot get last quote for edition. No quote found in database.');
+          resolve(null);
+        } else {
+          quoteOld = row.quote;
+          dbGet().run('UPDATE quotes SET quote = ? WHERE rowid = (SELECT MAX(rowid) FROM quotes)', quoteNew, function(err) {
+            if (err) return console.error(err.message);
+            console.log(`Updated last quote. FROM: ${quoteOld} TO: ${quoteNew}`);
+          });
+          resolve(quoteOld);
+        }
+      });
+      dbClose();
+    });
+  };
 
   dbDeleteLast = function() {
     return new Promise(function(resolve, reject) {
