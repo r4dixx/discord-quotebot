@@ -19,20 +19,10 @@ module.exports = function() {
 
     updateQuoteItem = function(content) {
       const CONFIG_TRIGGER_COMMANDS_UPDATE = CONFIG.trigger.commands.update;
-
-      // get everything between CONFIG_TRIGGER_COMMANDS_UPDATE.current and CONFIG_TRIGGER_COMMANDS_UPDATE.new;
-      var quoteCurrent = content.split(CONFIG_TRIGGER_COMMANDS_UPDATE.current).pop().split(CONFIG_TRIGGER_COMMANDS_UPDATE.new)[0];
-      console.log(`quoteCurrent: ${quoteCurrent}`);
-
-      // get everything after CONFIG_TRIGGER_COMMANDS_UPDATE.new
-      var quoteNew = content.split(CONFIG_TRIGGER_COMMANDS_UPDATE.new).pop();
-      console.log(`quoteNew ${quoteNew}`);
-    };
-
-    updateQuoteLast = function(quoteNew) {
-      dbUpdateLast(quoteNew).then(function(result) {
+      let quoteCurrent = content.split(CONFIG_TRIGGER_COMMANDS_UPDATE.current).pop().split(CONFIG_TRIGGER_COMMANDS_UPDATE.new)[0];
+      let quoteNew = content.split(CONFIG_TRIGGER_COMMANDS_UPDATE.new).pop();
+      dbUpdateItem(quoteCurrent, quoteNew).then(function(result) {
         if (result != null) {
-
           message.channel.send(`
 ${CONFIG_FEEDBACK_SUCCESS_UPDATE.title}
 ${CONFIG_FEEDBACK_SUCCESS_UPDATE.old}
@@ -40,7 +30,20 @@ ${result}
 ${CONFIG_FEEDBACK_SUCCESS_UPDATE.new}
 ${quoteNew}
               `);
+        } else message.channel.send(CONFIG_FEEDBACK_ERROR_UPDATE.item);
+      });
+    };
 
+    updateQuoteLast = function(quoteNew) {
+      dbUpdateLast(quoteNew).then(function(result) {
+        if (result != null) {
+          message.channel.send(`
+${CONFIG_FEEDBACK_SUCCESS_UPDATE.title}
+${CONFIG_FEEDBACK_SUCCESS_UPDATE.old}
+${result}
+${CONFIG_FEEDBACK_SUCCESS_UPDATE.new}
+${quoteNew}
+              `);
         } else message.channel.send(CONFIG_FEEDBACK_ERROR_UPDATE.last);
       });
     };
