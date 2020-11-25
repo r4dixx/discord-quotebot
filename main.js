@@ -33,9 +33,10 @@ getClient().on('message', (message) => {
   }
 
   function updateQuoteItemOrLast() {
+    const MESSAGE_CONTENT = message.content.replace(`${buildTrigger(CONFIG_COMMANDS_UPDATE.command)} `, '');
     if (message.content.includes(CONFIG_COMMANDS_UPDATE.current) && message.content.includes(CONFIG_COMMANDS_UPDATE.new))
-      updateQuoteItem();
-    else updateQuoteLast(message.content.replace(`${buildTrigger(CONFIG_COMMANDS_UPDATE.command)} `, ''));
+      updateQuoteItem(MESSAGE_CONTENT);
+    else updateQuoteLast(MESSAGE_CONTENT);
   }
 
   function deleteQuoteLastOrItem() {

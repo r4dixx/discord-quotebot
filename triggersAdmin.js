@@ -17,8 +17,9 @@ module.exports = function() {
 
   getClient().on('message', (message) => {
 
-    updateQuoteItem = function() {
-      console.log(TODO);
+    updateQuoteItem = function(content) {
+      var quoteCurrent = ""; //everything between CURRENT= and NEW=;
+      var quoteNew = ""; //everything after NEW=;
     };
 
     updateQuoteLast = function(quoteNew) {
