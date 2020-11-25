@@ -1,3 +1,13 @@
+## 2.1.0 (IN PROGRESS)
+
+### Fix
+-   Fix and improve formatting
+
+### Tech
+-   Review model (see config.json)
+-   Improve readability
+-   Update `discord.js` to version 12.5.0 ([changelog](https://github.com/discordjs/discord.js/releases/tag/12.5.0))
+
 ## 2.0.0
 
 ### Feature
