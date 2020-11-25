@@ -44,6 +44,26 @@ module.exports = function() {
     });
   };
 
+  dbUpdateItem = function(quoteCurrent, quoteNew) {
+    return new Promise(function(resolve, reject) {
+      dbOpen();
+      dbGet().get('SELECT * FROM quotes WHERE quote = ?', quoteCurrent, (err, row) => {
+        if (err) return console.error(err.message);
+        if (row == null || row.quote == null) {
+          console.log(`Error: Cannot get quote for edition. Not found in database: ${quoteCurrent}`);
+          resolve(null);
+        } else {
+          dbGet().run('UPDATE quotes SET quote = ? WHERE quote = ?', quoteNew, quoteCurrent, function(err) {
+            if (err) return console.error(err.message);
+            console.log(`Updated quote. FROM: ${quoteCurrent} TO: ${quoteNew}`);
+          });
+          resolve(quoteCurrent);
+        }
+      });
+      dbClose();
+    });
+  };
+
   dbUpdateLast = function(quoteNew) {
     return new Promise(function(resolve, reject) {
       dbOpen();
@@ -59,6 +79,23 @@ module.exports = function() {
             console.log(`Updated last quote. FROM: ${quoteOld} TO: ${quoteNew}`);
           });
           resolve(quoteOld);
+        }
+      });
+      dbClose();
+    });
+  };
+
+  dbDeleteItem = function(quote) {
+    return new Promise(function(resolve, reject) {
+      dbOpen();
+      dbGet().get('SELECT quote FROM quotes WHERE quote = ?', quote, (err, row) => {
+        if (err) return console.error(err.message);
+        if (row == null || row.quote == null) {
+          console.log(`Error: Cannot get quote for deletion. Not found in database: ${quote}`);
+          resolve(null);
+        } else {
+          dbDelete(quote);
+          resolve(quote);
         }
       });
       dbClose();
@@ -82,22 +119,6 @@ module.exports = function() {
     });
   };
 
-  dbDeleteItem = function(quote) {
-    return new Promise(function(resolve, reject) {
-      dbOpen();
-      dbGet().get('SELECT quote FROM quotes WHERE quote = ?', quote, (err, row) => {
-        if (err) return console.error(err.message);
-        if (row == null || row.quote == null) {
-          console.log(`Error: Cannot get quote for deletion. Not found in database: ${quote}`);
-          resolve(null);
-        } else {
-          dbDelete(quote);
-          resolve(quote);
-        }
-      });
-      dbClose();
-    });
-  };
 };
 
 function dbDelete(quote) {

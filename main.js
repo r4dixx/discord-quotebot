@@ -33,10 +33,14 @@ getClient().on('message', (message) => {
   }
 
   function updateQuoteItemOrLast() {
-    const MESSAGE_CONTENT = message.content.replace(`${buildTrigger(CONFIG_COMMANDS_UPDATE.command)} `, '');
-    if (message.content.includes(CONFIG_COMMANDS_UPDATE.current) && message.content.includes(CONFIG_COMMANDS_UPDATE.new))
-      updateQuoteItem(MESSAGE_CONTENT);
-    else updateQuoteLast(MESSAGE_CONTENT);
+    const MESSAGE_CLEAN = message.content.replace(`${buildTrigger(CONFIG_COMMANDS_UPDATE.command)} `, '');
+    if (message.content.includes(CONFIG_COMMANDS_UPDATE.current) && message.content.includes(CONFIG_COMMANDS_UPDATE.new)) {
+      const CONFIG_TRIGGER_COMMANDS_UPDATE = CONFIG.trigger.commands.update;
+      updateQuoteItem(
+        MESSAGE_CLEAN.split(CONFIG_TRIGGER_COMMANDS_UPDATE.current).pop().split(CONFIG_TRIGGER_COMMANDS_UPDATE.new)[0], // CURRENT
+        MESSAGE_CLEAN.split(CONFIG_TRIGGER_COMMANDS_UPDATE.new).pop() // NEW
+      );
+    } else updateQuoteLast(MESSAGE_CLEAN);
   }
 
   function deleteQuoteLastOrItem() {

@@ -17,10 +17,7 @@ module.exports = function() {
 
   getClient().on('message', (message) => {
 
-    updateQuoteItem = function(content) {
-      const CONFIG_TRIGGER_COMMANDS_UPDATE = CONFIG.trigger.commands.update;
-      let quoteCurrent = content.split(CONFIG_TRIGGER_COMMANDS_UPDATE.current).pop().split(CONFIG_TRIGGER_COMMANDS_UPDATE.new)[0];
-      let quoteNew = content.split(CONFIG_TRIGGER_COMMANDS_UPDATE.new).pop();
+    updateQuoteItem = function(quoteCurrent, quoteNew) {
       dbUpdateItem(quoteCurrent, quoteNew).then(function(result) {
         if (result != null) {
           message.channel.send(`
@@ -48,17 +45,17 @@ ${quoteNew}
       });
     };
 
-    deleteQuoteLast = function() {
-      dbDeleteLast().then(function(result) {
-        if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${result}`);
-        else message.channel.send(CONFIG_FEEDBACK_ERROR_DELETE.last);
-      });
-    };
-
     deleteQuoteItem = function(quote) {
       dbDeleteItem(quote).then(function(result) {
         if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${result}`);
         else message.channel.send(CONFIG_FEEDBACK_ERROR_DELETE.item);
+      });
+    };
+
+    deleteQuoteLast = function() {
+      dbDeleteLast().then(function(result) {
+        if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${result}`);
+        else message.channel.send(CONFIG_FEEDBACK_ERROR_DELETE.last);
       });
     };
 
