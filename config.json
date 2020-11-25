@@ -35,7 +35,7 @@
       "about": ":robot: Beep Beep Boop!\nI am a bot that outputs quotes upon commands.\nHere's how I work:",
       "title": {
         "user": ":busts_in_silhouette: **Everyone can**",
-        "admin": ":detective: **This bot's admins only can**",
+        "admin": ":detective: **This bot admins only can**",
         "self": ":hand_splayed: **Want to display this message again?**"
       },
       "commands": {
