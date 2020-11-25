@@ -1,10 +1,14 @@
 {
   "trigger": {
     "prefix": "!",
-    "command": {
+    "commands": {
       "get": "quote",
       "insert": "quote",
-      "update": "requote",
+      "update": {
+        "command": "requote",
+        "current": "CURRENT=",
+        "new": "NEW="
+      },
       "delete": "unquote",
       "help": "help"
     }
@@ -14,8 +18,8 @@
       "insert": ":brain: **I'll remember this one...**",
       "update": {
         "title": ":pencil: **Quote edited successfully**",
-        "before": "**from:**",
-        "after": "**to:**"
+        "old": "**from:**",
+        "new": "**to:**"
       },
       "delete": ":put_litter_in_its_place: **To the trash:**"
     },
@@ -47,9 +51,9 @@
           "title": "Edit quotes",
           "item": "Any quote",
           "last": "Last saved quote",
-          "format": {
-            "before": "old_quote",
-            "after": "new_quote"
+          "formats": {
+            "current": "current_quote",
+            "new": "your_new_quote"
           }
         },
         "delete": {
@@ -61,12 +65,11 @@
       },
       "self": {
         "title": ":hand_splayed: **Want to display this message again?**",
-        "prefix": {
+        "prefixes": {
           "command": "Use",
           "mention": "or mention me"
         }
       }
-
     }
   }
 }
