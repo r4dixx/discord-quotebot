@@ -18,8 +18,14 @@ module.exports = function() {
   getClient().on('message', (message) => {
 
     updateQuoteItem = function(content) {
-      var quoteCurrent = ""; //everything between CURRENT= and NEW=;
+      const CONFIG_TRIGGER_COMMANDS_UPDATE = CONFIG.trigger.commands.update;
+
+      // get everything between CONFIG_TRIGGER_COMMANDS_UPDATE.current and CONFIG_TRIGGER_COMMANDS_UPDATE.new;
+      var quoteCurrent = content.split(CONFIG_TRIGGER_COMMANDS_UPDATE.current).pop().split(CONFIG_TRIGGER_COMMANDS_UPDATE.new)[0];
+      console.log(`quoteCurrent: ${quoteCurrent}`);
+      
       var quoteNew = ""; //everything after NEW=;
+      console.log(`quoteNew ${quoteNew}`);
     };
 
     updateQuoteLast = function(quoteNew) {
