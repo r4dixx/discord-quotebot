@@ -40,27 +40,19 @@
       "user": {
         "title": ":busts_in_silhouette: **Everyone can**",
         "get": "Get a random quote",
-        "insert": {
-          "item": "Save a quote",
-          "format": "your_quote"
-        }
+        "insert": "Save a quote"
       },
       "admin": {
         "title": ":detective: **This bot admins only can**",
         "update": {
           "title": "Edit quotes",
-          "item": "Any quote",
-          "last": "Last saved quote",
-          "formats": {
-            "current": "current_quote",
-            "new": "your_new_quote"
-          }
+          "item": "Any entry",
+          "last": "Last saved entry"
         },
         "delete": {
           "title": "Delete quotes",
-          "item": "Any quote",
-          "last": "Last saved quote",
-          "format": "quote_to_delete"
+          "item": "Any entry",
+          "last": "Last saved entry"
         }
       },
       "self": {
@@ -69,6 +61,11 @@
           "command": "Use",
           "mention": "or mention me"
         }
+      },
+      "formats": {
+        "current": "your_quote",
+        "new": "your_quote_edited",
+        "delete": "your_quote_to_delete"
       }
     }
   }
