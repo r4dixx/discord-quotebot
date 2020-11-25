@@ -33,30 +33,38 @@
     },
     "help": {
       "about": ":robot: Beep Beep Boop!\nI am a bot that outputs quotes upon commands.\nHere's how I work:",
-      "title": {
-        "user": ":busts_in_silhouette: **Everyone can**",
-        "admin": ":detective: **This bot admins only can**",
-        "self": ":hand_splayed: **Want to display this message again?**"
-      },
-      "commands": {
+      "user": {
+        "title": ":busts_in_silhouette: **Everyone can**",
         "get": "Get a random quote",
-        "insert": "Save a quote",
+        "insert": {
+          "item": "Save a quote",
+          "format": "your_quote"
+        }
+      },
+      "admin": {
+        "title": ":detective: **This bot admins only can**",
         "update": {
           "item": "Edit any quote",
           "last": "Edit last saved quote",
-          "before": "old_quote",
-          "after": "new_quote"
+          "format": {
+            "before": "old_quote",
+            "after": "new_quote"
+          }
         },
         "delete": {
           "item": "Delete any quote",
-          "last": "Delete last saved quote"
-        },
-        "format": "your_quote"
+          "last": "Delete last saved quote",
+          "format": "quote_to_delete"
+        }
       },
-      "show": {
-        "with_command": "Use",
-        "with_mention": "or mention me"
+      "self": {
+        "title": ":hand_splayed: **Want to display this message again?**",
+        "prefix": {
+          "command": "Use",
+          "mention": "or mention me"
+        }
       }
+
     }
   }
 }
