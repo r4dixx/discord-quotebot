@@ -20,10 +20,11 @@ getClient().on('message', (message) => {
     sendQuoteRandom();
   else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS.insert) + ' '))
     insertQuote(message.content.replace(`${buildTrigger(CONFIG_COMMANDS.insert)} `, ''));
-  else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS_UPDATE.command) + ' ') && userIsAdmin())
+  else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS_UPDATE.command) + ' ') && message.content.includes(CONFIG_COMMANDS_UPDATE.current) && message.content.includes(CONFIG_COMMANDS_UPDATE.new) && userIsAdmin()) {
+    console.log(true);
+    // updateQuote();
+  } else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS_UPDATE.command) + ' ') && !message.content.includes(CONFIG_COMMANDS_UPDATE.current) && !message.content.includes(CONFIG_COMMANDS_UPDATE.new) && userIsAdmin())
     updateQuoteLast(message.content.replace(`${buildTrigger(CONFIG_COMMANDS_UPDATE.command)} `, ''));
-  // else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS_UPDATE.command) + ' ') && message.content.includes(CONFIG_COMMANDS_UPDATE.current) && message.content.includes(CONFIG_COMMANDS_UPDATE.new) && userIsAdmin())
-  //   updateQuote();
   else if (message.content === buildTrigger(CONFIG_COMMANDS.delete) && userIsAdmin())
     deleteQuoteLast();
   else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS.delete) + ' ') && userIsAdmin())
