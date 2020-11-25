@@ -1,4 +1,8 @@
-## 2.1.0 (IN PROGRESS)
+## 3.0.0 (IN PROGRESS)
+
+### Feature
+-   Edit quote using `!requote` `CURRENT=your_quote` `NEW=your_quote_edited`
+-   Edit last saved quote using `!requote` `your_quote_edited`
 
 ### Fix
 -   Fix and improve formatting
@@ -13,7 +17,7 @@
 ## 2.0.0
 
 ### Feature
--   Delete quote using `!unquote your_quote`
+-   Delete quote using `!unquote` `your_quote`
 -   Undo last saved quote using `!unquote`
 -   Bot admins
 -   More configuration options
