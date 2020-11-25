@@ -2,7 +2,8 @@
 
 require('./discordHelper.js')();
 require('./dbQueries.js')();
-require('./commandHandler.js')();
+require('./triggersUser.js')();
+require('./triggersAdmin.js')();
 
 login();
 
@@ -20,19 +21,29 @@ getClient().on('message', (message) => {
     sendQuoteRandom();
   else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS.insert) + ' '))
     insertQuote(message.content.replace(`${buildTrigger(CONFIG_COMMANDS.insert)} `, ''));
-  else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS_UPDATE.command) + ' ') && message.content.includes(CONFIG_COMMANDS_UPDATE.current) && message.content.includes(CONFIG_COMMANDS_UPDATE.new) && userIsAdmin()) {
-    console.log(true);
-    // updateQuote();
-  } else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS_UPDATE.command) + ' ') && !message.content.includes(CONFIG_COMMANDS_UPDATE.current) && !message.content.includes(CONFIG_COMMANDS_UPDATE.new) && userIsAdmin())
-    updateQuoteLast(message.content.replace(`${buildTrigger(CONFIG_COMMANDS_UPDATE.command)} `, ''));
-  else if (message.content === buildTrigger(CONFIG_COMMANDS.delete) && userIsAdmin())
-    deleteQuoteLast();
-  else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS.delete) + ' ') && userIsAdmin())
-    deleteQuote(message.content.replace(`${buildTrigger(CONFIG_COMMANDS.delete)} `, ''));
   else if (message.content === buildTrigger(CONFIG_COMMANDS.help) || (message.mentions.members.has(getClient().user.id) || null))
     sendHelp();
   else if (message.content === buildTrigger('ping'))
     sendPong();
+  else if (userIsAdmin()) {
+    if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS_UPDATE.command) + ' '))
+      updateQuoteItemOrLast();
+    else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS.delete)))
+      deleteQuoteLastOrItem();
+  }
+
+  function updateQuoteItemOrLast() {
+    if (message.content.includes(CONFIG_COMMANDS_UPDATE.current) && message.content.includes(CONFIG_COMMANDS_UPDATE.new))
+      updateQuoteItem();
+    else updateQuoteLast(message.content.replace(`${buildTrigger(CONFIG_COMMANDS_UPDATE.command)} `, ''));
+  }
+
+  function deleteQuoteLastOrItem() {
+    if (message.content === buildTrigger(CONFIG_COMMANDS.delete))
+      deleteQuoteLast();
+    else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS.delete) + ' '))
+      deleteQuoteItem(message.content.replace(`${buildTrigger(CONFIG_COMMANDS.delete)} `, ''));
+  }
 
   function userIsAdmin() {
     if (getRightsAdmin(message.author.id)) return true;

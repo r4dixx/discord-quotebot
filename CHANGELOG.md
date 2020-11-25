@@ -7,6 +7,7 @@
 ### Tech
 -   Review model (see config.json)
 -   Improve code readability
+-   Improve separation of concerns
 -   Update `discord.js` to version 12.5.0 ([changelog](https://github.com/discordjs/discord.js/releases/tag/12.5.0))
 
 ## 2.0.0
