@@ -11,13 +11,13 @@
   },
   "feedback": {
     "success": {
-      "insert": ":brain: _I'll remember this one..._",
+      "insert": ":brain: **I'll remember this one...**",
       "update": {
-        "title": ":pencil: _Quote edited successfully_",
-        "before": "_**from:**_",
-        "after": "_**to:**_"
+        "title": ":pencil: **Quote edited successfully**",
+        "before": "**from:**",
+        "after": "**to:**"
       },
-      "delete": ":put_litter_in_its_place: _To the trash:_"
+      "delete": ":put_litter_in_its_place: **To the trash:**"
     },
     "error": {
       "rights": ":no_entry: Operation failed. Insufficient privileges.",
@@ -44,16 +44,18 @@
       "admin": {
         "title": ":detective: **This bot admins only can**",
         "update": {
-          "item": "Edit any quote",
-          "last": "Edit last saved quote",
+          "title": "Edit quotes",
+          "item": "Any quote",
+          "last": "Last saved quote",
           "format": {
             "before": "old_quote",
             "after": "new_quote"
           }
         },
         "delete": {
-          "item": "Delete any quote",
-          "last": "Delete last saved quote",
+          "title": "Delete quotes",
+          "item": "Any quote",
+          "last": "Last saved quote",
           "format": "quote_to_delete"
         }
       },
