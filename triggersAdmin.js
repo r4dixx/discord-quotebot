@@ -23,8 +23,9 @@ module.exports = function() {
       // get everything between CONFIG_TRIGGER_COMMANDS_UPDATE.current and CONFIG_TRIGGER_COMMANDS_UPDATE.new;
       var quoteCurrent = content.split(CONFIG_TRIGGER_COMMANDS_UPDATE.current).pop().split(CONFIG_TRIGGER_COMMANDS_UPDATE.new)[0];
       console.log(`quoteCurrent: ${quoteCurrent}`);
-      
-      var quoteNew = ""; //everything after NEW=;
+
+      // get everything after CONFIG_TRIGGER_COMMANDS_UPDATE.new
+      var quoteNew = content.split(CONFIG_TRIGGER_COMMANDS_UPDATE.new).pop();
       console.log(`quoteNew ${quoteNew}`);
     };
 
