@@ -5,10 +5,13 @@ require('./dbQueries.js')();
 module.exports = function() {
 
   const CONFIG = require('./config.json');
+
   const CONFIG_COMMAND = CONFIG.trigger.command;
+
   const CONFIG_FEEDBACK = CONFIG.feedback;
   const CONFIG_FEEDBACK_SUCCESS = CONFIG_FEEDBACK.success;
   const CONFIG_FEEDBACK_ERROR = CONFIG_FEEDBACK.error;
+  const CONFIG_FEEDBACK_ERROR_DELETE = CONFIG_FEEDBACK_ERROR.delete;
 
   getClient().on('message', (message) => {
 
@@ -19,45 +22,45 @@ module.exports = function() {
       });
     };
 
-    insertQuote = function() {
-      let quote = message.content.replace(`${buildTrigger(CONFIG_COMMAND.insert)} `, '');
+    insertQuote = function(quote) {
       dbInsertItem(quote);
       message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.insert}\n${quote}`);
     };
 
-    updateQuoteLast = function(updatedQuote) {
-      dbUpdateLast(updatedQuote).then(function(result) {
-        const CONFIG_FEEDBACK_SUCCESS_UPDATE = CONFIG_FEEDBACK_SUCCESS.update;
-        const CONFIG_FEEDBACK_ERROR_UPDATE = CONFIG_FEEDBACK_ERROR.update;
-        if (result != null) {
+    //     updateQuoteLast = function(updatedQuote) {
+    //       dbUpdateLast(updatedQuote).then(function(result) {
+    //         const CONFIG_FEEDBACK_SUCCESS_UPDATE = CONFIG_FEEDBACK_SUCCESS.update;
+    //         const CONFIG_FEEDBACK_ERROR_UPDATE = CONFIG_FEEDBACK_ERROR.update;
+    //         if (result != null) {
+    //
+    //           message.channel.send(`
+    // ${CONFIG_FEEDBACK_SUCCESS_UPDATE.title}
+    // ${CONFIG_FEEDBACK_SUCCESS_UPDATE.before}
+    // ${result}
+    // ${CONFIG_FEEDBACK_SUCCESS_UPDATE.after}
+    // ${updatedQuote}
+    //           `);
+    //
+    //         } else {
+    //           let errorMessage;
+    //           if (quote != null) errorMessage = CONFIG_FEEDBACK_ERROR_UPDATE.item;
+    //           else errorMessage = CONFIG_FEEDBACK_ERROR_UPDATE.last;
+    //           message.channel.send(errorMessage);
+    //         }
+    //       });
+    //     };
 
-          message.channel.send(`
-${CONFIG_FEEDBACK_SUCCESS_UPDATE.title}
-${CONFIG_FEEDBACK_SUCCESS_UPDATE.before}
-${result}
-${CONFIG_FEEDBACK_SUCCESS_UPDATE.after}
-${updatedQuote}
-          `);
-
-        } else {
-          let errorMessage;
-          if (quote != null) errorMessage = CONFIG_FEEDBACK_ERROR_UPDATE.item;
-          else errorMessage = CONFIG_FEEDBACK_ERROR_UPDATE.last;
-          message.channel.send(errorMessage);
-        }
+    deleteQuoteLast = function() {
+      dbDeleteLast().then(function(result) {
+        if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${result}`);
+        else message.channel.send(CONFIG_FEEDBACK_ERROR_DELETE.last);
       });
     };
 
     deleteQuote = function(quote) {
-      dbDeleteItemOrLast(quote).then(function(result) {
+      dbDeleteItem(quote).then(function(result) {
         if (result != null) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${result}`);
-        else {
-          const CONFIG_FEEDBACK_ERROR_DELETE = CONFIG_FEEDBACK_ERROR.delete;
-          let errorMessage;
-          if (quote != null) errorMessage = CONFIG_FEEDBACK_ERROR_DELETE.item;
-          else errorMessage = CONFIG_FEEDBACK_ERROR_DELETE.last;
-          message.channel.send(errorMessage);
-        }
+        else message.channel.send(CONFIG_FEEDBACK_ERROR_DELETE.item);
       });
     };
 

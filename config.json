@@ -27,7 +27,7 @@
         "last": ":person_shrugging: Error: No quote available."
       },
       "delete": {
-        "item": ":person_shrugging: Cannot delete this quote. It doesn't appear to exist.",
+        "item": ":person_shrugging: Something went wrong. Cannot delete this quote.",
         "last": ":person_shrugging: Error: No quote available."
       }
     },

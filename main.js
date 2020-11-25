@@ -18,14 +18,14 @@ getClient().on('message', (message) => {
   if (message.content === buildTrigger(CONFIG_COMMAND.get))
     sendQuoteRandom();
   else if (message.content.startsWith(buildTrigger(CONFIG_COMMAND.insert) + ' '))
-    insertQuote();
+    insertQuote(message.content.replace(`${buildTrigger(CONFIG_COMMAND.insert)} `, ''));
   // else if (message.content === buildTrigger(CONFIG_COMMAND.update) && userIsAdmin())
   //   updateQuote();
-  else if (message.content.startsWith(`${buildTrigger(CONFIG_COMMAND.update)} `) && userIsAdmin())
-    updateQuoteLast(message.content.replace(`${buildTrigger(CONFIG_COMMAND.update)} `, ''));
+  // else if (message.content.startsWith(buildTrigger(CONFIG_COMMAND.update) + ' ') && userIsAdmin())
+  //   updateQuoteLast(message.content.replace(`${buildTrigger(CONFIG_COMMAND.update)} `, ''));
   else if (message.content === buildTrigger(CONFIG_COMMAND.delete) && userIsAdmin())
-    deleteQuote();
-  else if (message.content.startsWith(`${buildTrigger(CONFIG_COMMAND.delete)} `) && userIsAdmin())
+    deleteQuoteLast();
+  else if (message.content.startsWith(buildTrigger(CONFIG_COMMAND.delete) + ' ') && userIsAdmin())
     deleteQuote(message.content.replace(`${buildTrigger(CONFIG_COMMAND.delete)} `, ''));
   else if (message.content === buildTrigger(CONFIG_COMMAND.help) || (message.mentions.members.has(getClient().user.id) || null))
     sendHelp();

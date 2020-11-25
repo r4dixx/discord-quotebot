@@ -44,48 +44,65 @@ module.exports = function() {
     });
   };
 
-  dbUpdateLast = function(updatedQuote) {
+  // dbUpdateLast = function(updatedQuote) {
+  //   return new Promise(function(resolve, reject) {
+  //     dbOpen();
+  //     dbGet().get('SELECT rowid, quote FROM quotes ORDER BY rowid DESC LIMIT 1', (err, row) => {
+  //       if (err) return console.error(err.message);
+  //       if (row == null || row.quote == null) {
+  //         console.log('Error: Cannot get quote for edition. Not found in database');
+  //         resolve(null);
+  //       } else {
+  //         previousQuote = row.quote;
+  //         dbGet().run('UPDATE quotes SET quote = ? WHERE rowid = (SELECT MAX(rowid) FROM quotes)', updatedQuote, function(err) {
+  //           if (err) return console.error(err.message);
+  //           console.log(`Updated last quote: ${updatedQuote}`);
+  //         });
+  //         resolve(previousQuote);
+  //       }
+  //     });
+  //     dbClose();
+  //   });
+  // };
+
+  dbDeleteLast = function() {
     return new Promise(function(resolve, reject) {
       dbOpen();
       dbGet().get('SELECT rowid, quote FROM quotes ORDER BY rowid DESC LIMIT 1', (err, row) => {
         if (err) return console.error(err.message);
         if (row == null || row.quote == null) {
-          console.log('Error: Cannot get quote for edition. Not found in database');
+          console.log(`Error: Cannot get last quote for deletion. No quote found in database.`);
           resolve(null);
         } else {
-          previousQuote = row.quote;
-          dbGet().run('UPDATE quotes SET quote = ? WHERE rowid = (SELECT MAX(rowid) FROM quotes)', updatedQuote, function(err) {
-            if (err) return console.error(err.message);
-            console.log(`Updated last quote: ${updatedQuote}`);
-          });
-          resolve(previousQuote);
+          dbDelete(row.quote);
+          resolve(row.quote);
         }
       });
       dbClose();
     });
   };
 
-  dbDeleteItemOrLast = function(quoteForDeletion) {
+  dbDeleteItem = function(quote) {
     return new Promise(function(resolve, reject) {
-      let query;
       dbOpen();
-      if (quoteForDeletion != null) query = 'SELECT quote FROM quotes WHERE quote = ?';
-      else query = 'SELECT rowid, quote FROM quotes ORDER BY rowid DESC LIMIT 1';
-      dbGet().get(query, quoteForDeletion, (err, row) => {
+      dbGet().get('SELECT quote FROM quotes WHERE quote = ?', quote, (err, row) => {
         if (err) return console.error(err.message);
         if (row == null || row.quote == null) {
-          console.log('Error: Cannot get quote for deletion. Not found in database');
+          console.log(`Error: Cannot get quote for deletion. Not found in database: ${quote}`);
           resolve(null);
         } else {
-          if (quoteForDeletion == null) quoteForDeletion = row.quote;
-          dbGet().run('DELETE FROM quotes WHERE quote = ?', quoteForDeletion, function(err) {
-            if (err) return console.error(err.message);
-            console.log(`Deleted quote: ${quoteForDeletion}`);
-          });
-          resolve(quoteForDeletion);
+          dbDelete(quote);
+          resolve(quote);
         }
       });
       dbClose();
     });
   };
 };
+
+function dbDelete(quote) {
+  dbGet().run('DELETE FROM quotes WHERE quote = ?', quote, function(err) {
+    if (err) return console.error(err.message);
+    console.log(`Deleted quote: ${quote}`);
+  });
+}

@@ -2,10 +2,11 @@
 
 ### Fix
 -   Fix and improve formatting
+-   Improve stability
 
 ### Tech
 -   Review model (see config.json)
--   Improve readability
+-   Improve code readability
 -   Update `discord.js` to version 12.5.0 ([changelog](https://github.com/discordjs/discord.js/releases/tag/12.5.0))
 
 ## 2.0.0
