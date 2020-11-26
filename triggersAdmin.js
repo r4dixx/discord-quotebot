@@ -17,8 +17,10 @@ module.exports = function() {
 
   getClient().on('message', (message) => {
 
-    updateQuoteItem = function(mappedContent) {
-      dbUpdateItem(mappedContent.shift(), mappedContent.pop()).then(function(result) {
+    updateQuoteItem = function(array) {
+      let quoteCurrent = array.shift();
+      let quoteNew = array.pop();
+      dbUpdateItem(quoteCurrent, quoteNew).then(function(result) {
         if (result != null) {
           message.channel.send(`
 ${CONFIG_FEEDBACK_SUCCESS_UPDATE.title}
