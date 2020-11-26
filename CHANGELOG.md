@@ -1,7 +1,7 @@
-## 3.0.0 (IN PROGRESS)
+## 3.0.0
 
 ### Feature
--   Edit quote using `!requote` `CURRENT=your_quote` `NEW=your_quote_edited`
+-   Edit quote using `!requote` `your_quote` `~` `your_quote_edited`
 -   Edit last saved quote using `!requote` `your_quote_edited`
 
 ### Fix
