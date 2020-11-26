@@ -1,3 +1,9 @@
+## 3.1.0
+
+### Fix
+-   Fix separator (changed in favor of a more reliable one)
+-   Fix wording
+
 ## 3.0.0
 
 ### Feature
