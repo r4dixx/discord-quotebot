@@ -1,5 +1,17 @@
 Discord bot to output, save, and edit quotes upon commands.
 
+# Default commands
+
+-   Get a random quote → `!quote`
+-   Save a quote → `!quote` `your_quote`
+-   Edit last saved quote (admins only) → `!requote` `your_quote_edited`
+-   Edit chosen quote (admins only) → `!requote` `your_quote` `**>**``your_quote_edited`
+-   Delete last saved quote (admins only) → `!unquote`
+-   Delete chosen quote (admins only) → `!unquote` `your_quote_to_delete`
+-   Display help message (admins only) → `!help` or mention the bot
+
+These can be customized pretty heavily (see [config.json](config.json))
+
 # Setup in 10 steps
 
 1.  Download [the latest release](https://github.com/r4dixx/QuoteBot/releases)
