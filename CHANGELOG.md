@@ -1,3 +1,9 @@
+## 3.1.1
+
+### Documentation
+-   Add missing documentation (commands)
+-   Fix typos
+
 ## 3.1.0
 
 ### Fix

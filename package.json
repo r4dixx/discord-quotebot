@@ -1,6 +1,6 @@
 {
   "name": "quotebot",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Open-source Discord bot to output random quotes upon command",
   "main": "main.js",
   "scripts": {
