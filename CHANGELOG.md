@@ -7,7 +7,7 @@
 ## 3.0.0
 
 ### Feature
--   Edit quote using `!requote` `your_quote` `~` `your_quote_edited`
+-   Edit quote using `!requote` `your_quote` `**>**` `your_quote_edited`
 -   Edit last saved quote using `!requote` `your_quote_edited`
 
 ### Fix
