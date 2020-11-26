@@ -4,3 +4,7 @@
 **/._.DS_Store
 
 node_modules/
+
+# Private files
+quotes.db
+config_private.json
