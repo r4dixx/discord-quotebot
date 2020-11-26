@@ -34,12 +34,9 @@ getClient().on('message', (message) => {
 
   function updateQuoteItemOrLast() {
     const MESSAGE_CLEAN = message.content.replace(`${buildTrigger(CONFIG_COMMANDS_UPDATE.command)} `, '');
-    if (message.content.includes(CONFIG_COMMANDS_UPDATE.current) && message.content.includes(CONFIG_COMMANDS_UPDATE.new)) {
-      const CONFIG_TRIGGER_COMMANDS_UPDATE = CONFIG.trigger.commands.update;
-      updateQuoteItem(
-        MESSAGE_CLEAN.split(CONFIG_TRIGGER_COMMANDS_UPDATE.current).pop().split(CONFIG_TRIGGER_COMMANDS_UPDATE.new)[0], // CURRENT
-        MESSAGE_CLEAN.split(CONFIG_TRIGGER_COMMANDS_UPDATE.new).pop() // NEW
-      );
+    const CONFIG_TRIGGER_COMMANDS_UPDATE_SEPARATOR = CONFIG.trigger.commands.update.separator;
+    if (message.content.includes(CONFIG_TRIGGER_COMMANDS_UPDATE_SEPARATOR)) {
+      updateQuoteItem(MESSAGE_CLEAN.split(CONFIG_TRIGGER_COMMANDS_UPDATE_SEPARATOR).map(item => item.trim()));
     } else updateQuoteLast(MESSAGE_CLEAN);
   }
 

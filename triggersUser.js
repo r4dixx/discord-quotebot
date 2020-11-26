@@ -49,7 +49,7 @@ ${CONFIG_HELP_USER.title}
 ${CONFIG_HELP_ADMIN.title}
 • ${CONFIG_HELP_ADMIN_UPDATE.title}
     ‣ ${CONFIG_HELP_ADMIN_UPDATE.last} → \`${buildTrigger(CONFIG_COMMANDS_UPDATE.command)}\` \`${CONFIG_HELP_FORMATS.new}\`
-    ‣ ${CONFIG_HELP_ADMIN_UPDATE.item} → \`${buildTrigger(CONFIG_COMMANDS_UPDATE.command)}\` \`${CONFIG_COMMANDS_UPDATE.current}${CONFIG_HELP_FORMATS.current}\` \`${CONFIG_COMMANDS_UPDATE.new}${CONFIG_HELP_FORMATS.new}\`
+    ‣ ${CONFIG_HELP_ADMIN_UPDATE.item} → \`${buildTrigger(CONFIG_COMMANDS_UPDATE.command)}\` \`${CONFIG_HELP_FORMATS.current}\` \`${CONFIG_COMMANDS_UPDATE.separator}\` \`${CONFIG_HELP_FORMATS.new}\`
 • ${CONFIG_HELP_ADMIN_DELETE.title}
     ‣ ${CONFIG_HELP_ADMIN_DELETE.last} → \`${buildTrigger(CONFIG_COMMANDS.delete)}\`
     ‣ ${CONFIG_HELP_ADMIN_DELETE.item} → \`${buildTrigger(CONFIG_COMMANDS.delete)}\` \`${CONFIG_HELP_FORMATS.delete}\`

@@ -17,18 +17,19 @@ module.exports = function() {
 
   getClient().on('message', (message) => {
 
-    updateQuoteItem = function(quoteCurrent, quoteNew) {
-      dbUpdateItem(quoteCurrent, quoteNew).then(function(result) {
-        if (result != null) {
-          message.channel.send(`
-${CONFIG_FEEDBACK_SUCCESS_UPDATE.title}
-${CONFIG_FEEDBACK_SUCCESS_UPDATE.old}
-${result}
-${CONFIG_FEEDBACK_SUCCESS_UPDATE.new}
-${quoteNew}
-              `);
-        } else message.channel.send(CONFIG_FEEDBACK_ERROR_UPDATE.item);
-      });
+    updateQuoteItem = function(content) {
+      console.log(content)
+//       dbUpdateItem(quoteCurrent, quoteNew).then(function(result) {
+//         if (result != null) {
+//           message.channel.send(`
+// ${CONFIG_FEEDBACK_SUCCESS_UPDATE.title}
+// ${CONFIG_FEEDBACK_SUCCESS_UPDATE.old}
+// ${result}
+// ${CONFIG_FEEDBACK_SUCCESS_UPDATE.new}
+// ${quoteNew}
+//               `);
+//         } else message.channel.send(CONFIG_FEEDBACK_ERROR_UPDATE.item);
+//       });
     };
 
     updateQuoteLast = function(quoteNew) {

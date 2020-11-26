@@ -6,8 +6,7 @@
       "insert": "quote",
       "update": {
         "command": "requote",
-        "current": "CURRENT=",
-        "new": "NEW="
+        "separator": "~"
       },
       "delete": "unquote",
       "help": "help"
