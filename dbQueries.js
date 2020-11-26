@@ -47,7 +47,7 @@ module.exports = function() {
   dbUpdateItem = function(quoteCurrent, quoteNew) {
     return new Promise(function(resolve, reject) {
       dbOpen();
-      dbGet().get('SELECT * FROM quotes WHERE quote = ?', quoteCurrent, (err, row) => {
+      dbGet().get('SELECT quote FROM quotes WHERE quote = ?', quoteCurrent, (err, row) => {
         if (err) return console.error(err.message);
         if (row == null || row.quote == null) {
           console.log(`Error: Cannot get quote for edition. Not found in database: ${quoteCurrent}`);
