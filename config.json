@@ -35,14 +35,14 @@
       }
     },
     "help": {
-      "about": ":robot: Beep Beep Boop!\nI am a bot that outputs quotes upon commands.\nHere's how I work:",
+      "about": ":robot: Beep Beep Boop!\nI'm a bot that outputs quotes upon commands.\n\nHere's how I work:",
       "user": {
         "title": ":busts_in_silhouette: **Everyone can**",
         "get": "Get a random quote",
         "insert": "Save a quote"
       },
       "admin": {
-        "title": ":detective: **This bot admins only can**",
+        "title": ":detective: **Admins can**",
         "update": {
           "title": "Edit quotes",
           "item": "Any entry",

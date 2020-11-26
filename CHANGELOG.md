@@ -2,6 +2,7 @@
 
 ### Fix
 -   Fix separator (changed in favor of a more reliable one)
+-   Fix wording
 -   Escape user tags
 
 ## 3.0.0
