@@ -6,7 +6,7 @@
       "insert": "quote",
       "update": {
         "command": "requote",
-        "separator": "~"
+        "separator": "/~/"
       },
       "delete": "unquote",
       "help": "help"
