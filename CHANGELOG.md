@@ -1,3 +1,9 @@
+## 3.1.0
+
+### Fix
+-   Fix separator (changed in favor of a more reliable one)
+-   Escape user tags
+
 ## 3.0.0
 
 ### Feature
