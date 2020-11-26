@@ -1,7 +1,29 @@
+## 3.1.0
+
+### Fix
+-   Fix separator (changed in favor of a more reliable one)
+-   Fix wording
+
+## 3.0.0
+
+### Feature
+-   Edit quote using `!requote` `your_quote` `~` `your_quote_edited`
+-   Edit last saved quote using `!requote` `your_quote_edited`
+
+### Fix
+-   Fix and improve formatting
+-   Improve stability
+
+### Tech
+-   Review model (see config.json)
+-   Improve code readability
+-   Improve separation of concerns
+-   Update `discord.js` to version 12.5.0 ([changelog](https://github.com/discordjs/discord.js/releases/tag/12.5.0))
+
 ## 2.0.0
 
 ### Feature
--   Delete quote using `!unquote your_quote`
+-   Delete quote using `!unquote` `your_quote`
 -   Undo last saved quote using `!unquote`
 -   Bot admins
 -   More configuration options

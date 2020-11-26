@@ -1,45 +1,70 @@
 {
   "trigger": {
     "prefix": "!",
-    "command": {
+    "commands": {
       "get": "quote",
-      "add": "quote",
+      "insert": "quote",
+      "update": {
+        "command": "requote",
+        "separator": "**>**"
+      },
       "delete": "unquote",
       "help": "help"
     }
   },
   "feedback": {
     "success": {
-      "add": ":brain: _I'll remember this one..._",
-      "delete": ":put_litter_in_its_place: _To the trash:_"
+      "insert": ":brain: **I'll remember this one...**",
+      "update": {
+        "title": ":pencil: **Quote edited successfully**",
+        "old": "**from:**",
+        "new": "**to:**"
+      },
+      "delete": ":put_litter_in_its_place: **To the trash:**"
     },
     "error": {
       "rights": ":no_entry: Operation failed. Insufficient privileges.",
       "get": ":person_shrugging: Error: No quote available.",
+      "update": {
+        "item": ":person_shrugging: Cannot edit this quote. It doesn't appear to exist.",
+        "last": ":person_shrugging: Error: No quote available."
+      },
       "delete": {
-        "item": ":person_shrugging: Error: Given quote doesn't exist.",
+        "item": ":person_shrugging: Something went wrong. Cannot delete this quote.",
         "last": ":person_shrugging: Error: No quote available."
       }
     },
     "help": {
-      "about": ":robot: Beep Beep Boop!\nI am a bot that outputs quotes upon commands.\nHere's how I work:",
-      "title": {
-        "user": ":busts_in_silhouette: **Everyone can**",
-        "admin": ":detective: **This bot's admins only can**",
-        "self": ":hand_splayed: **Want to display this message again?**"
-      },
-      "commands": {
+      "about": ":robot: Beep Beep Boop!\nI'm a bot that outputs quotes upon commands.\n\nHere's how I work:",
+      "user": {
+        "title": ":busts_in_silhouette: **Everyone can**",
         "get": "Get a random quote",
-        "add": "Save a quote",
-        "format": "your_quote",
+        "insert": "Save a quote"
+      },
+      "admin": {
+        "title": ":detective: **Admins can**",
+        "update": {
+          "title": "Edit quotes",
+          "item": "Any entry",
+          "last": "Last saved entry"
+        },
         "delete": {
-          "item": "Delete any quote",
-          "last": "Undo last saved quote"
+          "title": "Delete quotes",
+          "item": "Any entry",
+          "last": "Last saved entry"
         }
       },
-      "show": {
-        "with_command": "Use",
-        "with_mention": "or mention me"
+      "self": {
+        "title": ":hand_splayed: **Want to display this message again?**",
+        "prefixes": {
+          "command": "Use",
+          "mention": "or mention me"
+        }
+      },
+      "formats": {
+        "current": "your_quote",
+        "new": "your_quote_edited",
+        "delete": "your_quote_to_delete"
       }
     }
   }
