@@ -1,3 +1,8 @@
+## 3.1.2
+
+### Fix
+-   CRITICAL : Fix check rights spamming
+
 ## 3.1.1
 
 ### Documentation
