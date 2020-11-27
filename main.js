@@ -25,12 +25,10 @@ getClient().on('message', (message) => {
     sendHelp();
   else if (message.content === buildTrigger('ping'))
     sendPong();
-  else if (userIsAdmin()) {
-    if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS_UPDATE.command) + ' '))
-      updateQuoteItemOrLast();
-    else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS.delete)))
-      deleteQuoteLastOrItem();
-  }
+  else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS_UPDATE.command) + ' ') && userIsAdmin())
+    updateQuoteItemOrLast();
+  else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS.delete)) && userIsAdmin())
+    deleteQuoteLastOrItem();
 
   function updateQuoteItemOrLast() {
     const MESSAGE_WITHOUT_TRIGGER = message.content.replace(`${buildTrigger(CONFIG_COMMANDS_UPDATE.command)} `, '');
