@@ -55,7 +55,7 @@ ${CONFIG_HELP_ADMIN.title}
     ‣ ${CONFIG_HELP_ADMIN_DELETE.item} → \`${buildTrigger(CONFIG_COMMANDS.delete)}\` \`${CONFIG_HELP_FORMATS.delete}\`
 
 ${CONFIG_HELP_SELF.title}
-• ${CONFIG_HELP_SELF_PREFIXES.command} \`${buildTrigger(CONFIG_COMMANDS.help)}\` ${CONFIG_HELP_SELF_PREFIXES.mention} <@!${getClient().user.id}>
+• ${CONFIG_HELP_SELF_PREFIXES.command} \`${buildTrigger(CONFIG_COMMANDS.help)}\` ${CONFIG_HELP_SELF_PREFIXES.mention} <@${getClient().user.id}>
       `);
 
       console.log('Help displayed');
