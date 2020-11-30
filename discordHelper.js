@@ -12,7 +12,7 @@ module.exports = function() {
       CLIENT.on('ready', () => {
         console.log('Discord client logged in');
       });
-    } else console.log('Error: No token file');
+    } else console.log('Error: No token provided');
   };
 
   getRightsAdmin = function(currentAuthorId) {
