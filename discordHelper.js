@@ -24,7 +24,7 @@ module.exports = function() {
   String.prototype.toMessageCleanWith = function(command) {
     let msgClean = this.replace(`${CONFIG.trigger.prefix + command} `, '');
     // People mentioned with a nickname have ! before their user id. We don't need that.
-    // if (message.mentions.members.size > 0) msgClean = msgClean.replace(/[!]/g, ''); TODO
+    msgClean = msgClean.replace(/<@!/g, '<@');
     return msgClean;
   };
 

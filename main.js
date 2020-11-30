@@ -18,7 +18,7 @@ getClient().on('message', (message) => {
   const CONFIG_UPDATE_COMMAND = CONFIG_COMMANDS.update.command;
   const CONFIG_DELETE_COMMAND = CONFIG_COMMANDS.delete;
 
-  const CONTENT = message.content;
+  const CONTENT = message.content.toString();
 
   // Get
   if (CONTENT.isCommand(CONFIG_COMMANDS.get))
