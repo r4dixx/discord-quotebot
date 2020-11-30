@@ -15,52 +15,52 @@ getClient().on('message', (message) => {
 
   const CONFIG = require('./config.json');
   const CONFIG_COMMANDS = CONFIG.trigger.commands;
-  const CONFIG_COMMANDS_UPDATE = CONFIG_COMMANDS.update;
+  const CONFIG_UPDATE_COMMAND = CONFIG_COMMANDS.update.command;
+  const CONFIG_DELETE_COMMAND = CONFIG_COMMANDS.delete;
 
   // Get
-  if (message.content === buildTrigger(CONFIG_COMMANDS.get)) {
+  if (isCommand(CONFIG_COMMANDS.get))
     sendQuoteRandom();
-  }
-
   // Insert
-  else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS.insert) + ' ')) {
-    let messageClean = message.content.replace(`${buildTrigger(CONFIG_COMMANDS.insert)} `, '');
-    if (message.mentions.members.size > 0) messageClean = messageClean.formatMentionIn();
-    insertQuote(messageClean);
-  }
-
+  else if (startsWithCommand(CONFIG_COMMANDS.insert))
+    insertQuote(getMessageClean(CONFIG_COMMANDS.insert));
   // Update
-  else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS_UPDATE.command) + ' ') && userIsAdmin()) {
-    let messageClean = message.content.replace(`${buildTrigger(CONFIG_COMMANDS_UPDATE.command)} `, '');
-    if (message.mentions.members.size > 0) messageClean = messageClean.formatMentionIn();
+  else if (startsWithCommand(CONFIG_UPDATE_COMMAND) && userIsAdmin()) {
     const CONFIG_TRIGGER_COMMANDS_UPDATE_SEPARATOR = CONFIG.trigger.commands.update.separator;
+    let msgClean = getMessageClean(CONFIG_UPDATE_COMMAND);
     if (message.content.includes(CONFIG_TRIGGER_COMMANDS_UPDATE_SEPARATOR)) {
-      updateQuoteItem(messageClean.split(CONFIG_TRIGGER_COMMANDS_UPDATE_SEPARATOR).map(item => item.trim()));
-    } else updateQuoteLast(messageClean);
-  }
-
-  // Delete
-  else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS.delete)) && userIsAdmin()) {
-    if (message.content === buildTrigger(CONFIG_COMMANDS.delete))
-      deleteQuoteLast();
-    else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS.delete) + ' ')) {
-      let messageClean = message.content.replace(`${buildTrigger(CONFIG_COMMANDS.delete)} `, '');
-      if (message.mentions.members.size > 0) messageClean = messageClean.formatMentionIn();
-      deleteQuoteItem(messageClean);
+      updateQuoteItem(msgClean.split(CONFIG.trigger.commands.update.separator).map(item => item.trim()));
+    } else {
+      updateQuoteLast(msgClean);
     }
   }
-
+  // Delete
+  else if (isCommand(CONFIG_DELETE_COMMAND) && userIsAdmin())
+    deleteQuoteLast();
+  else if (startsWithCommand(CONFIG_DELETE_COMMAND) && userIsAdmin())
+    deleteQuoteItem(getMessageClean(CONFIG_COMMANDS.delete));
   // Help
-  else if (message.content === buildTrigger(CONFIG_COMMANDS.help) || (message.mentions.members.has(getClient().user.id) || null)) {
+  else if (isCommand(CONFIG_COMMANDS.help) || (message.mentions.members.has(getClient().user.id) || null))
     sendHelp();
-  }
-
   // Pong
-  else if (message.content === buildTrigger('ping')) {
+  else if (isCommand('ping')) {
     sendPong();
   }
 
-  // Rights
+  function startsWithCommand(command) {
+    return message.content.startsWith(buildTrigger(command) + ' ');
+  }
+
+  function isCommand(command) {
+    return message.content === buildTrigger(command);
+  }
+
+  function getMessageClean(command) {
+    let msgClean = message.content.replace(`${buildTrigger(command)} `, '');
+    if (message.mentions.members.size > 0) msgClean = msgClean.formatMentionIn();
+    return msgClean;
+  }
+
   function userIsAdmin() {
     if (getRightsAdmin(message.author.id)) return true;
     else {
@@ -68,5 +68,4 @@ getClient().on('message', (message) => {
       return false;
     }
   }
-
 });
