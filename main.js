@@ -25,9 +25,7 @@ getClient().on('message', (message) => {
     let messageClean = message.content.replace(`${buildTrigger(CONFIG_COMMANDS.insert)} `, '');
     if (message.mentions.members.size > 0) messageClean = messageClean.formatMentionIn();
     insertQuote(messageClean);
-  }
-
-  else if (message.content === buildTrigger(CONFIG_COMMANDS.help) || (message.mentions.members.has(getClient().user.id) || null))
+  } else if (message.content === buildTrigger(CONFIG_COMMANDS.help) || (message.mentions.members.has(getClient().user.id) || null))
     sendHelp();
   else if (message.content === buildTrigger('ping'))
     sendPong();
@@ -37,18 +35,22 @@ getClient().on('message', (message) => {
     deleteQuoteLastOrItem();
 
   function updateQuoteItemOrLast() {
-    const MESSAGE_WITHOUT_TRIGGER = message.content.replace(`${buildTrigger(CONFIG_COMMANDS_UPDATE.command)} `, '');
+    let messageClean = message.content.replace(`${buildTrigger(CONFIG_COMMANDS_UPDATE.command)} `, '');
+    if (message.mentions.members.size > 0) messageClean = messageClean.formatMentionIn();
     const CONFIG_TRIGGER_COMMANDS_UPDATE_SEPARATOR = CONFIG.trigger.commands.update.separator;
     if (message.content.includes(CONFIG_TRIGGER_COMMANDS_UPDATE_SEPARATOR)) {
-      updateQuoteItem(MESSAGE_WITHOUT_TRIGGER.split(CONFIG_TRIGGER_COMMANDS_UPDATE_SEPARATOR).map(item => item.trim()));
-    } else updateQuoteLast(MESSAGE_WITHOUT_TRIGGER);
+      updateQuoteItem(messageClean.split(CONFIG_TRIGGER_COMMANDS_UPDATE_SEPARATOR).map(item => item.trim()));
+    } else updateQuoteLast(messageClean);
   }
 
   function deleteQuoteLastOrItem() {
     if (message.content === buildTrigger(CONFIG_COMMANDS.delete))
       deleteQuoteLast();
-    else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS.delete) + ' '))
-      deleteQuoteItem(message.content.replace(`${buildTrigger(CONFIG_COMMANDS.delete)} `, ''));
+    else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS.delete) + ' ')) {
+      let messageClean = message.content.replace(`${buildTrigger(CONFIG_COMMANDS.delete)} `, '');
+      if (message.mentions.members.size > 0) messageClean = messageClean.formatMentionIn();
+      deleteQuoteItem(messageClean);
+    }
   }
 
   function userIsAdmin() {
