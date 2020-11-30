@@ -13,22 +13,18 @@ module.exports = function() {
     });
   };
 
-  buildTrigger = function(command) {
-    return CONFIG.trigger.prefix + command;
+  String.prototype.startsWithCommand = function(command) {
+    return this.startsWith(CONFIG.trigger.prefix + command + ' ');
   };
 
-  startsWithCommand = function(content, command) {
-    return content.startsWith(buildTrigger(command) + ' ');
+  String.prototype.isCommand = function(command) {
+    return this === CONFIG.trigger.prefix + command;
   };
 
-  isCommand = function(content, command) {
-    return content === buildTrigger(command);
-  };
-
-  getMessageClean = function(message, command) {
-    let msgClean = message.content.replace(`${buildTrigger(command)} `, '');
+  String.prototype.toMessageCleanWith = function(message, command) {
+    let msgClean = this.replace(`${CONFIG.trigger.prefix + command} `, '');
     // People mentioned with a nickname have ! before their user id. We don't need that.
-    if (message.mentions.members.size > 0) msgClean = msgClean.replace(/[!]/g, '');
+    // if (message.mentions.members.size > 0) msgClean = msgClean.replace(/[!]/g, ''); TODO
     return msgClean;
   };
 
