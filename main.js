@@ -19,8 +19,14 @@ getClient().on('message', (message) => {
 
   if (message.content === buildTrigger(CONFIG_COMMANDS.get))
     sendQuoteRandom();
-  else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS.insert) + ' '))
-    insertQuote(message.content.replace(`${buildTrigger(CONFIG_COMMANDS.insert)} `, ''));
+
+  // Insert
+  else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS.insert) + ' ')) {
+    let messageClean = message.content.replace(`${buildTrigger(CONFIG_COMMANDS.insert)} `, '');
+    if (message.mentions.members.size > 0) messageClean = messageClean.formatMentionIn();
+    insertQuote(messageClean);
+  }
+
   else if (message.content === buildTrigger(CONFIG_COMMANDS.help) || (message.mentions.members.has(getClient().user.id) || null))
     sendHelp();
   else if (message.content === buildTrigger('ping'))

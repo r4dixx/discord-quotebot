@@ -30,6 +30,11 @@ module.exports = function() {
     return require('./config.json').trigger.prefix + command;
   };
 
+  String.prototype.formatMentionIn = function() {
+    // People mentioned with a nickname have ! before their user id. We don't need that.
+    return this.replace(/[!]/g, '');
+  };
+
   getClient = function() {
     return CLIENT;
   };
