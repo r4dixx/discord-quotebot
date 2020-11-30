@@ -27,25 +27,21 @@ getClient().on('message', (message) => {
     insertQuote(getMessageClean(message, CONFIG_COMMANDS.insert));
 
   // Update
-  else if (startsWithCommand(message.content, CONFIG_UPDATE_COMMAND)) {
-    if (userIsAdmin(message.author.id)) {
-      const CONFIG_TRIGGER_COMMANDS_UPDATE_SEPARATOR = CONFIG.trigger.commands.update.separator;
-      let msgClean = getMessageClean(message, CONFIG_UPDATE_COMMAND);
-      if (message.content.includes(CONFIG_TRIGGER_COMMANDS_UPDATE_SEPARATOR)) {
-        updateQuoteItem(msgClean.split(CONFIG.trigger.commands.update.separator).map(item => item.trim()));
-      } else {
-        updateQuoteLast(msgClean);
-      }
-    } else message.channel.send(CONFIG.feedback.error.rights);
+  else if (startsWithCommand(message.content, CONFIG_UPDATE_COMMAND) && userIsAdmin()) {
+    const CONFIG_TRIGGER_COMMANDS_UPDATE_SEPARATOR = CONFIG.trigger.commands.update.separator;
+    let msgClean = getMessageClean(message, CONFIG_UPDATE_COMMAND);
+    if (message.content.includes(CONFIG_TRIGGER_COMMANDS_UPDATE_SEPARATOR)) {
+      updateQuoteItem(msgClean.split(CONFIG.trigger.commands.update.separator).map(item => item.trim()));
+    } else {
+      updateQuoteLast(msgClean);
+    }
   }
 
   // Delete
-  else if (isCommand(message.content, CONFIG_DELETE_COMMAND)) {
-    if (userIsAdmin(message.author.id)) deleteQuoteLast();
-    else message.channel.send(CONFIG.feedback.error.rights);
-  } else if (startsWithCommand(message.content, CONFIG_DELETE_COMMAND)) {
-    if (userIsAdmin(message.author.id)) deleteQuoteItem(getMessageClean(message, CONFIG_COMMANDS.delete));
-    else message.channel.send(CONFIG.feedback.error.rights);
+  else if (isCommand(message.content, CONFIG_DELETE_COMMAND) && userIsAdmin()) {
+    deleteQuoteLast();
+  } else if (startsWithCommand(message.content, CONFIG_DELETE_COMMAND) && userIsAdmin()) {
+    ifUserAdmin(deleteQuoteItem(getMessageClean(message, CONFIG_COMMANDS.delete)));
   }
 
   // Help
@@ -55,6 +51,15 @@ getClient().on('message', (message) => {
   // Pong
   else if (isCommand(message.content, 'ping')) {
     sendPong();
+  }
+
+  function userIsAdmin() {
+    if (getUserRights(message.author.id)) {
+      return true;
+    } else {
+      message.channel.send(CONFIG.feedback.error.rights);
+      return false;
+    }
   }
 
 });
