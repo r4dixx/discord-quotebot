@@ -13,7 +13,7 @@ module.exports = function() {
     });
   };
 
-  getUserRights = function(currentAuthorId) {
+  getRightsAdmin = function(currentAuthorId) {
     console.log('Requesting rights...');
     if (CONFIG_PRIVATE.botAdminIds.includes(currentAuthorId)) {
       console.log(`Success: author id ${currentAuthorId} is a bot admin`);

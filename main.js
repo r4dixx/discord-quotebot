@@ -57,7 +57,7 @@ getClient().on('message', (message) => {
   }
 
   function userIsAdmin() {
-    if (getUserRights(message.author.id)) {
+    if (getRightsAdmin(message.author.id)) {
       return true;
     } else {
       message.channel.send(CONFIG.feedback.error.rights);
