@@ -10,7 +10,7 @@ module.exports = function() {
     else {
       console.log(`${DB_PATH} not found, creating...`);
       dbOpen();
-      dbGet().run('CREATE TABLE IF NOT EXISTS quotes(quote TEXT)', (err) => {
+      dbGet().run('CREATE TABLE IF NOT EXISTS quotes(quote TEXT, UNIQUE(quote))', (err) => {
         if (err) return console.error(err.message);
         console.log('Quotes table created');
       });

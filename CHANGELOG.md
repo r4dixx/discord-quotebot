@@ -4,6 +4,7 @@
 -   Text displayed when successful feedback for get can now be customized
 
 ### Fix
+-   Prevent duplicates in database
 -   Fix mentions not being stored correctly
 -   Improved stability
 
