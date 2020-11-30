@@ -14,6 +14,7 @@
   },
   "feedback": {
     "success": {
+      "get": ":speech_left:",
       "insert": ":brain: **I'll remember this one...**",
       "update": {
         "title": ":pencil: **Quote edited successfully**",

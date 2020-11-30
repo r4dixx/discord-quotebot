@@ -13,7 +13,7 @@ module.exports = function() {
 
     sendQuoteRandom = function() {
       dbQueryItemRandom().then(function(result) {
-        if (result != null) message.channel.send(`:speaking_head: ${result}`);
+        if (result != null) message.channel.send(`${CONFIG_FEEDBACK.success.get} ${result}`);
         else message.channel.send(CONFIG_FEEDBACK.error.get);
       });
     };
