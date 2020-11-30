@@ -13,21 +13,6 @@ module.exports = function() {
     });
   };
 
-  String.prototype.startsWithCommand = function(command) {
-    return this.startsWith(CONFIG.trigger.prefix + command + ' ');
-  };
-
-  String.prototype.isCommand = function(command) {
-    return this == CONFIG.trigger.prefix + command;
-  };
-
-  String.prototype.toMessageCleanWith = function(command) {
-    let msgClean = this.replace(`${CONFIG.trigger.prefix + command} `, '');
-    // People mentioned with a nickname have ! before their user id. We don't need that.
-    msgClean = msgClean.replace(/<@!/g, '<@');
-    return msgClean;
-  };
-
   getUserRights = function(currentAuthorId) {
     console.log('Requesting rights...');
     if (CONFIG_PRIVATE.botAdminIds.includes(currentAuthorId)) {

@@ -1,6 +1,7 @@
 /*jshint esversion: 6 */
 
 require('./dbQueries.js')();
+require('./formatter.js')();
 
 module.exports = function() {
 
@@ -43,19 +44,19 @@ module.exports = function() {
 ${CONFIG_HELP.about}
 
 ${CONFIG_HELP_USER.title}
-• ${CONFIG_HELP_USER.get} → \`${buildTrigger(CONFIG_COMMANDS.get)}\`
-• ${CONFIG_HELP_USER.insert} → \`${buildTrigger(CONFIG_COMMANDS.insert)}\` \`${CONFIG_HELP_FORMATS.current}\`
+• ${CONFIG_HELP_USER.get} → \`${CONFIG_COMMANDS.get.toTrigger()}\`
+• ${CONFIG_HELP_USER.insert} → \`${CONFIG_COMMANDS.insert.toTrigger()}\` \`${CONFIG_HELP_FORMATS.current}\`
 
 ${CONFIG_HELP_ADMIN.title}
 • ${CONFIG_HELP_ADMIN_UPDATE.title}
-    ‣ ${CONFIG_HELP_ADMIN_UPDATE.last} → \`${buildTrigger(CONFIG_COMMANDS_UPDATE.command)}\` \`${CONFIG_HELP_FORMATS.new}\`
-    ‣ ${CONFIG_HELP_ADMIN_UPDATE.item} → \`${buildTrigger(CONFIG_COMMANDS_UPDATE.command)}\` \`${CONFIG_HELP_FORMATS.current}\` \`${CONFIG_COMMANDS_UPDATE.separator}\` \`${CONFIG_HELP_FORMATS.new}\`
+    ‣ ${CONFIG_HELP_ADMIN_UPDATE.last} → \`${CONFIG_COMMANDS_UPDATE.command.toTrigger()}\` \`${CONFIG_HELP_FORMATS.new}\`
+    ‣ ${CONFIG_HELP_ADMIN_UPDATE.item} → \`${CONFIG_COMMANDS_UPDATE.command.toTrigger()}\` \`${CONFIG_HELP_FORMATS.current}\` \`${CONFIG_COMMANDS_UPDATE.separator}\` \`${CONFIG_HELP_FORMATS.new}\`
 • ${CONFIG_HELP_ADMIN_DELETE.title}
-    ‣ ${CONFIG_HELP_ADMIN_DELETE.last} → \`${buildTrigger(CONFIG_COMMANDS.delete)}\`
-    ‣ ${CONFIG_HELP_ADMIN_DELETE.item} → \`${buildTrigger(CONFIG_COMMANDS.delete)}\` \`${CONFIG_HELP_FORMATS.delete}\`
+    ‣ ${CONFIG_HELP_ADMIN_DELETE.last} → \`${CONFIG_COMMANDS.delete.toTrigger()}\`
+    ‣ ${CONFIG_HELP_ADMIN_DELETE.item} → \`${CONFIG_COMMANDS.delete.toTrigger()}\` \`${CONFIG_HELP_FORMATS.delete}\`
 
 ${CONFIG_HELP_SELF.title}
-• ${CONFIG_HELP_SELF_PREFIXES.command} \`${buildTrigger(CONFIG_COMMANDS.help)}\` ${CONFIG_HELP_SELF_PREFIXES.mention} <@${getClient().user.id}>
+• ${CONFIG_HELP_SELF_PREFIXES.command} \`${CONFIG_COMMANDS.help.toTrigger()}\` ${CONFIG_HELP_SELF_PREFIXES.mention} <@${getClient().user.id}>
       `);
 
       console.log('Help displayed');
