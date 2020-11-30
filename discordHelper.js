@@ -7,14 +7,10 @@ module.exports = function() {
   const CONFIG_PRIVATE = require('./config_private.json');
 
   login = function() {
-
-    const FS = require('fs');
-    if (FS.existsSync('./config_private.json')) {
-      CLIENT.login(require(CONFIG_PRIVATE).token);
-      CLIENT.on('ready', () => {
-        console.log('Discord client logged in');
-      });
-    } else console.log('Error: No token provided');
+    CLIENT.login(CONFIG_PRIVATE.token);
+    CLIENT.on('ready', () => {
+      console.log('Discord client logged in');
+    });
   };
 
   buildTrigger = function(command) {
