@@ -19,53 +19,42 @@ getClient().on('message', (message) => {
   const CONFIG_DELETE_COMMAND = CONFIG_COMMANDS.delete;
 
   // Get
-  if (isCommand(CONFIG_COMMANDS.get))
+  if (isCommand(message.content, CONFIG_COMMANDS.get))
     sendQuoteRandom();
+
   // Insert
-  else if (startsWithCommand(CONFIG_COMMANDS.insert))
-    insertQuote(getMessageClean(CONFIG_COMMANDS.insert));
+  else if (startsWithCommand(message.content, CONFIG_COMMANDS.insert))
+    insertQuote(getMessageClean(message, CONFIG_COMMANDS.insert));
+
   // Update
-  else if (startsWithCommand(CONFIG_UPDATE_COMMAND) && userIsAdmin()) {
-    const CONFIG_TRIGGER_COMMANDS_UPDATE_SEPARATOR = CONFIG.trigger.commands.update.separator;
-    let msgClean = getMessageClean(CONFIG_UPDATE_COMMAND);
-    if (message.content.includes(CONFIG_TRIGGER_COMMANDS_UPDATE_SEPARATOR)) {
-      updateQuoteItem(msgClean.split(CONFIG.trigger.commands.update.separator).map(item => item.trim()));
-    } else {
-      updateQuoteLast(msgClean);
-    }
+  else if (startsWithCommand(message.content, CONFIG_UPDATE_COMMAND)) {
+    if (userIsAdmin(message.author.id)) {
+      const CONFIG_TRIGGER_COMMANDS_UPDATE_SEPARATOR = CONFIG.trigger.commands.update.separator;
+      let msgClean = getMessageClean(message, CONFIG_UPDATE_COMMAND);
+      if (message.content.includes(CONFIG_TRIGGER_COMMANDS_UPDATE_SEPARATOR)) {
+        updateQuoteItem(msgClean.split(CONFIG.trigger.commands.update.separator).map(item => item.trim()));
+      } else {
+        updateQuoteLast(msgClean);
+      }
+    } else message.channel.send(CONFIG.feedback.error.rights);
   }
+
   // Delete
-  else if (isCommand(CONFIG_DELETE_COMMAND) && userIsAdmin())
-    deleteQuoteLast();
-  else if (startsWithCommand(CONFIG_DELETE_COMMAND) && userIsAdmin())
-    deleteQuoteItem(getMessageClean(CONFIG_COMMANDS.delete));
+  else if (isCommand(message.content, CONFIG_DELETE_COMMAND)) {
+    if (userIsAdmin(message.author.id)) deleteQuoteLast();
+    else message.channel.send(CONFIG.feedback.error.rights);
+  } else if (startsWithCommand(message.content, CONFIG_DELETE_COMMAND)) {
+    if (userIsAdmin(message.author.id)) deleteQuoteItem(getMessageClean(message, CONFIG_COMMANDS.delete));
+    else message.channel.send(CONFIG.feedback.error.rights);
+  }
+
   // Help
-  else if (isCommand(CONFIG_COMMANDS.help) || (message.mentions.members.has(getClient().user.id) || null))
+  else if (isCommand(message.content, CONFIG_COMMANDS.help) || (message.mentions.members.has(getClient().user.id) || null))
     sendHelp();
+
   // Pong
-  else if (isCommand('ping')) {
+  else if (isCommand(message.content, 'ping')) {
     sendPong();
   }
 
-  function startsWithCommand(command) {
-    return message.content.startsWith(buildTrigger(command) + ' ');
-  }
-
-  function isCommand(command) {
-    return message.content === buildTrigger(command);
-  }
-
-  function getMessageClean(command) {
-    let msgClean = message.content.replace(`${buildTrigger(command)} `, '');
-    if (message.mentions.members.size > 0) msgClean = msgClean.formatMentionIn();
-    return msgClean;
-  }
-
-  function userIsAdmin() {
-    if (getRightsAdmin(message.author.id)) return true;
-    else {
-      message.channel.send(CONFIG.feedback.error.rights);
-      return false;
-    }
-  }
 });
