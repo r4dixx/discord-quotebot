@@ -18,7 +18,7 @@ module.exports = function() {
   };
 
   String.prototype.isCommand = function(command) {
-    return this === CONFIG.trigger.prefix + command;
+    return this == CONFIG.trigger.prefix + command;
   };
 
   String.prototype.toMessageCleanWith = function(command) {
