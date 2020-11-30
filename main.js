@@ -17,24 +17,20 @@ getClient().on('message', (message) => {
   const CONFIG_COMMANDS = CONFIG.trigger.commands;
   const CONFIG_COMMANDS_UPDATE = CONFIG_COMMANDS.update;
 
-  if (message.content === buildTrigger(CONFIG_COMMANDS.get))
+  // Get
+  if (message.content === buildTrigger(CONFIG_COMMANDS.get)) {
     sendQuoteRandom();
+  }
 
   // Insert
   else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS.insert) + ' ')) {
     let messageClean = message.content.replace(`${buildTrigger(CONFIG_COMMANDS.insert)} `, '');
     if (message.mentions.members.size > 0) messageClean = messageClean.formatMentionIn();
     insertQuote(messageClean);
-  } else if (message.content === buildTrigger(CONFIG_COMMANDS.help) || (message.mentions.members.has(getClient().user.id) || null))
-    sendHelp();
-  else if (message.content === buildTrigger('ping'))
-    sendPong();
-  else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS_UPDATE.command) + ' ') && userIsAdmin())
-    updateQuoteItemOrLast();
-  else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS.delete)) && userIsAdmin())
-    deleteQuoteLastOrItem();
+  }
 
-  function updateQuoteItemOrLast() {
+  // Update
+  else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS_UPDATE.command) + ' ') && userIsAdmin()) {
     let messageClean = message.content.replace(`${buildTrigger(CONFIG_COMMANDS_UPDATE.command)} `, '');
     if (message.mentions.members.size > 0) messageClean = messageClean.formatMentionIn();
     const CONFIG_TRIGGER_COMMANDS_UPDATE_SEPARATOR = CONFIG.trigger.commands.update.separator;
@@ -43,7 +39,8 @@ getClient().on('message', (message) => {
     } else updateQuoteLast(messageClean);
   }
 
-  function deleteQuoteLastOrItem() {
+  // Delete
+  else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS.delete)) && userIsAdmin()) {
     if (message.content === buildTrigger(CONFIG_COMMANDS.delete))
       deleteQuoteLast();
     else if (message.content.startsWith(buildTrigger(CONFIG_COMMANDS.delete) + ' ')) {
@@ -53,6 +50,17 @@ getClient().on('message', (message) => {
     }
   }
 
+  // Help
+  else if (message.content === buildTrigger(CONFIG_COMMANDS.help) || (message.mentions.members.has(getClient().user.id) || null)) {
+    sendHelp();
+  }
+
+  // Pong
+  else if (message.content === buildTrigger('ping')) {
+    sendPong();
+  }
+
+  // Rights
   function userIsAdmin() {
     if (getRightsAdmin(message.author.id)) return true;
     else {
