@@ -43,7 +43,7 @@ getClient().on('message', (message) => {
   else if (CONTENT.isCommand(CONFIG_DELETE_COMMAND) && userIsAdmin()) {
     deleteQuoteLast();
   } else if (CONTENT.startsWithCommand(CONFIG_DELETE_COMMAND) && userIsAdmin()) {
-    ifUserAdmin(deleteQuoteItem(CONTENT.toMessageCleanWith(CONFIG_COMMANDS.delete)));
+    deleteQuoteItem(CONTENT.toMessageCleanWith(CONFIG_COMMANDS.delete));
   }
 
   // Help
