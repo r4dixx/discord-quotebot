@@ -23,7 +23,7 @@ module.exports = function() {
       dbOpen();
       dbGet().run('INSERT INTO quotes(quote) VALUES(?)', quoteForInsertion, (err) => {
         if (err) {
-          errorMessage = err.message;
+          let errorMessage = err.message;
           if (errorMessage == 'SQLITE_CONSTRAINT: UNIQUE constraint failed: quotes.quote') {
             errorMessage = `${errorMessage} → ${quoteForInsertion}`;
             resolve("error-duplicate");
@@ -91,12 +91,12 @@ module.exports = function() {
         }
         quoteOld = row.quote;
         if (quoteNew == quoteOld) {
-          errorMessage = `Aborting edition. Already exists in database → ${quoteNew}`;
-          resolve("error-duplicate");
+          resolve("error-no-changes");
+          return console.error(`Aborting edition. No changes made → ${quoteOld}`);
         }
         dbGet().run('UPDATE quotes SET quote = ? WHERE rowid = (SELECT MAX(rowid) FROM quotes)', quoteNew, function(err) {
           if (err) {
-            errorMessage = err.message;
+            let errorMessage = err.message;
             if (errorMessage == 'SQLITE_CONSTRAINT: UNIQUE constraint failed: quotes.quote') {
               errorMessage = `${errorMessage} → ${quoteNew}`;
               resolve("error-duplicate");

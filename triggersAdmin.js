@@ -20,22 +20,19 @@ module.exports = function() {
     updateQuoteItem = function(array) {
       let quoteCurrent = array.shift();
       let quoteNew = array.pop();
-      if (quoteNew == quoteCurrent) {
-        message.channel.send(CONFIG_FEEDBACK_ERROR.duplicate);
-        console.log('Error: Quotes are similar. Aborting edition');
-      } else {
-        dbUpdateItem(quoteCurrent, quoteNew).then(function(result) {
-          if (result == "success") message.channel.send(`${CONFIG_FEEDBACK_SUCCESS_UPDATE.title}\n${CONFIG_FEEDBACK_SUCCESS_UPDATE.old}\n${quoteCurrent}\n${CONFIG_FEEDBACK_SUCCESS_UPDATE.new}\n${quoteNew}`);
-          else if (result == "error-duplicate") message.channel.send(CONFIG_FEEDBACK_ERROR.duplicate);
-          else if (result == "error-not-found") message.channel.send(CONFIG_FEEDBACK_ERROR_UPDATE.item);
-          else if (result == "error") message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
-        });
-      }
+      dbUpdateItem(quoteCurrent, quoteNew).then(function(result) {
+        if (result == "success") message.channel.send(`${CONFIG_FEEDBACK_SUCCESS_UPDATE.title}\n${CONFIG_FEEDBACK_SUCCESS_UPDATE.old}\n${quoteCurrent}\n${CONFIG_FEEDBACK_SUCCESS_UPDATE.new}\n${quoteNew}`);
+        else if (result == "error-no-changes") message.channel.send(CONFIG_FEEDBACK_ERROR.similar);
+        else if (result == "error-duplicate") message.channel.send(CONFIG_FEEDBACK_ERROR.duplicate);
+        else if (result == "error-not-found") message.channel.send(CONFIG_FEEDBACK_ERROR_UPDATE.item);
+        else if (result == "error") message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
+      });
     };
 
     updateQuoteLast = function(quoteNew) {
       dbUpdateLast(quoteNew).then(function(result) {
         if (result == "error") message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
+        else if (result == "error-no-changes") message.channel.send(CONFIG_FEEDBACK_ERROR.similar);
         else if (result == "error-duplicate") message.channel.send(CONFIG_FEEDBACK_ERROR.duplicate);
         else if (result == "error-not-found") message.channel.send(CONFIG_FEEDBACK_ERROR_UPDATE.last);
         else message.channel.send(`${CONFIG_FEEDBACK_SUCCESS_UPDATE.title}\n${CONFIG_FEEDBACK_SUCCESS_UPDATE.old}\n${result}\n${CONFIG_FEEDBACK_SUCCESS_UPDATE.new}\n${quoteNew}`);

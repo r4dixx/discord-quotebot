@@ -33,6 +33,7 @@
         "item": ":thinking: Cannot delete this quote. It doesn't appear to exist.",
         "last": ":person_shrugging: Cannot delete last saved quote. No quote available."
       },
+      "similar": ":upside_down: No changes made. Desired quote is similar to current quote",
       "duplicate": ":people_holding_hands: Error: This quote already exists.",
       "rights": ":person_gesturing_no: Operation failed. Insufficient privileges.",
       "generic": ":fearful: Oops. Something went wrong."
