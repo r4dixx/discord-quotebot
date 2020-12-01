@@ -18,10 +18,10 @@ module.exports = function() {
     const CONFIG_FEEDBACK_ERROR_DELETE = CONFIG_FEEDBACK_ERROR.delete;
 
     updateQuoteItem = function(array) {
-      let quoteCurrent = array.shift();
+      let quoteOld = array.shift();
       let quoteNew = array.pop();
-      dbUpdateItem(quoteCurrent, quoteNew).then(function(result) {
-        if (result == "success") message.channel.send(`${CONFIG_FEEDBACK_SUCCESS_UPDATE.title}\n${CONFIG_FEEDBACK_SUCCESS_UPDATE.old}\n${quoteCurrent}\n${CONFIG_FEEDBACK_SUCCESS_UPDATE.new}\n${quoteNew}`);
+      dbUpdateItem(quoteOld, quoteNew).then(function(result) {
+        if (result == "success") message.channel.send(`${CONFIG_FEEDBACK_SUCCESS_UPDATE.title}\n${CONFIG_FEEDBACK_SUCCESS_UPDATE.old}\n${quoteOld}\n${CONFIG_FEEDBACK_SUCCESS_UPDATE.new}\n${quoteNew}`);
         else if (result == "error-no-changes") message.channel.send(CONFIG_FEEDBACK_ERROR.similar);
         else if (result == "error-duplicate") message.channel.send(CONFIG_FEEDBACK_ERROR.duplicate);
         else if (result == "error-not-found") message.channel.send(CONFIG_FEEDBACK_ERROR_UPDATE.item);

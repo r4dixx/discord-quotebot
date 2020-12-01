@@ -55,23 +55,34 @@ module.exports = function() {
     });
   };
 
-  dbUpdateItem = function(quoteCurrent, quoteNew) {
+  dbUpdateItem = function(quoteOld, quoteNew) {
     return new Promise(function(resolve, reject) {
       dbOpen();
-      dbGet().get('SELECT quote FROM quotes WHERE quote = ?', quoteCurrent, (err, row) => {
+      dbGet().get('SELECT quote FROM quotes WHERE quote = ?', quoteOld, (err, row) => {
         if (err) {
           resolve("error");
           return console.error(err.message);
         }
         if (row == null || row.quote == null) {
           resolve("error-not-found");
-          return console.error(`Error: Cannot get quote for edition. Not found in database: ${quoteCurrent}`);
+          return console.error(`Error: Cannot get quote for edition. Not found in database: ${quoteOld}`);
         }
-        dbGet().run('UPDATE quotes SET quote = ? WHERE quote = ?', quoteNew, quoteCurrent, function(err) {
-          if (err) return console.error(err.message);
-          console.log(`Updated quote. FROM: ${quoteCurrent} TO: ${quoteNew}`);
+        if (quoteNew == quoteOld) {
+          resolve("error-no-changes");
+          return console.error(`Aborting edition. No changes made → ${quoteOld}`);
+        }
+        dbGet().run('UPDATE quotes SET quote = ? WHERE quote = ?', quoteNew, quoteOld, function(err) {
+          if (err) {
+            let errorMessage = err.message;
+            if (errorMessage == 'SQLITE_CONSTRAINT: UNIQUE constraint failed: quotes.quote') {
+              errorMessage = `${errorMessage} → ${quoteNew}`;
+              resolve("error-duplicate");
+            } else resolve("error");
+            return console.error(errorMessage);
+          }
+          console.log(`Updated last quote. FROM: ${quoteOld} TO: ${quoteNew}`);
+          resolve("success");
         });
-        resolve("success");
       });
       dbClose();
     });
