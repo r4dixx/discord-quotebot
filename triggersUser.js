@@ -5,14 +5,14 @@ require('./formatter.js')();
 
 module.exports = function() {
 
-  const CONFIG = require('./config.json');
-  const CONFIG_COMMANDS = CONFIG.trigger.commands;
-
-  const CONFIG_FEEDBACK = CONFIG.feedback;
-  const CONFIG_FEEDBACK_SUCCESS = CONFIG_FEEDBACK.success;
-  const CONFIG_FEEDBACK_ERROR = CONFIG_FEEDBACK.error;
-
   getClient().on('message', (message) => {
+
+    const CONFIG = require('./config.json');
+    const CONFIG_COMMANDS = CONFIG.trigger.commands;
+
+    const CONFIG_FEEDBACK = CONFIG.feedback;
+    const CONFIG_FEEDBACK_SUCCESS = CONFIG_FEEDBACK.success;
+    const CONFIG_FEEDBACK_ERROR = CONFIG_FEEDBACK.error;
 
     sendQuoteRandom = function() {
       dbQueryItemRandom().then(function(result) {

@@ -6,9 +6,9 @@ require('./triggersUser.js')();
 require('./triggersAdmin.js')();
 require('./formatter.js')();
 
-login();
-
 dbCreateTableIfNecessary();
+
+login();
 
 getClient().on('message', (message) => {
 
