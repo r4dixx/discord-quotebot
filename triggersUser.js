@@ -7,22 +7,26 @@ module.exports = function() {
 
   const CONFIG = require('./config.json');
   const CONFIG_COMMANDS = CONFIG.trigger.commands;
+
   const CONFIG_FEEDBACK = CONFIG.feedback;
+  const CONFIG_FEEDBACK_SUCCESS = CONFIG_FEEDBACK.success;
+  const CONFIG_FEEDBACK_ERROR = CONFIG_FEEDBACK.error;
 
   getClient().on('message', (message) => {
 
     sendQuoteRandom = function() {
       dbQueryItemRandom().then(function(result) {
-        if (result != null) message.channel.send(`${CONFIG_FEEDBACK.success.get} ${result}`);
-        else message.channel.send(CONFIG_FEEDBACK.error.get);
+        if (result == null) message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
+        else if (result == false) message.channel.send(CONFIG_FEEDBACK_ERROR.get);
+        else message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.get} ${result}`);
       });
     };
 
     insertQuote = function(quote) {
       dbInsertItem(quote).then(function(result) {
-        if (result == true) message.channel.send(`${CONFIG_FEEDBACK.success.insert}\n${quote}`);
-        else if (result == false) message.channel.send(CONFIG_FEEDBACK.error.insert.exists);
-        else message.channel.send(CONFIG_FEEDBACK.error.insert.generic);
+        if (result == true) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.insert}\n${quote}`);
+        else if (result == false) message.channel.send(CONFIG_FEEDBACK_ERROR.insert);
+        else message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
       });
     };
 

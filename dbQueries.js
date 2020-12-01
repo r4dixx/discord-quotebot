@@ -39,10 +39,12 @@ module.exports = function() {
     return new Promise(function(resolve, reject) {
       dbOpen();
       dbGet().get('SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1', (err, row) => {
-        if (err) return console.error(err.message);
-        if (row == null || row.quote == null) {
-          console.log('Cannot get random quote. No quote found in database');
+        if (err) {
           resolve(null);
+          return console.error(err.message);
+        } else if (row == null || row.quote == null) {
+          console.log('Cannot get random quote. No quote found in database');
+          resolve(false);
         } else {
           console.log(`Quote to be displayed: ${row.quote}`);
           resolve(row.quote);
@@ -56,10 +58,12 @@ module.exports = function() {
     return new Promise(function(resolve, reject) {
       dbOpen();
       dbGet().get('SELECT quote FROM quotes WHERE quote = ?', quoteCurrent, (err, row) => {
-        if (err) return console.error(err.message);
-        if (row == null || row.quote == null) {
-          console.log(`Error: Cannot get quote for edition. Not found in database: ${quoteCurrent}`);
+        if (err) {
           resolve(null);
+          return console.error(err.message);
+        } else if (row == null || row.quote == null) {
+          console.log(`Error: Cannot get quote for edition. Not found in database: ${quoteCurrent}`);
+          resolve(false);
         } else {
           dbGet().run('UPDATE quotes SET quote = ? WHERE quote = ?', quoteNew, quoteCurrent, function(err) {
             if (err) return console.error(err.message);
@@ -76,10 +80,12 @@ module.exports = function() {
     return new Promise(function(resolve, reject) {
       dbOpen();
       dbGet().get('SELECT rowid, quote FROM quotes ORDER BY rowid DESC LIMIT 1', (err, row) => {
-        if (err) return console.error(err.message);
-        if (row == null || row.quote == null) {
-          console.log('Error: Cannot get last quote for edition. No quote found in database.');
+        if (err) {
           resolve(null);
+          return console.error(err.message);
+        } else if (row == null || row.quote == null) {
+          console.log('Error: Cannot get last quote for edition. No quote found in database.');
+          resolve(false);
         } else {
           quoteOld = row.quote;
           dbGet().run('UPDATE quotes SET quote = ? WHERE rowid = (SELECT MAX(rowid) FROM quotes)', quoteNew, function(err) {
@@ -97,10 +103,12 @@ module.exports = function() {
     return new Promise(function(resolve, reject) {
       dbOpen();
       dbGet().get('SELECT quote FROM quotes WHERE quote = ?', quote, (err, row) => {
-        if (err) return console.error(err.message);
-        if (row == null || row.quote == null) {
-          console.log(`Error: Cannot get quote for deletion. Not found in database: ${quote}`);
+        if (err) {
           resolve(null);
+          return console.error(err.message);
+        } else if (row == null || row.quote == null) {
+          console.log(`Error: Cannot get quote for deletion. Not found in database: ${quote}`);
+          resolve(false);
         } else {
           dbDelete(quote);
           resolve(quote);

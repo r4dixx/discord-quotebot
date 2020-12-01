@@ -24,12 +24,10 @@
       "delete": ":put_litter_in_its_place: **To the trash:**"
     },
     "error": {
+      "generic": ":fearful: Oops. Something went wrong.",
       "rights": ":no_entry: Operation failed. Insufficient privileges.",
       "get": ":person_shrugging: Error: No quote available.",
-      "insert": {
-        "exists": ":people_holding_hands: Cannot add this quote. It already exists",
-        "generic": ":person_shrugging: Cannot add this quote. Something went wrong"
-      },
+      "insert": ":people_holding_hands: Cannot add this quote. It already exists.",
       "update": {
         "item": ":person_shrugging: Cannot edit this quote. It doesn't appear to exist.",
         "last": ":person_shrugging: Error: No quote available."
