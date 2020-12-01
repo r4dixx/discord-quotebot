@@ -10,7 +10,7 @@ module.exports = function() {
     else {
       console.log(`${DB_PATH} not found, creating...`);
       dbOpen();
-      dbGet().run('CREATE TABLE IF NOT EXISTS quotes(quote TEXT, UNIQUE(quote))', (err) => {
+      dbGet().run('CREATE TABLE IF NOT EXISTS quotes(quote TEXT PRIMARY KEY)', (err) => {
         if (err) return console.error(err.message);
         console.log('Quotes table created');
       });
@@ -19,12 +19,20 @@ module.exports = function() {
   };
 
   dbInsertItem = function(quoteForInsertion) {
-    dbOpen();
-    dbGet().run('INSERT INTO quotes(quote) VALUES(?)', quoteForInsertion, (err) => {
-      if (err) return console.error(err.message);
-      console.log(`Quote saved: ${quoteForInsertion}`);
+    return new Promise(function(resolve, reject) {
+      dbOpen();
+      dbGet().run('INSERT INTO quotes(quote) VALUES(?)', quoteForInsertion, (err) => {
+        if (err) {
+          errorMessage = err.message;
+          if (errorMessage == 'SQLITE_CONSTRAINT: UNIQUE constraint failed: quotes.quote') {
+            errorMessage = `${errorMessage} → ${quoteForInsertion}`;
+            resolve(false);
+          } else resolve(null);
+          return console.error(errorMessage);
+        } else resolve(true);
+      });
+      dbClose();
     });
-    dbClose();
   };
 
   dbQueryItemRandom = function() {

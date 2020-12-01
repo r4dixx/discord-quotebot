@@ -19,8 +19,11 @@ module.exports = function() {
     };
 
     insertQuote = function(quote) {
-      dbInsertItem(quote);
-      message.channel.send(`${CONFIG_FEEDBACK.success.insert}\n${quote}`);
+      dbInsertItem(quote).then(function(result) {
+        if (result == true) message.channel.send(`${CONFIG_FEEDBACK.success.insert}\n${quote}`);
+        else if (result == false) message.channel.send(CONFIG_FEEDBACK.error.insert.exists);
+        else message.channel.send(CONFIG_FEEDBACK.error.insert.generic);
+      });
     };
 
     sendHelp = function() {
