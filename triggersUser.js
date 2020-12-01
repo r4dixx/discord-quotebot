@@ -24,9 +24,9 @@ module.exports = function() {
 
     insertQuote = function(quote) {
       dbInsertItem(quote).then(function(result) {
-        if (result == "error") message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
+        if (result == "success") message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.insert}\n${quote}`);
         else if (result == "error-found") message.channel.send(CONFIG_FEEDBACK_ERROR.insert);
-        else if (result == "success") message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.insert}\n${quote}`);
+        else if (result == "error") message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
       });
     };
 

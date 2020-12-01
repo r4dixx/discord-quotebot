@@ -21,9 +21,9 @@ module.exports = function() {
       let quoteCurrent = array.shift();
       let quoteNew = array.pop();
       dbUpdateItem(quoteCurrent, quoteNew).then(function(result) {
-        if (result == "error") message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
+        if (result == "success") message.channel.send(`${CONFIG_FEEDBACK_SUCCESS_UPDATE.title}\n${CONFIG_FEEDBACK_SUCCESS_UPDATE.old}\n${quoteCurrent}\n${CONFIG_FEEDBACK_SUCCESS_UPDATE.new}\n${quoteNew}`);
         else if (result == "error-not-found") message.channel.send(CONFIG_FEEDBACK_ERROR_UPDATE.item);
-        else if (result == "success") message.channel.send(`${CONFIG_FEEDBACK_SUCCESS_UPDATE.title}\n${CONFIG_FEEDBACK_SUCCESS_UPDATE.old}\n${quoteCurrent}\n${CONFIG_FEEDBACK_SUCCESS_UPDATE.new}\n${quoteNew}`);
+        else if (result == "error") message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
       });
     };
 
@@ -37,9 +37,9 @@ module.exports = function() {
 
     deleteQuoteItem = function(quote) {
       dbDeleteItem(quote).then(function(result) {
-        if (result == "error") message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
+        if (result == "success") message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${quote}`);
         else if (result == "error-not-found") message.channel.send(CONFIG_FEEDBACK_ERROR_DELETE.item);
-        else if (result == "success") message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${quote}`);
+        if (result == "error") message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
       });
     };
 
