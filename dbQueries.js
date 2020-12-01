@@ -90,11 +90,22 @@ module.exports = function() {
           return console.error('Error: Cannot get last quote for edition. No quote found in database.');
         }
         quoteOld = row.quote;
+        if (quoteNew == quoteOld) {
+          errorMessage = `Aborting edition. Already exists in database → ${quoteNew}`;
+          resolve("error-duplicate");
+        }
         dbGet().run('UPDATE quotes SET quote = ? WHERE rowid = (SELECT MAX(rowid) FROM quotes)', quoteNew, function(err) {
-          if (err) return console.error(err.message);
+          if (err) {
+            errorMessage = err.message;
+            if (errorMessage == 'SQLITE_CONSTRAINT: UNIQUE constraint failed: quotes.quote') {
+              errorMessage = `${errorMessage} → ${quoteNew}`;
+              resolve("error-duplicate");
+            } else resolve("error");
+            return console.error(errorMessage);
+          }
           console.log(`Updated last quote. FROM: ${quoteOld} TO: ${quoteNew}`);
+          resolve(quoteOld);
         });
-        resolve(quoteOld);
       });
       dbClose();
     });
