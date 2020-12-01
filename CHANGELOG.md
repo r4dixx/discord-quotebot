@@ -1,17 +1,17 @@
 ## 3.2.0
 
 ### Feature
--   Text displayed when successful feedback for get can now be customized
+-   More customization for feedback messages
+-   Clearer feedback messages
 
 ### Fix
 -   Prevent duplicates in database
 -   Fix mentions not being stored correctly
--   Improved stability
 
 ### Tech
 -   Create formatter.js
--   Cleanup main.js
--   Cleanup login
+-   Performance and stability improvements
+-   Cleanup
 -   Update `discord.js` to version 12.5.1 ([changelog](https://github.com/discordjs/discord.js/releases/tag/12.5.1))
 
 ## 3.1.2
