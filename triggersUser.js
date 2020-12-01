@@ -16,17 +16,17 @@ module.exports = function() {
 
     sendQuoteRandom = function() {
       dbQueryItemRandom().then(function(result) {
-        if (result == null) message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
-        else if (result == false) message.channel.send(CONFIG_FEEDBACK_ERROR.get);
+        if (result == "error") message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
+        else if (result == "error-not-found") message.channel.send(CONFIG_FEEDBACK_ERROR.get);
         else message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.get} ${result}`);
       });
     };
 
     insertQuote = function(quote) {
       dbInsertItem(quote).then(function(result) {
-        if (result == true) message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.insert}\n${quote}`);
-        else if (result == false) message.channel.send(CONFIG_FEEDBACK_ERROR.insert);
-        else message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
+        if (result == "error") message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
+        else if (result == "error-found") message.channel.send(CONFIG_FEEDBACK_ERROR.insert);
+        else if (result == "success") message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.insert}\n${quote}`);
       });
     };
 

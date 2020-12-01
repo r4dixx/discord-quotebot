@@ -21,32 +21,32 @@ module.exports = function() {
       let quoteCurrent = array.shift();
       let quoteNew = array.pop();
       dbUpdateItem(quoteCurrent, quoteNew).then(function(result) {
-        if (result == null) message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
-        else if (result == false) message.channel.send(CONFIG_FEEDBACK_ERROR_UPDATE.item);
-        else message.channel.send(`${CONFIG_FEEDBACK_SUCCESS_UPDATE.title}\n${CONFIG_FEEDBACK_SUCCESS_UPDATE.old}\n${result}\n${CONFIG_FEEDBACK_SUCCESS_UPDATE.new}\n${quoteNew}`);
+        if (result == "error") message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
+        else if (result == "error-not-found") message.channel.send(CONFIG_FEEDBACK_ERROR_UPDATE.item);
+        else if (result == "success") message.channel.send(`${CONFIG_FEEDBACK_SUCCESS_UPDATE.title}\n${CONFIG_FEEDBACK_SUCCESS_UPDATE.old}\n${quoteCurrent}\n${CONFIG_FEEDBACK_SUCCESS_UPDATE.new}\n${quoteNew}`);
       });
     };
 
     updateQuoteLast = function(quoteNew) {
       dbUpdateLast(quoteNew).then(function(result) {
-        if (result == null) message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
-        else if (result == false) message.channel.send(CONFIG_FEEDBACK_ERROR_UPDATE.last);
+        if (result == "error") message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
+        else if (result == "error-not-found") message.channel.send(CONFIG_FEEDBACK_ERROR_UPDATE.last);
         else message.channel.send(`${CONFIG_FEEDBACK_SUCCESS_UPDATE.title}\n${CONFIG_FEEDBACK_SUCCESS_UPDATE.old}\n${result}\n${CONFIG_FEEDBACK_SUCCESS_UPDATE.new}\n${quoteNew}`);
       });
     };
 
     deleteQuoteItem = function(quote) {
       dbDeleteItem(quote).then(function(result) {
-        if (result == null) message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
-        else if (result == false) message.channel.send(CONFIG_FEEDBACK_ERROR_DELETE.item);
-        else message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${result}`);
+        if (result == "error") message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
+        else if (result == "error-not-found") message.channel.send(CONFIG_FEEDBACK_ERROR_DELETE.item);
+        else if (result == "success") message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${quote}`);
       });
     };
 
     deleteQuoteLast = function() {
       dbDeleteLast().then(function(result) {
-        if (result == null) message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
-        else if (result == false) message.channel.send(CONFIG_FEEDBACK_ERROR_DELETE.last);
+        if (result == "error") message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
+        else if (result == "error-not-found") message.channel.send(CONFIG_FEEDBACK_ERROR_DELETE.last);
         else message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.delete}\n${result}`);
       });
     };
