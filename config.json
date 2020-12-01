@@ -25,16 +25,16 @@
     },
     "error": {
       "generic": ":fearful: Oops. Something went wrong.",
-      "rights": ":no_entry: Operation failed. Insufficient privileges.",
+      "rights": ":person_gesturing_no: Operation failed. Insufficient privileges.",
       "get": ":person_shrugging: Error: No quote available.",
       "insert": ":people_holding_hands: Cannot add this quote. It already exists.",
       "update": {
-        "item": ":person_shrugging: Cannot edit this quote. It doesn't appear to exist.",
-        "last": ":person_shrugging: Error: No quote available."
+        "item": ":thinking: Cannot edit this quote. It doesn't appear to exist.",
+        "last": ":person_shrugging: Cannot edit last saved quote. No quote available."
       },
       "delete": {
-        "item": ":person_shrugging: Something went wrong. Cannot delete this quote.",
-        "last": ":person_shrugging: Error: No quote available."
+        "item": ":thinking: Cannot delete this quote. It doesn't appear to exist.",
+        "last": ":person_shrugging: Cannot delete last saved quote. No quote available."
       }
     },
     "help": {
