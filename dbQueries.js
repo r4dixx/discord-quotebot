@@ -89,7 +89,7 @@ module.exports = function() {
           resolve("error-not-found");
           return console.error('Error: Cannot get last quote for edition. No quote found in database.');
         }
-        quoteOld = row.quote;
+        let quoteOld = row.quote;
         if (quoteNew == quoteOld) {
           resolve("error-no-changes");
           return console.error(`Aborting edition. No changes made → ${quoteOld}`);
