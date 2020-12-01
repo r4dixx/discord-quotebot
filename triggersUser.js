@@ -25,7 +25,7 @@ module.exports = function() {
     insertQuote = function(quote) {
       dbInsertItem(quote).then(function(result) {
         if (result == "success") message.channel.send(`${CONFIG_FEEDBACK_SUCCESS.insert}\n${quote}`);
-        else if (result == "error-found") message.channel.send(CONFIG_FEEDBACK_ERROR.insert);
+        else if (result == "error-duplicate") message.channel.send(CONFIG_FEEDBACK_ERROR.duplicate);
         else if (result == "error") message.channel.send(CONFIG_FEEDBACK_ERROR.generic);
       });
     };

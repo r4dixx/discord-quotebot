@@ -26,7 +26,7 @@ module.exports = function() {
           errorMessage = err.message;
           if (errorMessage == 'SQLITE_CONSTRAINT: UNIQUE constraint failed: quotes.quote') {
             errorMessage = `${errorMessage} → ${quoteForInsertion}`;
-            resolve("error-found");
+            resolve("error-duplicate");
           } else resolve("error");
           return console.error(errorMessage);
         }
