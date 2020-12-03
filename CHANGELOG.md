@@ -7,6 +7,7 @@
 ### Fix
 -   Prevent duplicates in database
 -   Fix mentions not being stored correctly
+-   Fix dm support
 
 ### Tech
 -   Create formatter.js
