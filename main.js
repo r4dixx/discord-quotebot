@@ -17,43 +17,38 @@ getClient().on('message', (message) => {
 
   const CONTENT = message.content;
 
-  if (CONTENT.startsWith(TRIGGER.prefix) && message.author.id != getClient().user.id) {
-    const COMMANDS = TRIGGER.commands;
-    const COMMAND_UPDATE = COMMANDS.update.command;
-    const COMMAND_DELETE = COMMANDS.delete;
+  if (message.author.id == getClient().user.id) return;
 
-    // Get
-    if (CONTENT.isCommand(COMMANDS.get))
-      sendQuoteRandom();
+  const COMMAND = TRIGGER.commands;
+  const COMMAND_UPDATE = COMMAND.update.command;
+  const COMMAND_DELETE = COMMAND.delete;
 
-    // Insert
-    if (CONTENT.startsWithCommand(COMMANDS.insert))
-      insertQuote(CONTENT.toMessageCleanWith(COMMANDS.insert));
+  if (CONTENT.isCommand(COMMAND.get))
+    sendQuoteRandom();
 
-    // Update
-    if (CONTENT.startsWithCommand(COMMAND_UPDATE) && userIsAdmin()) {
-      const TRIGGER_COMMANDS_UPDATE_SEPARATOR = CONFIG.trigger.commands.update.separator;
-      let msgClean = CONTENT.toMessageCleanWith(COMMAND_UPDATE);
-      if (!CONTENT.includes(TRIGGER_COMMANDS_UPDATE_SEPARATOR))
-        updateQuoteLast(msgClean);
-      else
-        updateQuoteItem(msgClean.split(TRIGGER_COMMANDS_UPDATE_SEPARATOR).map(item => item.trim()));
-    }
+  if (CONTENT.startsWithCommand(COMMAND.insert))
+    insertQuote(CONTENT.toMessageCleanWith(COMMAND.insert));
 
-    // Delete
-    if (CONTENT.isCommand(COMMAND_DELETE) && userIsAdmin())
-      deleteQuoteLast();
-    if (CONTENT.startsWithCommand(COMMAND_DELETE) && userIsAdmin())
-      deleteQuoteItem(CONTENT.toMessageCleanWith(COMMANDS.delete));
-
-    // Help
-    if (CONTENT.isCommand(COMMANDS.help) || message.mentions.users.map(user => user).includes(getClient().user))
-      sendHelp();
-
-    // Pong
-    if (CONTENT.isCommand('ping'))
-      sendPong();
+  if (CONTENT.startsWithCommand(COMMAND_UPDATE) && userIsAdmin()) {
+    const TRIGGER_COMMANDS_UPDATE_SEPARATOR = CONFIG.trigger.commands.update.separator;
+    let msgClean = CONTENT.toMessageCleanWith(COMMAND_UPDATE);
+    if (!CONTENT.includes(TRIGGER_COMMANDS_UPDATE_SEPARATOR))
+      updateQuoteLast(msgClean);
+    else
+      updateQuoteItem(msgClean.split(TRIGGER_COMMANDS_UPDATE_SEPARATOR).map(item => item.trim()));
   }
+
+  if (CONTENT.isCommand(COMMAND_DELETE) && userIsAdmin())
+    deleteQuoteLast();
+
+  if (CONTENT.startsWithCommand(COMMAND_DELETE) && userIsAdmin())
+    deleteQuoteItem(CONTENT.toMessageCleanWith(COMMAND.delete));
+
+  if (CONTENT.isCommand(COMMAND.help) || message.mentions.users.map(user => user).includes(getClient().user))
+    sendHelp();
+
+  if (CONTENT.isCommand('ping'))
+    sendPong();
 
   function userIsAdmin() {
     if (getRightsAdmin(message.author.id)) {
