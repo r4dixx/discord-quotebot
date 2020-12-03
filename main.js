@@ -47,7 +47,7 @@ getClient().on('message', (message) => {
       deleteQuoteItem(CONTENT.toMessageCleanWith(COMMANDS.delete));
 
     // Help
-    if (CONTENT.isCommand(COMMANDS.help) || (message.channel.type != 'dm' && message.mentions.members.has(getClient().user.id)))
+    if (CONTENT.isCommand(COMMANDS.help) || message.mentions.users.map(user => user).includes(getClient().user))
       sendHelp();
 
     // Pong
