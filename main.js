@@ -12,48 +12,47 @@ login();
 
 getClient().on('message', (message) => {
 
-  if (message.author.id == getClient().user.id) return;
-
   const CONFIG = require('./config.json');
-  const CONFIG_COMMANDS = CONFIG.trigger.commands;
-  const CONFIG_UPDATE_COMMAND = CONFIG_COMMANDS.update.command;
-  const CONFIG_DELETE_COMMAND = CONFIG_COMMANDS.delete;
+  const TRIGGER = CONFIG.trigger;
 
   const CONTENT = message.content;
 
-  // Get
-  if (CONTENT.isCommand(CONFIG_COMMANDS.get))
-    sendQuoteRandom();
+  if (CONTENT.startsWith(TRIGGER.prefix) && message.author.id != getClient().user.id) {
+    const COMMANDS = TRIGGER.commands;
+    const COMMAND_UPDATE = COMMANDS.update.command;
+    const COMMAND_DELETE = COMMANDS.delete;
 
-  // Insert
-  else if (CONTENT.startsWithCommand(CONFIG_COMMANDS.insert))
-    insertQuote(CONTENT.toMessageCleanWith(CONFIG_COMMANDS.insert));
+    // Get
+    if (CONTENT.isCommand(COMMANDS.get))
+      sendQuoteRandom();
 
-  // Update
-  else if (CONTENT.startsWithCommand(CONFIG_UPDATE_COMMAND) && userIsAdmin()) {
-    const CONFIG_TRIGGER_COMMANDS_UPDATE_SEPARATOR = CONFIG.trigger.commands.update.separator;
-    let msgClean = CONTENT.toMessageCleanWith(CONFIG_UPDATE_COMMAND);
-    if (CONTENT.includes(CONFIG_TRIGGER_COMMANDS_UPDATE_SEPARATOR)) {
-      updateQuoteItem(msgClean.split(CONFIG_TRIGGER_COMMANDS_UPDATE_SEPARATOR).map(item => item.trim()));
-    } else {
-      updateQuoteLast(msgClean);
+    // Insert
+    if (CONTENT.startsWithCommand(COMMANDS.insert))
+      insertQuote(CONTENT.toMessageCleanWith(COMMANDS.insert));
+
+    // Update
+    if (CONTENT.startsWithCommand(COMMAND_UPDATE) && userIsAdmin()) {
+      const TRIGGER_COMMANDS_UPDATE_SEPARATOR = CONFIG.trigger.commands.update.separator;
+      let msgClean = CONTENT.toMessageCleanWith(COMMAND_UPDATE);
+      if (!CONTENT.includes(TRIGGER_COMMANDS_UPDATE_SEPARATOR))
+        updateQuoteLast(msgClean);
+      else
+        updateQuoteItem(msgClean.split(TRIGGER_COMMANDS_UPDATE_SEPARATOR).map(item => item.trim()));
     }
-  }
 
-  // Delete
-  else if (CONTENT.isCommand(CONFIG_DELETE_COMMAND) && userIsAdmin()) {
-    deleteQuoteLast();
-  } else if (CONTENT.startsWithCommand(CONFIG_DELETE_COMMAND) && userIsAdmin()) {
-    deleteQuoteItem(CONTENT.toMessageCleanWith(CONFIG_COMMANDS.delete));
-  }
+    // Delete
+    if (CONTENT.isCommand(COMMAND_DELETE) && userIsAdmin())
+      deleteQuoteLast();
+    if (CONTENT.startsWithCommand(COMMAND_DELETE) && userIsAdmin())
+      deleteQuoteItem(CONTENT.toMessageCleanWith(COMMANDS.delete));
 
-  // Help
-  else if (CONTENT.isCommand(CONFIG_COMMANDS.help) || (message.mentions.members.has(getClient().user.id) || null))
-    sendHelp();
+    // Help
+    if (CONTENT.isCommand(COMMANDS.help) || (message.mentions.members.has(getClient().user.id || null)))
+      sendHelp();
 
-  // Pong
-  else if (CONTENT.isCommand('ping')) {
-    sendPong();
+    // Pong
+    if (CONTENT.isCommand('ping'))
+      sendPong();
   }
 
   function userIsAdmin() {
