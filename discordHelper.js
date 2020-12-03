@@ -3,7 +3,6 @@
 module.exports = function() {
 
   const CLIENT = new(require('discord.js')).Client();
-  const CONFIG = require('./config.json');
   const CONFIG_PRIVATE = require('./config_private.json');
 
   login = function() {
