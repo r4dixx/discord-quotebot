@@ -18,15 +18,17 @@ These can be customized pretty heavily (see [config.json](config.json))
 
 2.  Make sure nodeJs is installed. If it isn't [head up here](https://nodejs.org/en/download/package-manager/)
 
-3.  `cd` to the root of this project and run `npm install` to install dependencies
+3.  Run `npm install` to install dependencies
 
-4.  Edit [config.json](config.json) and customize it to your likings
+4.  `cd src`
+
+5.  Edit [config.json](src/config.json) and customize it to your likings
 
     **Warning**: Some prefix/commands can cause conflicts with other bots. Careful what you wish for
 
-5.  [Create a new Discord app](https://discordapp.com/developers/applications/me) and an associated bot account. If you're lost, see [the official documentation](https://discordjs.guide/preparations/setting-up-a-bot-application.html).
+6.  [Create a new Discord app](https://discordapp.com/developers/applications/me) and an associated bot account. If you're lost, see [the official documentation](https://discordjs.guide/preparations/setting-up-a-bot-application.html).
 
-6.  Open [config_private.json](config_private.json) and:
+7.  Open [config_private.json](src/config_private.json) and:
 
     -   Copy your bot account token and paste it into the `token` field. If you don't know where to find it, [check the official documentation](https://discordjs.guide/preparations/setting-up-a-bot-application.html#your-token).
 
@@ -38,17 +40,17 @@ These can be customized pretty heavily (see [config.json](config.json))
 
     -   `git update-index --assume-unchanged config_private.json`
 
-7.  Create a Discord invite with `send messages` permissions and your application client ID:
+8.  Create a Discord invite with `send messages` permissions and your application client ID:
 
     -   `https://discordapp.com/oauth2/authorize?scope=bot&permissions=2048&client_id=YOUR_CLIENT_ID`
 
     For more details, [check the official documentation](https://discordjs.guide/preparations/adding-your-bot-to-servers.html)
 
-8.  `cd` to the root of this project and run `node main.js` to start the bot
+9.  Run `node main.js` to start the bot
 
-9.  Check if everything is up and running in your Discord server (with `!ping` for instance).
+10. Check if everything is up and running in your Discord server (with `!ping` for instance).
 
-10. Profit
+Profit!
 
 # Credits
 

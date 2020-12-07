@@ -10,6 +10,7 @@
 -   Fix dm support
 
 ### Tech
+-   Review architecture
 -   Create formatter.js
 -   Performance and stability improvements
 -   Cleanup
