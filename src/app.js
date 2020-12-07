@@ -1,18 +1,19 @@
 /*jshint esversion: 6 */
 
-require('./discordHelper.js')();
-require('./dbQueries.js')();
-require('./triggersUser.js')();
-require('./triggersAdmin.js')();
-require('./formatter.js')();
+require('./discord/discordHelper.js')();
+require('./database/dbQueries.js')();
+require('./tools/formatter.js')();
 
-dbCreateTableIfNecessary();
+require('./triggers/triggersUser.js')();
+require('./triggers/triggersAdmin.js')();
 
 login();
 
+dbCreateTableIfNecessary();
+
 getClient().on('message', (message) => {
 
-  const CONFIG = require('./config.json');
+  const CONFIG = require('./config/config.json');
   const TRIGGER = CONFIG.trigger;
 
   const CONTENT = message.content;

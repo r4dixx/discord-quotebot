@@ -18,7 +18,7 @@ module.exports = function() {
   };
 
   String.prototype.toTrigger = function() {
-    return require('./config.json').trigger.prefix + this;
+    return require('../config/config.json').trigger.prefix + this;
   };
 
 };

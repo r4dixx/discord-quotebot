@@ -1,12 +1,12 @@
 /*jshint esversion: 6 */
 
-require('./dbQueries.js')();
+require('../database/dbQueries.js')();
 
 module.exports = function() {
 
   getClient().on('message', (message) => {
 
-    const CONFIG = require('./config.json');
+    const CONFIG = require('../config/config.json');
 
     const FEEDBACK = CONFIG.feedback;
 

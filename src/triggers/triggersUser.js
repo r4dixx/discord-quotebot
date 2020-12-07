@@ -1,13 +1,13 @@
 /*jshint esversion: 6 */
 
-require('./dbQueries.js')();
-require('./formatter.js')();
+require('../database/dbQueries.js')();
+require('../tools/formatter.js')();
 
 module.exports = function() {
 
   getClient().on('message', (message) => {
 
-    const CONFIG = require('./config.json');
+    const CONFIG = require('../config/config.json');
     const COMMAND = CONFIG.trigger.commands;
 
     const FEEDBACK = CONFIG.feedback;

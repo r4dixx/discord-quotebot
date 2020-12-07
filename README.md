@@ -28,7 +28,7 @@ These can be customized pretty heavily (see [config.json](config.json))
 
 6.  [Create a new Discord app](https://discordapp.com/developers/applications/me) and an associated bot account. If you're lost, see [the official documentation](https://discordjs.guide/preparations/setting-up-a-bot-application.html).
 
-7.  Open [config_private.json](src/config_private.json) and:
+7.  Open [private.json](src/private.json) and:
 
     -   Copy your bot account token and paste it into the `token` field. If you don't know where to find it, [check the official documentation](https://discordjs.guide/preparations/setting-up-a-bot-application.html#your-token).
 
@@ -46,7 +46,7 @@ These can be customized pretty heavily (see [config.json](config.json))
 
     For more details, [check the official documentation](https://discordjs.guide/preparations/adding-your-bot-to-servers.html)
 
-9.  Run `node main.js` to start the bot
+9.  Run `node app.js` to start the bot
 
 10. Check if everything is up and running in your Discord server (with `!ping` for instance).
 

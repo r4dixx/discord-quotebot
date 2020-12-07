@@ -6,5 +6,5 @@
 node_modules/
 
 # Private files
-quotes.db
-config_private.json
+src/config/private.json
+src/quotes.db
