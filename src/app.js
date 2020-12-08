@@ -1,8 +1,9 @@
 /*jshint esversion: 6 */
 
-require('./discord/discordHelper.js')();
-require('./database/dbQueries.js')();
+require('./tools/discordHelper.js')();
 require('./tools/formatter.js')();
+
+require('./database/dbQueries.js')();
 
 require('./handlers/userHandler.js')();
 require('./handlers/adminHandler.js')();
