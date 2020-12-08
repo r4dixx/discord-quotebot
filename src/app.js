@@ -4,8 +4,8 @@ require('./discord/discordHelper.js')();
 require('./database/dbQueries.js')();
 require('./tools/formatter.js')();
 
-require('./triggers/triggersUser.js')();
-require('./triggers/triggersAdmin.js')();
+require('./handlers/userHandler.js')();
+require('./handlers/adminHandler.js')();
 
 login();
 
