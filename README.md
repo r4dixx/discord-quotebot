@@ -10,27 +10,27 @@ Discord bot to output, save, and edit quotes upon commands.
 -   Delete chosen quote (admins only) → `!unquote` `your_quote_to_delete`
 -   Display help message (admins only) → `!help` or mention the bot
 
-These can be customized pretty heavily (see [config.json](config.json))
+These can be customized pretty heavily (see [config.json](src/config/config.json))
 
 # Setup in 10 steps
 
 1.  Download [the latest release](https://github.com/r4dixx/QuoteBot/releases)
 
-2.  Make sure nodeJs is installed. If it isn't [head up here](https://nodejs.org/en/download/package-manager/)
+2.  Make sure Node.js is installed. If it isn't [head up here](https://nodejs.org/en/download/package-manager/)
 
 3.  Run `npm install` to install dependencies
 
 4.  `cd src`
 
-5.  Edit [config.json](src/config.json) and customize it to your likings
+5.  Edit [config.json](src/config/config.json) and customize it to your likings
 
     **Warning**: Some prefix/commands can cause conflicts with other bots. Careful what you wish for
 
 6.  [Create a new Discord app](https://discordapp.com/developers/applications/me) and an associated bot account. If you're lost, see [the official documentation](https://discordjs.guide/preparations/setting-up-a-bot-application.html).
 
-7.  Open [private.json](src/private.json) and:
+7.  Open [private.json](src/config/private.json) and:
 
-    -   Copy your bot account token and paste it into the `token` field. If you don't know where to find it, [check the official documentation](https://discordjs.guide/preparations/setting-up-a-bot-application.html#your-token).
+    -   Copy your bot account token and paste it into the `token` field. [see the official documentation](https://discordjs.guide/preparations/setting-up-a-bot-application.html#your-token).
 
     -   Paste your user ID in `botAdminIds`. This will give you more rights such quote edition, quote deletion, etc. You can add as many ids as you'd like but I recommend you tread carefully with this. If you don't know where to find your user ID, [check the official documentation](https://support.discordapp.com/hc/articles/206346498)
 
@@ -44,7 +44,7 @@ These can be customized pretty heavily (see [config.json](config.json))
 
     -   `https://discordapp.com/oauth2/authorize?scope=bot&permissions=2048&client_id=YOUR_CLIENT_ID`
 
-    For more details, [check the official documentation](https://discordjs.guide/preparations/adding-your-bot-to-servers.html)
+    For more details, [check the official documentation](https://discordjs.guide/preparations/adding-your-bot-to-servers.html) (you know the drill)
 
 9.  Run `node app.js` to start the bot
 
