@@ -16,6 +16,7 @@
 -   Cleanup
 -   Fix security vulnerability (see [#7](https://github.com/r4dixx/QuoteBot/pull/7))
 -   Update `discord.js` to version 12.5.1 ([changelog](https://github.com/discordjs/discord.js/releases/tag/12.5.1))
+-   Update `ms` to version 2.1.3 ([changelog](https://github.com/vercel/ms/releases/tag/2.1.3))
 
 ## 3.1.2
 
