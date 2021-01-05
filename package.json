@@ -3,9 +3,6 @@
   "version": "3.2.0",
   "description": "Open-source Discord bot to output random quotes upon command",
   "app": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/r4dixx/QuoteBot.git"
