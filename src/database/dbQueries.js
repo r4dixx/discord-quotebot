@@ -5,7 +5,7 @@ module.exports = function() {
   require('./dbHelper.js')();
 
   dbCreateTableIfNecessary = function() {
-    const DB_PATH = './quotes.db';
+    const DB_PATH = 'database/quotes.db';
     if (require('fs').existsSync(DB_PATH)) console.log(`File ${DB_PATH} exists. Moving on`);
     else {
       console.log(`${DB_PATH} not found, creating...`);
