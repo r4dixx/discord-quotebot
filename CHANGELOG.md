@@ -21,7 +21,12 @@
 - Cleanup
 - Fix security vulnerability (see [#7](https://github.com/r4dixx/QuoteBot/pull/7))
 - Update `discord.js` to version 12.5.1 ([changelog](https://github.com/discordjs/discord.js/releases/tag/12.5.1))
+- Update `mime-db` to version 1.45.0 ([changelog](https://github.com/jshttp/mime-db/releases/tag/v1.45.0))
+- Update `mime-types` to version 2.1.28 ([changelog](https://github.com/jshttp/mime-types/releases/tag/2.1.28))
 - Update `ms` to version 2.1.3 ([changelog](https://github.com/vercel/ms/releases/tag/2.1.3))
+q
+- Update `ws` to version 7.4.2 ([changelog](https://github.com/websockets/ws/releases/tag/7.4.2))
+q
 
 ---
 
