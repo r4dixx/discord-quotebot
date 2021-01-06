@@ -1,12 +1,12 @@
 /*jshint esversion: 6 */
 
-require('./tools/discordHelper.js')();
-require('./tools/formatter.js')();
+require('./src/tools/discordHelper.js')();
+require('./src/tools/formatter.js')();
 
-require('./database/dbQueries.js')();
+require('./src/database/dbQueries.js')();
 
-require('./handlers/userHandler.js')();
-require('./handlers/adminHandler.js')();
+require('./src/handlers/userHandler.js')();
+require('./src/handlers/adminHandler.js')();
 
 login();
 
@@ -14,7 +14,7 @@ dbCreateTableIfNecessary();
 
 getClient().on('message', (message) => {
 
-  const CONFIG = require('./config/config.json');
+  const CONFIG = require('./src/config/config.json');
   const TRIGGER = CONFIG.trigger;
 
   const CONTENT = message.content;
