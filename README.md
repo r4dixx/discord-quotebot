@@ -46,7 +46,7 @@ These can be customized pretty heavily (see [config.json](src/config/config.json
 
     For more details, [check the official documentation](https://discordjs.guide/preparations/adding-your-bot-to-servers.html) (you know the drill)
 
-9. `cd` back to the root of this project and run `node app.js`
+9. Run `node app.js`
 
 10. Check if everything is up and running in your Discord server (with `!ping` for instance).
 
