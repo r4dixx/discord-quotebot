@@ -1,10 +1,4 @@
-.DS_Store
-._.DS_Store
-**/.DS_Store
-**/._.DS_Store
-
+.vscode/
 node_modules/
-
-# Private files
-quotes.db
-config_private.json
+src/config/private.json
+src/database/quotes.db
