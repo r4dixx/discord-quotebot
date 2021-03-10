@@ -6,10 +6,6 @@
 
 - Prevent mentions in quotes
 
-### Documentation
-
-- Fix wrong command provided for ignoring private json file
-
 ### Fix
 
 - Review logs (specifically add missing one for insertion)
@@ -19,6 +15,10 @@
 - Update `node-addon-api` to version 3.1.0 ([changelog](https://github.com/nodejs/node-addon-api/releases/tag/3.1.0))
 - Update `sqlite3` to version 5.0.2 ([changelog](https://github.com/mapbox/node-sqlite3/releases/tag/v5.0.2))
 - Update `string_decoder` to version 1.1.1 ([changelog](https://github.com/nodejs/string_decoder/releases/tag/v1.1.1))
+
+### Documentation
+
+- Fix wrong command provided for ignoring private json file
 
 ---
 
@@ -55,6 +55,8 @@
 ### Fix
 
 - CRITICAL : Fix check rights spamming
+
+---
 
 ## 3.1.1
 
@@ -106,15 +108,15 @@
 
 - Improve stability
 
+### Tech
+
+- Better project decoupling (with commandHandler.js for instance)
+
 ### Documentation
 
 - Clearer and more complete steps
 - Links to official documentation
 - Disclaimers for sensible steps
-
-### Tech
-
-- Better project decoupling (with commandHandler.js for instance)
 
 ---
 
@@ -130,15 +132,15 @@
 - Make help friendlier to use and to understand
 - Review formatting
 
-### Documentation
-
-- Improve README.md
-- Warn about private config
-
 ### Tech
 
 - Make help formatting easier to read in codebase
 - Update dependencies
+
+### Documentation
+
+- Improve README.md
+- Warn about private config
 
 ---
 
@@ -153,10 +155,10 @@ First release
 - Display help
 - Configure commands, feedbacks and more
 
-### Documentation
-
-- Create README & LICENSE
-
 ### Tech
 
 - Ping to debug
+
+### Documentation
+
+- Create README & LICENSE
