@@ -38,7 +38,7 @@ These can be customized pretty heavily (see [config.json](src/config/config.json
 
     **Warning 2**: Do not commit this file as it contains private information. To avoid accidents I recommend you run the following command when done with the steps above:
 
-    - `git update-index --assume-unchanged config_private.json`
+    - `git update-index --assume-unchanged src/private.json`
 
 8. Create a Discord invite with `send messages` permissions and your application client ID:
 
