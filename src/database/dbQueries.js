@@ -30,6 +30,7 @@ module.exports = function() {
           } else resolve("error");
           return console.error(errorMessage);
         }
+        console.log(`Inserted item: ${quoteForInsertion}`);
         resolve("success");
       });
       dbClose();
@@ -48,7 +49,7 @@ module.exports = function() {
           resolve("error-not-found");
           return console.error('Cannot get random quote. No quote found in database');
         }
-        console.log(`Quote to be displayed: ${row.quote}`);
+        console.log(`Got item: ${row.quote}`);
         resolve(row.quote);
       });
       dbClose();
@@ -80,7 +81,7 @@ module.exports = function() {
             } else resolve("error");
             return console.error(errorMessage);
           }
-          console.log(`Updated last quote. FROM: ${quoteOld} TO: ${quoteNew}`);
+          console.log(`Selected item updated. FROM: ${quoteOld} TO: ${quoteNew}`);
           resolve("success");
         });
       });
@@ -114,7 +115,7 @@ module.exports = function() {
             } else resolve("error");
             return console.error(errorMessage);
           }
-          console.log(`Updated last quote. FROM: ${quoteOld} TO: ${quoteNew}`);
+          console.log(`Last inserted item updated. FROM: ${quoteOld} TO: ${quoteNew}`);
           resolve(quoteOld);
         });
       });
@@ -165,6 +166,6 @@ module.exports = function() {
 function dbDelete(quote) {
   dbGet().run('DELETE FROM quotes WHERE quote = ?', quote, function(err) {
     if (err) return console.error(err.message);
-    console.log(`Deleted quote: ${quote}`);
+    console.log(`Item deleted: ${quote}`);
   });
 }
