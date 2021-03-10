@@ -22,15 +22,16 @@ getClient().on('message', (message) => {
   if (message.author.id == getClient().user.id) return;
 
   const COMMAND = TRIGGER.commands;
+  const COMMAND_INSERT = COMMAND.insert;
   const COMMAND_UPDATE = COMMAND.update.command;
   const COMMAND_DELETE = COMMAND.delete;
 
   if (CONTENT.isCommand(COMMAND.get))
     sendQuoteRandom();
 
-  if (CONTENT.startsWithCommand(COMMAND.insert)) {
+  if (CONTENT.startsWithCommand(COMMAND_INSERT)) {
     if (message.mentions.members.size == 0)
-      insertQuote(CONTENT.toMessageCleanWith(COMMAND.insert));
+      insertQuote(CONTENT.toMessageCleanWith(COMMAND_INSERT));
     else
       sendNoMentionWarning();
   }
@@ -48,7 +49,7 @@ getClient().on('message', (message) => {
     deleteQuoteLast();
 
   if (CONTENT.startsWithCommand(COMMAND_DELETE) && userIsAdmin())
-    deleteQuoteItem(CONTENT.toMessageCleanWith(COMMAND.delete));
+    deleteQuoteItem(CONTENT.toMessageCleanWith(COMMAND_DELETE));
 
   if (CONTENT.isCommand(COMMAND.help) || message.mentions.users.map(user => user).includes(getClient().user))
     sendHelp();

@@ -11,10 +11,7 @@ module.exports = function() {
   };
 
   String.prototype.toMessageCleanWith = function(command) {
-    let msgClean = this.replace(`${command.toTrigger()} `, '');
-    // People mentioned with a nickname have ! before their user id. We don't need that.
-    msgClean = msgClean.replace(/<@!/g, '<@');
-    return msgClean;
+    return this.replace(`${command.toTrigger()} `, '');;
   };
 
   String.prototype.toTrigger = function() {
