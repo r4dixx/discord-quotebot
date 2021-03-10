@@ -1,5 +1,27 @@
 # Changelog
 
+## 3.3.0
+
+### Feature
+
+- Prevent mentions in quotes
+
+### Documentation
+
+- Fix wrong command provided for ignoring private json file
+
+### Fix
+
+- Review logs (specifically add missing one for insertion)
+
+### Tech
+
+- Update `node-addon-api` to version 3.1.0 ([changelog](https://github.com/nodejs/node-addon-api/releases/tag/3.1.0))
+- Update `sqlite3` to version 5.0.2 ([changelog](https://github.com/mapbox/node-sqlite3/releases/tag/v5.0.2))
+- Update `string_decoder` to version 1.1.1 ([changelog](https://github.com/nodejs/string_decoder/releases/tag/v1.1.1))
+
+---
+
 ## 3.2.0
 
 ### Feature
