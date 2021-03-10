@@ -67,6 +67,11 @@ ${HELP_SELF.title}
       console.log('Help displayed');
     };
 
+    sendNoMentionWarning = function() {
+      console.log(`Message contains mention, skipping`);
+      message.channel.send(FEEDBACK_ERROR.mention);
+    };
+
     sendPong = function() {
       console.log(`Sent \"pong\" to ${message.author.username}`);
       message.reply('pong');

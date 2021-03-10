@@ -20,6 +20,8 @@ getClient().on('message', (message) => {
   const CONTENT = message.content;
 
   if (message.author.id == getClient().user.id) return;
+  
+  if (CONTENT.includes("test")) sendNoMentionWarning();
 
   const COMMAND = TRIGGER.commands;
   const COMMAND_UPDATE = COMMAND.update.command;
