@@ -20,8 +20,6 @@ getClient().on('message', (message) => {
   const CONTENT = message.content;
 
   if (message.author.id == getClient().user.id) return;
-  
-  if (CONTENT.includes("test")) sendNoMentionWarning();
 
   const COMMAND = TRIGGER.commands;
   const COMMAND_UPDATE = COMMAND.update.command;
@@ -30,8 +28,12 @@ getClient().on('message', (message) => {
   if (CONTENT.isCommand(COMMAND.get))
     sendQuoteRandom();
 
-  if (CONTENT.startsWithCommand(COMMAND.insert))
-    insertQuote(CONTENT.toMessageCleanWith(COMMAND.insert));
+  if (CONTENT.startsWithCommand(COMMAND.insert)) {
+    if (message.mentions.members.size == 0)
+      insertQuote(CONTENT.toMessageCleanWith(COMMAND.insert));
+    else
+      sendNoMentionWarning();
+  }
 
   if (CONTENT.startsWithCommand(COMMAND_UPDATE) && userIsAdmin()) {
     const TRIGGER_COMMANDS_UPDATE_SEPARATOR = CONFIG.trigger.commands.update.separator;
