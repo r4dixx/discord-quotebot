@@ -20,6 +20,6 @@
   "homepage": "https://github.com/r4dixx/QuoteBot#readme",
   "dependencies": {
     "discord.js": "^12.5.1",
-    "sqlite3": "^5.0.2"
+    "sqlite3": "^4.2.0"
   }
 }
