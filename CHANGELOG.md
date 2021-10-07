@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.4.1
+
+### Documentation
+
+Fix wrong link in README.md 
+
 ## 3.4.0
 
 ### Tech

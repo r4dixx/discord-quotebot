@@ -1,8 +1,5 @@
 <h1>QuoteBot 🤖</h1>
 <p>
-  <a href="https://www.npmjs.com/package/quotebot" target="_blank">
-    <img alt="Version" src="https://img.shields.io/npm/v/quotebot.svg">
-  </a>
   <a href="https://github.com/r4dixx/QuoteBot#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -126,7 +123,7 @@ Give a ⭐️ if this project helped you!
 ## 📝 License
 
 Copyright © 2021 [r4dixx](https://github.com/r4dixx).<br />
-This project is [GPL--3.0](https://github.com/r4dixx/QuoteBot/blob/master/LICENSE) licensed.
+This project is [GPL-3.0](https://github.com/r4dixx/QuoteBot/blob/master/LICENSE) licensed.
 
 ***
 
