@@ -17,7 +17,7 @@
   </a>
 </p>
 
-> Discord bot to output, save, and edit quotes upon commands.
+Discord bot to output, save, and edit quotes upon commands.
 
 - Get a random quote → `!quote`
 - Save a quote → `!quote` `your_quote`
@@ -29,20 +29,23 @@
 
 These can be customized pretty heavily in [src/config/config.json](src/config/config.json)
 
+## 📖 Table of contents
 
-### 🏠 [Homepage](https://github.com/r4dixx/QuoteBot#readme)
-
-## Table of contents
-
-- [Preliminary steps](#preliminary-steps)
+- [Preliminary steps](#-preliminary-steps)
    - [Important notes](#important-notes)
-- [Setup](#setup)
+- [Setup](#-setup)
    - [Locally](#locally)
    - [In the cloud](#in-the-cloud)
-- [Customize](#customize)
-- [Test if everything is up and running](#test-if-everything-is-up-and-running)
+- [Customization](#%EF%B8%8F-customization)
+- [Test if everything is up and running](#-test-if-everything-is-up-and-running)
+- [About the author](#-about-the-author)
+- [Contributing](#-contributing)
+- [Show your support](#-show-your-support)
+- [License](#-license)
 
-## Preliminary steps
+***
+
+## 🏁 Preliminary steps
 
 1. [Create a new Discord app](https://discordapp.com/developers/applications/me) and an associated bot account.
 
@@ -56,7 +59,10 @@ These can be customized pretty heavily in [src/config/config.json](src/config/co
 
     - Copy your bot account token and paste it into the `token` field.
 
-    - Paste your user ID in `botAdminIds`. _This will give you more rights (edition, deletion, etc). You can add as many admins as you'd like but I recommend you tread carefully._
+    - Paste your user ID in `botAdminIds`. 
+
+      > This will give you more rights (edition, deletion, etc).  
+      You can add as many admins as you'd like but I recommend you tread carefully.
 
 ### Important notes
 
@@ -65,10 +71,10 @@ These can be customized pretty heavily in [src/config/config.json](src/config/co
    
    `git update-index --assume-unchanged src/private.json`
    
-- If you don't know where to find your user ID, [check the official support page](https://support.discordapp.com/hc/articles/206346498)
+- To find your user ID, [check the official support page](https://support.discordapp.com/hc/articles/206346498).  
 - If you're lost, see [the official documentation](https://discordjs.guide).
 
-## Setup
+## 🏗 Setup
 
 ### Locally
 
@@ -90,30 +96,30 @@ $ heroku create
 $ git push heroku main
 ```
 
-## Customize
+## ⚙️ Customization
 
 Edit [src/config/config.json](src/config/config.json) and customize it to your likings
 
-**Warning**: Some prefix/commands can cause conflicts with other bots!
+> **Warning**: Some prefix/commands can cause conflicts with other bots!
 
-## Test if everything is up and running
+## 🧪 Test if everything is up and running
 
 Send `!ping` in your Discord server and see the magic happen
 
-## Author
+***
 
-👤 **r4dixx**
+## 👤 About the author
 
-* Website: https://r4dixx.github.io/
+* Website: [r4dixx.github.io](https://r4dixx.github.io/)
 * Twitter: [@r4dixx](https://twitter.com/r4dixx)
 * Github: [@r4dixx](https://github.com/r4dixx)
 * LinkedIn: [@r4dixx](https://linkedin.com/in/r4dixx)
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/r4dixx/QuoteBot/issues). You can also take a look at the [contributing guide](https://github.com/r4dixx/QuoteBot/blob/master/CONTRIBUTING.md).
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/r4dixx/QuoteBot/issues).
 
-## Show your support
+## 🤗 Show your support
 
 Give a ⭐️ if this project helped you!
 
@@ -123,4 +129,5 @@ Copyright © 2021 [r4dixx](https://github.com/r4dixx).<br />
 This project is [GPL--3.0](https://github.com/r4dixx/QuoteBot/blob/master/LICENSE) licensed.
 
 ***
+
 _This README was partially generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
