@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.4.0
+
+### Tech
+
+Improve stability
+Add Heroku support
+Update dependencies
+
+### Documentation
+
+Improve README.md
+
 ## 3.3.0
 
 ### Feature
