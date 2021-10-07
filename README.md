@@ -1,6 +1,23 @@
-# QuoteBot
+<h1>QuoteBot 🤖</h1>
+<p>
+  <a href="https://www.npmjs.com/package/quotebot" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/v/quotebot.svg">
+  </a>
+  <a href="https://github.com/r4dixx/QuoteBot#readme" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="https://github.com/r4dixx/QuoteBot/graphs/commit-activity" target="_blank">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+  </a>
+  <a href="https://github.com/r4dixx/QuoteBot/blob/master/LICENSE" target="_blank">
+    <img alt="License: GPL--3.0" src="https://img.shields.io/github/license/r4dixx/quotebot" />
+  </a>
+  <a href="https://twitter.com/r4dixx" target="_blank">
+    <img alt="Twitter: r4dixx" src="https://img.shields.io/twitter/follow/r4dixx.svg?style=social" />
+  </a>
+</p>
 
-Discord bot to output, save, and edit quotes upon commands.
+> Discord bot to output, save, and edit quotes upon commands.
 
 - Get a random quote → `!quote`
 - Save a quote → `!quote` `your_quote`
@@ -11,6 +28,9 @@ Discord bot to output, save, and edit quotes upon commands.
 - Display help message (admins only) → `!help` or mention the bot
 
 These can be customized pretty heavily in [src/config/config.json](src/config/config.json)
+
+
+### 🏠 [Homepage](https://github.com/r4dixx/QuoteBot#readme)
 
 ## Table of contents
 
@@ -79,3 +99,28 @@ Edit [src/config/config.json](src/config/config.json) and customize it to your l
 ## Test if everything is up and running
 
 Send `!ping` in your Discord server and see the magic happen
+
+## Author
+
+👤 **r4dixx**
+
+* Website: https://r4dixx.github.io/
+* Twitter: [@r4dixx](https://twitter.com/r4dixx)
+* Github: [@r4dixx](https://github.com/r4dixx)
+* LinkedIn: [@r4dixx](https://linkedin.com/in/r4dixx)
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/r4dixx/QuoteBot/issues). You can also take a look at the [contributing guide](https://github.com/r4dixx/QuoteBot/blob/master/CONTRIBUTING.md).
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+## 📝 License
+
+Copyright © 2021 [r4dixx](https://github.com/r4dixx).<br />
+This project is [GPL--3.0](https://github.com/r4dixx/QuoteBot/blob/master/LICENSE) licensed.
+
+***
+_This README was partially generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
