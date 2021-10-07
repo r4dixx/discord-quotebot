@@ -20,15 +20,13 @@ These can be customized pretty heavily (see [config.json](src/config/config.json
 
 3. Run `npm install` to install dependencies
 
-4. `cd src`
-
-5. Edit [config.json](src/config/config.json) and customize it to your likings
+4. Edit [config.json](src/config/config.json) and customize it to your likings
 
     **Warning**: Some prefix/commands can cause conflicts with other bots. Careful what you wish for
 
-6. [Create a new Discord app](https://discordapp.com/developers/applications/me) and an associated bot account. If you're lost, see [the official documentation](https://discordjs.guide/preparations/setting-up-a-bot-application.html).
+5. [Create a new Discord app](https://discordapp.com/developers/applications/me) and an associated bot account. If you're lost, see [the official documentation](https://discordjs.guide/preparations/setting-up-a-bot-application.html).
 
-7. Open [private.json](src/config/private.json) and:
+6. Open [private.json](src/config/private.json) and:
 
     - Copy your bot account token and paste it into the `token` field. [see the official documentation](https://discordjs.guide/preparations/setting-up-a-bot-application.html#your-token).
 
@@ -40,17 +38,17 @@ These can be customized pretty heavily (see [config.json](src/config/config.json
 
     - `git update-index --assume-unchanged src/private.json`
 
-8. Create a Discord invite with `send messages` permissions and your application client ID:
+7. Create a Discord invite with `send messages` permissions and your application client ID:
 
     - `https://discordapp.com/oauth2/authorize?scope=bot&permissions=2048&client_id=YOUR_CLIENT_ID`
 
     For more details, [check the official documentation](https://discordjs.guide/preparations/adding-your-bot-to-servers.html) (you know the drill)
 
-9. Run `node app.js`
+8. Run `npm start`
 
-10. Check if everything is up and running in your Discord server (with `!ping` for instance).
+9. Check if everything is up and running in your Discord server (with `!ping` for instance).
 
-Profit!
+10. Profit!
 
 # Credits
 
