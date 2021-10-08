@@ -4,7 +4,11 @@
 
 ### Tech
 
-Migrate to discord.js v13
+BREAKING CHANGE - Migrate to discord.js v13
+- Install NodeJS 16.6.0 or higher
+- `rm -rf node_modules` 
+- `npm install`
+
 Update dependencies
 
 ### Documentation
