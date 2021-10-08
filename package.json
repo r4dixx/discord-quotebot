@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/r4dixx/QuoteBot.git"
+    "url": "https://github.com/r4dixx/Discord-QuoteBot.git"
   },
   "keywords": [
     "discord",
@@ -20,9 +20,9 @@
   "author": "r4dixx",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/r4dixx/QuoteBot/issues"
+    "url": "https://github.com/r4dixx/Discord-QuoteBot/issues"
   },
-  "homepage": "https://github.com/r4dixx/QuoteBot#readme",
+  "homepage": "https://github.com/r4dixx/Discord-QuoteBot",
   "dependencies": {
     "discord.js": "^13.2.0",
     "sqlite3": "^4.2.0"
