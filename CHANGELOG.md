@@ -6,6 +6,8 @@
 
 Setup action to publish packages
 
+---
+
 ## 3.4.4
 
 ### Tech
@@ -49,6 +51,8 @@ Update dependencies
 ### Documentation
 
 Improve README.md
+
+---
 
 ## 3.3.0
 
@@ -105,8 +109,6 @@ Improve README.md
 ### Fix
 
 - CRITICAL : Fix check rights spamming
-
----
 
 ## 3.1.1
 
