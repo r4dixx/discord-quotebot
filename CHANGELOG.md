@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.5.1
+
+### Tech
+
+Fix workflow
+
 ## 3.5.0
 
 ### Tech
