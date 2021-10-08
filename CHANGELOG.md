@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.5.1
+
+### Tech
+
+Fix workflow for package publication
+
 ## 3.5.0
 
 ### Tech
