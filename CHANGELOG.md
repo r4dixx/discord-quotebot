@@ -1,6 +1,11 @@
 # Changelog
 
-## ?
+## 3.5.0
+
+### Tech
+
+Migrate to discord.js v13
+Update dependencies
 
 ### Documentation
 
