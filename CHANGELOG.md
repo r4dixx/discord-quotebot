@@ -11,6 +11,12 @@ BREAKING CHANGE - Migrate to discord.js v13
 
 Update dependencies
 
+## 3.4.3
+
+### Tech
+
+Fix package name for publication
+
 ### Documentation
 
 Review badges in README.md
