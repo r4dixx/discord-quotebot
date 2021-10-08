@@ -1,16 +1,14 @@
 {
-  "name": "discord-quotebot",
-  "version": "3.5.3",
+  "name": "@r4dixx/discord-quotebot",
   "description": "Open-source Discord bot to output random quotes upon command",
+  "version": "3.5.1",
+  "main": "./src/app.js",
   "scripts": {
     "start": "cd src && node app.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/r4dixx/Discord-QuoteBot.git"
-  },
-  "publishConfig": {
-    "r4dixx:registry": "https://npm.pkg.github.com"
+    "url": "git+https://github.com/r4dixx/Discord-QuoteBot.git"
   },
   "keywords": [
     "discord",
