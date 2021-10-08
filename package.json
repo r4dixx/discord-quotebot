@@ -1,7 +1,7 @@
 {
   "name": "quotebot",
   "description": "Open-source Discord bot to output random quotes upon command",
-  "version": "3.4.2",
+  "version": "3.5.0",
   "engines": {
     "node": ">=16.6"
   },
