@@ -10,8 +10,15 @@
 - `npm install`
 
 Update dependencies
+Cleanup
 
 ---
+
+## 3.5.3
+
+### Tech
+
+Fix workflow
 
 ## 3.5.0
 

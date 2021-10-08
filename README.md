@@ -1,4 +1,4 @@
-# Discord-Discord-QuoteBot 🤖
+# Discord-QuoteBot 🤖
 
 [![GitHub version](https://badge.fury.io/gh/r4dixx%2FDiscord-QuoteBot.svg)](https://github.com/r4dixx/Discord-QuoteBot/releases/latest)
 [![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://github.com/r4dixx/Discord-QuoteBot#readme)
