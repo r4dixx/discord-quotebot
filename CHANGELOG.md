@@ -1,6 +1,14 @@
 # Changelog
 
+## 3.5.0
+
+### Tech
+
+Setup action to publish packages
+
 ## 3.4.4
+
+### Tech
 
 Fix package.json urls
 
