@@ -1,9 +1,14 @@
 # Discord-QuoteBot 🤖
 
 [![GitHub version](https://badge.fury.io/gh/r4dixx%2FDiscord-QuoteBot.svg)](https://github.com/r4dixx/Discord-QuoteBot/releases/latest)
+[![Node.js Package](https://github.com/r4dixx/Discord-QuoteBot/actions/workflows/release-package.yml/badge.svg)](https://github.com/r4dixx/Discord-QuoteBot/actions/workflows/release-package.yml)
+
+
 [![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://github.com/r4dixx/Discord-QuoteBot#readme)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/r4dixx/Discord-QuoteBot/graphs/commit-activity)
 [![License: GPL--3.0](https://img.shields.io/github/license/r4dixx/Discord-QuoteBot)](https://github.com/r4dixx/Discord-QuoteBot/blob/master/LICENSE)
+
+
 [![Twitter followers](https://img.shields.io/twitter/follow/r4dixx.svg?style=social)](https://twitter.com/r4dixx)
 
 Discord bot to output, save, and edit quotes upon commands.

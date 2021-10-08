@@ -12,6 +12,10 @@
 Update dependencies
 Cleanup
 
+### Documentation
+
+Review badges
+
 ---
 
 ## 3.5.3
