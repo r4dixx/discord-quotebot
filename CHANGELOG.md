@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.4.3
+
+### Tech
+
+Fix package name for publication
+
+### Documentation
+
+Review badges in README.md
+
 ## 3.4.2
 
 ### Tech
