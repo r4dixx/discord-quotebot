@@ -1,18 +1,10 @@
-<h1>QuoteBot 🤖</h1>
-<p>
-  <a href="https://github.com/r4dixx/QuoteBot#readme" target="_blank">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
-  </a>
-  <a href="https://github.com/r4dixx/QuoteBot/graphs/commit-activity" target="_blank">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
-  </a>
-  <a href="https://github.com/r4dixx/QuoteBot/blob/master/LICENSE" target="_blank">
-    <img alt="License: GPL--3.0" src="https://img.shields.io/github/license/r4dixx/quotebot" />
-  </a>
-  <a href="https://twitter.com/r4dixx" target="_blank">
-    <img alt="Twitter: r4dixx" src="https://img.shields.io/twitter/follow/r4dixx.svg?style=social" />
-  </a>
-</p>
+# QuoteBot 🤖
+
+[![GitHub version](https://badge.fury.io/gh/r4dixx%2FQuotebot.svg)](https://github.com/r4dixx/QuoteBot/releases/latest)
+[![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://github.com/r4dixx/QuoteBot#readme)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/r4dixx/QuoteBot/graphs/commit-activity)
+[![License: GPL--3.0](https://img.shields.io/github/license/r4dixx/quotebot)](https://github.com/r4dixx/QuoteBot/blob/master/LICENSE)
+[![Twitter followers](https://img.shields.io/twitter/follow/r4dixx.svg?style=social)](https://twitter.com/r4dixx)
 
 Discord bot to output, save, and edit quotes upon commands.
 
