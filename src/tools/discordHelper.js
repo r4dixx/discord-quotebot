@@ -2,12 +2,14 @@
 
 module.exports = function() {
 
-  const CLIENT = new(require('discord.js')).Client();
+  const { Client, Intents } = require('discord.js');
+
+  const CLIENT = new Client({ intents: [Intents.FLAGS.GUILDS] });
   const CONFIG_PRIVATE = require('../config/private.json');
 
   login = function() {
-    CLIENT.login(CONFIG_PRIVATE.token);
-    CLIENT.on('ready', () => {
+    CLIENT.once('ready', () => {
+      CLIENT.login(CONFIG_PRIVATE.token);
       console.log('Discord client logged in');
     });
   };
