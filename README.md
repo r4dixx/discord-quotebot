@@ -67,7 +67,7 @@ These can be customized pretty heavily in [src/config/config.json](src/config/co
 
 ### Locally
 
-Make sure you have [Node.js](http://nodejs.org/) installed.
+Make sure you have [Node.js](http://nodejs.org/) **16.6 or higher** installed.
 
 ```sh
 $ cd QuoteBot

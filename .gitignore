@@ -1,3 +1,4 @@
+.tool-versions
 .vscode/
 node_modules/
 src/config/private.json
