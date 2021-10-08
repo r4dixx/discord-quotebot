@@ -1,9 +1,9 @@
 {
   "name": "quotebot",
-  "version": "3.4.1",
+  "version": "3.4.2",
   "description": "Open-source Discord bot to output random quotes upon command",
   "scripts": {
-    "start": "cd src && node app.js"   
+    "start": "cd src && node app.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/r4dixx/QuoteBot#readme",
   "dependencies": {
-    "discord.js": "^12.5.1",
+    "discord.js": "^12.5.3",
     "sqlite3": "^4.2.0"
   }
 }

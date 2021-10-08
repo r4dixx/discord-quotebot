@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.4.2
+
+### Tech
+
+Add missing `Procfile`
+
+### Documentation
+
+Add missing Heroku related commands
+
 ## 3.4.1
 
 ### Documentation
