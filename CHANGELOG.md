@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.4.4
+
+Fix package.json urls
+
 ## 3.4.3
 
 ### Tech
