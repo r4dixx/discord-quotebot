@@ -9,6 +9,9 @@
     "type": "git",
     "url": "https://github.com/r4dixx/Discord-QuoteBot.git"
   },
+  "publishConfig": {
+    "r4dixx:registry": "https://npm.pkg.github.com"
+  },
   "keywords": [
     "discord",
     "bot",
