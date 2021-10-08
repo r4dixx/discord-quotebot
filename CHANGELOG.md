@@ -4,7 +4,7 @@
 
 ### Tech
 
-Fix workflow for package publication
+Fix workflow
 
 ## 3.5.0
 
