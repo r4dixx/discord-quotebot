@@ -1,7 +1,7 @@
 {
   "name": "@r4dixx/discord-quotebot",
   "description": "Open-source Discord bot to output random quotes upon command",
-  "version": "3.5.1",
+  "version": "4.0.0",
   "main": "./src/app.js",
   "scripts": {
     "start": "cd src && node app.js"
