@@ -93,6 +93,13 @@ $ heroku create
 $ git push heroku main
 ```
 
+We only need a worker process to run the bot.
+
+```sh
+heroku ps:scale web=0
+heroku ps:scale worker=1
+```
+
 ## ⚙️ Customization
 
 Edit [src/config/config.json](src/config/config.json) and customize it to your likings
