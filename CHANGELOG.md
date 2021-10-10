@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.5.5
+
+**HOTFIX:** Revert this hell of a mess. ¯\\\_(ツ)\_/¯
+
 ## 3.5.4
 
 ### Tech
