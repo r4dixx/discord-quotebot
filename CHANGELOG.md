@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.5.3
+
+### Tech
+
+**HOTFIX:** Fix incorrect Discord version which broke everything
+
 ## 3.5.2
 
 ### Tech
