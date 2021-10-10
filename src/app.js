@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /*jshint esversion: 6 */
 
 require('./tools/discordHelper.js')();

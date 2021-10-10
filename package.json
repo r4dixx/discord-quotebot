@@ -3,6 +3,9 @@
   "description": "Open-source Discord bot to output random quotes upon command",
   "version": "3.5.1",
   "main": "./src/app.js",
+  "bin": {
+    "discord-quotebot": "./src/app.js"
+  },
   "scripts": {
     "start": "cd src && node app.js"
   },
