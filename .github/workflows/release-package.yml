@@ -3,6 +3,10 @@
 
 name: Node.js Package
 
+defaults:
+  run:
+    working-directory: src
+
 on:
   release:
     types: [published]
