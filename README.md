@@ -71,18 +71,9 @@ These can be customized pretty heavily in [src/config/config.json](src/config/co
 
 Make sure you have [Node.js](http://nodejs.org/) **16.6 or higher** installed.
 
-#### Via npm (recommended)
-
-```sh
-$ npm install @r4dixx/discord-quotebot 
-$ discord-quotebot
-```
-
-#### By cloning this repository
-
 ```sh
 $ git clone git@github.com:r4dixx/Discord-QuoteBot.git
-$ cd Discord-QuoteBot/src
+$ cd Discord-QuoteBot
 $ npm install
 $ npm start
 ```

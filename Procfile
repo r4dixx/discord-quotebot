@@ -1,2 +1,2 @@
 web: Disable this!
-worker: cd src && npm start 
+worker: npm start 
