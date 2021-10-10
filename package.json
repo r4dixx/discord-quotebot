@@ -2,6 +2,19 @@
   "name": "@r4dixx/discord-quotebot",
   "version": "3.5.2",
   "description": "Open-source Discord bot to output random quotes upon command",
+  "keywords": [
+    "discord",
+    "bot",
+    "quote"
+  ],
+  "author": "r4dixx",
+  "license": "GPL-3.0",
+  "repository": "github:r4dixx/Discord-QuoteBot",
+  "homepage": "https://github.com/r4dixx/Discord-QuoteBot",
+  "bugs": {
+    "url": "https://github.com/r4dixx/Discord-QuoteBot/issues",
+    "email": "amael.sikel@gmail.com"
+  },
   "main": "src/app.js",
   "bin": {
     "discord-quotebot": "cd src && node app.js"
@@ -10,21 +23,8 @@
     "test": "echo \"Warning: no test specified\"",
     "start": "cd src && node app.js"
   },
-  "repository": "github:r4dixx/Discord-QuoteBot",
-  "keywords": [
-    "discord",
-    "bot",
-    "quote"
-  ],
-  "author": "r4dixx",
-  "license": "GPL-3.0",
-  "homepage": "https://github.com/r4dixx/Discord-QuoteBot",
-  "bugs": {
-    "url": "https://github.com/r4dixx/Discord-QuoteBot/issues",
-    "email": "amael.sikel@gmail.com"
-  },
   "dependencies": {
-    "discord.js": "^13.2.0",
-    "sqlite3": "^5.0.2"
+    "discord.js": "^12.5.3",
+    "sqlite3": "^4.2.0"
   }
 }
