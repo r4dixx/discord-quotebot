@@ -18,6 +18,12 @@ Review badges
 
 ---
 
+## 3.5.4
+
+### Tech
+
+**HOTFIX:** Fix bin support
+
 ## 3.5.3
 
 ### Tech
