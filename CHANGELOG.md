@@ -18,6 +18,13 @@ Review badges
 
 ---
 
+## 3.5.2
+
+### Tech
+
+Add missing bin support
+Fix workflow (again)
+
 ## 3.5.1
 
 ### Tech
