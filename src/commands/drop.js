@@ -21,20 +21,32 @@ module.exports = {
 				.setRequired(true))),
 				
 	async execute(interaction) {
+
 		const { captains } = require('../config/private.json');
 		const { reply } = drop;
 		
+		// Only if user is captain
 		if (captains.includes(interaction.user.id)) {
+
 			console.log(`Author id ${interaction.user.username} is a captain, arrr`);
+
+			// Delete last item	
 			if (interaction.options.getSubcommand() === subcommands.last.name) {
 				dbDeleteLast().then(function (result) {
 					if (result == "error-not-found") interaction.reply({content: reply.error.last, ephemeral: true});
 					else interaction.reply(`${reply.success}\n${result}`);
 				});
 			}
-			else if (interaction.options.getSubcommand() === subcommands.item.name){
-				console.log(`deleting item`);
+			
+			// Delete selected item
+			else if (interaction.options.getSubcommand() === subcommands.item.name) {	
+				const quote = interaction.options.getString(option.name);
+				dbDeleteItem(quote).then(function (result) {
+					if (result == "success") interaction.reply(`${reply.success}\n${quote}`);
+					else if (result == "error-not-found") interaction.reply({content: reply.error.item, ephemeral: true});
+				});
 			}
+
 		} else {
 			console.log(`Author id ${interaction.user.username} is not a captain. Abort!`);
 			interaction.reply({content: reply.error.rights, ephemeral: true});
