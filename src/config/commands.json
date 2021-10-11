@@ -5,7 +5,7 @@
     "reply": ":ping_pong:"
   },
   "get": {
-    "name": "quote-get",
+    "name": "quote",
     "description": "Get a random quote",
     "reply": {
       "success": ":speech_left:",
@@ -13,8 +13,12 @@
     }
   },
   "insert": {
-    "name": "quote-insert",
+    "name": "add",
     "description": "Save a quote",
+    "option" : {
+      "name": "quote",
+      "description": "Enter a quote"
+    },
     "reply": {
       "success": ":brain: **I'll remember this one...**",
       "error": {
@@ -24,7 +28,7 @@
     }
   },
   "update": {
-    "name": "requote",
+    "name": "edit",
     "description": "Edit a quote",
     "reply": {
       "success": {
@@ -46,7 +50,7 @@
     }
   },
   "delete": {
-    "name": "unquote",
+    "name": "delete",
     "description": "Delete a quote",
     "reply": {
       "success": ":put_litter_in_its_place: **To the trash:**",

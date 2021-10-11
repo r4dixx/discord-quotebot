@@ -5,9 +5,9 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName(insert.name)
 		.setDescription(insert.description)
-		.addStringOption(option =>
-			option.setName('input')
-				.setDescription('Enter a string')
+		.addStringOption(opt => 
+			opt.setName(insert.option.name)
+				.setDescription(insert.option.description)
 				.setRequired(true)),
 	async execute(interaction) {
 

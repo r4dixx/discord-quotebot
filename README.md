@@ -4,6 +4,8 @@
 
 Discord bot to output, save, and edit quotes upon commands.
 
+**TODO UPDATE THIS**
+
 - Get a random quote → `/quote`
 - Save a quote → `/quote` `your_quote`
 - Edit last saved quote (captains only) → `/requote` `your_quote_edited`
