@@ -3,6 +3,7 @@
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { token } = require('./config/private.json');
+const { error_generic } = require('./config/commands.json');
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
@@ -27,7 +28,7 @@ client.on('interactionCreate', async interaction => {
 	} catch (error) {
 		console.error(error);
 		// TODO custom error messages
-		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+		await interaction.reply({ content: error_generic, ephemeral: true });
 	}
 });
 

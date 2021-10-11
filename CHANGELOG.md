@@ -11,6 +11,7 @@
 
 Add support for discord commands
 Add support for threads
+Disable bot mention displaying help as it turns out being annoying
 Update dependencies
 Cleanup and refacto
 
