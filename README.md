@@ -12,11 +12,11 @@ Discord bot to output, save, and edit quotes upon commands.
 
 - Get a random quote → `/quote`
 - Save a quote → `/quote` `your_quote`
-- Edit last saved quote (admins only) → `/requote` `your_quote_edited`
-- Edit chosen quote (admins only) → `/requote` `your_quote` `**>**` `your_quote_edited`
-- Delete last saved quote (admins only) → `/unquote`
-- Delete chosen quote (admins only) → `/unquote` `your_quote_to_delete`
-- Display help message (admins only) → `/help` or mention the bot
+- Edit last saved quote (captains only) → `/requote` `your_quote_edited`
+- Edit chosen quote (captains only) → `/requote` `your_quote` `**>**` `your_quote_edited`
+- Delete last saved quote (captains only) → `/unquote`
+- Delete chosen quote (captains only) → `/unquote` `your_quote_to_delete`
+- Display help message (captains only) → `/help` or mention the bot
 
 These can be customized pretty heavily in [src/config/config.json](src/config/config.json)
 
@@ -48,18 +48,18 @@ These can be customized pretty heavily in [src/config/config.json](src/config/co
 
 3. Open [src/config/private.json](src/config/private.json) and:
 
-    - Copy/paste your application client ID in the `clientId` field.
+    - Copy/paste your application client ID in the `client` field.
 
     - Copy/paste your bot account token in the `token` field.
 
-    - Copy/paste your user ID in `botAdminIds`. 
+    - Copy/paste your user ID in the `captains` field.
 
       > This will give you more rights (edition, deletion, etc).  
-      You can add as many admins as you'd like but I recommend you tread carefully.
+      You can add as many captains as you'd like but I recommend you tread carefully.
 
 ### Important notes
 
-- Users declared as admins of this bot **are not** server admins (and vice-versa)
+- Users declared as captains of this bot **are not** server admins (and vice-versa)
 - **Never** commit private information. To avoid accidents I recommend you run:
    
    `git update-index --assume-unchanged src/private.json`

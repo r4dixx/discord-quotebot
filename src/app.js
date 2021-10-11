@@ -2,9 +2,7 @@
 
 const { Client, Intents } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
-const { token } = require('./private.json');
-
-const replies = require('./replies.json');
+const { success } = require('./config/replies.json');
 
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
@@ -12,11 +10,12 @@ client.on('interactionCreate', async interaction => {
 	const { commandName } = interaction;
 
 	if (commandName === 'ping') {
-		await interaction.reply(replies.success.ping);
+		await interaction.reply(success.ping);
         console.log(`Sent \"pong\" to ${interaction.user.username}`);
 	}
 });
 
+const { token } = require('./config/private.json');
 client.once('ready', () => { console.log('Discord client ready, logging in...'); });
 client.login(token);
 
