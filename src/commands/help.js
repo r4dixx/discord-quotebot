@@ -15,25 +15,29 @@ module.exports = {
 		const { reply } = help;
 		
 		return interaction.reply({content: `
+		
 ${reply.about}
 
 ${reply.user.title}
+
 	• ${reply.user.get} → \`/${commands.get.name}\`
 	• ${reply.user.insert} → \`/${commands.insert.name}\` \`${reply.formats.current}\`
 
 ${reply.admin.title}
-	• ${reply.admin.update.title}
-		‣ ${reply.admin.update.last} → \`/${commands.update.name}\` \`${reply.formats.new}\`
-		‣ ${reply.admin.update.item} → \`/${commands.update.name}\` \`${reply.formats.current}\` \`${reply.formats.new}\`
 
-	• ${reply.admin.drop.title}
-		‣ ${reply.admin.drop.last} → \`/${commands.drop.name}\`
-		‣ ${reply.admin.drop.item} → \`/${commands.drop.name}\` \`${reply.formats.drop}\`
+• ${reply.admin.update.title}
+	‣ ${reply.admin.update.last} → \`/${commands.update.name}\` \`${reply.formats.new}\`
+	‣ ${reply.admin.update.item} → \`/${commands.update.name}\` \`${reply.formats.old}\` \`${reply.formats.new}\`
+
+• ${reply.admin.drop.title}
+	‣ ${reply.admin.drop.last} → \`/${commands.drop.name}\`
+	‣ ${reply.admin.drop.item} → \`/${commands.drop.name}\` \`${reply.formats.current}\`
 
 ${reply.self.title}
-	• ${reply.self.prefixes.command} \`/${help.name}\``,
-	
-	ephemeral: true});
+
+• ${reply.self.prefixes.command} \`/${help.name}\`
+
+			`, ephemeral: true});
 
 	}
 };

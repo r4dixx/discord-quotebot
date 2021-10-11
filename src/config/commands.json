@@ -133,8 +133,8 @@
       },
       "formats": {
         "current": "your_quote",
-        "new": "your_quote_edited",
-        "drop": "your_quote_to_delete"
+        "old": "old_quote",
+        "new": "new_quote"
       }
     }
   },
