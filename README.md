@@ -10,13 +10,13 @@
 
 Discord bot to output, save, and edit quotes upon commands.
 
-- Get a random quote → `!quote`
-- Save a quote → `!quote` `your_quote`
-- Edit last saved quote (admins only) → `!requote` `your_quote_edited`
-- Edit chosen quote (admins only) → `!requote` `your_quote` `**>**` `your_quote_edited`
-- Delete last saved quote (admins only) → `!unquote`
-- Delete chosen quote (admins only) → `!unquote` `your_quote_to_delete`
-- Display help message (admins only) → `!help` or mention the bot
+- Get a random quote → `/quote`
+- Save a quote → `/quote` `your_quote`
+- Edit last saved quote (admins only) → `/requote` `your_quote_edited`
+- Edit chosen quote (admins only) → `/requote` `your_quote` `**>**` `your_quote_edited`
+- Delete last saved quote (admins only) → `/unquote`
+- Delete chosen quote (admins only) → `/unquote` `your_quote_to_delete`
+- Display help message (admins only) → `/help` or mention the bot
 
 These can be customized pretty heavily in [src/config/config.json](src/config/config.json)
 
@@ -48,9 +48,11 @@ These can be customized pretty heavily in [src/config/config.json](src/config/co
 
 3. Open [src/config/private.json](src/config/private.json) and:
 
-    - Copy your bot account token and paste it into the `token` field.
+    - Copy/paste your application client ID in the `clientId` field.
 
-    - Paste your user ID in `botAdminIds`. 
+    - Copy/paste your bot account token in the `token` field.
+
+    - Copy/paste your user ID in `botAdminIds`. 
 
       > This will give you more rights (edition, deletion, etc).  
       You can add as many admins as you'd like but I recommend you tread carefully.
@@ -72,7 +74,6 @@ These can be customized pretty heavily in [src/config/config.json](src/config/co
 Make sure you have [Node.js](http://nodejs.org/) **16.6 or higher** installed.
 
 ```sh
-$ git clone git@github.com:r4dixx/Discord-QuoteBot.git
 $ cd Discord-QuoteBot
 $ npm install
 $ npm start
@@ -83,7 +84,6 @@ $ npm start
 Make sure you have the [Heroku CLI](https://cli.heroku.com/) installed.
 
 ```sh
-$ git clone git@github.com:r4dixx/Discord-QuoteBot.git
 $ cd Discord-QuoteBot
 $ heroku create
 $ git push heroku main
@@ -104,7 +104,7 @@ Edit [src/config/config.json](src/config/config.json) and customize it to your l
 
 ## 🧪 Test if everything is up and running
 
-Send `!ping` in your Discord server and see the magic happen
+Send `/ping` in your Discord server and see the magic happen
 
 ***
 
