@@ -9,6 +9,7 @@
 - `rm -rf node_modules` 
 - `npm install`
 
+Add support for discord commands
 Update dependencies
 Cleanup
 
