@@ -72,13 +72,4 @@ client.login(token);
 //   if (CONTENT.startsWithCommand(COMMAND_DELETE) && userIsAdmin())
 //     deleteQuoteItem(CONTENT.toMessageCleanWith(COMMAND_DELETE));
 
-//   function userIsAdmin() {
-//     if (getRightsAdmin(message.author.id)) {
-//       return true;
-//     } else {
-//       message.channel.send(CONFIG.feedback.error.rights);
-//       return false;
-//     }
-//   }
-
 // });
