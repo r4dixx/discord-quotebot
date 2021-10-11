@@ -6,7 +6,7 @@
   },
   "get": {
     "name": "get",
-    "description": "Get a random quote",
+    "description": "Get a random quote from the database",
     "reply": {
       "success": ":speech_left:",
       "error": ":person_shrugging: Error: No quote available."
@@ -41,7 +41,7 @@
       },
       "item": {
         "name": "item",
-        "description": "Edit a specific quote",
+        "description": "Edit a specific quote from the database",
         "options": {
           "old": {
             "name": "old",
@@ -85,7 +85,7 @@
       },
       "item": {
         "name": "item",
-        "description": "Delete a specific quote",
+        "description": "Delete a specific quote fromthe database",
         "option": {
           "name": "quote",
           "description": "Enter the quote you would like to delete"
@@ -109,7 +109,7 @@
       "user": {
         "title": ":busts_in_silhouette: **Everyone can**",
         "get": "Get a random quote",
-        "insert": "Save a quote"
+        "insert": "Save a quote in the database"
       },
       "admin": {
         "title": ":detective: **Admins can**",

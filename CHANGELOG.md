@@ -9,12 +9,14 @@
 - `rm -rf node_modules` 
 - `npm install`
 
-Add support for discord commands
+Add support for discord commands, subcommands and options
 Add support for threads
-Add mandatory server field
+Add mandatory server field (aka guild)
 Disable help display after bot mention
 Cleanup, refacto, renaming
 Update dependencies
+
+And much more!
 
 ### Documentation
 

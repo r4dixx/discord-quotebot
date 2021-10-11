@@ -6,15 +6,16 @@ Discord bot to output, save, and edit quotes upon commands.
 
 **TODO UPDATE THIS**
 
-- Get a random quote → `/quote`
-- Save a quote → `/add` `your_quote`
-- Edit last saved quote (captains only) → `/edit` `your_quote_edited`
-- Edit chosen quote (captains only) → `/edit` `your_quote` `your_quote_edited`
-- Delete last saved quote (captains only) → `/delete`
-- Delete chosen quote (captains only) → `/delete` `your_quote_to_delete`
+- Get a random quote → `/get`
+- Save a quote → `/add` your_quote
+- Edit last saved quote (captains only) → `/edit` `last` your_new_quote
+- Edit chosen quote (captains only) → `/edit` `item` old_quote new_quote
+- Delete last saved quote (captains only) → `/delete` `last`
+- Delete chosen quote (captains only) → `/delete` `item` your_quote_to_delete
 - Display help message → `/help`
+- Test → `/ping`
 
-These can be customized pretty heavily in [src/config/config.json](src/config/config.json)
+These can be customized pretty heavily in [src/config/commands.json](src/config/config.json)
 
 ## 📖 Table of contents
 
