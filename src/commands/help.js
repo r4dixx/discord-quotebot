@@ -13,8 +13,7 @@ module.exports = {
 
 		const { reply } = help;
 		
-		return interaction.reply({ content: `
-
+		return interaction.reply({content: `
 ${reply.about}
 
 ${reply.user.title}
@@ -29,9 +28,9 @@ ${reply.admin.title}
 		‣ ${reply.admin.delete.last} → \`/${commands.delete.name}\`
 
 ${reply.self.title}
-	• ${reply.self.prefixes.command} \`/${help.name}\`
-
-	`, ephemeral: true });
+	• ${reply.self.prefixes.command} \`/${help.name}\``,
+	
+	ephemeral: true});
 
 	// ‣ ${reply.admin.update.item} → \`/${commands.update.name}\` \`${reply.formats.current}\` \`${commands.separator}\` \`${reply.formats.new}\`
 	// ‣ ${reply.admin.delete.item} → \`/${commands.delete}\` \`${reply.formats.delete}\`

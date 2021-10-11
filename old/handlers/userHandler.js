@@ -12,14 +12,6 @@
 //     const FEEDBACK_SUCCESS = FEEDBACK.success;
 //     const FEEDBACK_ERROR = FEEDBACK.error;
 
-//     sendQuoteRandom = function() {
-//       dbQueryItemRandom().then(function(result) {
-//         if (result == "error") message.channel.send(FEEDBACK_ERROR.generic);
-//         else if (result == "error-not-found") message.channel.send(FEEDBACK_ERROR.get);
-//         else message.channel.send(`${FEEDBACK_SUCCESS.get} ${result}`);
-//       });
-//     };
-
 //     insertQuote = function(quote) {
 //       dbInsertItem(quote).then(function(result) {
 //         if (result == "success") message.channel.send(`${FEEDBACK_SUCCESS.insert}\n${quote}`);
