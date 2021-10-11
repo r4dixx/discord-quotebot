@@ -1,12 +1,12 @@
 const {	SlashCommandBuilder } = require('@discordjs/builders');
-const { update } = require('../config/commands.json');
-const { subcommands } = update;
-const options = subcommands.item.options;
+const { drop } = require('../config/commands.json');
+const { subcommands } = drop;
+const option = subcommands.item.option;
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName(update.name)
-		.setDescription(update.description)
+		.setName(drop.name)
+		.setDescription(drop.description)
 
 		.addSubcommand(sub =>
 			sub.setName(subcommands.last.name)
@@ -16,14 +16,10 @@ module.exports = {
 			sub.setName(subcommands.item.name)
 			.setDescription(subcommands.item.description)
 			.addUserOption(opt =>
-				opt.setName(options.old.name)
-				.setDescription(options.old.description)
-				.setRequired(true))
-			.addUserOption(opt =>
-				opt.setName(options.new.name)
-				.setDescription(options.new.description)
+				opt.setName(option.name)
+				.setDescription(option.description)
 				.setRequired(true))),
-
+				
 	async execute(interaction) {
 
 

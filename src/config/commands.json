@@ -17,7 +17,7 @@
     "description": "Save a quote",
     "option": {
       "name": "quote",
-      "description": "Enter a quote"
+      "description": "Enter a quote you would like to save"
     },
     "reply": {
       "success": ":brain: **I'll remember this one...**",
@@ -69,9 +69,23 @@
       }
     }
   },
-  "delete": {
+  "drop": {
     "name": "delete",
     "description": "Delete a quote",
+    "subcommands": {
+      "last": {
+        "name": "last",
+        "description": "Delete the last quote registered in the database"
+      },
+      "item": {
+        "name": "item",
+        "description": "Delete a specific quote",
+        "option": {
+          "name": "quote",
+          "description": "Enter the quote you would like to delete"
+        }
+      }
+    },
     "reply": {
       "success": ":put_litter_in_its_place: **To the trash:**",
       "error": {
