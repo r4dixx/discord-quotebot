@@ -15,11 +15,11 @@ module.exports = {
 		.addSubcommand(sub =>
 			sub.setName(subcommands.item.name)
 			.setDescription(subcommands.item.description)
-			.addUserOption(opt =>
+			.addStringOption(opt =>
 				opt.setName(options.old.name)
 				.setDescription(options.old.description)
 				.setRequired(true))
-			.addUserOption(opt =>
+			.addStringOption(opt =>
 				opt.setName(options.new.name)
 				.setDescription(options.new.description)
 				.setRequired(true))),

@@ -1,5 +1,3 @@
-require('../helpers/discordHelper.js');
-
 const {	SlashCommandBuilder } = require('@discordjs/builders');
 const { drop } = require('../config/commands.json');
 const { name, description, subcommands } = drop;
@@ -17,7 +15,7 @@ module.exports = {
 		.addSubcommand(sub =>
 			sub.setName(subcommands.item.name)
 			.setDescription(subcommands.item.description)
-			.addUserOption(opt =>
+			.addStringOption(opt =>
 				opt.setName(option.name)
 				.setDescription(option.description)
 				.setRequired(true))),
