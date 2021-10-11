@@ -5,7 +5,7 @@
     "reply": ":ping_pong:"
   },
   "get": {
-    "name": "quote",
+    "name": "get",
     "description": "Get a random quote",
     "reply": {
       "success": ":speech_left:",
@@ -109,12 +109,12 @@
         "title": ":detective: **Admins can**",
         "update": {
           "title": "Edit quotes",
-          "item": "Any entry",
+          "item": "A specific entry",
           "last": "Last saved entry"
         },
-        "delete": {
+        "drop": {
           "title": "Delete quotes",
-          "item": "Any entry",
+          "item": "A specific entry",
           "last": "Last saved entry"
         }
       },
@@ -128,7 +128,7 @@
       "formats": {
         "current": "your_quote",
         "new": "your_quote_edited",
-        "delete": "your_quote_to_delete"
+        "drop": "your_quote_to_delete"
       }
     }
   },

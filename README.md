@@ -36,9 +36,9 @@ These can be customized pretty heavily in [src/config/config.json](src/config/co
 
 1. [Create a new Discord app](https://discordapp.com/developers/applications/me) and an associated bot account.
 
-2. Create a Discord invite with `send messages` permissions and your application client ID:
+2. Create a Discord invite with `applications.commands` scope and your application client ID:
 
-   `https://discordapp.com/oauth2/authorize?scope=bot&permissions=2048&client_id=YOUR_CLIENT_ID`
+   `https://discordapp.com/oauth2/authorize?scope=applications.commands&client_id=YOUR_CLIENT_ID`
 
 2. Grab [the latest release](https://github.com/r4dixx/Discord-QuoteBot/releases/latest)
 
