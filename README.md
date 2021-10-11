@@ -47,6 +47,8 @@ These can be customized pretty heavily in [src/config/config.json](src/config/co
     - Copy/paste your application client ID in the `client` field.
 
     - Copy/paste your bot account token in the `token` field.
+    
+    - Copy/paste your guild ID in the `server` field.
 
     - Copy/paste your user ID in the `captains` field.
 
@@ -60,7 +62,7 @@ These can be customized pretty heavily in [src/config/config.json](src/config/co
    
    `git update-index --assume-unchanged src/private.json`
    
-- To find your user ID, [check the official support page](https://support.discordapp.com/hc/articles/206346498).  
+- To find your user and guils IDs, [check the official support page](https://support.discordapp.com/hc/articles/206346498).  
 - If you're lost, see [the official documentation](https://discordjs.guide).
 
 ## 🏗 Setup

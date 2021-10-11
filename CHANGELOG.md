@@ -11,10 +11,10 @@
 
 Add support for discord commands
 Add support for threads
-Disable bot mention displaying help as it turns out being annoying
-Rename commands
+Add mandatory server field
+Disable help display after bot mention
+Cleanup, refacto, renaming
 Update dependencies
-Cleanup and refacto
 
 ### Documentation
 
