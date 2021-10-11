@@ -33,7 +33,11 @@
     "subcommands": {
       "last": {
         "name": "last",
-        "description": "Edit the last quote registered in the database"
+        "description": "Edit the last quote registered in the database",
+        "option": {
+          "name": "new",
+          "description": "Enter your new quote"
+        }
       },
       "item": {
         "name": "item",
@@ -58,12 +62,14 @@
       },
       "error": {
         "item": {
-          "nonexistant": ":thinking: Cannot edit this quote. It doesn't appear to exist.",
-          "duplicate": ":upside_down: No changes made. Desired quote is similar to selected one"
+          "similar": ":upside_down: No changes made. Desired quote is similar to selected one",
+          "duplicate": ":people_holding_hands: Error: This quote already exists.",
+          "notfound": ":thinking: Cannot edit this quote. It doesn't appear to exist."
         },
         "last": {
-          "nonexistant": ":person_shrugging: Cannot edit last saved quote. No quote available.",
-          "duplicate": ":people_holding_hands: Error: This quote already exists."
+          "similar": ":upside_down: No changes made. Desired quote is similar to last saved quote",
+          "duplicate": ":people_holding_hands: Error: This quote already exists.",
+          "notfound": ":person_shrugging: Cannot edit last saved quote. No quote available."
         },
         "rights": ":person_gesturing_no: Failed to update quote. Insufficient privileges."
       }

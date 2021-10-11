@@ -37,21 +37,9 @@
 //       });
 //     };
 
-//     deleteQuoteItem = function(quote) {
-//       dbDeleteItem(quote).then(function(result) {
-//         if (result == "success") message.channel.send(`${FEEDBACK_SUCCESS.delete}\n${quote}`);
-//         else if (result == "error-not-found") message.channel.send(FEEDBACK_ERROR_DELETE.item);
-//         if (result == "error") message.channel.send(FEEDBACK_ERROR.generic);
-//       });
-//     };
 
-//     deleteQuoteLast = function() {
-//       dbDeleteLast().then(function(result) {
-//         if (result == "error") message.channel.send(FEEDBACK_ERROR.generic);
-//         else if (result == "error-not-found") message.channel.send(FEEDBACK_ERROR_DELETE.last);
-//         else message.channel.send(`${FEEDBACK_SUCCESS.delete}\n${result}`);
-//       });
-//     };
+
+
 
 //   });
 
