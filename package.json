@@ -16,7 +16,7 @@
     "email": "amael.sikel@gmail.com"
   },
   "scripts": {
-    "postinstall": "cd src && node deploy-commands.js",
+    "postinstall": "node src/postinstall/deploy-commands.js",
     "test": "echo \"Warning: no test specified\"",
     "start": "cd src && node app.js"
   },
