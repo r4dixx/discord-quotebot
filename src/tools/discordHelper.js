@@ -9,9 +9,10 @@ module.exports = function() {
 
   login = function() {
     CLIENT.once('ready', () => {
-      CLIENT.login(CONFIG_PRIVATE.token);
-      console.log('Discord client logged in');
+      console.log('Discord client ready');
     });
+    CLIENT.login(CONFIG_PRIVATE.token);
+    console.log('Discord client logged in');
   };
 
   getRightsAdmin = function(currentAuthorId) {
