@@ -2,6 +2,7 @@ const {	SlashCommandBuilder } = require('@discordjs/builders');
 const { insert } = require('../config/commands.json');
 
 module.exports = {
+
 	data: new SlashCommandBuilder()
 		.setName(insert.name)
 		.setDescription(insert.description)
@@ -9,8 +10,8 @@ module.exports = {
 			opt.setName(insert.option.name)
 				.setDescription(insert.option.description)
 				.setRequired(true)),
-	async execute(interaction) {
 
+	async execute(interaction) {
 		const quote = interaction.options.getString('input').replace(`/${insert.name} `, '')
 		const { reply } = insert; 
 		

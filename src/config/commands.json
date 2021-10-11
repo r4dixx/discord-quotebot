@@ -15,7 +15,7 @@
   "insert": {
     "name": "add",
     "description": "Save a quote",
-    "option" : {
+    "option": {
       "name": "quote",
       "description": "Enter a quote"
     },
@@ -29,7 +29,27 @@
   },
   "update": {
     "name": "edit",
-    "description": "Edit a quote",
+    "description": "Edit a quote of your choice",
+    "subcommands": {
+      "last": {
+        "name": "last",
+        "description": "Edit the last quote registered in the database"
+      },
+      "item": {
+        "name": "item",
+        "description": "Edit a specific quote",
+        "options": {
+          "old": {
+            "name": "old",
+            "description": "Enter the quote you want to edit"
+          },
+          "new": {
+            "name": "new",
+            "description": "Enter your new quote"
+          }
+        }
+      }
+    },
     "reply": {
       "success": {
         "title": ":pencil: **Quote edited successfully**",
