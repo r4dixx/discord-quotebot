@@ -30,7 +30,6 @@ client.on('interactionCreate', async interaction => {
 		await command.execute(interaction);
 	} catch (error) {
 		console.error(error);
-
 		await interaction.reply({ content: error_generic, ephemeral: true });
 	}
 });
@@ -43,10 +42,6 @@ client.login(token);
 // require('./handlers/adminHandler.js')();
 
 // 
-
-
-
-// dbCreateTableIfNecessary();
 
 // getClient().on('message', (message) => {
 
@@ -62,16 +57,6 @@ client.login(token);
 //   const COMMAND_UPDATE = COMMAND.update.command;
 //   const COMMAND_DELETE = COMMAND.delete;
 
-//   if (CONTENT.isCommand(COMMAND.get))
-//     sendQuoteRandom();
-
-//   if (CONTENT.startsWithCommand(COMMAND_INSERT)) {
-//     if (message.mentions.members.size == 0)
-//       insertQuote(CONTENT.toMessageCleanWith(COMMAND_INSERT));
-//     else
-//       sendNoMentionWarning();
-//   }
-
 //   if (CONTENT.startsWithCommand(COMMAND_UPDATE) && userIsAdmin()) {
 //     const TRIGGER_COMMANDS_UPDATE_SEPARATOR = CONFIG.trigger.commands.update.separator;
 //     let msgClean = CONTENT.toMessageCleanWith(COMMAND_UPDATE);
@@ -86,12 +71,6 @@ client.login(token);
 
 //   if (CONTENT.startsWithCommand(COMMAND_DELETE) && userIsAdmin())
 //     deleteQuoteItem(CONTENT.toMessageCleanWith(COMMAND_DELETE));
-
-//   if (CONTENT.isCommand(COMMAND.help) || message.mentions.users.map(user => user).includes(getClient().user))
-//     sendHelp();
-
-//   if (CONTENT.isCommand('ping'))
-//     sendPong();
 
 //   function userIsAdmin() {
 //     if (getRightsAdmin(message.author.id)) {

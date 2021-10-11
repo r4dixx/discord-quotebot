@@ -5,7 +5,7 @@
     "reply": ":ping_pong:"
   },
   "get": {
-    "name": "quote",
+    "name": "quote-get",
     "description": "Get a random quote",
     "reply": {
       "success": ":speech_left:",
@@ -13,11 +13,14 @@
     }
   },
   "insert": {
-    "name": "quote",
+    "name": "quote-insert",
     "description": "Save a quote",
     "reply": {
       "success": ":brain: **I'll remember this one...**",
-      "error": ":shushing_face: Not saving this one. Please don't mention people in quotes."
+      "error": {
+        "mention": ":shushing_face: Not saving this one. Please don't mention people in quotes.",
+        "duplicate": ":people_holding_hands: Error: This quote already exists."
+      }
     }
   },
   "update": {

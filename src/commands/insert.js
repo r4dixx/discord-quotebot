@@ -1,0 +1,26 @@
+const {	SlashCommandBuilder } = require('@discordjs/builders');
+const { insert } = require('../config/commands.json');
+
+module.exports = {
+	data: new SlashCommandBuilder()
+		.setName(insert.name)
+		.setDescription(insert.description)
+		.addStringOption(option =>
+			option.setName('input')
+				.setDescription('Enter a string')
+				.setRequired(true)),
+	async execute(interaction) {
+		/// if (interaction.options.getString('input') != ) {
+			const quote = interaction.options.getString('input').replace(`/${insert.name} `, '')
+			const { reply } = insert; 
+
+			dbInsertItem(quote).then(function (result) {
+				if (result == "success") return interaction.reply(`${reply.success}\n${quote}`);
+				else if (result == "error-duplicate") interaction.reply({content: reply.error.duplicate, ephemeral: true});
+			});
+		// } else {
+		// 	console.log(`Message contains mention, skipping`);
+		// 	interaction.reply({content: reply.error.mention,ephemeral: true});
+		// }
+	}
+};
