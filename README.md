@@ -16,7 +16,7 @@ Discord bot to output, save, and edit quotes upon commands.
 - Edit chosen quote (captains only) → `/requote` `your_quote` `**>**` `your_quote_edited`
 - Delete last saved quote (captains only) → `/unquote`
 - Delete chosen quote (captains only) → `/unquote` `your_quote_to_delete`
-- Display help message (captains only) → `/help` or mention the bot
+- Display help message → `/help` or mention the bot
 
 These can be customized pretty heavily in [src/config/config.json](src/config/config.json)
 

@@ -1,0 +1,60 @@
+{
+  "ping": {
+    "name": "ping",
+    "description": "Test if everything is up",
+    "reply": ":ping_pong:"
+  },
+  "get": {
+    "name": "quote",
+    "description": "Get a random quote"
+  },
+  "insert": {
+    "name": "quote",
+    "description": "Save a quote"
+  },
+  "update": {
+    "name": "requote",
+    "description": "Edit a quote"
+  },
+  "delete": {
+    "name": "unquote",
+    "description": "Delete a quote"
+  },
+  "help": {
+    "name": "help",
+    "description": "Display help message",
+    "reply": {
+      "about": ":robot: Beep Beep Boop!\nI'm a bot that outputs quotes upon commands.\n\nHere's how things work:",
+      "user": {
+        "title": ":busts_in_silhouette: **Everyone can**",
+        "get": "Get a random quote",
+        "insert": "Save a quote"
+      },
+      "admin": {
+        "title": ":detective: **Admins can**",
+        "update": {
+          "title": "Edit quotes",
+          "item": "Any entry",
+          "last": "Last saved entry"
+        },
+        "delete": {
+          "title": "Delete quotes",
+          "item": "Any entry",
+          "last": "Last saved entry"
+        }
+      },
+      "self": {
+        "title": ":hand_splayed: **Want to display this message again?**",
+        "prefixes": {
+          "command": "Use",
+          "mention": "or mention me"
+        }
+      },
+      "formats": {
+        "current": "your_quote",
+        "new": "your_quote_edited",
+        "delete": "your_quote_to_delete"
+      }
+    }
+  }
+}

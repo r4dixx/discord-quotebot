@@ -10,8 +10,9 @@
 - `npm install`
 
 Add support for discord commands
+Add support for threads
 Update dependencies
-Cleanup
+Cleanup and refacto
 
 ### Documentation
 

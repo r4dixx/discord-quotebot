@@ -29,40 +29,7 @@
 //     };
 
 //     sendHelp = function() {
-//       const HELP = FEEDBACK.help;
-
-//       const HELP_USER = HELP.user;
-//       const HELP_FORMATS = HELP.formats;
-
-//       const HELP_ADMIN = HELP.admin;
-//       const HELP_UPDATE = HELP_ADMIN.update;
-//       const HELP_DELETE = HELP_ADMIN.delete;
-//       const COMMAND_UPDATE = COMMAND.update;
-//       const COMMAND_DELETE = COMMAND.delete;
-
-//       const HELP_SELF = HELP.self;
-//       const HELP_SELF_PREFIXES = HELP_SELF.prefixes;
-
-//       message.channel.send(`
-// ${HELP.about}
-
-// ${HELP_USER.title}
-// • ${HELP_USER.get} → \`${COMMAND.get.toTrigger()}\`
-// • ${HELP_USER.insert} → \`${COMMAND.insert.toTrigger()}\` \`${HELP_FORMATS.current}\`
-
-// ${HELP_ADMIN.title}
-// • ${HELP_UPDATE.title}
-//     ‣ ${HELP_UPDATE.last} → \`${COMMAND_UPDATE.command.toTrigger()}\` \`${HELP_FORMATS.new}\`
-//     ‣ ${HELP_UPDATE.item} → \`${COMMAND_UPDATE.command.toTrigger()}\` \`${HELP_FORMATS.current}\` \`${COMMAND_UPDATE.separator}\` \`${HELP_FORMATS.new}\`
-// • ${HELP_DELETE.title}
-//     ‣ ${HELP_DELETE.last} → \`${COMMAND_DELETE.toTrigger()}\`
-//     ‣ ${HELP_DELETE.item} → \`${COMMAND_DELETE.toTrigger()}\` \`${HELP_FORMATS.delete}\`
-
-// ${HELP_SELF.title}
-// • ${HELP_SELF_PREFIXES.command} \`${COMMAND.help.toTrigger()}\` ${HELP_SELF_PREFIXES.mention} <@${getClient().user.id}>
-//       `);
-
-//       console.log('Help displayed');
+//       
 //     };
 
 //     sendNoMentionWarning = function() {

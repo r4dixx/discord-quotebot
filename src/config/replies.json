@@ -1,6 +1,5 @@
 {
   "success": {
-    "ping": ":ping_pong:",
     "get": ":speech_left:",
     "insert": ":brain: **I'll remember this one...**",
     "update": {
@@ -25,38 +24,5 @@
     "rights": ":person_gesturing_no: Operation failed. Insufficient privileges.",
     "mention": ":shushing_face: Not saving this one. Please don't mention people in quotes.",
     "generic": ":fearful: Oops. Something went wrong."
-  },
-  "help": {
-    "about": ":robot: Beep Beep Boop!\nI'm a bot that outputs quotes upon commands.\n\nHere's how I work:",
-    "user": {
-      "title": ":busts_in_silhouette: **Everyone can**",
-      "get": "Get a random quote",
-      "insert": "Save a quote"
-    },
-    "admin": {
-      "title": ":detective: **Admins can**",
-      "update": {
-        "title": "Edit quotes",
-        "item": "Any entry",
-        "last": "Last saved entry"
-      },
-      "delete": {
-        "title": "Delete quotes",
-        "item": "Any entry",
-        "last": "Last saved entry"
-      }
-    },
-    "self": {
-      "title": ":hand_splayed: **Want to display this message again?**",
-      "prefixes": {
-        "command": "Use",
-        "mention": "or mention me"
-      }
-    },
-    "formats": {
-      "current": "your_quote",
-      "new": "your_quote_edited",
-      "delete": "your_quote_to_delete"
-    }
   }
 }

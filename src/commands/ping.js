@@ -1,12 +1,12 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { success } = require('../config/replies.json');
+const { ping } = require('../config/commands.json');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('ping')
-		.setDescription('Replies with Pong!'),
+		.setName(ping.name)
+		.setDescription(ping.description),
 	async execute(interaction) {
-        console.log(`Sending \"pong\" to ${interaction.user.username}`);
-		return interaction.reply(success.ping);
-	},
+        console.log(`Ping ${interaction.user.username}`);
+		return interaction.reply(ping.reply);
+	}
 };
