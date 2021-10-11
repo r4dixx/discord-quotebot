@@ -26,6 +26,15 @@ module.exports = {
 		
 		if (captains.includes(interaction.user.id)) {
 			console.log(`Author id ${interaction.user.username} is a captain, arrr`);
+			if (interaction.options.getSubcommand() === subcommands.last.name) {
+				dbDeleteLast().then(function (result) {
+					if (result == "error-not-found") interaction.reply({content: reply.error.last, ephemeral: true});
+					else interaction.reply(`${reply.success}\n${result}`);
+				});
+			}
+			else if (interaction.options.getSubcommand() === subcommands.item.name){
+				console.log(`deleting item`);
+			}
 		} else {
 			console.log(`Author id ${interaction.user.username} is not a captain. Abort!`);
 			interaction.reply({content: reply.error.rights, ephemeral: true});
