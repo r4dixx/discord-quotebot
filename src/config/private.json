@@ -1,0 +1,6 @@
+{
+  "_comment": "DO NOT COMMIT THIS FILE",
+  "client": "your_app_oauth2_client_id",
+  "token": "your_bot_token",
+  "captains": ["your_user_id", "another_user_id", "and_maybe_another"]
+}
