@@ -26,8 +26,8 @@ There are two types of commands.
 
 The most basic are available to everyone:
 
-- Get a random quote → `/get`
-- Save a quote → `/add` your_quote
+- Get a random quote → `/quote`
+- Save a quote → `/save` your_quote
 - Display help message → `/help`
 - Test → `/ping`
 

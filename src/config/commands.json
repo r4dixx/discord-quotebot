@@ -5,7 +5,7 @@
     "reply": ":ping_pong:"
   },
   "get": {
-    "name": "get",
+    "name": "quote",
     "description": "Get a random quote from the database",
     "reply": {
       "success": ":speech_left:",
@@ -13,8 +13,8 @@
     }
   },
   "insert": {
-    "name": "add",
-    "description": "Save a quote",
+    "name": "save",
+    "description": "Save given quote in the database",
     "option": {
       "name": "quote",
       "description": "Enter a quote you would like to save"
@@ -29,11 +29,11 @@
   },
   "update": {
     "name": "edit",
-    "description": "Edit a quote of your choice",
+    "description": "Edit a quote of your choice (captains only)",
     "subcommands": {
       "last": {
         "name": "last",
-        "description": "Edit the last quote registered in the database",
+        "description": "Edit the last quote registered in the database (captains only)",
         "option": {
           "name": "new",
           "description": "Enter your new quote"
@@ -41,7 +41,7 @@
       },
       "item": {
         "name": "item",
-        "description": "Edit a specific quote from the database",
+        "description": "Edit a specific quote from the database (captains only)",
         "options": {
           "old": {
             "name": "old",
@@ -77,15 +77,15 @@
   },
   "drop": {
     "name": "delete",
-    "description": "Delete a quote",
+    "description": "Delete a quote (captains only)",
     "subcommands": {
       "last": {
         "name": "last",
-        "description": "Delete the last quote registered in the database"
+        "description": "Delete the last quote registered in the database (captains only)"
       },
       "item": {
         "name": "item",
-        "description": "Delete a specific quote fromthe database",
+        "description": "Delete a specific quote from the database (captains only)",
         "option": {
           "name": "quote",
           "description": "Enter the quote you would like to delete"
