@@ -4,27 +4,14 @@
 
 Discord bot to output, save, and edit quotes upon commands.
 
-**TODO UPDATE THIS**
-
-- Get a random quote → `/get`
-- Save a quote → `/add` your_quote
-- Edit last saved quote (captains only) → `/edit` `last` your_new_quote
-- Edit chosen quote (captains only) → `/edit` `item` old_quote new_quote
-- Delete last saved quote (captains only) → `/delete` `last`
-- Delete chosen quote (captains only) → `/delete` `item` your_quote_to_delete
-- Display help message → `/help`
-- Test → `/ping`
-
-These can be customized pretty heavily in [src/config/commands.json](src/config/config.json)
-
 ## 📖 Table of contents
-
+- [Available commands](#available-commands)
 - [Preliminary steps](#-preliminary-steps)
    - [Important notes](#important-notes)
+- [Customization](#%EF%B8%8F-customization)
 - [Setup](#-setup)
    - [Locally](#locally)
    - [In the cloud](#in-the-cloud)
-- [Customization](#%EF%B8%8F-customization)
 - [Test if everything is up and running](#-test-if-everything-is-up-and-running)
 - [About the author](#-about-the-author)
 - [Contributing](#-contributing)
@@ -33,38 +20,59 @@ These can be customized pretty heavily in [src/config/commands.json](src/config/
 
 ***
 
+## 👨‍💻 Available commands
+
+There are two types of commands. 
+
+The most basic are available to everyone:
+
+- Get a random quote → `/get`
+- Save a quote → `/add` your_quote
+- Display help message → `/help`
+- Test → `/ping`
+
+The more advanced (i.e. touchy) commands are available to selected users called "captains". I called this privilege level that way to avoid any confusion with the term "server admins". Captains are not server admins, server admins are not captains. Anyway, these are the commands:
+
+- Edit last saved quote → `/edit` `last` new_quote
+- Edit chosen quote → `/edit` `item` old_quote new_quote
+- Delete last saved quote → `/delete` `last`
+- Delete chosen quote → `/delete` `item` quote_to_delete
+
+All these commands can be customized in [src/config/commands.json](src/config/commands.json)
+
 ## 🏁 Preliminary steps
 
-1. [Create a new Discord app](https://discordapp.com/developers/applications/me) and an associated bot account.
+1. [Create a new Discord app](https://discordapp.com/developers/applications/me) and give it a fancy name.
 
-2. Create a Discord invite with `applications.commands` scope and your application client ID:
-
-   `https://discordapp.com/oauth2/authorize?scope=applications.commands&client_id=YOUR_CLIENT_ID`
+2. In the OAuth2 settings, set the scope to `application.commands`, open the generated link and add the bot to your server.
 
 2. Grab [the latest release](https://github.com/r4dixx/Discord-QuoteBot/releases/latest)
 
-3. Open [src/config/private.json](src/config/private.json) and:
+3. Return to your app settings in the developer portal and open [src/config/private.json](src/config/private.json):
 
-    - Copy/paste your application client ID in the `client` field.
+    - Copy/paste your OAuth2 client ID in the `client` field.
 
-    - Copy/paste your bot account token in the `token` field.
+    - Add a bot in the bot section and copy/paste its token in the `token` field.
     
-    - Copy/paste your guild ID in the `server` field.
-
-    - Copy/paste your user ID in the `captains` field.
+    - Copy/paste your guild ID and user ID in the appropriate fields (`server` and `captains`). Check [the official support page](https://support.discordapp.com/hc/articles/206346498) for more info.
 
       > This will give you more rights (edition, deletion, etc).  
       You can add as many captains as you'd like but I recommend you tread carefully.
+      Keep it minimal.
+
+   - **Immediately** run `git update-index --assume-unchanged src/config/private.json` to avoid sharing this file with anyone.
 
 ### Important notes
 
-- Users declared as captains of this bot **are not** server admins (and vice-versa)
-- **Never** commit private information. To avoid accidents I recommend you run:
-   
-   `git update-index --assume-unchanged src/private.json`
-   
-- To find your user and guils IDs, [check the official support page](https://support.discordapp.com/hc/articles/206346498).  
+- Users declared as captains of this bot **are not** server admins. The opposite applies too.
+- **Never** EVER share your `private.json` file content. [See why](https://discordjs.guide/preparations/setting-up-a-bot-application.html#token-leak-scenario).
 - If you're lost, see [the official documentation](https://discordjs.guide).
+
+## ⚙️ Customization
+
+Edit [src/config/config.json](src/config/config.json) and customize it to your likings
+
+> **Warning**: Some prefix/commands can cause conflicts with other bots!
 
 ## 🏗 Setup
 
@@ -94,12 +102,6 @@ We only need a worker process to run the bot.
 $ heroku ps:scale web=0
 $ heroku ps:scale worker=1
 ```
-
-## ⚙️ Customization
-
-Edit [src/config/config.json](src/config/config.json) and customize it to your likings
-
-> **Warning**: Some prefix/commands can cause conflicts with other bots!
 
 ## 🧪 Test if everything is up and running
 
