@@ -1,8 +1,24 @@
 #!/usr/bin/env node
 
-require('./helper.js')();
+const { Client, Intents } = require('discord.js');
+const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const { token } = require('./private.json');
 
-login();
+const replies = require('./replies.json');
+
+client.on('interactionCreate', async interaction => {
+	if (!interaction.isCommand()) return;
+
+	const { commandName } = interaction;
+
+	if (commandName === 'ping') {
+		await interaction.reply(replies.success.ping);
+        console.log(`Sent \"pong\" to ${interaction.user.username}`);
+	}
+});
+
+client.once('ready', () => { console.log('Discord client ready, logging in...'); });
+client.login(token);
 
 // require('./tools/formatter.js')();
 
