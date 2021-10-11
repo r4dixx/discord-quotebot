@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const {	get } = require('../config/commands.json');
+const commands = require('../config/commands.json');
+const { get } = commands
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -8,7 +9,8 @@ module.exports = {
 	async execute(interaction) {
 		const { reply } = get;
 		dbQueryItemRandom().then(function (result) {
-			if (result == "error-not-found") interaction.reply({content: reply.error, ephemeral: true});
+			if (result == "error") interaction.reply({ content: commands.error_generic, ephemeral: true });
+			else if (result == "error-not-found") interaction.reply({content: reply.error, ephemeral: true});
 			else return interaction.reply(`${reply.success} ${result}`);
 		});
 	}

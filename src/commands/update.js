@@ -1,5 +1,6 @@
 const {	SlashCommandBuilder } = require('@discordjs/builders');
-const { update } = require('../config/commands.json');
+const commands = require('../config/commands.json');
+const { update } = commands
 const { name, description, subcommands } = update;
 const { options } = subcommands.item;
 
@@ -25,11 +26,25 @@ module.exports = {
 				.setRequired(true))),
 
 	async execute(interaction) {
+
 		const { captains } = require('../config/private.json');
-		const { reply } = drop;
+		const { reply } = update;
 		
+		// Only if user is captain
 		if (captains.includes(interaction.user.id)) {
+
 			console.log(`Author id ${interaction.user.username} is a captain, arrr`);
+
+			// Update last item	
+			if (interaction.options.getSubcommand() === subcommands.last.name) {
+			
+			}
+			
+			// Update selected item
+			else if (interaction.options.getSubcommand() === subcommands.item.name) {	
+				
+			}
+
 		} else {
 			console.log(`Author id ${interaction.user.username} is not a captain. Abort!`);
 			interaction.reply({content: reply.error.rights, ephemeral: true});

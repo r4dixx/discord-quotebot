@@ -1,5 +1,6 @@
 const {	SlashCommandBuilder } = require('@discordjs/builders');
-const { drop } = require('../config/commands.json');
+const commands = require('../config/commands.json');
+const { drop } = commands
 const { name, description, subcommands } = drop;
 const { option } = subcommands.item;
 
@@ -33,7 +34,8 @@ module.exports = {
 			// Delete last item	
 			if (interaction.options.getSubcommand() === subcommands.last.name) {
 				dbDeleteLast().then(function (result) {
-					if (result == "error-not-found") interaction.reply({content: reply.error.last, ephemeral: true});
+					if (result == "error") interaction.reply({ content: commands.error_generic, ephemeral: true });
+					else if (result == "error-not-found") interaction.reply({content: reply.error.last, ephemeral: true});
 					else interaction.reply(`${reply.success}\n${result}`);
 				});
 			}
@@ -44,6 +46,7 @@ module.exports = {
 				dbDeleteItem(quote).then(function (result) {
 					if (result == "success") interaction.reply(`${reply.success}\n${quote}`);
 					else if (result == "error-not-found") interaction.reply({content: reply.error.item, ephemeral: true});
+					else if (result == "error") interaction.reply({ content: commands.error_generic, ephemeral: true });
 				});
 			}
 

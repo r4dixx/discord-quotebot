@@ -1,5 +1,6 @@
 const {	SlashCommandBuilder } = require('@discordjs/builders');
-const { insert } = require('../config/commands.json');
+const commands = require('../config/commands.json');
+const { insert } = commands
 
 module.exports = {
 
@@ -22,6 +23,7 @@ module.exports = {
 			dbInsertItem(quote).then(function (result) {
 				if (result == "success") return interaction.reply(`${reply.success}\n${quote}`);
 				else if (result == "error-duplicate") interaction.reply({content: reply.error.duplicate, ephemeral: true});
+				else if (result == "error") interaction.reply({ content: commands.error_generic, ephemeral: true });
 			});
 		}
 	}
