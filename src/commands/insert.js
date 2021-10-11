@@ -12,7 +12,7 @@ module.exports = {
 				.setRequired(true)),
 
 	async execute(interaction) {
-		const quote = interaction.options.getString('input').replace(`/${insert.name} `, '')
+		const quote = interaction.options.getString(insert.option.name).replace(`/${insert.name} `, '')
 		const { reply } = insert; 
 		
 		if (quote.includes("<@!")) {
