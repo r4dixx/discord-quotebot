@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+require('./database/dbQueries.js')();
+
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { token } = require('./config/private.json');
@@ -16,7 +18,8 @@ for (const file of commandFiles) {
 }
 
 client.once('ready', () => {
-	console.log('Discord client ready, logging in...');
+	console.log('Discord client ready');
+	dbCreateTableIfNecessary();
 });
 
 client.on('interactionCreate', async interaction => {
@@ -27,7 +30,7 @@ client.on('interactionCreate', async interaction => {
 		await command.execute(interaction);
 	} catch (error) {
 		console.error(error);
-		// TODO custom error messages
+
 		await interaction.reply({ content: error_generic, ephemeral: true });
 	}
 });
@@ -35,8 +38,6 @@ client.on('interactionCreate', async interaction => {
 client.login(token);
 
 // require('./tools/formatter.js')();
-
-// require('./database/dbQueries.js')();
 
 // require('./handlers/userHandler.js')();
 // require('./handlers/adminHandler.js')();
