@@ -13,6 +13,7 @@ Add support for discord commands, subcommands and options
 Add support for threads
 Add mandatory server field (aka guild)
 Disable help display after bot mention
+Fix db file path causing bin issues
 Cleanup, refacto, renaming
 Update dependencies
 
