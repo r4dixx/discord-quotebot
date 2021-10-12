@@ -46,11 +46,18 @@ module.exports = {
 				const { last } = reply.error
 				const quote_new = interaction.options.getString(option_last.name);
 				dbUpdateLast(quote_new).then(function (result) {
-					if (result == "error") interaction.reply({ content: commands.error_generic, ephemeral: true });
-					else if (result == "error-no-changes") interaction.reply({ content: last.similar, ephemeral: true });
-					else if (result == "error-duplicate") interaction.reply({ content: last.duplicate, ephemeral: true });
-					else if (result == "error-not-found") interaction.reply({ content: last.notfound, ephemeral: true });
-					else interaction.reply(`${reply.success.title}\n${reply.success.old_prefix}\n${result}\n${reply.success.new_prefix}\n${quote_new}`);
+					switch (result) {
+						case "error":
+							return interaction.reply({ content: commands.error_generic, ephemeral: true });
+						case "error-no-changes":
+							return interaction.reply({ content: last.similar, ephemeral: true });
+						case "error-duplicate":
+							return interaction.reply({ content: last.duplicate, ephemeral: true });
+						case "error-not-found":
+							return interaction.reply({ content: last.notfound, ephemeral: true });
+						default:
+							return interaction.reply(`${reply.success.title}\n${reply.success.old_prefix}\n${result}\n${reply.success.new_prefix}\n${quote_new}`);
+					}
 				});
 			}
 			
@@ -60,11 +67,18 @@ module.exports = {
 				const quote_old = interaction.options.getString(options_item.old.name);
 				const quote_new = interaction.options.getString(options_item.new.name);
 				dbUpdateItem(quote_old, quote_new).then(function (result) {
-					if (result == "success") interaction.reply(`${reply.success.title}\n${reply.success.old_prefix}\n${quote_old}\n${reply.success.new_prefix}\n${quote_new}`);
-					else if (result == "error-no-changes") interaction.reply({ content: item.similar, ephemeral: true });
-					else if (result == "error-duplicate") interaction.reply({ content: last.duplicate, ephemeral: true });
-					else if (result == "error-not-found") interaction.reply({ content: last.notfound, ephemeral: true });
-					else if (result == "error") interaction.reply({ content: commands.error_generic, ephemeral: true });
+					switch (result) {	
+						case "success":
+							return interaction.reply(`${reply.success.title}\n${reply.success.old_prefix}\n${quote_old}\n${reply.success.new_prefix}\n${quote_new}`);
+						case "error-no-changes":
+							return interaction.reply({ content: item.similar, ephemeral: true });
+						case "error-duplicate":
+							return interaction.reply({ content: item.duplicate, ephemeral: true });
+						case "error-not-found":
+							return interaction.reply({ content: item.notfound, ephemeral: true });
+						case "error":
+							return interaction.reply({ content: commands.error_generic, ephemeral: true });
+					}
 				});
 			}
 

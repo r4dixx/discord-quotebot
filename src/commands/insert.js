@@ -21,9 +21,14 @@ module.exports = {
 			interaction.reply({content: reply.error.mention,ephemeral: true});
 		} else {
 			dbInsertItem(quote).then(function (result) {
-				if (result == "success") return interaction.reply(`${reply.success}\n${quote}`);
-				else if (result == "error-duplicate") interaction.reply({content: reply.error.duplicate, ephemeral: true});
-				else if (result == "error") interaction.reply({ content: commands.error_generic, ephemeral: true });
+				switch (result) {
+					case 'success':
+						return interaction.reply(`${reply.success}\n${quote}`);
+					case 'error-duplicate':
+						return interaction.reply({content: reply.error.duplicate, ephemeral: true});
+					default:
+						return interaction.reply({ content: commands.error_generic, ephemeral: true });
+				}
 			});
 		}
 	}

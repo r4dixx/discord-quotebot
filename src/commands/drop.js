@@ -34,9 +34,15 @@ module.exports = {
 			// Delete last item	
 			if (interaction.options.getSubcommand() === subcommands.last.name) {
 				dbDeleteLast().then(function (result) {
-					if (result == "error") interaction.reply({ content: commands.error_generic, ephemeral: true });
-					else if (result == "error-not-found") interaction.reply({content: reply.error.last, ephemeral: true});
-					else interaction.reply(`${reply.success}\n${result}`);
+					switch (result) {
+						case 'error':
+							return interaction.reply({ content: commands.error_generic, ephemeral: true });
+						case 'error-not-found':
+							return interaction.reply({content: reply.error.last, ephemeral: true});
+						default:
+							return interaction.reply(`${reply.success}\n${result}`);	
+							
+						}
 				});
 			}
 			
@@ -44,9 +50,14 @@ module.exports = {
 			else if (interaction.options.getSubcommand() === subcommands.item.name) {	
 				const quote = interaction.options.getString(option.name);
 				dbDeleteItem(quote).then(function (result) {
-					if (result == "success") interaction.reply(`${reply.success}\n${quote}`);
-					else if (result == "error-not-found") interaction.reply({content: reply.error.item, ephemeral: true});
-					else if (result == "error") interaction.reply({ content: commands.error_generic, ephemeral: true });
+					switch (result) {
+						case 'success':
+							return interaction.reply(`${reply.success}\n${quote}`);
+						case 'error-not-found':
+							return interaction.reply({content: reply.error.item, ephemeral: true});
+						default:
+							return interaction.reply({ content: commands.error_generic, ephemeral: true });
+					}
 				});
 			}
 

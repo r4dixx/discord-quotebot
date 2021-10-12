@@ -9,9 +9,14 @@ module.exports = {
 	async execute(interaction) {
 		const { reply } = get;
 		dbQueryItemRandom().then(function (result) {
-			if (result == "error") interaction.reply({ content: commands.error_generic, ephemeral: true });
-			else if (result == "error-not-found") interaction.reply({content: reply.error, ephemeral: true});
-			else return interaction.reply(`${reply.success} ${result}`);
+			switch (result) {
+				case 'error':
+					return interaction.reply({ content: commands.error_generic, ephemeral: true });
+				case 'error-not-found':
+					return interaction.reply({content: reply.error, ephemeral: true});
+				default:
+					return interaction.reply(`${reply.success} ${result}`);
+			}
 		});
 	}
 };
