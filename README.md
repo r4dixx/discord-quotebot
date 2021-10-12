@@ -1,31 +1,17 @@
 # Discord-QuoteBot 🤖
 
-[![GitHub version](https://badge.fury.io/gh/r4dixx%2FDiscord-QuoteBot.svg)](https://github.com/r4dixx/Discord-QuoteBot/releases/latest)
-[![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://github.com/r4dixx/Discord-QuoteBot#readme)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/r4dixx/Discord-QuoteBot/graphs/commit-activity)
-[![License: GPL--3.0](https://img.shields.io/github/license/r4dixx/Discord-QuoteBot)](https://github.com/r4dixx/Discord-QuoteBot/blob/master/LICENSE)
-[![Twitter followers](https://img.shields.io/twitter/follow/r4dixx.svg?style=social)](https://twitter.com/r4dixx)
+[![npm version](https://badge.fury.io/js/@angular%2FDiscord-QuoteBot.svg)](https://badge.fury.io/js/@r4dixx%2FDiscord-QuoteBot) [![Node.js Package](https://github.com/r4dixx/Discord-QuoteBot/actions/workflows/release-package.yml/badge.svg)](https://github.com/r4dixx/Discord-QuoteBot/actions/workflows/release-package.yml) [![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://github.com/r4dixx/Discord-QuoteBot#readme) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/r4dixx/Discord-QuoteBot/graphs/commit-activity) [![License: GPL--3.0](https://img.shields.io/github/license/r4dixx/Discord-QuoteBot)](https://github.com/r4dixx/Discord-QuoteBot/blob/master/LICENSE) [![Twitter followers](https://img.shields.io/twitter/follow/r4dixx.svg?style=social)](https://twitter.com/r4dixx)
 
 Discord bot to output, save, and edit quotes upon commands.
 
-- Get a random quote → `!quote`
-- Save a quote → `!quote` `your_quote`
-- Edit last saved quote (admins only) → `!requote` `your_quote_edited`
-- Edit chosen quote (admins only) → `!requote` `your_quote` `**>**` `your_quote_edited`
-- Delete last saved quote (admins only) → `!unquote`
-- Delete chosen quote (admins only) → `!unquote` `your_quote_to_delete`
-- Display help message (admins only) → `!help` or mention the bot
-
-These can be customized pretty heavily in [src/config/config.json](src/config/config.json)
-
 ## 📖 Table of contents
-
+- [Available commands](#available-commands)
 - [Preliminary steps](#-preliminary-steps)
    - [Important notes](#important-notes)
+- [Customization](#%EF%B8%8F-customization)
 - [Setup](#-setup)
    - [Locally](#locally)
    - [In the cloud](#in-the-cloud)
-- [Customization](#%EF%B8%8F-customization)
 - [Test if everything is up and running](#-test-if-everything-is-up-and-running)
 - [About the author](#-about-the-author)
 - [Contributing](#-contributing)
@@ -34,43 +20,67 @@ These can be customized pretty heavily in [src/config/config.json](src/config/co
 
 ***
 
+## 👨‍💻 Available commands
+
+There are two types of commands. 
+
+The most basic are available to everyone:
+
+- Get a random quote → `/quote`
+- Save a quote → `/save` your_quote
+- Display help message → `/help`
+- Test → `/ping`
+
+The more advanced (i.e. touchy) commands are available to selected users called "captains". I called this privilege level that way to avoid any confusion with the term "server admins". Captains are not server admins, server admins are not captains. Anyway, these are the commands:
+
+- Edit last saved quote → `/edit` `last` new_quote
+- Edit chosen quote → `/edit` `item` old_quote new_quote
+- Delete last saved quote → `/delete` `last`
+- Delete chosen quote → `/delete` `item` quote_to_delete
+
+All these commands can be customized in [commands.json](src/config/commands.json)
+
 ## 🏁 Preliminary steps
 
-1. [Create a new Discord app](https://discordapp.com/developers/applications/me) and an associated bot account.
+1. [Create a new Discord app](https://discordapp.com/developers/applications/me) and give it a fancy name.
 
-2. Create a Discord invite with `send messages` permissions and your application client ID:
+2. In the OAuth2 settings, set the scope to `application.commands`, open the generated link and add the bot to your server.
 
-   `https://discordapp.com/oauth2/authorize?scope=bot&permissions=2048&client_id=YOUR_CLIENT_ID`
+2. Grab [the latest release](https://github.com/r4dixx/Discord-QuoteBot/releases/latest)
 
-2. Grab [the latest release](https://github.com/r4dixx/Discord-QuoteBot/releases)
+3. Return to your app settings in the developer portal and open [src/config/private.json](src/config/private.json):
 
-3. Open [src/config/private.json](src/config/private.json) and:
+    - Copy/paste your OAuth2 client ID in the `client` field.
 
-    - Copy your bot account token and paste it into the `token` field.
-
-    - Paste your user ID in `botAdminIds`. 
+    - Add a bot in the bot section and copy/paste its token in the `token` field.
+    
+    - Copy/paste your guild ID and user ID in the appropriate fields (`server` and `captains`). Check [the official support page](https://support.discordapp.com/hc/articles/206346498) for more info.
 
       > This will give you more rights (edition, deletion, etc).  
-      You can add as many admins as you'd like but I recommend you tread carefully.
+      You can add as many captains as you'd like but I recommend you tread carefully.
+      Keep it minimal.
+
+   - **Immediately** run `git update-index --assume-unchanged src/config/private.json` to avoid sharing this file with anyone.
 
 ### Important notes
 
-- Users declared as admins of this bot **are not** server admins (and vice-versa)
-- **Never** commit private information. To avoid accidents I recommend you run:
-   
-   `git update-index --assume-unchanged src/private.json`
-   
-- To find your user ID, [check the official support page](https://support.discordapp.com/hc/articles/206346498).  
+- Users declared as captains of this bot **are not** server admins. The opposite applies too.
+- **Never** EVER share your `private.json` file content. [See why](https://discordjs.guide/preparations/setting-up-a-bot-application.html#token-leak-scenario).
 - If you're lost, see [the official documentation](https://discordjs.guide).
+
+## ⚙️ Customization
+
+Edit  [commands.json](src/config/commands.json) and customize it to your likings
+
+> **Warning**: Some prefix/commands can cause conflicts with other bots!
 
 ## 🏗 Setup
 
 ### Locally
 
-Make sure you have [Node.js](http://nodejs.org/) installed.
+Make sure you have [Node.js](http://nodejs.org/) **16.6 or higher** installed.
 
 ```sh
-$ git clone git@github.com:r4dixx/Discord-QuoteBot.git
 $ cd Discord-QuoteBot
 $ npm install
 $ npm start
@@ -81,7 +91,6 @@ $ npm start
 Make sure you have the [Heroku CLI](https://cli.heroku.com/) installed.
 
 ```sh
-$ git clone git@github.com:r4dixx/Discord-QuoteBot.git
 $ cd Discord-QuoteBot
 $ heroku create
 $ git push heroku main
@@ -94,15 +103,9 @@ $ heroku ps:scale web=0
 $ heroku ps:scale worker=1
 ```
 
-## ⚙️ Customization
-
-Edit [src/config/config.json](src/config/config.json) and customize it to your likings
-
-> **Warning**: Some prefix/commands can cause conflicts with other bots!
-
 ## 🧪 Test if everything is up and running
 
-Send `!ping` in your Discord server and see the magic happen
+Send `/ping` in your Discord server and see the magic happen
 
 ***
 

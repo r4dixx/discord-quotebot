@@ -1,14 +1,13 @@
-/*jshint esversion: 6 */
-
-module.exports = function() {
+ module.exports = function() {
 
   require('./dbHelper.js')();
 
   dbCreateTableIfNecessary = function() {
-    const DB_PATH = 'database/quotes.db';
-    if (require('fs').existsSync(DB_PATH)) console.log(`File ${DB_PATH} exists. Moving on`);
+    const db_path = require('path').resolve(__dirname, './quotes.db');
+  
+    if (require('fs').existsSync(db_path)) console.log(`File ${db_path} exists. Moving on`);
     else {
-      console.log(`${DB_PATH} not found, creating...`);
+      console.log(`${db_path} not found, creating...`);
       dbOpen();
       dbGet().run('CREATE TABLE IF NOT EXISTS quotes(quote TEXT PRIMARY KEY)', (err) => {
         if (err) return console.error(err.message);
@@ -168,4 +167,5 @@ function dbDelete(quote) {
     if (err) return console.error(err.message);
     console.log(`Item deleted: ${quote}`);
   });
+
 }
