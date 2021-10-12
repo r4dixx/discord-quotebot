@@ -1,6 +1,6 @@
 {
   "name": "@r4dixx/discord-quotebot",
-  "version": "3.5.5",
+  "version": "4.0.0",
   "description": "Open-source Discord bot to output random quotes upon command",
   "keywords": [
     "discord",
