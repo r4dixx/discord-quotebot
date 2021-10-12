@@ -5,7 +5,7 @@
 Discord bot to output, save, and edit quotes upon commands.
 
 ## 📖 Table of contents
-- [Available commands](#available-commands)
+- [Available commands](#-available-commands)
 - [Preliminary steps](#-preliminary-steps)
    - [Important notes](#important-notes)
 - [Customization](#%EF%B8%8F-customization)
