@@ -2,55 +2,64 @@
 
 ## 4.0.0
 
+### Feature
+
+- **BREAKING CHANGE** - Migrate to discord.js v13
+    - Install NodeJS 16.6.0 or higher
+    - `rm -rf node_modules` 
+    - `npm install`
+
+- Add support for discord commands, subcommands and options
+- Add support for threads
+- Add server field (aka guild) in `private.json`
+
+### Fix
+
+- Fix help displayed when bot mentionned
+- Fix db file path not being interpreted strictly
+
 ### Tech
 
-**BREAKING CHANGE** - Migrate to discord.js v13
-- Install NodeJS 16.6.0 or higher
-- `rm -rf node_modules` 
-- `npm install`
-
-Add support for discord commands, subcommands and options
-Add support for threads
-Add mandatory server field (aka guild)
-Disable help display after bot mention
-Fix db file path causing bin issues
-Cleanup, refacto, renaming
-Update dependencies
-
-And much more!
+- Update dependencies
+- Cleanup, refacto, renaming
 
 ### Documentation
 
-Review badges
+- Review badges
+- Review steps
+
+And much more!
 
 ---
 
 ## 3.5.5
 
+### Fix
+
 **HOTFIX:** Revert this hell of a mess. ¯\\\_(ツ)\_/¯
 
 ## 3.5.4
 
-### Tech
+### Fix
 
 **HOTFIX:** Fix bin support
 
 ## 3.5.3
 
-### Tech
+### Fix
 
 **HOTFIX:** Fix incorrect Discord version which broke everything
 
 ## 3.5.2
 
-### Tech
+### Fix
 
 Add missing bin support
 Fix workflow (again)
 
 ## 3.5.1
 
-### Tech
+### Fix
 
 Fix workflow
 

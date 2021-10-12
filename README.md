@@ -38,7 +38,7 @@ The more advanced (i.e. touchy) commands are available to selected users called 
 - Delete last saved quote → `/delete` `last`
 - Delete chosen quote → `/delete` `item` quote_to_delete
 
-All these commands can be customized in [src/config/commands.json](src/config/commands.json)
+All these commands can be customized in [commands.json](src/config/commands.json)
 
 ## 🏁 Preliminary steps
 
@@ -70,7 +70,7 @@ All these commands can be customized in [src/config/commands.json](src/config/co
 
 ## ⚙️ Customization
 
-Edit [src/config/config.json](src/config/config.json) and customize it to your likings
+Edit  [commands.json](src/config/commands.json) and customize it to your likings
 
 > **Warning**: Some prefix/commands can cause conflicts with other bots!
 
