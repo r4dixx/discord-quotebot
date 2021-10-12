@@ -112,7 +112,7 @@
         "insert": "Save a quote in the database"
       },
       "admin": {
-        "title": ":detective: **Admins can**",
+        "title": ":detective: **Captains can**",
         "update": {
           "title": "Edit quotes",
           "item": "A specific entry",
