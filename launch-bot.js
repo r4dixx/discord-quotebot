@@ -4,7 +4,7 @@ require('./database/dbQueries.js')();
 
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
-const { error_generic } = require('./config/commands.json');
+const { error_generic } = require('./config.json');
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 

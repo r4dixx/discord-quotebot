@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const commands = require('../config/commands.json');
-const { get } = commands
+const config = require('../config.json');
+const { get } = config
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -11,7 +11,7 @@ module.exports = {
 		dbQueryItemRandom().then(function (result) {
 			switch (result) {
 				case 'error':
-					return interaction.reply({ content: commands.error_generic, ephemeral: true });
+					return interaction.reply({ content: config.error_generic, ephemeral: true });
 				case 'error-not-found':
 					return interaction.reply({content: reply.error, ephemeral: true});
 				default:

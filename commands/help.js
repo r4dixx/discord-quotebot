@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const commands = require('../config/commands.json');
+const config = require('../config.json');
 
-const help = commands.help;
+const help = config.help;
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -20,18 +20,18 @@ ${reply.about}
 
 ${reply.user.title}
 
-	• ${reply.user.get} → \`/${commands.get.name}\`
-	• ${reply.user.insert} → \`/${commands.insert.name}\` \`${reply.formats.current}\`
+	• ${reply.user.get} → \`/${config.get.name}\`
+	• ${reply.user.insert} → \`/${config.insert.name}\` \`${reply.formats.current}\`
 
 ${reply.admin.title}
 
 • ${reply.admin.update.title}
-	‣ ${reply.admin.update.last} → \`/${commands.update.name}\` \`${reply.formats.new}\`
-	‣ ${reply.admin.update.item} → \`/${commands.update.name}\` \`${reply.formats.old}\` \`${reply.formats.new}\`
+	‣ ${reply.admin.update.last} → \`/${config.update.name}\` \`${reply.formats.new}\`
+	‣ ${reply.admin.update.item} → \`/${config.update.name}\` \`${reply.formats.old}\` \`${reply.formats.new}\`
 
 • ${reply.admin.drop.title}
-	‣ ${reply.admin.drop.last} → \`/${commands.drop.name}\`
-	‣ ${reply.admin.drop.item} → \`/${commands.drop.name}\` \`${reply.formats.current}\`
+	‣ ${reply.admin.drop.last} → \`/${config.drop.name}\`
+	‣ ${reply.admin.drop.item} → \`/${config.drop.name}\` \`${reply.formats.current}\`
 
 ${reply.self.title}
 

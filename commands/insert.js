@@ -1,6 +1,6 @@
 const {	SlashCommandBuilder } = require('@discordjs/builders');
-const commands = require('../config/commands.json');
-const { insert } = commands
+const config = require('../config.json');
+const { insert } = config
 
 module.exports = {
 
@@ -27,7 +27,7 @@ module.exports = {
 					case 'error-duplicate':
 						return interaction.reply({content: reply.error.duplicate, ephemeral: true});
 					default:
-						return interaction.reply({ content: commands.error_generic, ephemeral: true });
+						return interaction.reply({ content: config.error_generic, ephemeral: true });
 				}
 			});
 		}

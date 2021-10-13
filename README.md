@@ -42,7 +42,7 @@ The more advanced (i.e. touchy) commands are available to selected users called 
 - Delete last saved quote → `/delete` `last`
 - Delete chosen quote → `/delete` `item` quote_to_delete
 
-All these commands can be customized in [commands.json](src/config/commands.json)
+All these commands can be customized in [config.json](config.json)
 
 ## 🏁 Preliminary steps
 
@@ -107,17 +107,34 @@ $ npm install
 $ npm start
 ```
 
-This will install all the dependencies, deploy necessary commands (more on that in a few) and start the bot.
+This will:
+
+   - Install all the dependencies
+   - Load your secrets
+   - Deploy commands to your server
+   - Start the bot.
+
+Your output should read
+
+`Successfully registered application commands`
+
+and
+
+`Discord client ready`
+
+If it doesn't, something went wrong. Check if you followed the steps correctly. Your environment variables might also be incorrect.
 
 ### Test if everything is up and running
 
-Send `/ping` in your Discord server and see the magic happen
+Send `/ping` in your Discord server and see the magic happen.
+
+If nothing shows, something went wrong. Check the logs for potential error messages.
 
 ## ✨ Customize the bot
 
-All good? Now you can customize the bot by editing the [config.json](src/config/commands.json) file.
+All good? Now you can customize the bot by editing [config.json](config.json).
 
-This file in JSON format contains each command as main entry point and its associated configuration. Here's an example:
+This file in JSON format contains every commands and their associated configuration. Here's an example:
 
 ```json
 {
@@ -143,7 +160,7 @@ Everything can be customized pretty heavily so be creative!
 
 Once you're done, save the file and restart the bot to deploy your new configuration. 
 
-Show me what you've done! 🤗
+Show me what you've done 🤗
 
 ***
 

@@ -2,5 +2,5 @@
 .vscode/
 .env
 .tool-versions
-src/database/quotes.db
+database/quotes.db
 node_modules/

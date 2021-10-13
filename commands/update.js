@@ -1,6 +1,6 @@
 const {	SlashCommandBuilder } = require('@discordjs/builders');
-const commands = require('../config/commands.json');
-const { update } = commands
+const config = require('../config.json');
+const { update } = config
 const { name, description, subcommands } = update;
 
 const option_last = subcommands.last.option;
@@ -47,7 +47,7 @@ module.exports = {
 				dbUpdateLast(quote_new).then(function (result) {
 					switch (result) {
 						case "error":
-							return interaction.reply({ content: commands.error_generic, ephemeral: true });
+							return interaction.reply({ content: config.error_generic, ephemeral: true });
 						case "error-no-changes":
 							return interaction.reply({ content: last.similar, ephemeral: true });
 						case "error-duplicate":
@@ -76,7 +76,7 @@ module.exports = {
 						case "error-not-found":
 							return interaction.reply({ content: item.notfound, ephemeral: true });
 						case "error":
-							return interaction.reply({ content: commands.error_generic, ephemeral: true });
+							return interaction.reply({ content: config.error_generic, ephemeral: true });
 					}
 				});
 			}

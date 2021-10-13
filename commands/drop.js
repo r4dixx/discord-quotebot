@@ -1,6 +1,6 @@
 const {	SlashCommandBuilder } = require('@discordjs/builders');
-const commands = require('../config/commands.json');
-const { drop } = commands
+const config = require('../config.json');
+const { drop } = config
 const { name, description, subcommands } = drop;
 const { option } = subcommands.item;
 
@@ -35,7 +35,7 @@ module.exports = {
 				dbDeleteLast().then(function (result) {
 					switch (result) {
 						case 'error':
-							return interaction.reply({ content: commands.error_generic, ephemeral: true });
+							return interaction.reply({ content: config.error_generic, ephemeral: true });
 						case 'error-not-found':
 							return interaction.reply({content: reply.error.last, ephemeral: true});
 						default:
@@ -55,7 +55,7 @@ module.exports = {
 						case 'error-not-found':
 							return interaction.reply({content: reply.error.item, ephemeral: true});
 						default:
-							return interaction.reply({ content: commands.error_generic, ephemeral: true });
+							return interaction.reply({ content: config.error_generic, ephemeral: true });
 					}
 				});
 			}
