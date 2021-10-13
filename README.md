@@ -8,7 +8,7 @@ Discord bot to output, save, and edit quotes upon commands.
 - [Available commands](#-available-commands)
 - [Preliminary steps](#-preliminary-steps)
    - [Important notes](#important-notes)
-- [Customization](#%EF%B8%8F-customization)
+- [Customization](#-customization)
 - [Setup](#-setup)
 - [Test if everything is up and running](#-test-if-everything-is-up-and-running)
 - [About the author](#-about-the-author)
@@ -66,7 +66,7 @@ All these commands can be customized in [commands.json](src/config/commands.json
 - **Never** EVER share your `private.json` file content. [See why](https://discordjs.guide/preparations/setting-up-a-bot-application.html#token-leak-scenario).
 - If you're lost, see [the official documentation](https://discordjs.guide).
 
-## ⚙️ Customization
+## ✨ Customization
 
 Edit  [commands.json](src/config/commands.json) and customize it to your likings
 
