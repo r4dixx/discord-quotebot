@@ -1,5 +1,20 @@
 # Changelog
 
+## 4.0.1
+
+### Fix
+
+- Fix project name for npm package
+
+### Documentation
+
+- Remove Heroku steps as it does not support database persistence
+- Review some wording
+
+### Tech
+
+Update dependencies
+
 ## 4.0.0
 
 ### Feature
@@ -18,15 +33,15 @@
 - Fix help displayed when bot mentionned
 - Fix db file path not being interpreted strictly
 
-### Tech
-
-- Update dependencies
-- Cleanup, refacto, renaming
-
 ### Documentation
 
 - Review badges
 - Review steps
+
+### Tech
+
+- Update dependencies
+- Cleanup, refacto, renaming
 
 And much more!
 
@@ -79,7 +94,7 @@ Fix package.json urls
 
 ## 3.4.3
 
-### Tech
+### Fix
 
 Fix package name for publication
 
@@ -89,7 +104,7 @@ Review badges in README.md
 
 ## 3.4.2
 
-### Tech
+### Fix
 
 Add missing `Procfile`
 
@@ -105,15 +120,15 @@ Fix wrong link in README.md
 
 ## 3.4.0
 
-### Tech
-
-Improve stability
-Add Heroku support
-Update dependencies
-
 ### Documentation
 
 Improve README.md
+Add Heroku steps
+
+### Tech
+
+Improve stability
+Update dependencies
 
 ---
 
@@ -127,15 +142,15 @@ Improve README.md
 
 - Review logs (specifically add missing one for insertion)
 
-### Tech
-
-- Update `node-addon-api` to version 3.1.0 ([changelog](https://github.com/nodejs/node-addon-api/releases/tag/3.1.0))
-- Update `sqlite3` to version 5.0.2 ([changelog](https://github.com/mapbox/node-sqlite3/releases/tag/v5.0.2))
-- Update `string_decoder` to version 1.1.1 ([changelog](https://github.com/nodejs/string_decoder/releases/tag/v1.1.1))
-
 ### Documentation
 
 - Fix wrong command provided for ignoring private json file
+
+### Tech
+
+- Update `node-addon-api` 3.1.0 ([changelog](https://github.com/nodejs/node-addon-api/releases/tag/3.1.0))
+- Update `sqlite3` 5.0.2 ([changelog](https://github.com/mapbox/node-sqlite3/releases/tag/v5.0.2))
+- Update `string_decoder` 1.1.1 ([changelog](https://github.com/nodejs/string_decoder/releases/tag/v1.1.1))
 
 ---
 
@@ -159,11 +174,11 @@ Improve README.md
 - Performance and stability improvements
 - Cleanup
 - Fix security vulnerability (see [#7](https://github.com/r4dixx/QuoteBot/pull/7))
-- Update `discord.js` to version 12.5.1 ([changelog](https://github.com/discordjs/discord.js/releases/tag/12.5.1))
-- Update `mime-db` to version 1.45.0 ([changelog](https://github.com/jshttp/mime-db/releases/tag/v1.45.0))
-- Update `mime-types` to version 2.1.28 ([changelog](https://github.com/jshttp/mime-types/releases/tag/2.1.28))
-- Update `ms` to version 2.1.3 ([changelog](https://github.com/vercel/ms/releases/tag/2.1.3))
-- Update `ws` to version 7.4.2 ([changelog](https://github.com/websockets/ws/releases/tag/7.4.2))
+- Update `discord.js` 12.5.1 ([changelog](https://github.com/discordjs/discord.js/releases/tag/12.5.1))
+- Update `mime-db` 1.45.0 ([changelog](https://github.com/jshttp/mime-db/releases/tag/v1.45.0))
+- Update `mime-types` 2.1.28 ([changelog](https://github.com/jshttp/mime-types/releases/tag/2.1.28))
+- Update `ms` 2.1.3 ([changelog](https://github.com/vercel/ms/releases/tag/2.1.3))
+- Update `ws` 7.4.2 ([changelog](https://github.com/websockets/ws/releases/tag/7.4.2))
 
 ---
 
@@ -206,7 +221,7 @@ Improve README.md
 - Review model (see config.json)
 - Improve code readability
 - Improve separation of concerns
-- Update `discord.js` to version 12.5.0 ([changelog](https://github.com/discordjs/discord.js/releases/tag/12.5.0))
+- Update `discord.js` 12.5.0 ([changelog](https://github.com/discordjs/discord.js/releases/tag/12.5.0))
 
 ---
 
@@ -223,15 +238,15 @@ Improve README.md
 
 - Improve stability
 
-### Tech
-
-- Better project decoupling (with commandHandler.js for instance)
-
 ### Documentation
 
 - Clearer and more complete steps
 - Links to official documentation
 - Disclaimers for sensible steps
+
+### Tech
+
+- Better project decoupling (with commandHandler.js for instance)
 
 ---
 
@@ -247,15 +262,15 @@ Improve README.md
 - Make help friendlier to use and to understand
 - Review formatting
 
-### Tech
-
-- Make help formatting easier to read in codebase
-- Update dependencies
-
 ### Documentation
 
 - Improve README.md
 - Warn about private config
+
+### Tech
+
+- Make help formatting easier to read in codebase
+- Update dependencies
 
 ---
 
@@ -270,10 +285,10 @@ First release
 - Display help
 - Configure commands, feedbacks and more
 
-### Tech
-
-- Ping to debug
-
 ### Documentation
 
 - Create README & LICENSE
+
+### Tech
+
+- Ping to debug
