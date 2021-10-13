@@ -76,31 +76,12 @@ Edit  [commands.json](src/config/commands.json) and customize it to your likings
 
 ## 🏗 Setup
 
-### Locally
-
 Make sure you have [Node.js](http://nodejs.org/) **16.6 or higher** installed.
 
 ```sh
 $ cd discord-quotebot
 $ npm install
 $ npm start
-```
-
-### In the cloud
-
-Make sure you have the [Heroku CLI](https://cli.heroku.com/) installed.
-
-```sh
-$ cd discord-quotebot
-$ heroku create
-$ git push heroku main
-```
-
-We only need a worker process to run the bot.
-
-```sh
-$ heroku ps:scale web=0
-$ heroku ps:scale worker=1
 ```
 
 ## 🧪 Test if everything is up and running
