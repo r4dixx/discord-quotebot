@@ -10,8 +10,6 @@ Discord bot to output, save, and edit quotes upon commands.
    - [Important notes](#important-notes)
 - [Customization](#%EF%B8%8F-customization)
 - [Setup](#-setup)
-   - [Locally](#locally)
-   - [In the cloud](#in-the-cloud)
 - [Test if everything is up and running](#-test-if-everything-is-up-and-running)
 - [About the author](#-about-the-author)
 - [Contributing](#-contributing)
