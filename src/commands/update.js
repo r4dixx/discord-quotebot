@@ -33,11 +33,10 @@ module.exports = {
 
 	async execute(interaction) {
 
-		const { captains } = require('../config/private.json');
 		const { reply } = update;
 		
 		// Only if user is captain
-		if (captains.includes(interaction.user.id)) {
+		if (process.env.CAPTAIN_IDS.includes(interaction.user.id)) {
 
 			console.log(`Author id ${interaction.user.username} is a captain, arrr`);
 
