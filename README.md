@@ -1,6 +1,6 @@
-# Discord-QuoteBot 🤖
+# Discord QuoteBot 🤖
 
-[![npm version](https://badge.fury.io/js/@angular%2FDiscord-QuoteBot.svg)](https://badge.fury.io/js/@r4dixx%2FDiscord-QuoteBot) [![Node.js Package](https://github.com/r4dixx/Discord-QuoteBot/actions/workflows/release-package.yml/badge.svg)](https://github.com/r4dixx/Discord-QuoteBot/actions/workflows/release-package.yml) [![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://github.com/r4dixx/Discord-QuoteBot#readme) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/r4dixx/Discord-QuoteBot/graphs/commit-activity) [![License: GPL--3.0](https://img.shields.io/github/license/r4dixx/Discord-QuoteBot)](https://github.com/r4dixx/Discord-QuoteBot/blob/master/LICENSE) [![Twitter followers](https://img.shields.io/twitter/follow/r4dixx.svg?style=social)](https://twitter.com/r4dixx)
+[![npm version](https://badge.fury.io/js/@angular%2Fdiscord-quotebot.svg)](https://badge.fury.io/js/@r4dixx%2Fdiscord-quotebot) [![Node.js Package](https://github.com/r4dixx/discord-quotebot/actions/workflows/release-package.yml/badge.svg)](https://github.com/r4dixx/discord-quotebot/actions/workflows/release-package.yml) [![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://github.com/r4dixx/discord-quotebot#readme) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/r4dixx/discord-quotebot/graphs/commit-activity) [![License: GPL--3.0](https://img.shields.io/github/license/r4dixx/discord-quotebot)](https://github.com/r4dixx/discord-quotebot/blob/master/LICENSE) [![Twitter followers](https://img.shields.io/twitter/follow/r4dixx.svg?style=social)](https://twitter.com/r4dixx)
 
 Discord bot to output, save, and edit quotes upon commands.
 
@@ -46,7 +46,7 @@ All these commands can be customized in [commands.json](src/config/commands.json
 
 2. In the OAuth2 settings, set the scope to `application.commands`, open the generated link and add the bot to your server.
 
-2. Grab [the latest release](https://github.com/r4dixx/Discord-QuoteBot/releases/latest)
+2. Grab [the latest release](https://github.com/r4dixx/discord-quotebot/releases/latest)
 
 3. Return to your app settings in the developer portal and open [src/config/private.json](src/config/private.json):
 
@@ -81,7 +81,7 @@ Edit  [commands.json](src/config/commands.json) and customize it to your likings
 Make sure you have [Node.js](http://nodejs.org/) **16.6 or higher** installed.
 
 ```sh
-$ cd Discord-QuoteBot
+$ cd discord-quotebot
 $ npm install
 $ npm start
 ```
@@ -91,7 +91,7 @@ $ npm start
 Make sure you have the [Heroku CLI](https://cli.heroku.com/) installed.
 
 ```sh
-$ cd Discord-QuoteBot
+$ cd discord-quotebot
 $ heroku create
 $ git push heroku main
 ```
@@ -118,7 +118,7 @@ Send `/ping` in your Discord server and see the magic happen
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/r4dixx/Discord-QuoteBot/issues).
+Contributions, issues and feature requests are welcome!<br />Feel free to check the [issues page](https://github.com/r4dixx/discord-quotebot/issues).
 
 ## 🤗 Show your support
 
@@ -127,7 +127,7 @@ Give a ⭐️ if this project helped you!
 ## 📝 License
 
 Copyright © 2021 [r4dixx](https://github.com/r4dixx).<br />
-This project is [GPL-3.0](https://github.com/r4dixx/Discord-QuoteBot/blob/master/LICENSE) licensed.
+This project is [GPL-3.0](https://github.com/r4dixx/discord-quotebot/blob/master/LICENSE) licensed.
 
 ***
 
