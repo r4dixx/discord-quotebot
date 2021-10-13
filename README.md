@@ -46,24 +46,24 @@ All these commands can be customized in [commands.json](src/config/commands.json
 
 2. Grab [the latest release](https://github.com/r4dixx/discord-quotebot/releases/latest)
 
-3. Return to your app settings in the developer portal and open [src/config/private.json](src/config/private.json):
+3. Return to your app settings in the developer portal and open [src/.env](src/.env):
 
-    - Copy/paste your OAuth2 client ID in the `client` field.
+    - Copy/paste your OAuth2 client ID in the `CLIENT_ID` field.
 
-    - Add a bot in the bot section and copy/paste its token in the `token` field.
+    - Add a bot in the bot section and copy/paste its token in the `TOKEN` field.
+
+    - Copy/paste your server ID in the `GUILD_ID` field.
     
-    - Copy/paste your guild ID and user ID in the appropriate fields (`server` and `captains`). Check [the official support page](https://support.discordapp.com/hc/articles/206346498) for more info.
+    - In order to get edition and deletion rights, add your user ID to the `CAPTAIN_IDS` array. Check [the official support page](https://support.discordapp.com/hc/articles/206346498) for more info.
 
-      > This will give you more rights (edition, deletion, etc).  
-      You can add as many captains as you'd like but I recommend you tread carefully.
-      Keep it minimal.
+      > You can add as many captains as you'd like but I recommend you tread carefully. Keep it minimal.
 
-   - **Immediately** run `git update-index --assume-unchanged src/config/private.json` to avoid sharing this file with anyone.
+   - **Immediately** run `git update-index --assume-unchanged src/.env` to avoid sharing this file with anyone. It contains private and sensitive information.
 
 ### Important notes
 
 - Users declared as captains of this bot **are not** server admins. The opposite applies too.
-- **Never** EVER share your `private.json` file content. [See why](https://discordjs.guide/preparations/setting-up-a-bot-application.html#token-leak-scenario).
+- **Never** EVER share your `.env`. [See why](https://discordjs.guide/preparations/setting-up-a-bot-application.html#token-leak-scenario).
 - If you're lost, see [the official documentation](https://discordjs.guide).
 
 ## ✨ Customization
