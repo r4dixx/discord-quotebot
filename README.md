@@ -1,20 +1,26 @@
 # Discord QuoteBot 🤖
-
-[![npm version](https://badge.fury.io/js/@angular%2Fdiscord-quotebot.svg)](https://badge.fury.io/js/@r4dixx%2Fdiscord-quotebot) [![Node.js Package](https://github.com/r4dixx/discord-quotebot/actions/workflows/release-package.yml/badge.svg)](https://github.com/r4dixx/discord-quotebot/actions/workflows/release-package.yml) [![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://github.com/r4dixx/discord-quotebot#readme) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/r4dixx/discord-quotebot/graphs/commit-activity) [![License: GPL--3.0](https://img.shields.io/github/license/r4dixx/discord-quotebot)](https://github.com/r4dixx/discord-quotebot/blob/master/LICENSE) [![Twitter followers](https://img.shields.io/twitter/follow/r4dixx.svg?style=social)](https://twitter.com/r4dixx)
+[![Latest release](https://img.shields.io/github/release/r4dixx/discord-quotebot.svg)](https://GitHub.com/r4dixx/discord-quotebot/releases/) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/r4dixx/discord-quotebot/graphs/commit-activity) [![License: GPL--3.0](https://img.shields.io/github/license/r4dixx/discord-quotebot)](https://github.com/r4dixx/discord-quotebot/blob/master/LICENSE) [![Twitter followers](https://img.shields.io/twitter/follow/r4dixx.svg?style=social)](https://twitter.com/r4dixx)
 
 Discord bot to output, save, and edit quotes upon commands.
 
 ## 📖 Table of contents
-- [Available commands](#-available-commands)
-- [Preliminary steps](#-preliminary-steps)
+- [👨‍💻 Available commands](#-available-commands)
+
+- [🏁 Preliminary steps](#-preliminary-steps)
+   - [Create an app](#create-an-app)
+   - [Declare secrets](#declare-secrets)
    - [Important notes](#important-notes)
-- [Customization](#-customization)
-- [Setup](#-setup)
-- [Test if everything is up and running](#-test-if-everything-is-up-and-running)
-- [About the author](#-about-the-author)
-- [Contributing](#-contributing)
-- [Show your support](#-show-your-support)
-- [License](#-license)
+
+- [🏗 Setup](#-setup)
+   - [Installation and first run](#-installation-and-first-run)
+   - [Test if everything is up and running](#-test-if-everything-is-up-and-running)
+
+- [✨ Customize the bot](#customize-the-bot)
+
+- [👤 About the author](#-about-the-author)
+- [🤝 Contributing](#-contributing)
+- [🤗 Show your support](#-show-your-support)
+- [📝 License](#-license)
 
 ***
 
@@ -29,7 +35,7 @@ The most basic are available to everyone:
 - Display help message → `/help`
 - Test → `/ping`
 
-The more advanced (i.e. touchy) commands are available to selected users called "captains". I called this privilege level that way to avoid any confusion with the term "server admins". Captains are not server admins, server admins are not captains. Anyway, these are the commands:
+The more advanced (i.e. touchy) commands are available to selected users called "captains". I called this privilege level that way to avoid any confusion with the term "server admins". Captains are not server admins, server admins are not captains. Here are the available commands:
 
 - Edit last saved quote → `/edit` `last` new_quote
 - Edit chosen quote → `/edit` `item` old_quote new_quote
@@ -40,41 +46,60 @@ All these commands can be customized in [commands.json](src/config/commands.json
 
 ## 🏁 Preliminary steps
 
+First and foremost, grab [the latest release](https://github.com/r4dixx/discord-quotebot/releases/latest) and `cd` to the root directory.
+
+```sh
+$ git clone git@github.com:r4dixx/discord-quotebot.git
+$ cd discord-quotebot
+```
+
+### Create an app
+
+No we need to create and setup a Discord app + its associated bot
+
 1. [Create a new Discord app](https://discordapp.com/developers/applications/me) and give it a fancy name.
 
 2. In the OAuth2 settings, set the scope to `application.commands`, open the generated link and add the bot to your server.
 
-2. Grab [the latest release](https://github.com/r4dixx/discord-quotebot/releases/latest)
+3. Add a bot in the bot section.
 
-3. Return to your app settings in the developer portal and open [src/.env](src/.env):
+### Declare secrets
 
-    - Copy/paste your OAuth2 client ID in the `CLIENT_ID` field.
+In order to setup and run the project, you need to have the following environment variables set:
 
-    - Add a bot in the bot section and copy/paste its token in the `TOKEN` field.
+   - Your app OAuth2 client ID as `CLIENT_ID`. 
+   - Your bot token as `TOKEN`.
+   - Your server ID as `GUILD_ID`.
+   - At least one user ID in `CAPTAIN_IDS` for edition/deletion rights.
+   
+   > You can add as many captains as you'd like but I recommend you keep it minimal.
 
-    - Copy/paste your server ID in the `GUILD_ID` field.
-    
-    - In order to get edition and deletion rights, add your user ID to the `CAPTAIN_IDS` array. Check [the official support page](https://support.discordapp.com/hc/articles/206346498) for more info.
+There are [several ways to store these values](https://nodejs.dev/learn/how-to-read-environment-variables-from-nodejs). I personnally put them in an `.env` file in the root directory.
 
-      > You can add as many captains as you'd like but I recommend you tread carefully. Keep it minimal.
-
-   - **Immediately** run `git update-index --assume-unchanged src/.env` to avoid sharing this file with anyone. It contains private and sensitive information.
+```sh
+$ cd discord-quotebot
+$ touch .env
+$ echo "CLIENT_ID=your_app_oauth2_client_id
+TOKEN=your_bot_token
+GUILD_ID=your_server_id
+CAPTAIN_IDS=your_user_id, another_user_id, and_maybe_another >> .env
+```
 
 ### Important notes
 
-- Users declared as captains of this bot **are not** server admins. The opposite applies too.
-- **Never** EVER share your `.env`. [See why](https://discordjs.guide/preparations/setting-up-a-bot-application.html#token-leak-scenario).
-- If you're lost, see [the official documentation](https://discordjs.guide).
+- Users declared as captains of this bot **are not** server admins, they are just users with the right to edit/delete quotes. In a similar fashion, server admins cannot edit/delete quotes unless they are specifically declared as captains.
 
-## ✨ Customization
+- **Never** EVER share your environment with anyone. [See why](https://discordjs.guide/preparations/setting-up-a-bot-application.html#token-leak-scenario).
 
-Edit  [commands.json](src/config/commands.json) and customize it to your likings
-
-> **Warning**: Some prefix/commands can cause conflicts with other bots!
+- Refer to the official documentation if you're lost
+   - [Setting up a bot application](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)
+   - [Where can I find my User/Server/Message ID?](https://support.discord.com/hc/articles/206346498)
 
 ## 🏗 Setup
 
-Make sure you have [Node.js](http://nodejs.org/) **16.6 or higher** installed.
+### Installation and first run
+
+Make sure you have [Node.js](http://nodejs.org/) **16.6 or higher** installed and run the following commands:
 
 ```sh
 $ cd discord-quotebot
@@ -82,9 +107,43 @@ $ npm install
 $ npm start
 ```
 
-## 🧪 Test if everything is up and running
+This will install all the dependencies, deploy necessary commands (more on that in a few) and start the bot.
+
+### Test if everything is up and running
 
 Send `/ping` in your Discord server and see the magic happen
+
+## ✨ Customize the bot
+
+All good? Now you can customize the bot by editing the [config.json](src/config/commands.json) file.
+
+This file in JSON format contains each command as main entry point and its associated configuration. Here's an example:
+
+```json
+{
+   "insert": {
+      "name": "save",
+      "description": "Save given quote in the database",
+      "option": {
+         "name": "quote",
+         "description": "Enter a quote you would like to save"
+      },
+      "reply": {
+         "success": ":brain: **I'll remember this one...**",
+         "error": {
+            "mention": ":shushing_face: Not saving this one. Please don't mention people in quotes.",
+            "duplicate": ":people_holding_hands: Error: This quote already exists."
+         }
+      }
+   }
+}
+```
+
+Everything can be customized pretty heavily so be creative! 
+
+Once you're done, save the file and restart the bot to deploy your new configuration. 
+
+Show me what you've done! 🤗
 
 ***
 
