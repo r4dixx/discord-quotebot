@@ -20,8 +20,8 @@ ${reply.about}
 
 ${reply.user.title}
 
-	• ${reply.user.get} → \`/${config.get.name}\`
-	• ${reply.user.insert} → \`/${config.insert.name}\` \`${reply.formats.current}\`
+• ${reply.user.get} → \`/${config.get.name}\`
+• ${reply.user.insert} → \`/${config.insert.name}\` \`${reply.formats.current}\`
 
 ${reply.admin.title}
 
@@ -35,9 +35,9 @@ ${reply.admin.title}
 
 ${reply.self.title}
 
-• ${reply.self.prefixes.command} \`/${help.name}\`
+• ${reply.self.prefix} \`/${help.name}\`
 
-			`, ephemeral: true});
+		`, ephemeral: true});
 
 	}
 };

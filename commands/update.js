@@ -55,7 +55,7 @@ module.exports = {
 						case "error-not-found":
 							return interaction.reply({ content: last.notfound, ephemeral: true });
 						default:
-							return interaction.reply(`${reply.success.title}\n${reply.success.old_prefix}\n${result}\n${reply.success.new_prefix}\n${quote_new}`);
+							return interaction.reply(`${reply.success.title}\n${reply.success.prefix_old}\n${result}\n${reply.success.prefix_new}\n${quote_new}`);
 					}
 				});
 			}
@@ -68,7 +68,7 @@ module.exports = {
 				dbUpdateItem(quote_old, quote_new).then(function (result) {
 					switch (result) {	
 						case "success":
-							return interaction.reply(`${reply.success.title}\n${reply.success.old_prefix}\n${quote_old}\n${reply.success.new_prefix}\n${quote_new}`);
+							return interaction.reply(`${reply.success.title}\n${reply.success.prefix_old}\n${quote_old}\n${reply.success.prefix_new}\n${quote_new}`);
 						case "error-no-changes":
 							return interaction.reply({ content: item.similar, ephemeral: true });
 						case "error-duplicate":
