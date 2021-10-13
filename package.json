@@ -18,8 +18,9 @@
   },
   "bin": "src/app.js",
   "scripts": {
-    "postinstall": "cd src/postinstall && node deploy-commands.js",
     "test": "echo \"Warning: no test specified\"",
+    "postinstall": "cd src/postinstall && node deploy-commands.js",
+    "prestart": "node -r dotenv/config src/app.js",
     "start": "node src/app.js"
   },
   "engines": {
