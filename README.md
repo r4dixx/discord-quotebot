@@ -116,7 +116,7 @@ This will:
 
 Your output should read
 
-`Successfully registered application commands`
+`Successfully reloaded application commands.`
 
 and
 
