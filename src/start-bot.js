@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { error_generic } = require('./config/config.json');
