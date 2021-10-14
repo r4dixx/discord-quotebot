@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders')
-const { ping } = require('../config/config.json')
+const { ping } = require('../config.json')
 
 module.exports = {
 	data: new SlashCommandBuilder()

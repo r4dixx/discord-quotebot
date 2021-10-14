@@ -17,8 +17,8 @@
     "email": "amael.sikel@gmail.com"
   },
   "scripts": {
-    "prestart": "node -r dotenv/config deploy-commands.js dotenv_config_path=config/.env",
-    "start": "node -r dotenv/config start-bot.js dotenv_config_path=config/.env"
+    "prestart": "node -r dotenv/config src/app/deploy-commands.js",
+    "start": "node -r dotenv/config src/app/start-bot.js"
   },
   "engines": {
     "node": ">=16.6"

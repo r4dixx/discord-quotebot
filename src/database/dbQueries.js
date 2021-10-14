@@ -3,7 +3,7 @@
   require('./dbHelper.js')()
 
   dbCreateTableIfNecessary = function() {
-    const db_path = require('path').resolve(__dirname, './quotes.db')
+    const db_path = require('path').resolve(__dirname, '../quotes.db')
   
     if (require('fs').existsSync(db_path)) console.log(`File ${db_path} exists. Moving on`)
     else {

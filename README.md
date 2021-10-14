@@ -42,7 +42,7 @@ The more advanced (i.e. touchy) commands are available to selected users called 
 - Delete last saved quote → `/delete` `last`
 - Delete chosen quote → `/delete` `item` quote_to_delete
 
-All these commands can be customized in [config/config.json](config/config.json)
+All these commands can be customized in [config.json](config.json)
 
 ## 🏁 Preliminary steps
 
@@ -132,7 +132,7 @@ If nothing shows, something went wrong. Check the logs for potential error messa
 
 ## ✨ Customize the bot
 
-All good? Now you can customize the bot by editing [config/config.json](config/config.json).
+All good? Now you can customize the bot by editing [config.json](config.json).
 
 This file in JSON format contains every commands and their associated configuration. Here's an example:
 
