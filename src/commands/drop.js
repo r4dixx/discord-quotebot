@@ -1,5 +1,5 @@
 const {	SlashCommandBuilder } = require('@discordjs/builders');
-const config = require('../config.json');
+const config = require('../config/config.json');
 const { drop } = config
 const { name, description, subcommands } = drop;
 const { option } = subcommands.item;

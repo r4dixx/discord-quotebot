@@ -1,6 +1,6 @@
 .DS_Store
 .vscode/
-.env
-.tool-versions
-database/quotes.db
-node_modules/
+src/config/.env
+src/.tool-versions
+src/database/quotes.db
+src/node_modules/
