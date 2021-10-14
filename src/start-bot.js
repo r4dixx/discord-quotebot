@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-require('./database/dbQueries.js')();
-
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { error_generic } = require('./config/config.json');
@@ -16,11 +14,6 @@ for (const file of commandFiles) {
 	client.commands.set(command.data.name, command);
 }
 
-client.once('ready', () => {
-	console.log('Discord client ready');
-	dbCreateTableIfNecessary();
-});
-
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 	const command = client.commands.get(interaction.commandName);
@@ -33,4 +26,14 @@ client.on('interactionCreate', async interaction => {
 	}
 });
 
+///
+
+const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
+
+for (const file of eventFiles) {
+	const event = require(`./events/${file}`);
+	client.on(event.name, event.execute);
+}
+
 client.login(process.env.TOKEN);
+
