@@ -28,7 +28,7 @@ module.exports = {
 		// Only if user is captain
 		if (process.env.CAPTAIN_IDS.includes(interaction.user.id)) {
 
-			console.log(`Author id ${interaction.user.username} is a captain, arrr`)
+			console.log(`User is a captain, arrr`)
 
 			// Delete last item	
 			if (interaction.options.getSubcommand() === subcommands.last.name) {
@@ -61,7 +61,7 @@ module.exports = {
 			}
 
 		} else {
-			console.log(require('chalk').red(`Author id ${interaction.user.username} is not a captain. Abort!`))
+			console.log(require('chalk').red(`User is not a captain. Abort!`))
 			interaction.reply({content: reply.error.rights, ephemeral: true})
 		}
 	}

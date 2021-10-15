@@ -10,7 +10,7 @@ module.exports = {
 		
 	async execute(interaction) {
 
-		console.log(`Displaying help to ${interaction.user.username}`)
+		console.log(`Displaying help`)
 
 		const { reply } = help
 		
