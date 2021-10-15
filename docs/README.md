@@ -112,7 +112,7 @@ This will:
    - Deploy commands to your server 
    - Start the bot
 
-Your output should read `Successfully reloaded application commands.` and `Discord client ready`
+Your output should read `Successfully reloaded application commands` and `Discord client ready`
 
 If it doesn't, something went wrong. Your environment variables might be incorrect.
 
