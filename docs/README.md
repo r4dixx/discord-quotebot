@@ -12,10 +12,10 @@ Discord bot to output, save, and edit quotes upon commands.
    - [Important notes](#important-notes)
 
 - [🏗 Setup](#-setup)
-   - [Installation and first run](#-installation-and-first-run)
-   - [Test if everything is up and running](#-test-if-everything-is-up-and-running)
+   - [Installation and first run](#installation-and-first-run)
+   - [Test if everything is up and running](#test-if-everything-is-up-and-running)
 
-- [✨ Customize the bot](#customize-the-bot)
+- [✨ Customize the bot](#-customize-the-bot)
 
 - [👤 About the author](#-about-the-author)
 - [🤝 Contributing](#-contributing)
@@ -35,32 +35,30 @@ The most basic are available to everyone:
 - Display help message → `/help`
 - Test → `/ping`
 
-The more advanced (i.e. touchy) commands are available to selected users called "captains". I called this privilege level that way to avoid any confusion with the term "server admins". Captains are not server admins, server admins are not captains. Here are the available commands:
+The more advanced (i.e. touchy) commands are available to selected users called "captains". I called this privilege level that way to avoid any confusion with the term "server admins". Captains are not server admins, server admins are not captains.
+
+Here are the available commands for captains:
 
 - Edit last saved quote → `/edit` `last` new_quote
 - Edit chosen quote → `/edit` `item` old_quote new_quote
 - Delete last saved quote → `/delete` `last`
 - Delete chosen quote → `/delete` `item` quote_to_delete
 
-All these commands can be customized in [config.json](src/config.json)
+All these commands can be customized in [config.json](../src/config.json)
 
 ## 🏁 Preliminary steps
 
-First and foremost, grab [the latest release](https://github.com/r4dixx/discord-quotebot/releases/latest).
-
-```sh
-$ git clone git@github.com:r4dixx/discord-quotebot.git
-```
-
 ### Create an app
 
-Now we need to create a Discord app and its associated bot
+First we need to create a Discord app and its associated bot
 
 1. [Create a new Discord app](https://discordapp.com/developers/applications/me) and give it a fancy name.
 
-2. In the OAuth2 settings, set the scope to `application.commands`, open the generated link and add the bot to your server.
+2. Add a bot in the bot section.
 
-3. Add a bot in the bot section.
+3. In the OAuth2 settings, set the scope to `application.commands`
+
+4. Open the generated link and add the bot to your server.
 
 ### Declare secrets
 
@@ -74,6 +72,8 @@ In order to setup and run the project, you need to have the following environmen
    > You can add as many captains as you'd like but I recommend you keep it minimal.
 
 There are [several ways to store these values](https://nodejs.dev/learn/how-to-read-environment-variables-from-nodejs). I personnally put them in an `.env` file in the root directory.
+
+Grab [the latest release](https://github.com/r4dixx/discord-quotebot/releases/latest) and run the following commands:
 
 ```sh
 $ cd discord-quotebot
@@ -112,15 +112,9 @@ This will:
    - Deploy commands to your server 
    - Start the bot
 
-Your output should read
+Your output should read `Successfully reloaded application commands.` and `Discord client ready`
 
-`Successfully reloaded application commands.`
-
-and
-
-`Discord client ready`
-
-If it doesn't, something went wrong. Check if you followed the steps correctly. Your environment variables might also be incorrect.
+If it doesn't, something went wrong. Your environment variables might be incorrect.
 
 ### Test if everything is up and running
 
@@ -130,7 +124,7 @@ If nothing shows, something went wrong. Check the logs for potential error messa
 
 ## ✨ Customize the bot
 
-All good? Now you can customize the bot by editing [config.json](src/config.json).
+All good? Now you can customize the bot by editing [../src/config.json](src/config.json).
 
 This file in JSON format contains every commands and their associated configuration. Here's an example:
 
