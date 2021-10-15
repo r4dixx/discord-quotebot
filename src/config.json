@@ -57,8 +57,8 @@
     "reply": {
       "success": {
         "title": ":pencil: **Quote edited successfully**",
-        "old_prefix": "**from:**",
-        "new_prefix": "**to:**"
+        "prefix_old": "**from:**",
+        "prefix_new": "**to:**"
       },
       "error": {
         "item": {
@@ -126,10 +126,7 @@
       },
       "self": {
         "title": ":hand_splayed: **Want to display this message again?**",
-        "prefixes": {
-          "command": "Use",
-          "mention": "or mention me"
-        }
+        "prefix": "Use"
       },
       "formats": {
         "current": "your_quote",

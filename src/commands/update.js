@@ -1,10 +1,10 @@
-const {	SlashCommandBuilder } = require('@discordjs/builders');
-const commands = require('../config/commands.json');
-const { update } = commands
-const { name, description, subcommands } = update;
+const {	SlashCommandBuilder } = require('@discordjs/builders')
+const config = require('../config.json')
+const { update } = config
+const { name, description, subcommands } = update
 
-const option_last = subcommands.last.option;
-const options_item = subcommands.item.options;
+const option_last = subcommands.last.option
+const options_item = subcommands.item.options
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -33,59 +33,58 @@ module.exports = {
 
 	async execute(interaction) {
 
-		const { captains } = require('../config/private.json');
-		const { reply } = update;
+		const { reply } = update
 		
 		// Only if user is captain
-		if (captains.includes(interaction.user.id)) {
+		if (process.env.CAPTAIN_IDS.includes(interaction.user.id)) {
 
-			console.log(`Author id ${interaction.user.username} is a captain, arrr`);
+			console.log(`Author id ${interaction.user.username} is a captain, arrr`)
 
 			// Update last item	
 			if (interaction.options.getSubcommand() === subcommands.last.name) {
 				const { last } = reply.error
-				const quote_new = interaction.options.getString(option_last.name);
+				const quote_new = interaction.options.getString(option_last.name)
 				dbUpdateLast(quote_new).then(function (result) {
 					switch (result) {
 						case "error":
-							return interaction.reply({ content: commands.error_generic, ephemeral: true });
+							return interaction.reply({ content: config.error_generic, ephemeral: true })
 						case "error-no-changes":
-							return interaction.reply({ content: last.similar, ephemeral: true });
+							return interaction.reply({ content: last.similar, ephemeral: true })
 						case "error-duplicate":
-							return interaction.reply({ content: last.duplicate, ephemeral: true });
+							return interaction.reply({ content: last.duplicate, ephemeral: true })
 						case "error-not-found":
-							return interaction.reply({ content: last.notfound, ephemeral: true });
+							return interaction.reply({ content: last.notfound, ephemeral: true })
 						default:
-							return interaction.reply(`${reply.success.title}\n${reply.success.old_prefix}\n${result}\n${reply.success.new_prefix}\n${quote_new}`);
+							return interaction.reply(`${reply.success.title}\n${reply.success.prefix_old}\n${result}\n${reply.success.prefix_new}\n${quote_new}`)
 					}
-				});
+				})
 			}
 			
 			// Update selected item
 			else if (interaction.options.getSubcommand() === subcommands.item.name) {
 				const { item } = reply.error
-				const quote_old = interaction.options.getString(options_item.old.name);
-				const quote_new = interaction.options.getString(options_item.new.name);
+				const quote_old = interaction.options.getString(options_item.old.name)
+				const quote_new = interaction.options.getString(options_item.new.name)
 				dbUpdateItem(quote_old, quote_new).then(function (result) {
 					switch (result) {	
 						case "success":
-							return interaction.reply(`${reply.success.title}\n${reply.success.old_prefix}\n${quote_old}\n${reply.success.new_prefix}\n${quote_new}`);
+							return interaction.reply(`${reply.success.title}\n${reply.success.prefix_old}\n${quote_old}\n${reply.success.prefix_new}\n${quote_new}`)
 						case "error-no-changes":
-							return interaction.reply({ content: item.similar, ephemeral: true });
+							return interaction.reply({ content: item.similar, ephemeral: true })
 						case "error-duplicate":
-							return interaction.reply({ content: item.duplicate, ephemeral: true });
+							return interaction.reply({ content: item.duplicate, ephemeral: true })
 						case "error-not-found":
-							return interaction.reply({ content: item.notfound, ephemeral: true });
+							return interaction.reply({ content: item.notfound, ephemeral: true })
 						case "error":
-							return interaction.reply({ content: commands.error_generic, ephemeral: true });
+							return interaction.reply({ content: config.error_generic, ephemeral: true })
 					}
-				});
+				})
 			}
 
 		} else {
-			console.log(`Author id ${interaction.user.username} is not a captain. Abort!`);
-			interaction.reply({content: reply.error.rights, ephemeral: true});
+			console.log(require('chalk').red(`Author id ${interaction.user.username} is not a captain. Abort!`))
+			interaction.reply({content: reply.error.rights, ephemeral: true})
 		}
 	}
 
-};
+}

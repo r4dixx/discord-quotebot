@@ -1,5 +1,23 @@
 # Changelog
 
+## 4.1.0
+
+### Feature
+
+- Remove bin support as it is broken for now
+- Switch to a better approach regarding secrets
+
+### Documentation
+
+- Improve documentation
+
+### Tech
+
+- Migrate client init and interaction creation related logics to dedicated `events` folder
+- Review architecture and package scripts
+- Improve logs
+- Refactoring and cleanup
+
 ## 4.0.1
 
 ### Fix
@@ -218,7 +236,7 @@ Update dependencies
 
 ### Tech
 
-- Review model (see config.json)
+- Review model (see config/config.json)
 - Improve code readability
 - Improve separation of concerns
 - Update `discord.js` 12.5.0 ([changelog](https://github.com/discordjs/discord.js/releases/tag/12.5.0))

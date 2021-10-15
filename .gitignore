@@ -1,6 +1,6 @@
 .DS_Store
-.tool-versions
 .vscode/
+.env
+.tool-versions
 node_modules/
-src/config/private.json
-src/database/quotes.db
+src/quotes.db

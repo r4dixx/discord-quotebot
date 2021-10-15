@@ -1,8 +1,8 @@
-const {	SlashCommandBuilder } = require('@discordjs/builders');
-const commands = require('../config/commands.json');
-const { drop } = commands
-const { name, description, subcommands } = drop;
-const { option } = subcommands.item;
+const {	SlashCommandBuilder } = require('@discordjs/builders')
+const config = require('../config.json')
+const { drop } = config
+const { name, description, subcommands } = drop
+const { option } = subcommands.item
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -23,47 +23,46 @@ module.exports = {
 				
 	async execute(interaction) {
 
-		const { captains } = require('../config/private.json');
-		const { reply } = drop;
+		const { reply } = drop
 		
 		// Only if user is captain
-		if (captains.includes(interaction.user.id)) {
+		if (process.env.CAPTAIN_IDS.includes(interaction.user.id)) {
 
-			console.log(`Author id ${interaction.user.username} is a captain, arrr`);
+			console.log(`Author id ${interaction.user.username} is a captain, arrr`)
 
 			// Delete last item	
 			if (interaction.options.getSubcommand() === subcommands.last.name) {
 				dbDeleteLast().then(function (result) {
 					switch (result) {
 						case 'error':
-							return interaction.reply({ content: commands.error_generic, ephemeral: true });
+							return interaction.reply({ content: config.error_generic, ephemeral: true })
 						case 'error-not-found':
-							return interaction.reply({content: reply.error.last, ephemeral: true});
+							return interaction.reply({content: reply.error.last, ephemeral: true})
 						default:
-							return interaction.reply(`${reply.success}\n${result}`);	
+							return interaction.reply(`${reply.success}\n${result}`)	
 							
 						}
-				});
+				})
 			}
 			
 			// Delete selected item
 			else if (interaction.options.getSubcommand() === subcommands.item.name) {	
-				const quote = interaction.options.getString(option.name);
+				const quote = interaction.options.getString(option.name)
 				dbDeleteItem(quote).then(function (result) {
 					switch (result) {
 						case 'success':
-							return interaction.reply(`${reply.success}\n${quote}`);
+							return interaction.reply(`${reply.success}\n${quote}`)
 						case 'error-not-found':
-							return interaction.reply({content: reply.error.item, ephemeral: true});
+							return interaction.reply({content: reply.error.item, ephemeral: true})
 						default:
-							return interaction.reply({ content: commands.error_generic, ephemeral: true });
+							return interaction.reply({ content: config.error_generic, ephemeral: true })
 					}
-				});
+				})
 			}
 
 		} else {
-			console.log(`Author id ${interaction.user.username} is not a captain. Abort!`);
-			interaction.reply({content: reply.error.rights, ephemeral: true});
+			console.log(require('chalk').red(`Author id ${interaction.user.username} is not a captain. Abort!`))
+			interaction.reply({content: reply.error.rights, ephemeral: true})
 		}
 	}
-};
+}
