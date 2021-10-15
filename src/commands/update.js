@@ -82,7 +82,7 @@ module.exports = {
 			}
 
 		} else {
-			console.log(`Author id ${interaction.user.username} is not a captain. Abort!`)
+			console.log(require('chalk').red(`Author id ${interaction.user.username} is not a captain. Abort!`))
 			interaction.reply({content: reply.error.rights, ephemeral: true})
 		}
 	}

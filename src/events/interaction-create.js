@@ -23,7 +23,7 @@ module.exports = {
             try {
                await command.execute(interaction)
             } catch (error) {
-                console.error(error)
+                console.error(require('chalk').red(error))
                 await interaction.reply({ content: error_generic, ephemeral: true })
             }
         })()
