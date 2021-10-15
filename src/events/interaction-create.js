@@ -24,7 +24,7 @@ module.exports = {
                await command.execute(interaction)
             } catch (error) {
                 console.error(require('chalk').red(error))
-                await interaction.reply({ content: error_generic, ephemeral: true })
+                await interaction.reply({ content: require('../config.json').error_generic, ephemeral: true })
             }
         })()
 	}
