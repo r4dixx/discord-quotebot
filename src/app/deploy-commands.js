@@ -11,7 +11,7 @@ for (const file of commandFiles) {
 }
 
 const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
-const chalk = require('chalk')
+const chalk = require('chalk');
 
 (async () => {
 	try {

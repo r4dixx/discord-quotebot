@@ -1,7 +1,7 @@
 module.exports = function() {
 
   let db
-  const chalk = require('chalk')
+  const chalk = require('chalk');
 
   dbOpen = function() {
     db = new(require('sqlite3')).Database(require('path').resolve(__dirname, '../quotes.db'), (err) => {
