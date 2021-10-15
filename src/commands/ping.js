@@ -6,7 +6,7 @@ module.exports = {
 		.setName(ping.name)
 		.setDescription(ping.description),
 	async execute(interaction) {
-        console.log(`Ping ${interaction.user.username}`)
+        console.log(`Pong! Websocket heartbeat: ${interaction.client.ws.ping}ms.`)
 		return interaction.reply(ping.reply)
 	}
 }
