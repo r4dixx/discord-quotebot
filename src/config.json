@@ -62,11 +62,13 @@
       },
       "error": {
         "item": {
+          "mention": ":shushing_face: Not saving this one. Please don't mention people in quotes.",
           "similar": ":upside_down: No changes made. Desired quote is similar to selected one",
           "duplicate": ":people_holding_hands: Error: This quote already exists.",
           "notfound": ":thinking: Cannot edit this quote. It doesn't appear to exist."
         },
         "last": {
+          "mention": ":shushing_face: Not saving this one. Please don't mention people in quotes.",
           "similar": ":upside_down: No changes made. Desired quote is similar to last saved quote",
           "duplicate": ":people_holding_hands: Error: This quote already exists.",
           "notfound": ":person_shrugging: Cannot edit last saved quote. No quote available."

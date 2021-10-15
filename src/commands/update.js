@@ -44,41 +44,51 @@ module.exports = {
 			if (interaction.options.getSubcommand() === subcommands.last.name) {
 				const { last } = reply.error
 				const quote_new = interaction.options.getString(option_last.name)
-				dbUpdateLast(quote_new).then(function (result) {
-					switch (result) {
-						case "error":
-							interaction.reply({ content: config.error_generic, ephemeral: true })
-						case "error-no-changes":
-							interaction.reply({ content: last.similar, ephemeral: true })
-						case "error-duplicate":
-							interaction.reply({ content: last.duplicate, ephemeral: true })
-						case "error-not-found":
-							interaction.reply({ content: last.notfound, ephemeral: true })
-						default:
-							interaction.reply(`${reply.success.title}\n${reply.success.prefix_old}\n${result}\n${reply.success.prefix_new}\n${quote_new}`)
-					}
-				})
+				if (quote_new.includes("<@!")) {
+					console.log(`Message contains mention, skipping`)
+					return interaction.reply({content: reply.error.last.mention,ephemeral: true})
+				} else {
+					dbUpdateLast(quote_new).then(function (result) {
+						switch (result) {
+							case "error":
+								interaction.reply({ content: config.error_generic, ephemeral: true })
+							case "error-no-changes":
+								interaction.reply({ content: last.similar, ephemeral: true })
+							case "error-duplicate":
+								interaction.reply({ content: last.duplicate, ephemeral: true })
+							case "error-not-found":
+								interaction.reply({ content: last.notfound, ephemeral: true })
+							default:
+								interaction.reply(`${reply.success.title}\n${reply.success.prefix_old}\n${result}\n${reply.success.prefix_new}\n${quote_new}`)
+						}
+					})
+				}
 			}
 			
 			// Update selected item
-			else if (interaction.options.getSubcommand() === subcommands.item.name) {
+			if (interaction.options.getSubcommand() === subcommands.item.name) {
 				const { item } = reply.error
 				const quote_old = interaction.options.getString(options_item.old.name)
 				const quote_new = interaction.options.getString(options_item.new.name)
-				dbUpdateItem(quote_old, quote_new).then(function (result) {
-					switch (result) {	
-						case "success":
-							interaction.reply(`${reply.success.title}\n${reply.success.prefix_old}\n${quote_old}\n${reply.success.prefix_new}\n${quote_new}`)
-						case "error-no-changes":
-							interaction.reply({ content: item.similar, ephemeral: true })
-						case "error-duplicate":
-							interaction.reply({ content: item.duplicate, ephemeral: true })
-						case "error-not-found":
-							interaction.reply({ content: item.notfound, ephemeral: true })
-						case "error":
-							interaction.reply({ content: config.error_generic, ephemeral: true })
-					}
-				})
+				if (quote_new.includes("<@!")) {
+					console.log(`Message contains mention, skipping`)
+					interaction.reply({content: reply.error.item.mention ,ephemeral: true})
+				} else {
+					dbUpdateItem(quote_old, quote_new).then(function (result) {
+						switch (result) {	
+							case "success":
+								interaction.reply(`${reply.success.title}\n${reply.success.prefix_old}\n${quote_old}\n${reply.success.prefix_new}\n${quote_new}`)
+							case "error-no-changes":
+								interaction.reply({ content: item.similar, ephemeral: true })
+							case "error-duplicate":
+								interaction.reply({ content: item.duplicate, ephemeral: true })
+							case "error-not-found":
+								interaction.reply({ content: item.notfound, ephemeral: true })
+							case "error":
+								interaction.reply({ content: config.error_generic, ephemeral: true })
+						}
+					})
+				}
 			}
 
 		} else {
