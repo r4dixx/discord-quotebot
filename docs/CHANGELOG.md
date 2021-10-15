@@ -1,5 +1,23 @@
 # Changelog
 
+## 4.1.0
+
+### Feature
+
+- Remove bin support as it is broken for now
+- Switch to a better approach regarding secrets
+
+### Documentation
+
+- Improve documentation
+
+### Tech
+
+- Migrate client init and interaction creation related logics to dedicated `events` folder
+- Review architecture and package scripts
+- Improve logs
+- Refactoring and cleanup
+
 ## 4.0.1
 
 ### Fix
