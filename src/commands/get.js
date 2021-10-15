@@ -11,11 +11,11 @@ module.exports = {
 		dbQueryItemRandom().then(function (result) {
 			switch (result) {
 				case 'error':
-					return interaction.reply({ content: config.error_generic, ephemeral: true })
+					interaction.reply({ content: config.error_generic, ephemeral: true })
 				case 'error-not-found':
-					return interaction.reply({content: reply.error, ephemeral: true})
+					interaction.reply({content: reply.error, ephemeral: true})
 				default:
-					return interaction.reply(`${reply.success} ${result}`)
+					interaction.reply(`${reply.success} ${result}`)
 			}
 		})
 	}

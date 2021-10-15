@@ -14,7 +14,7 @@ module.exports = {
 
 		const { reply } = help
 		
-		return interaction.reply({content: `
+		interaction.reply({content: `
 		
 ${reply.about}
 

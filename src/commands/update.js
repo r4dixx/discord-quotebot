@@ -47,15 +47,15 @@ module.exports = {
 				dbUpdateLast(quote_new).then(function (result) {
 					switch (result) {
 						case "error":
-							return interaction.reply({ content: config.error_generic, ephemeral: true })
+							interaction.reply({ content: config.error_generic, ephemeral: true })
 						case "error-no-changes":
-							return interaction.reply({ content: last.similar, ephemeral: true })
+							interaction.reply({ content: last.similar, ephemeral: true })
 						case "error-duplicate":
-							return interaction.reply({ content: last.duplicate, ephemeral: true })
+							interaction.reply({ content: last.duplicate, ephemeral: true })
 						case "error-not-found":
-							return interaction.reply({ content: last.notfound, ephemeral: true })
+							interaction.reply({ content: last.notfound, ephemeral: true })
 						default:
-							return interaction.reply(`${reply.success.title}\n${reply.success.prefix_old}\n${result}\n${reply.success.prefix_new}\n${quote_new}`)
+							interaction.reply(`${reply.success.title}\n${reply.success.prefix_old}\n${result}\n${reply.success.prefix_new}\n${quote_new}`)
 					}
 				})
 			}
@@ -68,15 +68,15 @@ module.exports = {
 				dbUpdateItem(quote_old, quote_new).then(function (result) {
 					switch (result) {	
 						case "success":
-							return interaction.reply(`${reply.success.title}\n${reply.success.prefix_old}\n${quote_old}\n${reply.success.prefix_new}\n${quote_new}`)
+							interaction.reply(`${reply.success.title}\n${reply.success.prefix_old}\n${quote_old}\n${reply.success.prefix_new}\n${quote_new}`)
 						case "error-no-changes":
-							return interaction.reply({ content: item.similar, ephemeral: true })
+							interaction.reply({ content: item.similar, ephemeral: true })
 						case "error-duplicate":
-							return interaction.reply({ content: item.duplicate, ephemeral: true })
+							interaction.reply({ content: item.duplicate, ephemeral: true })
 						case "error-not-found":
-							return interaction.reply({ content: item.notfound, ephemeral: true })
+							interaction.reply({ content: item.notfound, ephemeral: true })
 						case "error":
-							return interaction.reply({ content: config.error_generic, ephemeral: true })
+							interaction.reply({ content: config.error_generic, ephemeral: true })
 					}
 				})
 			}

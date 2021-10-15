@@ -35,11 +35,11 @@ module.exports = {
 				dbDeleteLast().then(function (result) {
 					switch (result) {
 						case 'error':
-							return interaction.reply({ content: config.error_generic, ephemeral: true })
+							interaction.reply({ content: config.error_generic, ephemeral: true })
 						case 'error-not-found':
-							return interaction.reply({content: reply.error.last, ephemeral: true})
+							interaction.reply({content: reply.error.last, ephemeral: true})
 						default:
-							return interaction.reply(`${reply.success}\n${result}`)	
+							interaction.reply(`${reply.success}\n${result}`)	
 							
 						}
 				})
@@ -51,11 +51,11 @@ module.exports = {
 				dbDeleteItem(quote).then(function (result) {
 					switch (result) {
 						case 'success':
-							return interaction.reply(`${reply.success}\n${quote}`)
+							interaction.reply(`${reply.success}\n${quote}`)
 						case 'error-not-found':
-							return interaction.reply({content: reply.error.item, ephemeral: true})
+							interaction.reply({content: reply.error.item, ephemeral: true})
 						default:
-							return interaction.reply({ content: config.error_generic, ephemeral: true })
+							interaction.reply({ content: config.error_generic, ephemeral: true })
 					}
 				})
 			}

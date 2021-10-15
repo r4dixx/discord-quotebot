@@ -23,11 +23,11 @@ module.exports = {
 			dbInsertItem(quote).then(function (result) {
 				switch (result) {
 					case 'success':
-						return interaction.reply(`${reply.success}\n${quote}`)
+						interaction.reply(`${reply.success}\n${quote}`)
 					case 'error-duplicate':
-						return interaction.reply({content: reply.error.duplicate, ephemeral: true})
+						interaction.reply({content: reply.error.duplicate, ephemeral: true})
 					default:
-						return interaction.reply({ content: config.error_generic, ephemeral: true })
+						interaction.reply({ content: config.error_generic, ephemeral: true })
 				}
 			})
 		}
