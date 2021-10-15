@@ -1,7 +1,7 @@
  module.exports = function() {
 
   require('./dbHelper.js')()
-  const chalk = require('chalk')
+  const chalk = require('chalk');
 
   dbCreateTableIfNecessary = function() {
     const db_path = require('path').resolve(__dirname, '../quotes.db')
