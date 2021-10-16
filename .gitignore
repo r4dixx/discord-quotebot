@@ -3,5 +3,5 @@
 .env
 .tool-versions
 node_modules/
-src/firebase/serviceAccountKey.json
+src/firestore/serviceAccountKey.json
 src/quotes.db
