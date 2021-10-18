@@ -12,7 +12,7 @@
       "error": ":person_shrugging: Error: No quote available."
     }
   },
-  "insert": {
+  "set": {
     "name": "save",
     "description": "Save given quote in the database",
     "option": {
