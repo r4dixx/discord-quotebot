@@ -18,7 +18,6 @@
   },
   "scripts": {
     "postinstall": "node -r dotenv/config app/deploy-commands.js dotenv_config_path=config/.env",
-    "prestart": "node -r dotenv/config app/init-firestore.js dotenv_config_path=config/.env",
     "start": "node -r dotenv/config app/start-bot.js dotenv_config_path=config/.env"
   },
   "engines": {
