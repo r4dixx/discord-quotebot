@@ -1,7 +1,6 @@
 .DS_Store
-.vscode/
-.env
-.tool-versions
-node_modules/
-src/firestore/serviceAccountKey.json
+src/.vscode/
+src/node_modules/
+src/config/.env
+src/config/firebase.json
 src/quotes.db

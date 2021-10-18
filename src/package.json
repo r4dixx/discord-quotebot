@@ -17,8 +17,9 @@
     "email": "amael.sikel@gmail.com"
   },
   "scripts": {
-    "prestart": "node -r dotenv/config src/app/deploy-commands.js",
-    "start": "node -r dotenv/config src/app/start-bot.js"
+    "postinstall": "node -r dotenv/config app/deploy-commands.js dotenv_config_path=config/.env",
+    "prestart": "node -r dotenv/config app/init-firestore.js dotenv_config_path=config/.env",
+    "start": "node -r dotenv/config app/start-bot.js dotenv_config_path=config/.env"
   },
   "engines": {
     "node": ">=16.6"
