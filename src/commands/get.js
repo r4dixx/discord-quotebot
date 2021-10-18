@@ -11,26 +11,20 @@ module.exports = {
 	async execute(interaction) {
 		const { reply } = get
 		try {
-			const db = require('firebase-admin/firestore').getFirestore();
 
-			// Figuring out the total number in collection.
-			var totalNoInCollection;
-			await db.collection(process.env.COLLECTION_NAME).get().then((docs) => { totalNoInCollection = docs.size; });
+			const admin = require("firebase-admin");
+			const randomId = admin.firestore().collection("tmp").doc().id
+			const snapshot = await require('firebase-admin/firestore').getFirestore().collection(process.env.COLLECTION_NAME).where("id", ">=", randomId).orderBy("id", "asc").limit(1).get()
+			let data
+			snapshot.forEach(doc => { data = doc.data() });	
 
-			// Generating a random number between 1 and total no.   
-			var randomId = Math.floor(Math.random() * totalNoInCollection);
-
-			// Picking a random document.
-			const doc = await db.collection(process.env.COLLECTION_NAME).doc(`${randomId}`).get();
-
-			// And setting up the result
-			if (!doc.exists || doc.data() === 'undefined') {
+			if (snapshot.empty || data.quote === undefined) {
 				console.warn(chalk.yellow('Cannot get random quote. No quote found in database'))
 				interaction.reply({content: reply.error, ephemeral: true})
 			} else {
-				const docValues = Object.values(doc.data());
-				console.log(`Got document values: ${docValues}`)
-				interaction.reply(`${reply.success} ${docValues}`)
+				console.log(`Got quote: ${data.quote}`)
+				console.log(`Associated document data: ${JSON.stringify(data)}`)
+				interaction.reply(`${reply.success} ${data.quote}`)
 			}
 
 		} catch (error) {

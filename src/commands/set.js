@@ -24,7 +24,9 @@ module.exports = {
 			interaction.reply({content: reply.error.mention,ephemeral: true})
 		} else {
 			try {
-				const collection = require('firebase-admin/firestore').getFirestore().collection(process.env.COLLECTION_NAME)
+
+				const db = require('firebase-admin/firestore').getFirestore()
+				const collection = db.collection(process.env.COLLECTION_NAME)
 
 				let quotes = new Array()
 				const snapshot = await collection.get()
@@ -37,7 +39,8 @@ module.exports = {
 					const docRef = await collection.doc();
 					const data = { 'id': docRef.id, 'quote': quote, 'timestamp': new Date().getTime() }
 					await docRef.set(data);
-					console.log(`Added quote: ${quote} with associated document data: ${Object.values(data)}`)
+					console.log(`Added quote: ${quote}`)
+					console.log(`Associated document data: ${JSON.stringify(data)}`)
 					interaction.reply(`${reply.success}\n${quote}`)
 				}
 			

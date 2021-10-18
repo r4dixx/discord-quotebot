@@ -6,8 +6,8 @@ module.exports = {
 		console.log(require('chalk').green(`Discord client ready! Logged in as ${user.username} - ID: ${user.id}`))
 		// Initialize Firebase Cloud Firestore
 		try {
-			var admin = require("firebase-admin");
-			var serviceAccount = require('path').resolve(__dirname, '../config/firebase.json');
+			const admin = require("firebase-admin");
+			const serviceAccount = require('path').resolve(__dirname, '../config/firebase.json');
 			admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
 			console.log(require('chalk').green(`Instance of Firebase Cloud Firestore initalized properly`))
 		} catch (error) {
