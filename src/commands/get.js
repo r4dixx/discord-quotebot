@@ -12,19 +12,23 @@ module.exports = {
 		const { reply } = get
 		try {
 
-			const admin = require("firebase-admin");
-			const randomId = admin.firestore().collection("tmp").doc().id
-			const snapshot = await require('firebase-admin/firestore').getFirestore().collection(process.env.COLLECTION_NAME).where("id", ">=", randomId).orderBy("id", "asc").limit(1).get()
+			const db = require('firebase-admin/firestore').getFirestore()
+			const collection = db.collection(process.env.COLLECTION_NAME)
+			const randomId = collection.doc().id
+			const snapshot = await collection.where("id", ">=", randomId).orderBy("id", "asc").limit(1).get()
 			let data
-			snapshot.forEach(doc => { data = doc.data() });	
+			await snapshot.forEach(doc => { data = doc.data() });	
 
-			if (snapshot.empty || data.quote === undefined) {
+			console.log(randomId)
+			console.log(data)
+
+			if (snapshot.empty || data.text === undefined) {
 				console.warn(chalk.yellow('Cannot get random quote. No quote found in database'))
 				interaction.reply({content: reply.error, ephemeral: true})
 			} else {
-				console.log(`Got quote: ${data.quote}`)
+				console.log(`Got quote: ${data.text}`)
 				console.log(`Associated document data: ${JSON.stringify(data)}`)
-				interaction.reply(`${reply.success} ${data.quote}`)
+				interaction.reply(`${reply.success} ${data.text}`)
 			}
 
 		} catch (error) {

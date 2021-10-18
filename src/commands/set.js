@@ -30,14 +30,15 @@ module.exports = {
 
 				let quotes = new Array()
 				const snapshot = await collection.get()
-				snapshot.forEach(doc => { quotes.push(doc.data().quote) });
+				snapshot.forEach(doc => { quotes.push(doc.data().text) });
 				
 				if (quotes.includes(quote)) {
 					console.warn(chalk.yellow('Skipping quote insertion, already found in database'))
 					interaction.reply({content: reply.error.duplicate, ephemeral: true})
 				} else  {
 					const docRef = await collection.doc();
-					const data = { 'id': docRef.id, 'quote': quote, 'timestamp': new Date().getTime() }
+					const now = new Date()
+					const data = { 'id': docRef.id, 'text': quote, 'time_added': now.getTime(), 'time_added_hr': now.toTimeString() }
 					await docRef.set(data);
 					console.log(`Added quote: ${quote}`)
 					console.log(`Associated document data: ${JSON.stringify(data)}`)
