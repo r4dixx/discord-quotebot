@@ -10,18 +10,18 @@ module.exports = {
 		.setDescription(get.description),
 	async execute(interaction) {
 		const { reply } = get
-		const db = require('firebase-admin/firestore').getFirestore();
 		try {
+			const db = require('firebase-admin/firestore').getFirestore();
 
 			// Figuring out the total number in collection.
 			var totalNoInCollection;
-			await db.collection(process.env.DATABASE_NAME).get().then((docs) => { totalNoInCollection = docs.size; });
+			await db.collection(process.env.COLLECTION_NAME).get().then((docs) => { totalNoInCollection = docs.size; });
 
 			// Generating a random number between 1 and total no.   
 			var randomId = Math.floor(Math.random() * totalNoInCollection);
 
 			// Picking a random document.
-			const doc = await db.collection(process.env.DATABASE_NAME).doc(`${randomId}`).get();
+			const doc = await db.collection(process.env.COLLECTION_NAME).doc(`${randomId}`).get();
 
 			// And setting up the result
 			if (!doc.exists || doc.data() === 'undefined') {
@@ -34,7 +34,7 @@ module.exports = {
 			}
 
 		} catch (error) {
-			console.log(require('chalk').red(error))
+			console.log(chalk.red(error))
 			interaction.reply({ content: config.error_generic, ephemeral: true })
 		}
 	}

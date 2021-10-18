@@ -1,48 +1,48 @@
+const chalk = require('chalk');
+
 const {	SlashCommandBuilder } = require('@discordjs/builders')
 const config = require('../config/config.json')
-const { insert } = config
+const { set } = config
 
 module.exports = {
 
 	data: new SlashCommandBuilder()
-		.setName(insert.name)
-		.setDescription(insert.description)
+		.setName(set.name)
+		.setDescription(set.description)
 		.addStringOption(opt => 
-			opt.setName(insert.option.name)
-				.setDescription(insert.option.description)
+			opt.setName(set.option.name)
+				.setDescription(set.option.description)
 				.setRequired(true)),
 
 	async execute(interaction) {
-		const quote = interaction.options.getString(insert.option.name)
-		const { reply } = insert 
+
+		const quote = interaction.options.getString(set.option.name)
+		const { reply } = set 
 		
 		if (quote.includes("<@!")) {
 			console.log(`Message contains mention, skipping`)
 			interaction.reply({content: reply.error.mention,ephemeral: true})
 		} else {
-			const db = require('firebase-admin/firestore').getFirestore();
 			try {
+				const collection = require('firebase-admin/firestore').getFirestore().collection(process.env.COLLECTION_NAME)
 
-				// TODO Check for duplicate
-				// interaction.reply({content: reply.error.duplicate, ephemeral: true})
-
-
-				// Figuring out the total number in collection.
-				var totalNoInCollection;
-				await db.collection(process.env.DATABASE_NAME).get().then((docs) => { totalNoInCollection = docs.size; });
-	
-				// Incrementing the total number .  
-				var id = totalNoInCollection++;
-	
-				// And setting up the data.
-				const docRef = db.collection(process.env.DATABASE_NAME).doc(`${id}`);
-				await docRef.set({ text: quote });
-				console.log(`Set document values: ${quote}`)
-				interaction.reply(`${reply.success}\n${quote}`)
+				let quotes = new Array()
+				const snapshot = await collection.get()
+				snapshot.forEach(doc => { quotes.push(doc.data().quote) });
+				
+				if (quotes.includes(quote)) {
+					console.warn(chalk.yellow('Skipping quote insertion, already found in database'))
+					interaction.reply({content: reply.error.duplicate, ephemeral: true})
+				} else  {
+					const docRef = await collection.doc();
+					const data = { 'id': docRef.id, 'quote': quote, 'timestamp': new Date().getTime() }
+					await docRef.set(data);
+					console.log(`Added quote: ${quote} with associated document data: ${Object.values(data)}`)
+					interaction.reply(`${reply.success}\n${quote}`)
+				}
 			
-	
 			} catch (error) {
-				console.log(require('chalk').red(error))
+				console.log(chalk.red(error))
 				interaction.reply({ content: config.error_generic, ephemeral: true })
 			}
 		}
