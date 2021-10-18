@@ -37,25 +37,6 @@
     })
   }
 
-  dbQueryItemRandom = function() {
-    return new Promise(function(resolve, reject) {
-      dbOpen()
-      dbGet().get('SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1', (err, row) => {
-        if (err) {
-          resolve("error")
-          return console.error(chalk.red(err.message))
-        }
-        if (row == null || row.quote == null) {
-          resolve("error-not-found")
-          return console.error(chalk.red('Cannot get random quote. No quote found in database'))
-        }
-        console.log(`Got item: ${row.quote}`)
-        resolve(row.quote)
-      })
-      dbClose()
-    })
-  }
-
   dbUpdateItem = function(quoteOld, quoteNew) {
     return new Promise(function(resolve, reject) {
       dbOpen()
