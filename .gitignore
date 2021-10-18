@@ -1,6 +1,6 @@
 .DS_Store
-src/.vscode/
-src/node_modules/
-src/config/.env
-src/config/firebase.json
-src/quotes.db
+.vscode
+.tool-versions
+.env
+firebase.json
+node_modules
