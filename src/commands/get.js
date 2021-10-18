@@ -15,12 +15,10 @@ module.exports = {
 
 			// Figuring out the total number in collection.
 			var totalNoInCollection;
-			await db.collection(process.env.DATABASE_NAME).get().then((docs) => {
-				totalNoInCollection = docs.size;
-			});
+			await db.collection(process.env.DATABASE_NAME).get().then((docs) => { totalNoInCollection = docs.size; });
 
 			// Generating a random number between 1 and total no.   
-			var randomId = Math.floor(Math.random() * totalNoInCollection) + 1;
+			var randomId = Math.floor(Math.random() * totalNoInCollection);
 
 			// Picking a random document.
 			const doc = await db.collection(process.env.DATABASE_NAME).doc(`${randomId}`).get();
@@ -31,7 +29,7 @@ module.exports = {
 				interaction.reply({content: reply.error, ephemeral: true})
 			} else {
 				const docValues = Object.values(doc.data());
-				console.log(`Got item: ${docValues}`)
+				console.log(`Got document values: ${docValues}`)
 				interaction.reply(`${reply.success} ${docValues}`)
 			}
 

@@ -20,16 +20,31 @@ module.exports = {
 			console.log(`Message contains mention, skipping`)
 			interaction.reply({content: reply.error.mention,ephemeral: true})
 		} else {
-			dbInsertItem(quote).then(function (result) {
-				switch (result) {
-					case 'success':
-						interaction.reply(`${reply.success}\n${quote}`)
-					case 'error-duplicate':
-						interaction.reply({content: reply.error.duplicate, ephemeral: true})
-					default:
-						interaction.reply({ content: config.error_generic, ephemeral: true })
-				}
-			})
+			const db = require('firebase-admin/firestore').getFirestore();
+			try {
+
+				// TODO Check for duplicate
+				// interaction.reply({content: reply.error.duplicate, ephemeral: true})
+
+
+				// Figuring out the total number in collection.
+				var totalNoInCollection;
+				await db.collection(process.env.DATABASE_NAME).get().then((docs) => { totalNoInCollection = docs.size; });
+	
+				// Incrementing the total number .  
+				var id = totalNoInCollection++;
+	
+				// And setting up the data.
+				const docRef = db.collection(process.env.DATABASE_NAME).doc(`${id}`);
+				await docRef.set({ text: quote });
+				console.log(`Set document values: ${quote}`)
+				interaction.reply(`${reply.success}\n${quote}`)
+			
+	
+			} catch (error) {
+				console.log(require('chalk').red(error))
+				interaction.reply({ content: config.error_generic, ephemeral: true })
+			}
 		}
 	}
 }

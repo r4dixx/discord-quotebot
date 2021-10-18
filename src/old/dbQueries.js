@@ -3,40 +3,6 @@
   require('./dbHelper.js')()
   const chalk = require('chalk');
 
-  dbCreateTableIfNecessary = function() {
-    const db_path = require('path').resolve(__dirname, '../quotes.db')
-  
-    if (require('fs').existsSync(db_path)) console.log(`File ${db_path} exists. Moving on`)
-    else {
-      console.log(`${db_path} not found, creating...`)
-      dbOpen()
-      dbGet().run('CREATE TABLE IF NOT EXISTS quotes(quote TEXT PRIMARY KEY)', (err) => {
-        if (err) return console.error(chalk.red(err.message))
-        console.log('Quotes table created')
-      })
-      dbClose()
-    }
-  }
-
-  dbInsertItem = function(quoteForInsertion) {
-    return new Promise(function(resolve, reject) {
-      dbOpen()
-      dbGet().run('INSERT INTO quotes(quote) VALUES(?)', quoteForInsertion, (err) => {
-        if (err) {
-          let errorMessage = err.message
-          if (errorMessage == 'SQLITE_CONSTRAINT: UNIQUE constraint failed: quotes.quote') {
-            errorMessage = `${errorMessage} → ${quoteForInsertion}`
-            resolve("error-duplicate")
-          } else resolve("error")
-          return console.error(chalk.red(errorMessage))
-        }
-        console.log(`Inserted item: ${quoteForInsertion}`)
-        resolve("success")
-      })
-      dbClose()
-    })
-  }
-
   dbUpdateItem = function(quoteOld, quoteNew) {
     return new Promise(function(resolve, reject) {
       dbOpen()
