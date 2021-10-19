@@ -12,12 +12,12 @@
       "error": ":person_shrugging: Error: No quote available."
     }
   },
-  "set": {
-    "name": "save",
-    "description": "Save given quote in the database",
+  "add": {
+    "name": "add",
+    "description": "Add given quote to the database",
     "option": {
       "name": "quote",
-      "description": "Enter a quote you would like to save"
+      "description": "Enter a quote you would like to add"
     },
     "reply": {
       "success": ":brain: **I'll remember this one...**",
@@ -77,7 +77,7 @@
       }
     }
   },
-  "drop": {
+  "remove": {
     "name": "delete",
     "description": "Delete a quote (captains only)",
     "subcommands": {
@@ -111,7 +111,7 @@
       "user": {
         "title": ":busts_in_silhouette: **Everyone can**",
         "get": "Get a random quote",
-        "insert": "Save a quote in the database"
+        "add": "Add a quote to the database"
       },
       "admin": {
         "title": ":detective: **Captains can**",
@@ -120,7 +120,7 @@
           "item": "A specific entry",
           "last": "Last saved entry"
         },
-        "drop": {
+        "remove": {
           "title": "Delete quotes",
           "item": "A specific entry",
           "last": "Last saved entry"

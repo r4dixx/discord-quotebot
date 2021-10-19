@@ -21,7 +21,7 @@ ${reply.about}
 ${reply.user.title}
 
 • ${reply.user.get} → \`/${config.get.name}\`
-• ${reply.user.insert} → \`/${config.insert.name}\` \`${reply.formats.current}\`
+• ${reply.user.add} → \`/${config.add.name}\` \`${reply.formats.current}\`
 
 ${reply.admin.title}
 
@@ -29,9 +29,9 @@ ${reply.admin.title}
 	‣ ${reply.admin.update.last} → \`/${config.update.name}\` \`${reply.formats.new}\`
 	‣ ${reply.admin.update.item} → \`/${config.update.name}\` \`${reply.formats.old}\` \`${reply.formats.new}\`
 
-• ${reply.admin.drop.title}
-	‣ ${reply.admin.drop.last} → \`/${config.drop.name}\`
-	‣ ${reply.admin.drop.item} → \`/${config.drop.name}\` \`${reply.formats.current}\`
+• ${reply.admin.remove.title}
+	‣ ${reply.admin.remove.last} → \`/${config.remove.name}\`
+	‣ ${reply.admin.remove.item} → \`/${config.remove.name}\` \`${reply.formats.current}\`
 
 ${reply.self.title}
 

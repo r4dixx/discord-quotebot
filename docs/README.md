@@ -130,7 +130,7 @@ This file in JSON format contains every commands and their associated configurat
 
 ```json
 {
-   "insert": {
+   "save": {
       "name": "save",
       "description": "Save given quote in the database",
       "option": {

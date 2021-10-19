@@ -1,7 +1,7 @@
 const {	SlashCommandBuilder } = require('@discordjs/builders')
 const config = require('../config/config.json')
-const { drop } = config
-const { name, description, subcommands } = drop
+const { remove } = config
+const { name, description, subcommands } = remove
 const { option } = subcommands.item
 
 module.exports = {
@@ -23,7 +23,7 @@ module.exports = {
 				
 	async execute(interaction) {
 
-		const { reply } = drop
+		const { reply } = remove
 		
 		// Only if user is captain
 		if (process.env.CAPTAIN_IDS.includes(interaction.user.id)) {

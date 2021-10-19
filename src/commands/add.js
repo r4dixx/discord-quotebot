@@ -2,22 +2,22 @@ const chalk = require('chalk');
 
 const {	SlashCommandBuilder } = require('@discordjs/builders')
 const config = require('../config/config.json')
-const { set } = config
+const { add } = config
 
 module.exports = {
 
 	data: new SlashCommandBuilder()
-		.setName(set.name)
-		.setDescription(set.description)
+		.setName(add.name)
+		.setDescription(add.description)
 		.addStringOption(opt => 
-			opt.setName(set.option.name)
-				.setDescription(set.option.description)
+			opt.setName(add.option.name)
+				.setDescription(add.option.description)
 				.setRequired(true)),
 
 	async execute(interaction) {
 
-		const quote = interaction.options.getString(set.option.name)
-		const { reply } = set 
+		const quote = interaction.options.getString(add.option.name)
+		const { reply } = add 
 		
 		if (quote.includes("<@!")) {
 			console.log(`Message contains mention, skipping`)
