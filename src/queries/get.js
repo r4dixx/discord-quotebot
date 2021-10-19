@@ -1,10 +1,11 @@
 // As weird as it seems this is how you get a random document from a collection
 // https://stackoverflow.com/a/46801925/8053848
 
+const chalk = require('chalk');
+
 module.exports = {
     async execute() {
-        const chalk = require('chalk');
-
+        
         const db = require('firebase-admin/firestore').getFirestore()
         const collection = db.collection(process.env.COLLECTION_NAME)
 
