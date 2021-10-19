@@ -1,22 +1,16 @@
 const { SlashCommandBuilder } = require('@discordjs/builders')
 const config = require('../config/config.json')
-
 const help = config.help
+const { reply } = help
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName(help.name)
 		.setDescription(help.description),
-		
 	async execute(interaction) {
-
-		console.log(`Displaying help`)
-
-		const { reply } = help
 		
-		interaction.reply({content: `
-		
-${reply.about}
+		const helpMessage =
+`${reply.about}
 
 ${reply.user.title}
 
@@ -35,9 +29,9 @@ ${reply.admin.title}
 
 ${reply.self.title}
 
-• ${reply.self.prefix} \`/${help.name}\`
+• ${reply.self.prefix} \`/${help.name}\``
 
-		`, ephemeral: true})
-
+		console.log(`Displaying help`)
+		interaction.reply({content: helpMessage, ephemeral: true})
 	}
 }

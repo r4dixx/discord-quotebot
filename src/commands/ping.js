@@ -7,6 +7,6 @@ module.exports = {
 		.setDescription(ping.description),
 	async execute(interaction) {
         console.log(`Pong! ${interaction.client.ws.ping}ms.`)
-		return interaction.reply(ping.reply)
+		interaction.reply(ping.reply)
 	}
 }
