@@ -89,25 +89,6 @@
     })
   }
 
-  dbDeleteLast = function() {
-    return new Promise(function(resolve, reject) {
-      dbOpen()
-      dbGet().get('SELECT rowid, quote FROM quotes ORDER BY rowid DESC LIMIT 1', (err, row) => {
-        if (err) {
-          resolve("error")
-          return console.error(chalk.red(err.message))
-        }
-        if (row == null || row.quote == null) {
-          resolve("error-not-found")
-          return console.error(chalk.red('Error: Cannot get last quote for deletion. No quote found in database.'))
-        }
-        dbDelete(row.quote)
-        resolve(row.quote)
-      })
-      dbClose()
-    })
-  }
-
 }
 
 function dbDelete(quote) {

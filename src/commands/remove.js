@@ -1,4 +1,6 @@
+const chalk = require('chalk');
 const {	SlashCommandBuilder } = require('@discordjs/builders')
+const queryDelete = require('../queries/delete.js')
 const config = require('../config/config.json')
 const { remove } = config
 const { name, description, subcommands } = remove
@@ -23,46 +25,43 @@ module.exports = {
 				
 	async execute(interaction) {
 
-		const { reply } = remove
-		
-		// Only if user is captain
-		if (process.env.CAPTAIN_IDS.includes(interaction.user.id)) {
+		if (!process.env.CAPTAIN_IDS.includes(interaction.user.id)) {
+			console.log(chalk.yellow(`User is not a captain. Abort!`))
+			interaction.reply({content: remove.reply.error.rights, ephemeral: true})
+		}
 
-			console.log(`User is a captain, arrr`)
-
-			// Delete last item	
-			if (interaction.options.getSubcommand() === subcommands.last.name) {
-				dbDeleteLast().then(function (result) {
-					switch (result) {
-						case 'error':
-							interaction.reply({ content: config.error_generic, ephemeral: true })
-						case 'error-not-found':
-							interaction.reply({content: reply.error.last, ephemeral: true})
-						default:
-							interaction.reply(`${reply.success}\n${result}`)	
-							
-						}
-				})
-			}
-			
-			// Delete selected item
-			else if (interaction.options.getSubcommand() === subcommands.item.name) {	
-				const quote = interaction.options.getString(option.name)
-				dbDeleteItem(quote).then(function (result) {
-					switch (result) {
-						case 'success':
-							interaction.reply(`${reply.success}\n${quote}`)
-						case 'error-not-found':
-							interaction.reply({content: reply.error.item, ephemeral: true})
-						default:
-							interaction.reply({ content: config.error_generic, ephemeral: true })
+		else if (interaction.options.getSubcommand() === subcommands.last.name) {
+				// Delete last item	
+				queryDelete.execute().then(function (result) {
+					if (result === 'missing field') {
+						console.log(chalk.yellow(`Quote deleted successfully but no text field was found in document data`))
+						interaction.reply(`${remove.reply.success}`)
+					} else {
+						console.log(`Quote deleted successfully: ${result}`)
+						interaction.reply(`${remove.reply.success}\n${result}`)		
 					}
+				}).catch(function (error) {
+					console.log(chalk.red(`Error deleting quote: ${error}`))
+					if (error === 'empty snapshot') interaction.reply({content: remove.reply.error.last, ephemeral: true})
+					else interaction.reply({ content: config.error_generic, ephemeral: true })
 				})
 			}
 
-		} else {
-			console.log(require('chalk').red(`User is not a captain. Abort!`))
-			interaction.reply({content: reply.error.rights, ephemeral: true})
+	// 		// Delete selected item
+	// 		else if (interaction.options.getSubcommand() === subcommands.item.name) {	
+	// 			const quote = interaction.options.getString(option.name)
+	// 			dbDeleteItem(quote).then(function (result) {
+	// 				switch (result) {
+	// 					case 'success':
+	// 						interaction.reply(`${remove.reply.success}\n${quote}`)
+	// 					case 'error-not-found':
+	// 						interaction.reply({content: remove.reply.error.item, ephemeral: true})
+	// 					default:
+	// 						interaction.reply({ content: config.error_generic, ephemeral: true })
+	// 				}
+	// 			})
+	// 		}
+
 		}
 	}
-}
+	

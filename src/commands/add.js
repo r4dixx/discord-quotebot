@@ -1,6 +1,5 @@
-const chalk = require('chalk');
-
 const {	SlashCommandBuilder } = require('@discordjs/builders')
+const chalk = require('chalk');
 const querySet = require('../queries/set.js')
 const config = require('../config/config.json')
 const { add } = config
@@ -21,7 +20,7 @@ module.exports = {
 		const { reply } = add 
 		
 		if (quote.includes("<@!")) {
-			console.log(chalk.yellow(`Message contains mention, skipping`))
+			console.log(chalk.yellow(`Message contains mention. Abort!`))
 			interaction.reply({content: reply.error.mention,ephemeral: true})
 		} else {
 			querySet.execute(quote).then(function (result) {

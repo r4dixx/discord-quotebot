@@ -26,12 +26,13 @@ module.exports = {
 
         return new Promise(function (resolve, reject) {
             if (!snapshot.empty) {
+                let quote
                 snapshot.forEach(doc => {
                     console.log(`Got document data: ${JSON.stringify(doc.data())}`)
-                    const quote = doc.data().text
-                    if (quote !== undefined) resolve(quote)
-                    else reject('empty field')
+                    quote = doc.data().text
                 });
+                if (quote !== undefined) resolve(quote)
+                else reject('missing field')
             } else reject('empty snapshot')
         })
     }
