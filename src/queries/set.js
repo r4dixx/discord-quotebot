@@ -14,7 +14,7 @@ module.exports = {
             if (!currentQuotes.includes(quote)) {
                 const docRef = collection.doc();
                 const now = new Date()
-                const data = { 'id': docRef.id, 'text': quote, 'time_added': now.getTime(), 'time_added_hr': now.toTimeString() }
+                const data = { 'id': docRef.id, 'text': quote, 'createdAt': now.getTime(), 'createdAtHumanReadable': now.toTimeString() }
                 await docRef.set(data);
                 console.log(`Setting new document data: ${JSON.stringify(data)}`)
                 resolve(data.text)
