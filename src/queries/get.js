@@ -20,7 +20,7 @@ module.exports = {
 
         var snapshot = await getRandomSnapshot("<=", "desc")
         if (snapshot.empty) {
-            console.log(chalk.yellow('Snapshot empty, trying the other direction'))
+            console.log('Snapshot empty, trying the other direction')
             snapshot = await getRandomSnapshot(">=", "asc")
         }
 
@@ -30,9 +30,9 @@ module.exports = {
                     console.log(`Got document data: ${JSON.stringify(doc.data())}`)
                     const quote = doc.data().text
                     if (quote !== undefined) resolve(quote)
-                    else reject(new Error(`Cannot get random quote. Text field is missing from doc ${doc.id}`))
+                    else reject('empty field')
                 });
-            } else reject(new Error('Cannot get random quote. Snapshot is empty'))
+            } else reject('empty snapshot')
         })
     }
 }

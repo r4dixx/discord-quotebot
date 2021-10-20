@@ -24,18 +24,14 @@ module.exports = {
 			console.log(chalk.yellow(`Message contains mention, skipping`))
 			interaction.reply({content: reply.error.mention,ephemeral: true})
 		} else {
-			try {
-				querySet.execute(quote).then(function (result) {
-					console.log(`Quote added successfully: ${result}`)
-					interaction.reply(`${reply.success}\n${quote}`)
-				}).catch(function (error) {
-					console.log(chalk.red(error))
-					interaction.reply({content: reply.error.duplicate, ephemeral: true})
-				})	
-			} catch (error) {
-				console.log(chalk.red(error))
-				interaction.reply({ content: config.error_generic, ephemeral: true })
-			}
+			querySet.execute(quote).then(function (result) {
+				console.log(`Quote added successfully: ${result}`)
+				interaction.reply(`${reply.success}\n${result}`)
+			}).catch(function (error) {
+				console.log(chalk.red(`Error adding quote: ${error}`))
+				if (error == 'duplicate') interaction.reply({content: reply.error.duplicate, ephemeral: true})
+				else interaction.reply({ content: config.error_generic, ephemeral: true })
+			})	
 		}
 	}
 }

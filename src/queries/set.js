@@ -12,13 +12,13 @@ module.exports = {
 
         return new Promise(async function (resolve, reject) {
             if (!currentQuotes.includes(quote)) {
-                const docRef = await collection.doc();
+                const docRef = collection.doc();
                 const now = new Date()
                 const data = { 'id': docRef.id, 'text': quote, 'time_added': now.getTime(), 'time_added_hr': now.toTimeString() }
                 await docRef.set(data);
                 console.log(`Setting new document data: ${JSON.stringify(data)}`)
                 resolve(data.text)
-            } else reject(new Error ('Duplicate quote'))
+            } else reject('duplicate')
         })
     }
 }
