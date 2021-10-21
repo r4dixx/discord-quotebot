@@ -28,40 +28,27 @@ module.exports = {
 		if (!process.env.CAPTAIN_IDS.includes(interaction.user.id)) {
 			console.log(chalk.yellow(`User is not a captain. Abort!`))
 			interaction.reply({content: remove.reply.error.rights, ephemeral: true})
+		} else {
+			const quoteForDeletion = interaction.options.getString(option.name)
+			queryDelete.execute(quoteForDeletion).then(function (result) {
+				if (result === 'missing field') {
+					console.log(chalk.yellow(`Quote deleted successfully but no text field was found in document data`))
+					interaction.reply(`${remove.reply.success}`)
+				} else {
+					console.log(`Quote deleted successfully: ${result}`)
+					interaction.reply(`${remove.reply.success}\n${result}`)		
+				}
+			}).catch(function (error) {
+				console.log(chalk.red(`Error deleting quote: ${error}`))
+				if (error === 'empty snapshot') {
+					let reply 
+					if (quoteForDeletion === null) reply = remove.reply.error.last
+					else reply = remove.reply.error.item
+					interaction.reply({content: reply , ephemeral: true})
+				}
+				else interaction.reply({ content: config.error_generic, ephemeral: true })
+			})
 		}
 
-		else if (interaction.options.getSubcommand() === subcommands.last.name) {
-				// Delete last item	
-				queryDelete.execute().then(function (result) {
-					if (result === 'missing field') {
-						console.log(chalk.yellow(`Quote deleted successfully but no text field was found in document data`))
-						interaction.reply(`${remove.reply.success}`)
-					} else {
-						console.log(`Quote deleted successfully: ${result}`)
-						interaction.reply(`${remove.reply.success}\n${result}`)		
-					}
-				}).catch(function (error) {
-					console.log(chalk.red(`Error deleting quote: ${error}`))
-					if (error === 'empty snapshot') interaction.reply({content: remove.reply.error.last, ephemeral: true})
-					else interaction.reply({ content: config.error_generic, ephemeral: true })
-				})
-			}
-
-	// 		// Delete selected item
-	// 		else if (interaction.options.getSubcommand() === subcommands.item.name) {	
-	// 			const quote = interaction.options.getString(option.name)
-	// 			dbDeleteItem(quote).then(function (result) {
-	// 				switch (result) {
-	// 					case 'success':
-	// 						interaction.reply(`${remove.reply.success}\n${quote}`)
-	// 					case 'error-not-found':
-	// 						interaction.reply({content: remove.reply.error.item, ephemeral: true})
-	// 					default:
-	// 						interaction.reply({ content: config.error_generic, ephemeral: true })
-	// 				}
-	// 			})
-	// 		}
-
-		}
 	}
-	
+}
