@@ -23,7 +23,7 @@ module.exports = {
 	async execute(interaction) {
 		const chalk = require('chalk');
 		if (!process.env.CAPTAIN_IDS.includes(interaction.user.id)) {
-			console.log(chalk.yellow(`User is not a captain. Abort!`))
+			console.log(chalk.yellow(`User ${interaction.user.username} is not a captain. Abort!`))
 			interaction.reply({content: remove.reply.error.rights, ephemeral: true})
 		} else {
 			const queryDelete = require('../queries/delete.js')
@@ -38,7 +38,7 @@ module.exports = {
 				}
 			}).catch(function (error) {
 				console.log(chalk.red(`Error deleting quote: ${error}`))
-				if (error === 'empty snapshot') {
+				if (error === 'empty snapshot' || error === 'missing field') {
 					let reply 
 					if (quoteForDeletion === null) reply = remove.reply.error.last
 					else reply = remove.reply.error.item

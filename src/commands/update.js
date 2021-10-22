@@ -33,68 +33,58 @@ module.exports = {
 
 	async execute(interaction) {
 
-		const { reply } = update
-		
-		// Only if user is captain
-		if (process.env.CAPTAIN_IDS.includes(interaction.user.id)) {
+		const chalk = require('chalk');
+		const { reply } = update 
 
-			console.log(`Author id ${interaction.user.username} is a captain, arrr`)
-
-			// Update last item	
-			if (interaction.options.getSubcommand() === subcommands.last.name) {
-				const { last } = reply.error
-				const quote_new = interaction.options.getString(optionLast.name)
-				if (quote_new.includes("<@!")) {
-					console.log(`Message contains mention, skipping`)
-					return interaction.reply({content: reply.error.last.mention,ephemeral: true})
-				} else {
-					dbUpdateLast(quote_new).then(function (result) {
-						switch (result) {
-							case "error":
-								interaction.reply({ content: config.error_generic, ephemeral: true })
-							case "error-no-changes":
-								interaction.reply({ content: last.similar, ephemeral: true })
-							case "error-duplicate":
-								interaction.reply({ content: last.duplicate, ephemeral: true })
-							case "error-not-found":
-								interaction.reply({ content: last.notfound, ephemeral: true })
-							default:
-								interaction.reply(`${reply.success.title}\n${reply.success.prefix_old}\n${result}\n${reply.success.prefix_new}\n${quote_new}`)
-						}
-					})
-				}
-			}
-			
-			// Update selected item
-			if (interaction.options.getSubcommand() === subcommands.item.name) {
-				const { item } = reply.error
-				const quote_old = interaction.options.getString(optionItem.old.name)
-				const quote_new = interaction.options.getString(optionItem.new.name)
-				if (quote_new.includes("<@!")) {
-					console.log(`Message contains mention, skipping`)
-					interaction.reply({content: reply.error.item.mention ,ephemeral: true})
-				} else {
-					dbUpdateItem(quote_old, quote_new).then(function (result) {
-						switch (result) {	
-							case "success":
-								interaction.reply(`${reply.success.title}\n${reply.success.prefix_old}\n${quote_old}\n${reply.success.prefix_new}\n${quote_new}`)
-							case "error-no-changes":
-								interaction.reply({ content: item.similar, ephemeral: true })
-							case "error-duplicate":
-								interaction.reply({ content: item.duplicate, ephemeral: true })
-							case "error-not-found":
-								interaction.reply({ content: item.notfound, ephemeral: true })
-							case "error":
-								interaction.reply({ content: config.error_generic, ephemeral: true })
-						}
-					})
-				}
-			}
-
-		} else {
-			console.log(require('chalk').red(`Author id ${interaction.user.username} is not a captain. Abort!`))
+		if (!process.env.CAPTAIN_IDS.includes(interaction.user.id)) {
+			console.log(chalk.yellow(`User ${interaction.user.username} is not a captain. Abort!`))
 			interaction.reply({content: reply.error.rights, ephemeral: true})
 		}
-	}
+		
+		else {
+			let replyMsg
+			const quoteOld = interaction.options.getString(optionItem.old.name)
+			let quoteNew
+			if (interaction.options.getSubcommand() === subcommands.item.name) optionNew = interaction.options.getString(optionItem.name)
+			else optionNew = interaction.options.getString(optionLast.name)
 
+			if (quoteNew.includes("<@!")) {
+				console.log(chalk.yellow(`Message contains mention. Abort!`))
+				if (quoteOld === null) replyMsg = reply.error.last.mention 
+				else replyMsg = reply.error.item.mention
+				interaction.reply({ content: replyMsg, ephemeral: true })
+			} 
+			
+			else {
+				const queryUpdate = require('../queries/update.js')
+				queryUpdate.execute(quoteOld, quoteNew).then(function (result) {
+					if (result === 'missing field') {
+						console.log(chalk.yellow(`Quote updated successfully but no text field was found in document data`))
+						interaction.reply(`${update.reply.success}`)
+					} else {
+						console.log(`Quote updated successfully: ${result}`)
+						interaction.reply(`${reply.success.title}\n${reply.success.prefix_old}\n${quoteOld}\n${reply.success.prefix_new}\n${quoteNew}`)
+					}
+				}).catch(function (error) {
+					console.log(chalk.red(`Error updating quote: ${error}`))
+					if (error == 'similar') {
+						if (quoteOld === null) replyMsg = reply.error.last.similar 
+						else replyMsg = reply.error.item.similar
+						interaction.reply({content: update.reply.error.duplicate, ephemeral: true})
+					}
+					else if (error == 'duplicate') {
+						if (quoteOld === null) replyMsg = reply.error.last.duplicate 
+						else replyMsg = reply.error.item.duplicate
+						interaction.reply({content: replyMsg, ephemeral: true})
+					}
+					else if (error === 'empty snapshot') {
+						if (quoteOld === null) reply = reply.error.last.notfound
+						else reply = reply.error.item.notfound
+						interaction.reply({content: replyMsg , ephemeral: true})
+					}
+					else interaction.reply({ content: config.error_generic, ephemeral: true })
+				})
+			}
+		}	
+	}
 }
