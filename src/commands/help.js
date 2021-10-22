@@ -1,13 +1,14 @@
 const { SlashCommandBuilder } = require('@discordjs/builders')
 const config = require('../config/config.json')
 const help = config.help
-const { reply } = help
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName(help.name)
 		.setDescription(help.description),
 	async execute(interaction) {
+
+		const { reply } = help
 		
 		const helpMessage =
 `${reply.about}

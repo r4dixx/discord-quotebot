@@ -1,6 +1,4 @@
 const { SlashCommandBuilder } = require('@discordjs/builders')
-const chalk = require('chalk');
-const queryGet = require('../queries/get.js')
 const config = require('../config/config.json')
 const { get } = config
 
@@ -9,6 +7,8 @@ module.exports = {
 		.setName(get.name)
 		.setDescription(get.description),
 	async execute(interaction) {
+		const chalk = require('chalk');
+		const queryGet = require('../queries/get.js')
 		queryGet.execute().then(function (result) {
 			console.log(`Quote queried successfully: ${result}`)
 			interaction.reply(`${get.reply.success} ${result}`)

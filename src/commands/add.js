@@ -1,6 +1,4 @@
 const {	SlashCommandBuilder } = require('@discordjs/builders')
-const chalk = require('chalk');
-const querySet = require('../queries/set.js')
 const config = require('../config/config.json')
 const { add } = config
 
@@ -15,7 +13,7 @@ module.exports = {
 				.setRequired(true)),
 
 	async execute(interaction) {
-
+		const chalk = require('chalk');
 		const quote = interaction.options.getString(add.option.name)
 		const { reply } = add 
 		
@@ -23,6 +21,7 @@ module.exports = {
 			console.log(chalk.yellow(`Message contains mention. Abort!`))
 			interaction.reply({content: reply.error.mention,ephemeral: true})
 		} else {
+			const querySet = require('../queries/set.js')
 			querySet.execute(quote).then(function (result) {
 				console.log(`Quote added successfully: ${result}`)
 				interaction.reply(`${reply.success}\n${result}`)
