@@ -2,6 +2,7 @@ const {	SlashCommandBuilder } = require('@discordjs/builders')
 const config = require('../config/config.json')
 const { remove } = config
 const { name, description, subcommands } = remove
+const itemOption = subcommands.item.option
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -16,8 +17,8 @@ module.exports = {
 			sub.setName(subcommands.item.name)
 			.setDescription(subcommands.item.description)
 			.addStringOption(opt =>
-				opt.setName(subcommands.item.option.name)
-				.setDescription(subcommands.item.option.description)
+				opt.setName(itemOption.name)
+				.setDescription(itemOption.description)
 				.setRequired(true))),
 				
 	async execute(interaction) {
@@ -27,7 +28,7 @@ module.exports = {
 			interaction.reply({content: remove.reply.error.rights, ephemeral: true})
 		} else {
 			const queryDelete = require('../queries/delete.js')
-			const quoteForDeletion = interaction.options.getString(option.name)
+			const quoteForDeletion = interaction.options.getString(itemOption.name)
 			queryDelete.execute(quoteForDeletion).then(function (result) {
 				if (result === 'missing field') {
 					console.log(chalk.yellow(`Quote deleted successfully but no text field was found in document data`))
@@ -38,9 +39,9 @@ module.exports = {
 				}
 			}).catch(function (error) {
 				console.log(chalk.red(`Error deleting quote: ${error}`))
-				if (error === 'empty snapshot' || error === 'missing field') {
+				if (error === 'empty snapshot') {
 					let reply 
-					if (quoteForDeletion === null) reply = remove.reply.error.last
+					if (interaction.options.getSubcommand() === subcommands.last.name) reply = remove.reply.error.last
 					else reply = remove.reply.error.item
 					interaction.reply({content: reply , ephemeral: true})
 				}

@@ -42,44 +42,50 @@ module.exports = {
 		}
 		
 		else {
+			const itemMode = interaction.options.getSubcommand() === subcommands.item.name
+			const lastMode = interaction.options.getSubcommand() === subcommands.last.name
 			let replyMsg
-			const quoteOld = interaction.options.getString(optionItem.old.name)
+			let quoteOld
 			let quoteNew
-			if (interaction.options.getSubcommand() === subcommands.item.name) optionNew = interaction.options.getString(optionItem.name)
-			else optionNew = interaction.options.getString(optionLast.name)
+			if (itemMode) {
+				quoteOld = interaction.options.getString(optionItem.old.name)
+				quoteNew = interaction.options.getString(optionItem.new.name)
+			} else quoteNew = interaction.options.getString(optionLast.name)
+
+			console.log(`old: ${quoteOld}, new: ${quoteNew}`)
 
 			if (quoteNew.includes("<@!")) {
 				console.log(chalk.yellow(`Message contains mention. Abort!`))
-				if (quoteOld === null) replyMsg = reply.error.last.mention 
+				if (lastMode) replyMsg = reply.error.last.mention 
 				else replyMsg = reply.error.item.mention
 				interaction.reply({ content: replyMsg, ephemeral: true })
 			} 
+
+			else if (itemMode && quoteOld === quoteNew) {
+				console.log(chalk.yellow(`Old quote similar to new quote. Abort!`))
+				interaction.reply({ content: reply.error.item.similar, ephemeral: true })
+			}
 			
 			else {
 				const queryUpdate = require('../queries/update.js')
 				queryUpdate.execute(quoteOld, quoteNew).then(function (result) {
 					if (result === 'missing field') {
-						console.log(chalk.yellow(`Quote updated successfully but no text field was found in document data`))
-						interaction.reply(`${update.reply.success}`)
+						console.log(chalk.yellow(`No text field was found in document data. Adding it: ${result}`))
+						interaction.reply(`${reply.success.title}\n${result}`)
 					} else {
-						console.log(`Quote updated successfully: ${result}`)
-						interaction.reply(`${reply.success.title}\n${reply.success.prefix_old}\n${quoteOld}\n${reply.success.prefix_new}\n${quoteNew}`)
+						console.log(`Quote updated successfully to ${quoteNew}`)
+						interaction.reply(`${reply.success.title}\n${reply.success.prefix_old}\n${result}\n${reply.success.prefix_new}\n${quoteNew}`)
 					}
 				}).catch(function (error) {
 					console.log(chalk.red(`Error updating quote: ${error}`))
-					if (error == 'similar') {
-						if (quoteOld === null) replyMsg = reply.error.last.similar 
-						else replyMsg = reply.error.item.similar
-						interaction.reply({content: update.reply.error.duplicate, ephemeral: true})
-					}
-					else if (error == 'duplicate') {
-						if (quoteOld === null) replyMsg = reply.error.last.duplicate 
+					if (error == 'duplicate') {
+						if (lastMode) replyMsg = reply.error.last.duplicate 
 						else replyMsg = reply.error.item.duplicate
 						interaction.reply({content: replyMsg, ephemeral: true})
 					}
 					else if (error === 'empty snapshot') {
-						if (quoteOld === null) reply = reply.error.last.notfound
-						else reply = reply.error.item.notfound
+						if (lastMode) replyMsg = reply.error.last.notfound
+						else replyMsg = reply.error.item.notfound
 						interaction.reply({content: replyMsg , ephemeral: true})
 					}
 					else interaction.reply({ content: config.error_generic, ephemeral: true })

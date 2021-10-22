@@ -31,8 +31,8 @@ module.exports = {
                     console.log(`Got document data: ${JSON.stringify(doc.data())}`)
                     quote = doc.data().text
                 });
-                if (quote !== undefined) resolve(quote)
-                else reject('missing field')
+                if (quote === undefined) reject('missing field')
+                else resolve(quote)
             } else reject('empty snapshot')
         })
     }
