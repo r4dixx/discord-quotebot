@@ -3,6 +3,11 @@
 
 name: Node.js Package
 
+defaults:
+  run:
+    shell: bash
+    working-directory: src
+
 on:
   release:
     types: [published]
