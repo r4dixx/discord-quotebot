@@ -6,7 +6,6 @@ module.exports = {
         const db = require('firebase-admin/firestore').getFirestore()
         const collection = db.collection(process.env.COLLECTION_NAME)
 
-        let snapshot
         if (quoteOld === undefined) {
             console.log(`Querying last item`)
             snapshot = await collection.orderBy("createdAt", "desc").limit(1).get()
@@ -20,7 +19,7 @@ module.exports = {
                 let quote
                 snapshot.forEach(doc => { quote = doc.data() });
                 // todo reject if quoteNew exists anywhere
-                await collection.doc(quote.id).set({ text: quoteNew }, { merge: true }).then(() => {
+                await collection.doc(quote.id).update({ text: quoteNew }).then(() => {
                     if (quote.text === undefined) resolve('missing field')
                     else if (quote.text === quoteNew) reject('duplicate')
                     else {
