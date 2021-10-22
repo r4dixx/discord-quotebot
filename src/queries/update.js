@@ -5,29 +5,37 @@ module.exports = {
         
         const db = require('firebase-admin/firestore').getFirestore()
         const collection = db.collection(process.env.COLLECTION_NAME)
+        var snapshot = await collection.get()
+        
+        let currentQuotes = new Array()
+        snapshot.forEach(doc => { currentQuotes.push(doc.data().text) });
 
-        if (quoteOld === undefined) {
-            console.log(`Querying last item`)
-            snapshot = await collection.orderBy("createdAt", "desc").limit(1).get()
-        } else {
-            console.log(`Querying specific item: ${quoteOld}`) 
-            snapshot = await collection.where("text", "==", quoteOld).limit(1).get()
+        if (currentQuotes.includes(quoteNew)) {
+            return Promise.reject('duplicate')
+        } 
+
+        else {
+
+            if (quoteOld === undefined) {
+                console.log(`Querying last item`)
+                snapshot = await collection.orderBy("createdAt", "desc").limit(1).get()
+            } else {
+                console.log(`Querying specific item: ${quoteOld}`) 
+                snapshot = await collection.where("text", "==", quoteOld).limit(1).get()
+            }
+
+            return new Promise(async function (resolve, reject) {
+                if (!snapshot.empty) {
+                    let quote
+                    snapshot.forEach(doc => { quote = doc.data() });
+                    await collection.doc(quote.id).update({ text: quoteNew }).then(() => {
+                        if (quote.text !== undefined) {
+                            console.log(`Got document data: ${JSON.stringify(quote)}`)
+                            resolve(quote.text)
+                        } else resolve('missing field')
+                    }).catch(error => { reject(error) })
+                } else reject('empty snapshot')
+            })
         }
-
-        return new Promise(async function (resolve, reject) {
-            if (!snapshot.empty) {
-                let quote
-                snapshot.forEach(doc => { quote = doc.data() });
-                // todo reject if quoteNew exists anywhere
-                await collection.doc(quote.id).update({ text: quoteNew }).then(() => {
-                    if (quote.text === undefined) resolve('missing field')
-                    else if (quote.text === quoteNew) reject('duplicate')
-                    else {
-                        console.log(`Got document data: ${JSON.stringify(quote)}`)
-                        resolve(quote.text)
-                    }
-                }).catch(error => { reject(error) })
-            } else reject('empty snapshot')
-        })
     }
 }
