@@ -1,6 +1,6 @@
 {
   "name": "@r4dixx/discord-quotebot",
-  "version": "4.2.0",
+  "version": "5.0.0",
   "hasInstallScript": true,
   "description": "Open-source Discord bot to output random quotes upon command",
   "keywords": [
@@ -31,7 +31,6 @@
     "discord.js": "^13.2.0",
     "dotenv": "^10.0.0",
     "firebase": "^9.1.3",
-    "firebase-admin": "^10.0.0",
-    "sqlite3": "^4.2.0"
+    "firebase-admin": "^10.0.0"
   }
 }
