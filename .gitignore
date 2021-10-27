@@ -1,6 +1,5 @@
 .DS_Store
 .vscode
-.tool-versions
 .env
 firebase.json
 node_modules
