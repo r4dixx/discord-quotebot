@@ -1,26 +1,24 @@
 # Discord QuoteBot 🤖
 [![Latest release](https://img.shields.io/github/release/r4dixx/discord-quotebot.svg)](https://GitHub.com/r4dixx/discord-quotebot/releases/) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/r4dixx/discord-quotebot/graphs/commit-activity) [![License: GPL-3.0](https://img.shields.io/github/license/r4dixx/discord-quotebot)](https://github.com/r4dixx/discord-quotebot/blob/master/LICENSE) [![Twitter followers](https://img.shields.io/twitter/follow/r4dixx.svg?style=social)](https://twitter.com/r4dixx)
 
-This is an open-source quote bot written in [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and using [Discord.js](https://discord.js.org/) as a client.<br />
-The goal of this project is to make it both extensible and easy to add to your Discord server.
+This is an open-source quote bot written in [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript), using [Discord.js](https://discord.js.org/) as a client and [Firebase Cloud Firestore](https://firebase.google.com/docs/firestore) as a database service. The goal of this project is to be both **extensible** and **easy** to setup.
 
-Basic rights (read/add) are available to everyone.<br />
-Advanced commands (edit/delete) are available to selected users called **_"captains"_**.
+Basic rights (read/save) are available to everyone.<br />
+Advanced rights (edit/delete) are available to selected users called **_"captains"_**.
 
-> I called this privilege level that way to prevent any confusion with the term "server admins". Captains are not server admins, server admins are not captains.
+> I called this privilege level that way to prevent any confusion with the term "server admins".</br>
+> Captains are not server admins, server admins are not captains.
 
-Every commands and outputs can be customized heavily in [config.json](../src/config/config.json) as presented [here](#-customize-the-bot).<br />
+Every commands and outputs can be customized heavily in [config.json](../src/config/config.json) as presented [here](#customize-the-bot).<br />
 Head to [the "Usage" section](#-usage) for more info.
 
 Let's go!
-
-***
 
 ## 📖 Table of contents
 
 - [🏁 Preliminary steps](#-preliminary-steps)
    - [Create a Discord bot](#create-a-discord-app)
-   - [Create a Cloud Firestore database](#create-a-firebase-cloud-firestore-app)
+   - [Create a Cloud Firestore database](#create-a-cloud-firestore-database)
    - [Important notes](#important-notes)
 
 - [🏗 Setup](#-setup)
@@ -77,9 +75,11 @@ GUILD_ID=your_server_id
 CAPTAIN_IDS=your_user_id, another_user_id, and_maybe_another" >> config/.env
 ```
 
-Don't share these info with anyone or you'll be open to malicious attacks! 
+**Don't share these info with anyone or you'll be open to malicious attacks! **
 
-### Create a Firebase Cloud Firestore database
+***
+
+### Create a Cloud Firestore database
 
 Now we're going to use a simple NoSQL cloud database to store our quotes.<br />
 [Firebase Cloud Firestore](https://firebase.google.com/docs/firestore) is a good candidate for this kind of use case. 
@@ -114,6 +114,8 @@ Almost there! We just need to link up your Firebase project to your Discord bot.
 - Move the downloaded file to [the config directory](../src/config) and make sure to rename it `firebase.json`. Do not share it with anyone! 
 
 That's it! Now we can move on to the last step.
+
+***
 
 ### Important notes
 
@@ -160,12 +162,16 @@ If you didn't get **these three messages**, something went wrong.
 
 If this still doesn't fix your problem, please [open an issue](https://github.com/r4dixx/discord-quotebot/issues/new).
 
+***
+
 ### Test if everything is up and running
 
 Send `/ping` in your Discord server and see the magic happen.<br />
 If nothing shows, something went wrong. Check the logs for potential error messages. 
 
 Please [open an issue](https://github.com/r4dixx/discord-quotebot/issues/new) if you see anything unusual.
+
+***
 
 ### Customize the bot
 
@@ -197,8 +203,6 @@ Here's an example:
 Everything can be customized pretty heavily so be creative!<br />
 Once you're done, save the file and restart the bot to deploy your new configuration.<br />
 Show me what you've done 🤗
-
-***
 
 ## 👨‍💻 Usage
 
