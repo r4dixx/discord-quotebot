@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.0.0
+
+- **BREAKING CHANGE** Migrate database to Firebase Cloud Firestore
+
+---
+
 ## 4.1.0
 
 ### Feature
