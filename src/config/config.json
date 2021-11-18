@@ -6,15 +6,15 @@
   },
   "get": {
     "name": "quote",
-    "description": "Get a random quote from the database",
+    "description": "Get a random quote",
     "reply": {
       "success": ":speech_left:",
       "error": ":person_shrugging: Error: No quote available."
     }
   },
   "add": {
-    "name": "add",
-    "description": "Add given quote to the database",
+    "name": "save",
+    "description": "Save given quote",
     "option": {
       "name": "quote",
       "description": "Enter a quote you would like to add"
@@ -33,7 +33,7 @@
     "subcommands": {
       "last": {
         "name": "last",
-        "description": "Edit the last quote registered in the database (captains only)",
+        "description": "Edit last saved quote (captains only)",
         "option": {
           "name": "new",
           "description": "Enter your new quote"
@@ -41,7 +41,7 @@
       },
       "item": {
         "name": "item",
-        "description": "Edit a specific quote from the database (captains only)",
+        "description": "Edit a specific quote (captains only)",
         "options": {
           "old": {
             "name": "old",
@@ -82,11 +82,11 @@
     "subcommands": {
       "last": {
         "name": "last",
-        "description": "Delete the last quote registered in the database (captains only)"
+        "description": "Delete last saved quote (captains only)"
       },
       "item": {
         "name": "item",
-        "description": "Delete a specific quote from the database (captains only)",
+        "description": "Delete a specific quote (captains only)",
         "option": {
           "name": "quote",
           "description": "Enter the quote you would like to delete"
@@ -110,7 +110,7 @@
       "user": {
         "title": ":busts_in_silhouette: **Everyone can**",
         "get": "Get a random quote",
-        "add": "Add a quote to the database"
+        "add": "Save a quote"
       },
       "admin": {
         "title": ":detective: **Captains can**",
