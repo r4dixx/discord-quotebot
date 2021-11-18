@@ -8,10 +8,8 @@ Discord bot to output, save, and edit quotes upon commands.
 - [👀 About](#-about)
 
 - [🏁 Preliminary steps](#-preliminary-steps)
-   - [Create an app](#create-an-app)
-   - [Declare Discord secrets](#declare-discord-secrets)
-   - [Create the database](#create-an-app)
-   - [Declare Firebase secrets](#declare-firebase-secrets)
+   - [Create a Discord app](#create-a-discord-app)
+   - [Create a Firebase Cloud Firestore database](#create-a-firebase-cloud-firestore-app)
    - [Important notes](#important-notes)
 
 - [🏗 Setup](#-setup)
@@ -23,6 +21,9 @@ Discord bot to output, save, and edit quotes upon commands.
    - [All users](#all-users)
    - [Captains](#captains)
 
+- [🤴 Advanced Usage](#-advanced-usage)
+   - [Cloud Firestore Dashboard](#cloud-firestore-dashboard)
+
 - [👤 About the author](#-about-the-author)
 - [🤝 Contributing](#-contributing)
 - [🤗 Show your support](#-show-your-support)
@@ -32,11 +33,11 @@ Discord bot to output, save, and edit quotes upon commands.
 
 ## 👀 About
 
-This is a quote bot written in [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and using [Discord.js](https://discord.js.org/) as a client.<br />
+This is an open-source quote bot written in [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and using [Discord.js](https://discord.js.org/) as a client.<br />
 The goal of this project is to make it both extensible and easy to add to your Discord server.
 
 Basic rights (read/add) are available to everyone.<br />
-Advanced commands (edit/delete) are available to selected users called "captains".
+Advanced commands (edit/delete) are available to selected users called **_"captains"_**.
 
 > I called this privilege level that way to prevent any confusion with the term "server admins". Captains are not server admins, server admins are not captains.
 
@@ -45,7 +46,7 @@ Head to the [Usage](#-usage) section for more info.
 
 ## 🏁 Preliminary steps
 
-### Create an app
+### Create a Discord app
 
 First we need to create a Discord app and its associated bot
 
@@ -57,14 +58,12 @@ First we need to create a Discord app and its associated bot
 
 4. Copy the generated link and open it to add the bot to your server.
 
-### Declare Discord secrets
-
-In order to setup and run the project, you need to have the following environment variables set:
+Now in order to run the project, you will need to have the following environment variables set:
 
    - Your app OAuth2 client ID as `CLIENT_ID`. 
    - Your bot token as `TOKEN`.
    - Your server ID as `GUILD_ID`.
-   - At least one user ID in `CAPTAIN_IDS` for edition/deletion rights.
+   - At least one user ID in `CAPTAIN_IDS` (for more advanced rights)
    
    > You can add as many captains as you'd like but I recommend you keep it minimal.
 
@@ -93,15 +92,17 @@ CAPTAIN_IDS=your_user_id, another_user_id, and_maybe_another" >> config/.env
 
 Don't share these info with anyone or you'll be open to malicious attacks! 
 
-### Create the database
+### Create a Firebase Cloud Firestore database
 
-We're going to use a simple NoSQL cloud database to store our quotes. [Firebase Cloud Firestore](https://firebase.google.com/docs/firestore) is a good candidate for this kind of use case. 
+Now we're going to use a simple NoSQL cloud database to store our quotes. [Firebase Cloud Firestore](https://firebase.google.com/docs/firestore) is a good candidate for this kind of use case. 
 
 It's pretty simple:
 
-- First of all, [create a new Firebase project](https://console.firebase.google.com/) and [navigate to the Firestore Database section](https://console.firebase.google.com/project/_/firestore). Then, create a new database in **locked mode** with the appropriate Cloud Firestore server zone (e.g. `eur3 (europe-west)`).
+- First off, [create a new Firebase project](https://console.firebase.google.com/) and [navigate to the Firestore Database section](https://console.firebase.google.com/project/_/firestore)
 
-- Then choose an ID for your database (e.g. `quotes`) and declare it in your `.env` file as follows: `COLLECTION_ID=quotes`. 
+- Then create a database in **production mode** and set the appropriate Cloud Firestore location (e.g. `eur3 (europe-west)`).
+
+- Finally, choose an ID for your database (e.g. `quotes`) and declare it in your `.env` file as follows: `COLLECTION_ID=quotes`. The name you chose will appear as is in the Firestore console.
 
 Your `.env` file should look like this:
 
@@ -116,13 +117,13 @@ CAPTAIN_IDS=your_user_id
 COLLECTION_ID=your_db_name
 ```
 
-### Declare Firebase secrets
+Now you need to link up your Firebase project to your Discord bot.  
 
-Now we need to link up our Firebase project with our Discord bot.  
+- Head to your project settings and navigate to the section called [Service Accounts](https://console.firebase.google.com/project/_/settings/serviceaccounts/adminsdk)
 
-- Head to the section called [Service Accounts](https://console.firebase.google.com/project/_/settings/serviceaccounts/adminsdk) in your project settings
 - Click on `Generate new private key` (this will download a `*.json` file for you)
-- Move the downloaded file to [the config directory](../src/config) and make sure to rename it `firebase.json`. Do not share this file with anyone!
+
+- Move the downloaded file to [the config directory](../src/config) and make sure to rename it `firebase.json`. Do not share this file with anyone! 
 
 That's it!
 
@@ -132,7 +133,7 @@ That's it!
 
 - **Never** EVER share your environment with anyone. [See why](https://discordjs.guide/preparations/setting-up-a-bot-application.html#token-leak-scenario).
 
-- In a similar fashion, your Cloud Firestore security rules should be in **locked mode**. [See why](https://firebase.google.com/docs/rules/basics).
+- Everything in `firebase.json` must remain strictly confidential. In a similar fashion, your Cloud Firestore security rules should be strictly in **production mode**. [See why](https://firebase.google.com/docs/rules/basics).
 
 - Refer to the official documentations if you're lost
    - [Setting up a bot application](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)
@@ -159,15 +160,17 @@ This will:
 
 Your log output should read the following:
 
-- `Successfully reloaded application commands`
-- `Discord client ready! Logged in as QuoteBot-Test - ID: your_client_id`
-- `Instance of Firebase Cloud Firestore initalized properly`
+- `Successfully reloaded application commands` which confirms that the commands have been deployed to your server.
+- `Discord client ready! Logged in as QuoteBot-Test - ID: your_client_id` which confirms that the bot is running.
+- `Instance of Firebase Cloud Firestore initalized properly` which confirms that the database is ready.
 
 If you didn't get these three messages, something went wrong. 
 
 - Check the location of your `.env` file
-- Check if your environment variables are correct.
-- Check if your Firebase project is properly configured.
+- Double check if your environment variables are correct.
+- Triple check if your Firebase project is properly configured.
+
+If this still doesn't fix your problem, please [open an issue](https://github.com/r4dixx/discord-quotebot/issues/new).
 
 ### Test if everything is up and running
 
@@ -225,6 +228,16 @@ Show me what you've done 🤗
 - Delete 
    - `/delete` `last` to delete the last quote
    - `/delete` `item` `quote` to delete a specific quote
+
+## 🤴 Advanced usage
+
+### Cloud Firestore Dashboard
+
+Remember the dashboard? It's a great way to manage your database. You can find it [here](https://console.firebase.google.com/project/_/firestore/data/)<br /> and access it anytime you want. No need to touch this folder again!
+
+From there you can add, edit and delete entries very easily. You can even change creation dates. I wouldn't recommend editing IDs though. This might break your bot.
+
+Have fun 👋
 
 ## 👤 About the author
 
