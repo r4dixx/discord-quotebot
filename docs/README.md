@@ -54,12 +54,12 @@ First we need to create a Discord app and its associated bot
 
 Now in order to run the project, you will need to have the following environment variables set:
 
-   - Your app OAuth2 client ID as `CLIENT_ID`. 
-   - Your bot token as `TOKEN`.
-   - Your server ID as `GUILD_ID`.
-   - At least one user ID in `CAPTAIN_IDS` (for more advanced rights)
-   
-   > You can add as many captains as you'd like but I recommend you keep it minimal.
+- Your app OAuth2 client ID as `CLIENT_ID`. 
+- Your bot token as `TOKEN`.
+- Your server ID as `GUILD_ID`.
+- At least one user ID in `CAPTAIN_IDS` (for more advanced rights)
+
+> You can add as many captains as you'd like but I recommend you keep it minimal.
 
 There are [several ways to store these values](https://nodejs.dev/learn/how-to-read-environment-variables-from-nodejs). I personnally put them in a `.env` file in the `config` directory.
 
@@ -86,11 +86,11 @@ Now we're going to use a simple NoSQL cloud database to store our quotes.<br />
 
 It's pretty simple:
 
-- [Create a new Firebase project](https://console.firebase.google.com/) and [navigate to the "Firestore Database" section](https://console.firebase.google.com/project/_/firestore)
+1. [Create a new Firebase project](https://console.firebase.google.com/) and [navigate to the "Firestore Database" section](https://console.firebase.google.com/project/_/firestore)
 
-- Then create a database in **production mode** with the appropriate Cloud Firestore location (e.g. `eur3 (europe-west)`).
+2. Create a database in **production mode** with the appropriate Cloud Firestore location (e.g. `eur3 (europe-west)`).
 
-- Finally, choose an ID for your collection (e.g. `quotes`) and declare it in your `.env` file as follows: `COLLECTION_ID=quotes`. The name you chose will appear as such in the Firestore console.
+3. Choose an ID for your collection (e.g. `quotes`) and declare it in your `.env` file as follows: `COLLECTION_ID=quotes`. The name you chose will appear as such in the Firestore console.
 
 Your `.env` file should look like this:
 
@@ -107,13 +107,13 @@ COLLECTION_ID=your_collection_name
 
 Almost there! We just need to link up your Firebase project to your Discord bot.  
 
-- Head to your project settings and [navigate to the "Service Accounts" section](https://console.firebase.google.com/project/_/settings/serviceaccounts/adminsdk)
+4. Head to your project settings and [navigate to the "Service Accounts" section](https://console.firebase.google.com/project/_/settings/serviceaccounts/adminsdk)
 
-- Click on `Create service account` and `Generate new private key` (this will download a `*.json` file for you)
+5. Click on `Create service account` and `Generate new private key` (this will download a `*.json` file for you)
 
-- Move the downloaded file to [the config directory](../src/config) and make sure to rename it `firebase.json`. Do not share it with anyone! 
+6. Move the downloaded file to [the config directory](../src/config) and make sure to rename it `firebase.json`. Do not share it with anyone! 
 
-That's it! Now we can move on to the last step.
+That's it! Now we can go to the last step.
 
 ***
 
@@ -156,9 +156,9 @@ Your log output should read the following:
 
 If you didn't get **these three messages**, something went wrong. 
 
-- Check the location of your `.env` file
-- Double check your environment variables.
-- Triple check your Firebase project configuration.
+1. Check the location of your `.env` file
+2. Double check your environment variables.
+3. Triple check your Firebase project configuration.
 
 If this still doesn't fix your problem, please [open an issue](https://github.com/r4dixx/discord-quotebot/issues/new).
 
@@ -209,7 +209,7 @@ Show me what you've done 🤗
 ### All users
 
 - `/quote` to get a random quote
-- `/add` to save a quote
+- `/save` to save a quote
 - `/help` to get a list of available commands
 - `/ping` to test if the bot is running
 
@@ -242,10 +242,10 @@ _Psst! If this is unclear for you: in the Cloud Firestore world collections are 
 
 ## 👤 About the author
 
-* Website: [r4dixx.github.io](https://r4dixx.github.io/)
-* Twitter: [@r4dixx](https://twitter.com/r4dixx)
-* Github: [@r4dixx](https://github.com/r4dixx)
-* LinkedIn: [@r4dixx](https://linkedin.com/in/r4dixx)
+- Website: [r4dixx.github.io](https://r4dixx.github.io/)
+- Twitter: [@r4dixx](https://twitter.com/r4dixx)
+- Github: [@r4dixx](https://github.com/r4dixx)
+- LinkedIn: [@r4dixx](https://linkedin.com/in/r4dixx)
 
 ## 🤝 Contributing
 
