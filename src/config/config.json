@@ -6,18 +6,18 @@
   },
   "get": {
     "name": "quote",
-    "description": "Get a random quote from the database",
+    "description": "Get a random quote",
     "reply": {
       "success": ":speech_left:",
       "error": ":person_shrugging: Error: No quote available."
     }
   },
-  "insert": {
+  "add": {
     "name": "save",
-    "description": "Save given quote in the database",
+    "description": "Save given quote",
     "option": {
       "name": "quote",
-      "description": "Enter a quote you would like to save"
+      "description": "Enter a quote you would like to add"
     },
     "reply": {
       "success": ":brain: **I'll remember this one...**",
@@ -33,7 +33,7 @@
     "subcommands": {
       "last": {
         "name": "last",
-        "description": "Edit the last quote registered in the database (captains only)",
+        "description": "Edit last saved quote (captains only)",
         "option": {
           "name": "new",
           "description": "Enter your new quote"
@@ -41,7 +41,7 @@
       },
       "item": {
         "name": "item",
-        "description": "Edit a specific quote from the database (captains only)",
+        "description": "Edit a specific quote (captains only)",
         "options": {
           "old": {
             "name": "old",
@@ -62,12 +62,13 @@
       },
       "error": {
         "item": {
+          "mention": ":shushing_face: Not saving this one. Please don't mention people in quotes.",
           "similar": ":upside_down: No changes made. Desired quote is similar to selected one",
           "duplicate": ":people_holding_hands: Error: This quote already exists.",
           "notfound": ":thinking: Cannot edit this quote. It doesn't appear to exist."
         },
         "last": {
-          "similar": ":upside_down: No changes made. Desired quote is similar to last saved quote",
+          "mention": ":shushing_face: Not saving this one. Please don't mention people in quotes.",
           "duplicate": ":people_holding_hands: Error: This quote already exists.",
           "notfound": ":person_shrugging: Cannot edit last saved quote. No quote available."
         },
@@ -75,17 +76,17 @@
       }
     }
   },
-  "drop": {
+  "remove": {
     "name": "delete",
     "description": "Delete a quote (captains only)",
     "subcommands": {
       "last": {
         "name": "last",
-        "description": "Delete the last quote registered in the database (captains only)"
+        "description": "Delete last saved quote (captains only)"
       },
       "item": {
         "name": "item",
-        "description": "Delete a specific quote from the database (captains only)",
+        "description": "Delete a specific quote (captains only)",
         "option": {
           "name": "quote",
           "description": "Enter the quote you would like to delete"
@@ -109,7 +110,7 @@
       "user": {
         "title": ":busts_in_silhouette: **Everyone can**",
         "get": "Get a random quote",
-        "insert": "Save a quote in the database"
+        "add": "Save a quote"
       },
       "admin": {
         "title": ":detective: **Captains can**",
@@ -118,7 +119,7 @@
           "item": "A specific entry",
           "last": "Last saved entry"
         },
-        "drop": {
+        "remove": {
           "title": "Delete quotes",
           "item": "A specific entry",
           "last": "Last saved entry"

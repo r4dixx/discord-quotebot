@@ -1,6 +1,6 @@
 {
   "name": "@r4dixx/discord-quotebot",
-  "version": "4.1.0",
+  "version": "5.0.0",
   "hasInstallScript": true,
   "description": "Open-source Discord bot to output random quotes upon command",
   "keywords": [
@@ -17,8 +17,8 @@
     "email": "amael.sikel@gmail.com"
   },
   "scripts": {
-    "prestart": "node -r dotenv/config src/app/deploy-commands.js",
-    "start": "node -r dotenv/config src/app/start-bot.js"
+    "prestart": "node -r dotenv/config app/deploy-commands.js dotenv_config_path=config/.env",
+    "start": "node -r dotenv/config app/start-bot.js dotenv_config_path=config/.env"
   },
   "engines": {
     "node": ">=16.6"
@@ -30,6 +30,7 @@
     "discord-api-types": "^0.23.1",
     "discord.js": "^13.2.0",
     "dotenv": "^10.0.0",
-    "sqlite3": "^4.2.0"
+    "firebase": "^9.1.3",
+    "firebase-admin": "^10.0.0"
   }
 }

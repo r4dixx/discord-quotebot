@@ -1,6 +1,5 @@
 .DS_Store
-.vscode/
+.vscode
 .env
-.tool-versions
-node_modules/
-src/quotes.db
+firebase.json
+node_modules

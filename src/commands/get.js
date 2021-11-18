@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders')
-const config = require('../config.json')
+const config = require('../config/config.json')
 const { get } = config
 
 module.exports = {
@@ -7,16 +7,15 @@ module.exports = {
 		.setName(get.name)
 		.setDescription(get.description),
 	async execute(interaction) {
-		const { reply } = get
-		dbQueryItemRandom().then(function (result) {
-			switch (result) {
-				case 'error':
-					return interaction.reply({ content: config.error_generic, ephemeral: true })
-				case 'error-not-found':
-					return interaction.reply({content: reply.error, ephemeral: true})
-				default:
-					return interaction.reply(`${reply.success} ${result}`)
-			}
-		})
+		const chalk = require('chalk');
+		const queryGet = require('../queries/get.js')
+		queryGet.execute().then(function (result) {
+			console.log(`Quote queried successfully: ${result}`)
+			interaction.reply(`${get.reply.success} ${result}`)
+		}).catch(function (error) {
+			console.log(chalk.red(`Error getting quote: ${error}`))
+			if (error === 'empty snapshot' || error === 'missing field') interaction.reply({content: get.reply.error, ephemeral: true})
+			else interaction.reply({ content: config.error_generic, ephemeral: true })
+		})			
 	}
 }
