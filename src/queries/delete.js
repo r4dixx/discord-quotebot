@@ -4,7 +4,7 @@ module.exports = {
     async execute(quoteForDeletion) {
         
         const db = require('firebase-admin/firestore').getFirestore()
-        const collection = db.collection(process.env.COLLECTION_NAME)
+        const collection = db.collection(process.env.COLLECTION_ID)
 
         let snapshot
         if (quoteForDeletion === null) {

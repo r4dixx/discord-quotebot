@@ -9,7 +9,9 @@ Discord bot to output, save, and edit quotes upon commands.
 
 - [🏁 Preliminary steps](#-preliminary-steps)
    - [Create an app](#create-an-app)
-   - [Declare secrets](#declare-secrets)
+   - [Declare Discord secrets](#declare-discord-secrets)
+   - [Create the database](#create-an-app)
+   - [Declare Firebase secrets](#declare-firebase-secrets)
    - [Important notes](#important-notes)
 
 - [🏗 Setup](#-setup)
@@ -55,7 +57,7 @@ First we need to create a Discord app and its associated bot
 
 4. Copy the generated link and open it to add the bot to your server.
 
-### Declare secrets
+### Declare Discord secrets
 
 In order to setup and run the project, you need to have the following environment variables set:
 
@@ -89,17 +91,53 @@ GUILD_ID=your_server_id
 CAPTAIN_IDS=your_user_id, another_user_id, and_maybe_another" >> config/.env
 ```
 
+Don't share these info with anyone or you'll be open to malicious attacks! 
+
+### Create the database
+
+We're going to use a simple NoSQL cloud database to store our quotes. [Firebase Cloud Firestore](https://firebase.google.com/docs/firestore) is a good candidate for this kind of use case. 
+
+It's pretty simple:
+
+- First of all, [create a new Firebase project](https://console.firebase.google.com/) and [navigate to the Firestore Database section](https://console.firebase.google.com/project/_/firestore). Then, create a new database in **locked mode** with the appropriate Cloud Firestore server zone (e.g. `eur3 (europe-west)`).
+
+- Then choose an ID for your database (e.g. `quotes`) and declare it in your `.env` file as follows: `COLLECTION_ID=quotes`. 
+
+Your `.env` file should look like this:
+
+```
+# Discord
+CLIENT_ID=your_app_oauth2_client_id
+TOKEN=your_bot_token
+GUILD_ID=your_server_id
+CAPTAIN_IDS=your_user_id
+
+# Firebase
+COLLECTION_ID=your_db_name
+```
+
+### Declare Firebase secrets
+
+Now we need to link up our Firebase project with our Discord bot.  
+
+- Head to the section called [Service Accounts](https://console.firebase.google.com/project/_/settings/serviceaccounts/adminsdk) in your project settings
+- Click on `Generate new private key` (this will download a `*.json` file for you)
+- Move the downloaded file to [the config directory](../src/config) and make sure to rename it `firebase.json`. Do not share this file with anyone!
+
+That's it!
+
 ### Important notes
 
 - Users declared as captains **are not** server admins, they are just users with the right to edit/delete quotes. In a similar fashion, server admins cannot edit/delete quotes unless they are specifically declared as captains.
 
 - **Never** EVER share your environment with anyone. [See why](https://discordjs.guide/preparations/setting-up-a-bot-application.html#token-leak-scenario).
 
-- Refer to the official documentation if you're lost
+- In a similar fashion, your Cloud Firestore security rules should be in **locked mode**. [See why](https://firebase.google.com/docs/rules/basics).
+
+- Refer to the official documentations if you're lost
    - [Setting up a bot application](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)
    - [Where can I find my User/Server/Message ID?](https://support.discord.com/hc/articles/206346498)
-
-### Prepare the database
+   - [Get started with Cloud Firestore](https://firebase.google.com/docs/firestore/quickstart?hl=en#node.js)
 
 ## 🏗 Setup
 
@@ -119,8 +157,17 @@ This will:
    - Deploy commands to your server 
    - Start the bot
 
-Your output should read `Successfully reloaded application commands` and `Discord client ready! Logged in as QuoteBot-Test - ID: your_client_id`.<br />
-If it doesn't, something went wrong. Check the location of your `.env` file and if your environment variables are correct.
+Your log output should read the following:
+
+- `Successfully reloaded application commands`
+- `Discord client ready! Logged in as QuoteBot-Test - ID: your_client_id`
+- `Instance of Firebase Cloud Firestore initalized properly`
+
+If you didn't get these three messages, something went wrong. 
+
+- Check the location of your `.env` file
+- Check if your environment variables are correct.
+- Check if your Firebase project is properly configured.
 
 ### Test if everything is up and running
 

@@ -7,7 +7,7 @@ module.exports = {
     async execute() {
         
         const db = require('firebase-admin/firestore').getFirestore()
-        const collection = db.collection(process.env.COLLECTION_NAME)
+        const collection = db.collection(process.env.COLLECTION_ID)
 
         const randomId = collection.doc().id
         console.log(`Generated random id ${randomId}`)
